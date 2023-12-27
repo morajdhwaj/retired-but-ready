@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { FaLayerGroup } from "react-icons/fa6";
 
 const Connections = () => {
   return (
@@ -9,7 +8,7 @@ const Connections = () => {
         <div className=" absolute w-4/5 h-[63vh] bg-transparent  flex items-end justify-end">
           <div className=" text-center bg-white px-4 py-2 rounded-lg flex items-center justify-center ">
             <div className="bg-[#F9AE34] p-1 rounded-full">
-              <FaLayerGroup size={20} color="white" />
+              <Image src="/assets/Vector.png" height={15} width={15} />
             </div>
             <div className="ml-2">
               <h1 className="font-semibold">100,000+</h1>
