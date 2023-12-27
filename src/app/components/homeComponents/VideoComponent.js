@@ -17,8 +17,8 @@ const VideoComponent = () => {
         </button>
       </div>
       <div className="w-1/2 flex items-center justify-center ">
-        <div className="bg-[#cab7e4] p-2 rounded-lg">
-          <video height={400} width={500} className="rounded-lg" controls>
+        <div className="bg-[#cab7e4] p-2 rounded-xl">
+          <video height={400} width={500} className="rounded-xl" controls>
             <source src="/assets/RBRV4WhatsApp.mp4" type="video/mp4"></source>
           </video>
         </div>
