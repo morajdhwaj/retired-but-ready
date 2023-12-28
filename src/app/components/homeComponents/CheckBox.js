@@ -15,19 +15,19 @@ const CheckBox = () => {
         </div>
         <div className="flex flex-col gap-5 font-light">
           <div className="flex items-center ml-5  mt-5 gap-3">
-            <FaCircleCheck color="#773fc6" />
+            <FaCircleCheck color="#773fc6" size={20} />
             <h2>work from the comfort of your home</h2>
           </div>
           <div className="flex items-center ml-5 gap-3">
-            <FaCircleCheck color="#773fc6" />
+            <FaCircleCheck color="#773fc6" size={20} />
             <h2>offer vertical/in-person mentoring & guidance</h2>
           </div>
           <div className="flex items-center ml-5 gap-3">
-            <FaCircleCheck color="#773fc6" />
+            <FaCircleCheck color="#773fc6" size={20} />
             <h2>connect & socialize with other RetPros & junPros</h2>
           </div>
           <div className="flex items-center ml-5 gap-3">
-            <FaCircleCheck color="#773fc6" />
+            <FaCircleCheck color="#773fc6" size={20} />
             <h2>enjoy superior quality of life post retirement</h2>
           </div>
         </div>

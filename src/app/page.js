@@ -6,6 +6,7 @@ import ContactComponent from "./components/homeComponents/ContactComponent";
 import Footer from "./components/Footer";
 import ExpertsComponents from "./components/homeComponents/ExpertsComponents";
 import CheckBox from "./components/homeComponents/CheckBox";
+import SuccessStories from "./components/homeComponents/SuccessStories";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <ContactComponent />
       <ExpertsComponents />
       <CheckBox />
+      <SuccessStories />
       <Footer />
     </div>
   );

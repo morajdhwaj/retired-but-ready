@@ -5,6 +5,9 @@ const Connections = () => {
   return (
     <div>
       <div className="relative ">
+        <div className=" absolute w-4/5 h-[63vh] bg-transparent  flex items-center pb-40 justify-end">
+          <Image src="/assets/14.png" height={50} width={50} />
+        </div>
         <div className=" absolute w-4/5 h-[63vh] bg-transparent  flex items-end justify-end">
           <div className=" text-center bg-white px-4 py-2 rounded-lg flex items-center justify-center ">
             <div className="bg-[#F9AE34] p-1 rounded-full">
