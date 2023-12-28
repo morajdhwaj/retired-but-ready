@@ -4,9 +4,9 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <div className="flex bg-gray-200 items-center px-20 pt-5">
+    <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-10 ">
       <div className="w-1/2">
-        <Image src="/assets/RBRLogo1.png" width={170} height={170} />
+        <Image src="/assets/RBRLogo1.png" width={70} height={70} />
       </div>
       <div className="w-1/2 flex items-center justify-end gap-16">
         <input
@@ -16,12 +16,12 @@ const Navbar = () => {
         <Link href="/register" className="font-semibold">
           Home
         </Link>
-        <select className="bg-gray-200 font-semibold">
+        <select className="bg-[#EDEBF2] font-semibold">
           <option>EN</option>
           <option>HI</option>
         </select>
         <Link
-          className="bg-purple-200 px-6 py-3 rounded-lg text-purple-700 "
+          className="bg-purple-200 px-6 py-3 rounded-lg text-[#773fc6] "
           href="/login"
         >
           Login
