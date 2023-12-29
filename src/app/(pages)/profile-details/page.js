@@ -9,6 +9,11 @@ import { PiFilesFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import ProfileDetails from "@/app/components/profile-details-compo/ProfileDetails";
+import WhyRBR from "@/app/components/profile-details-compo/WhyRBR";
+import SocialMedia from "@/app/components/profile-details-compo/SocialMedia";
+import WorkExperience from "@/app/components/profile-details-compo/WorkExperience";
+import WorkHistory from "@/app/components/profile-details-compo/WorkHistory";
 
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -92,7 +97,7 @@ const page = () => {
                 {activeIndex === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 1 && <div>option 1</div>}
+            {activeIndex === 1 && <ProfileDetails />}
 
             <div
               onClick={() => handleToggle(2)}
@@ -107,7 +112,7 @@ const page = () => {
                 {activeIndex === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 2 && <div>option 2</div>}
+            {activeIndex === 2 && <WhyRBR />}
 
             <div
               onClick={() => handleToggle(3)}
@@ -122,7 +127,7 @@ const page = () => {
                 {activeIndex === 3 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 3 && <div>option 3</div>}
+            {activeIndex === 3 && <SocialMedia />}
 
             <div
               onClick={() => handleToggle(4)}
@@ -137,7 +142,7 @@ const page = () => {
                 {activeIndex === 4 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 4 && <div>option4</div>}
+            {activeIndex === 4 && <WorkExperience />}
 
             <div
               onClick={() => handleToggle(5)}
@@ -152,7 +157,7 @@ const page = () => {
                 {activeIndex === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 5 && <div>option 5</div>}
+            {activeIndex === 5 && <WorkHistory />}
           </div>
         </div>
       </div>
