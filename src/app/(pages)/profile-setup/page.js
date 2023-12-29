@@ -66,10 +66,10 @@ const page = () => {
               All fields marked "*" are mandatory
             </p>
             {/* <PersonalInfo /> */}
-              {/* <SocialInfo onclick={handleStep} />   */}
+            {/* <SocialInfo onclick={handleStep} />   */}
             {/* <SkillsComponent /> */}
-              <Experiences />  
-            {/* <Certification /> */}
+            {/* <Experiences />   */}
+            <Certification />
           </div>
         </div>
       </div>
