@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { FaCircleUser } from "react-icons/fa6";
@@ -10,10 +10,17 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 
 const page = () => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
-  const handleStep = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [step]);
+
+  const handleStepUp = () => {
     setStep(step + 1);
+  };
+  const handleStepDown = () => {
+    setStep(step - 1);
   };
 
   return (
@@ -39,38 +46,82 @@ const page = () => {
               make fo a great profile picture? your smile
             </p>
             <div className="flex items-center justify-center">
-              <h1 className="border-2 border-[#773fc6] self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 1
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 1
               </h1>
               <p className="text-gray-300">- - - - - -</p>
-              <h1 className="border-2 self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 2
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 2
               </h1>
               <p className="text-gray-300">- - - - - -</p>
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 3
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 3
               </h1>
               <p className="text-gray-300">- - - - - -</p>
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 4
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 4
               </h1>
               <p className="text-gray-300">- - - - - -</p>
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 5
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 5
               </h1>
             </div>
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory
             </p>
-            {/* <PersonalInfo /> */}
-            {/* <SocialInfo onclick={handleStep} /> */}
-            <SkillsComponent />
-            {/* <Experiences /> */}
-            {/* <Certification /> */}
+            {step === 1 && (
+              <PersonalInfo stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
+            {step === 2 && (
+              <SocialInfo stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
+            {step === 3 && (
+              <SkillsComponent
+                stepUp={handleStepUp}
+                stepDown={handleStepDown}
+              />
+            )}
+            {step === 4 && (
+              <Experiences stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
+            {step === 5 && (
+              <Certification stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
           </div>
+          {step}
         </div>
       </div>
     </div>

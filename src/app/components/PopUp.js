@@ -8,9 +8,11 @@ const PopUp = ({ onClick, title, message, action }) => {
       <div
         className={`bg-white rounded-md z-50  h-[50vh] w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-10 sm:mr-20`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-5">
+        <div className="flex flex-col items-center justify-center h-full gap-5 mx-32">
           <SiCachet size={50} color="#39b54a" />
-          <h2 className="text-xl font-medium text-[#773fc6]">{title}</h2>
+          <h2 className="text-xl font-medium text-[#773fc6] text-center">
+            {title}
+          </h2>
           <p className="text-xs text-center">{message}</p>
           <button
             className="bg-[#773fc6] px-20 py-2 rounded-lg text-white"
