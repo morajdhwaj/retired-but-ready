@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { FaCircleUser } from "react-icons/fa6";
-import PersonalInfo from "@/app/components/homeComponents/profile-setup-compo/PersonalInfo";
-import SocialInfo from "@/app/components/homeComponents/profile-setup-compo/SocialInfo";
-import SkillsComponent from "@/app/components/homeComponents/profile-setup-compo/SkillsComponent";
-import Experiences from "@/app/components/homeComponents/profile-setup-compo/Experiences";
-import Certification from "@/app/components/homeComponents/profile-setup-compo/Certification";
+import PersonalInfo from "@/app/components/profile-setup-compo/PersonalInfo";
+import SocialInfo from "@/app/components/profile-setup-compo/SocialInfo";
+import SkillsComponent from "@/app/components/profile-setup-compo/SkillsComponent";
+import Experiences from "@/app/components/profile-setup-compo/Experiences";
+import Certification from "@/app/components/profile-setup-compo/Certification";
 
 const page = () => {
   const [step, setStep] = useState(0);
@@ -65,11 +65,11 @@ const page = () => {
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory
             </p>
-            <PersonalInfo />
+            {/* <PersonalInfo /> */}
             {/* <SocialInfo onclick={handleStep} /> */}
             {/* <SkillsComponent /> */}
             {/* <Experiences /> */}
-            {/* <Certification /> */}
+            <Certification />
           </div>
         </div>
       </div>
