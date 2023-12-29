@@ -5,8 +5,14 @@ import React from "react";
 const Navbar = () => {
   return (
     <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-10 ">
-      <div className="w-1/2">
-        <Image src="/assets/RBRLogo1.png" width={70} height={70} />
+      <div className="w-1/2 flex text-xs justify-between ">
+        <Link href="/">
+          <Image src="/assets/RBRLogo1.png" width={70} height={70} />
+        </Link>
+        <div className="flex gap-2">
+          <Link href="/profile-setup">Profile-setup</Link>
+          <Link href="/profile-details">Profile</Link>
+        </div>
       </div>
       <div className="w-1/2 flex items-center justify-end gap-16">
         <input

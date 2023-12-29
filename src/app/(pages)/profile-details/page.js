@@ -1,20 +1,31 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
+
 const page = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
+  };
+
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-36 pt-24 h-[100vh]">
+        <div className="w-full bg-[#f2f1f3]  p-5 ml-36 pt-24 ">
           <div className="relative ">
-            <div className="absolute w-[96%] pt-28 mx-5">
-              <div className="w-full bg-gradient-to-b from-pink-100 to-white flex py-5 justify-between rounded-lg px-5">
+            <div className="absolute w-[96%] pt-24 mx-5">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex py-5 justify-between rounded-xl px-5">
                 <div className="flex items-center justify-center gap-2">
                   <Image src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
@@ -56,6 +67,92 @@ const page = () => {
                 Previewing as a visitor
               </p>
             </div>
+          </div>
+          <div className="mt-20 mx-5">
+            <p className="text-gray-500 text-lg text-center leading-8">
+              I'm steve jacob , an ex-banker with over 30 years of experience in
+              Retail Banking, I've spent good amount of years with JPMorgen
+              Chase and Bank of America in the US. I am on RBR to network,
+              mentor, and find some freelance work. I am also an excellent
+              violinist as my hobby. I am on RBR to network , mentor , and find
+              some freelance work. I am also an excellent violinist as my hobby
+            </p>
+          </div>
+          <div className="m-10 flex flex-col gap-3">
+            <div
+              onClick={() => handleToggle(1)}
+              className={` font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+                activeIndex === 1
+                  ? "bg-[#773fc6] text-white "
+                  : "bg-gray-200  text-gray-500"
+              }`}
+            >
+              <h1> Personal Details</h1>
+              <div>
+                {activeIndex === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+            </div>
+            {activeIndex === 1 && <div>option 1</div>}
+
+            <div
+              onClick={() => handleToggle(2)}
+              className={` font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+                activeIndex === 2
+                  ? "bg-[#773fc6] text-white "
+                  : "bg-gray-200  text-gray-500"
+              }`}
+            >
+              <h1> Why are you 'Retired But Ready'?</h1>
+              <div>
+                {activeIndex === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+            </div>
+            {activeIndex === 2 && <div>option 2</div>}
+
+            <div
+              onClick={() => handleToggle(3)}
+              className={` font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+                activeIndex === 3
+                  ? "bg-[#773fc6] text-white "
+                  : "bg-gray-200  text-gray-500"
+              }`}
+            >
+              <h1> Social Media Presence</h1>
+              <div>
+                {activeIndex === 3 ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+            </div>
+            {activeIndex === 3 && <div>option 3</div>}
+
+            <div
+              onClick={() => handleToggle(4)}
+              className={` font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+                activeIndex === 4
+                  ? "bg-[#773fc6] text-white "
+                  : "bg-gray-200  text-gray-500"
+              }`}
+            >
+              <h1> Work Experience</h1>
+              <div>
+                {activeIndex === 4 ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+            </div>
+            {activeIndex === 4 && <div>option4</div>}
+
+            <div
+              onClick={() => handleToggle(5)}
+              className={` font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+                activeIndex === 5
+                  ? "bg-[#773fc6] text-white "
+                  : "bg-gray-200  text-gray-500"
+              }`}
+            >
+              <h1> Work History</h1>
+              <div>
+                {activeIndex === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
+              </div>
+            </div>
+            {activeIndex === 5 && <div>option 5</div>}
           </div>
         </div>
       </div>
