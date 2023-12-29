@@ -51,11 +51,9 @@ const Certification = ({ stepUp, stepDown }) => {
               type="text"
               className="bg-gray-100 border rounded-lg w-[500px]  border-gray-300 py-1 mt-3"
             >
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-              <option> Option 5</option>
+              <option>INR</option>
+              <option>USD</option>
+              <option>EURO</option>
             </select>
           </div>
           <div className="text-gray-700  text-xl mt-5">

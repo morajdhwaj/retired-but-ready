@@ -3,7 +3,7 @@ import React from "react";
 
 const ExpertsComponents = () => {
   return (
-    <div className="mx-20 py-40">
+    <div className="mx-10 py-40">
       <div>
         <h1 className="text-5xl font-bold text-center text-[#2f327d]">
           Meet the <span className="text-7xl text-[#773fc6]">RetPro</span> area
