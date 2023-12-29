@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoComponent = () => {
   return (
-    <div className="bg-[#EDEBF2] px-20 flex py-40  ">
+    <div className="bg-[#EDEBF2] px-10 flex py-40  ">
       <div className="w-1/2 flex flex-col gap-5">
         <h1 className="font-semibold text-5xl leading-[65px] ">
           Where young minds meet industrious retires
