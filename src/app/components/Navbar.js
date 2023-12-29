@@ -20,7 +20,7 @@ const Navbar = () => {
           className="bg-gray-200 border border-purple-300 text-sm rounded-lg px-2 py-1  "
         />
         <Link href="/register" className="font-semibold">
-          Home
+          Register
         </Link>
         <select className="bg-[#EDEBF2] font-semibold">
           <option>EN</option>
