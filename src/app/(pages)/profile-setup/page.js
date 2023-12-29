@@ -65,8 +65,8 @@ const page = () => {
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory
             </p>
-            <PersonalInfo />
-            {/* <SocialInfo onclick={handleStep} /> */}
+            {/* <PersonalInfo /> */}
+            <SocialInfo onclick={handleStep} />
             {/* <SkillsComponent /> */}
             {/* <Experiences /> */}
             {/* <Certification /> */}

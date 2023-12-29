@@ -93,7 +93,7 @@ const page = () => {
               }`}
             >
               <h1> Personal Details</h1>
-              <div>
+              <div className="flex">
                 {activeIndex === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
@@ -160,6 +160,14 @@ const page = () => {
             {activeIndex === 5 && <WorkHistory />}
           </div>
         </div>
+      </div>
+      <div className="flex bg-[#f2f1f3] ml-36  items-center justify-center gap-10 py-10">
+        <button className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-40 ">
+          Cancel
+        </button>
+        <button className="bg-[#773fc6]  p-2 text-white font-medium rounded w-40 ">
+          Submit
+        </button>
       </div>
     </div>
   );
