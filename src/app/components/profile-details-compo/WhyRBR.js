@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Select from "react-select";
 
@@ -18,7 +19,7 @@ const wants = [
   { value: "Work sort term", label: "Work sort term" },
 ];
 
-const SocialInfo = ({ onclick }) => {
+const WhyRBR = () => {
   const [cause, setCause] = useState([]);
 
   const handleCauseChange = async (selected, selection) => {
@@ -39,8 +40,9 @@ const SocialInfo = ({ onclick }) => {
     }
     setCause(selected);
   };
+
   return (
-    <div className="flex  flex-col gap-5 mx-20 ">
+    <div className="flex  flex-col gap-5  ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
           What is the cause of your retirement
@@ -71,55 +73,8 @@ const SocialInfo = ({ onclick }) => {
           onChange={handleWantChange}
         />
       </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Age Category</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="">
-        <h2 className="font-medium">Link your accounts</h2>
-        <p className="text-xs text-gray-500">
-          (provide links to your linkedin, facebook, google and other social
-          media accounts that are relevant with your profile and work
-          experience)
-        </p>
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Facebook</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Twitter</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Linkedin</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Instagram</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Behance</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Others</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
-      <div className="flex w-full gap-10">
-        <button className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2">
-          Go back
-        </button>
-        <button
-          onClick={onclick}
-          className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2"
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 };
 
-export default SocialInfo;
+export default WhyRBR;
