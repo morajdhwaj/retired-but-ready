@@ -2,7 +2,7 @@ import React from "react";
 
 const Experiences = () => {
   return (
-    <div className="h-full">
+    <div className="h-full mx-12">
       <div>
       <h1 className="text-2xl font-semibold">English Proficiency</h1>
       <h4 className="text-gray-400 font-normal text-sm">Retired but ready is an ideal plateform for Intermediate/Native English speakers.<br/>
