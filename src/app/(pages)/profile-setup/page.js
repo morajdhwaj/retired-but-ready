@@ -57,6 +57,7 @@ const page = () => {
                 4
               </h1>
               <p className="text-gray-300">- - - - - -</p>
+              
 
               <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
                 5
@@ -67,9 +68,9 @@ const page = () => {
             </p>
             {/* <PersonalInfo /> */}
             {/* <SocialInfo onclick={handleStep} /> */}
-            {/* <SkillsComponent /> */}
+            <SkillsComponent />
             {/* <Experiences /> */}
-            <Certification />
+            {/* <Certification /> */}
           </div>
         </div>
       </div>
