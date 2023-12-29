@@ -1,14 +1,24 @@
+"use client";
 import Navbar from "@/app/components/Navbar";
-import { Input } from "postcss";
-import React from "react";
+import PopUp from "@/app/components/PopUp";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 const page = () => {
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+
+  const handleModal = () => {
+    setShowModal(true);
+    showModal && router.push("/profile-setup");
+  };
+
   return (
     <div className="  bg-gray-200  ">
       <Navbar />
       {/* Image */}
 
-      <div className="flex gap-48  ">
+      <div className="flex gap-48 pt-20  ">
         <div className=" flex flex-col gap-3 mx-3    ">
           <div className=" h-auto mt-5 rounded-md p-5 border-gray-300 flex     hover:w-auto hover:border-2 hover:border-blue-600  ">
             <img src="\assets\Group-626217.png " />
@@ -89,15 +99,26 @@ const page = () => {
                 forget password?
               </h3>
             </div>
-            <div className="border-2 bg-[#773FC6] rounded-lg p-2 w-[600px] text-xl text-center  text-white flex justify-center items-center">
-              <button>Login</button>
-            </div>
+            <button
+              onClick={handleModal}
+              className="border-2 bg-[#773FC6] rounded-lg p-2 w-[600px] text-xl text-center  text-white flex justify-center items-center"
+            >
+              Login
+            </button>
           </div>
           <div className="   mt-5 text-center flex justify-center ">
             <h3>Don't have an account?</h3>
             <p className="text-red-400">Create one</p>
           </div>
         </div>
+        {showModal && (
+          <PopUp
+            onClick={handleModal}
+            title="Logged in , lets build your profile now"
+            action="Enter Profile details"
+            message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
+          />
+        )}
       </div>
     </div>
   );
