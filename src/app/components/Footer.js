@@ -14,7 +14,7 @@ const Footer = () => {
       }}
     >
       <div className="py-32 ">
-        <div className="flex px-20 gap-20 ">
+        <div className="flex px-10 gap-20 ">
           <div className="w-1/5">
             <Image src="/assets/RBRLogo1.png" width={100} height={100} />
             <p className="text-gray-500 text-justify  mt-5">
