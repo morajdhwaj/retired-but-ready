@@ -1,17 +1,52 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import PopUp from "@/app/components/PopUp";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const router = useRouter();
 
   const handleModal = () => {
     setShowModal(true);
     showModal && router.push("/login");
+  };
+
+  const handleRegister = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/user/register",
+      headers: { "Content-Type": "application/json" },
+      data: {
+        user_mobile: mobile,
+        user_email: email,
+        user_fullname: userName,
+        user_display_name: displayName,
+        user_password: password,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response.data.message);
+        handleModal();
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error.response.data.detail);
+      });
   };
 
   return (
@@ -25,32 +60,42 @@ const page = () => {
           <br />
           <div className="border-2 border-gray-300 w-[80%] rounded-md  hover:border-blue-500 hover:shadow-sm p-4 ">
             <input
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               type="text"
               placeholder="full name*"
               className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500"
             />
             <input
               type="text"
-              placeholder="e-mail address*"
+              value={displayName}
+              onChange={(e) => setDisplayName(e.target.value)}
+              placeholder="display name"
               className="mb-4 bg-gray-200  border-gray-300 border-2  text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500 "
             />
             <input
               type="text"
-              placeholder="enter a password*"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              placeholder="mobile number"
               className="mb-4 bg-gray-200 border-gray-300 border-2  text-md rounded-lg block w-full  h-10 p-1.5 hover:border-blue-500"
             />
             <input
-              type="text"
-              placeholder="mobile number"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email"
               className="mb-4 bg-gray-200  border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500"
             />
             <input
               type="text"
-              placeholder="tap to verify"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
               className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5  hover:border-blue-500 hover:rounded-none "
             />
             <button
-              onClick={handleModal}
+              onClick={handleRegister}
               className="bg-[#773FC6] mp-4 w-full p-1.5 rounded-lg border hover:border-blue-500 hover:rounded-lg text-white  text-xl"
             >
               Create account
