@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
@@ -105,7 +106,8 @@ const page = () => {
 
         <div className=" w-[46%]  flex flex-col  ">
           <div className="mt-1 p-2">
-            <img src="\assets\Group-626217.png" width={500} height={500} />
+         
+          <Image src="/assets/Group-626217.png" width={500} height={500} /> 
           </div>
           <div className="flex items-center justify-center">
             <div className="h-[1px] w-[100px] bg-gray-400 " />
@@ -153,7 +155,7 @@ const page = () => {
                 />
                 EMAIL
               </button>
-            </div>
+            </div> 
           </div>
         </div>
         {showModal && (
