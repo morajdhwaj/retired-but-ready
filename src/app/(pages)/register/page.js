@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
@@ -105,7 +106,8 @@ const page = () => {
 
         <div className=" w-[46%]  flex flex-col  ">
           <div className="mt-1 p-2">
-            <img src="\assets\Group-626217.png" width={500} height={500} />
+         
+          <Image src="/assets/Group-626217.png" width={500} height={500} /> 
           </div>
           <div className="flex items-center justify-center">
             <div className="h-[1px] w-[100px] bg-gray-400 " />
@@ -115,18 +117,18 @@ const page = () => {
           <div className=" w-75% flex justify-center items-center mb-5 mt-2 ">
             <div className="flex flex-col gap-5  ">
               <button className="w-28 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10">
-                <img
-                  src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-                  alt=""
+                <Image
+            src="/assets/GOOGLE.png"
+                  alt="google"
                   width={20}
                   height={20}
                 />
                 GOOGLE
               </button>
               <button className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10">
-                <img
-                  src="https://www.freeiconspng.com/thumbs/mobile-icon-png/file-mobile-smartphone-icon--wikimedia-commons-0.png "
-                  alt=""
+                <Image
+                  src="/assets/mobile-phone-svgrepo-com-1.png "
+                  alt="mobile"
                   width={20}
                   height={20}
                 />
@@ -135,9 +137,9 @@ const page = () => {
             </div>
             <div className="flex flex-col gap-5 mx-4">
               <button className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10">
-                <img
-                  src="https://toppng.com/uploads/preview/facebook-logo-in-circle-without-background-11549845823jxxwaj1f82.png"
-                  alt=""
+                <Image
+                  src="/assets/facebook.png"
+                  alt="facebook"
                   width={20}
                   height={20}
                 />
@@ -145,15 +147,15 @@ const page = () => {
               </button>
 
               <button className="w-28 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 ">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/10542/10542539.png"
-                  alt=""
+                <Image
+                  src="/assets/EMAIL.png"
+                  alt="email"
                   width={20}
                   height={20}
                 />
                 EMAIL
               </button>
-            </div>
+            </div> 
           </div>
         </div>
         {showModal && (
