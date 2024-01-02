@@ -13,6 +13,7 @@ const page = () => {
             width={400}
             height={500}
             className="mx-32 mt-20 "
+            alt="reset-password"
           />
         </div>
         <div className="w-1/2 bg-white ml-20 mb-20 mr-10 mt-10">
