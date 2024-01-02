@@ -12,6 +12,13 @@ import Certification from "@/app/components/profile-setup-compo/Certification";
 const page = () => {
   const [step, setStep] = useState(1);
   const hiddenFileInput = useRef(null);
+  const [displayName, setDisplayName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [country, setCountry] = useState("");
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -33,6 +40,7 @@ const page = () => {
     setStep(step - 1);
   };
 
+  console.log(country, "country");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -124,7 +132,23 @@ const page = () => {
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory
             </p>
-            {step === 1 && <PersonalInfo stepUp={handleStepUp} />}
+            {step === 1 && (
+              <PersonalInfo
+                stepUp={handleStepUp}
+                firstName={firstName}
+                setFirstName={setFirstName}
+                lastName={lastName}
+                setLastName={setLastName}
+                displayName={displayName}
+                setDisplayName={setDisplayName}
+                age={age}
+                setAge={setAge}
+                gender={gender}
+                setGender={setGender}
+                country={country}
+                setCountry={setCountry}
+              />
+            )}
             {step === 2 && (
               <SocialInfo stepUp={handleStepUp} stepDown={handleStepDown} />
             )}
