@@ -7,7 +7,7 @@ const page = () => {
     <div>
       <Navbar />
       <div className="bg-[#ECEAF0] flex mt-20">
-        <div className=" w-1/2">
+        <div className=" w-1/2 ">
           <Image
             src="/assets/Group-26113.png"
             width={400}
