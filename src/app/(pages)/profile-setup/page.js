@@ -68,9 +68,10 @@ const page = () => {
             </p>
             {/* <PersonalInfo /> */}
             {/* <SocialInfo onclick={handleStep} /> */}
-            <SkillsComponent />
+            {/* <SkillsComponent /> */}
             {/* <Experiences /> */}
             {/* <Certification /> */}
+            
           </div>
         </div>
       </div>
