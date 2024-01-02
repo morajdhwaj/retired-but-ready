@@ -124,11 +124,20 @@ const page = () => {
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory
             </p>
-            {/* <PersonalInfo /> */}
-            {/* <SocialInfo onclick={handleStep} /> */}
-            <SkillsComponent />
-            {/* <Experiences /> */}
-            {/* <Certification /> */}
+            {step === 1 && <PersonalInfo stepUp={handleStepUp} />}
+            {step === 2 && (
+              <SocialInfo stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
+            {step === 3 && (
+              <SkillsComponent
+                stepUp={handleStepUp}
+                stepDown={handleStepDown}
+              />
+            )}
+            {step === 4 && (
+              <Experiences stepUp={handleStepUp} stepDown={handleStepDown} />
+            )}
+            {step === 5 && <Certification stepDown={handleStepDown} />}
           </div>
         </div>
       </div>
