@@ -15,7 +15,7 @@ const ContactComponent = () => {
           alignItems: "center",
         }}
       >
-        <div className="w-1/2 px-20">
+        <div className="w-1/2 px-10">
           <h2 className="text-[#2f327d] font-semibold text-2xl">
             Ask us how we are transforming lives.
           </h2>

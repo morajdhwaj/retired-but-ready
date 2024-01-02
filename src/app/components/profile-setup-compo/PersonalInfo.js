@@ -1,6 +1,6 @@
 import React from "react";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ stepUp }) => {
   return (
     <div className="flex  flex-col gap-5 mx-20 ">
       <div className="flex gap-5">
@@ -29,7 +29,10 @@ const PersonalInfo = () => {
         <h2 className="font-semibold text-gray-500">City</h2>
         <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
       </div>
-      <button className="bg-[#773fc6] p-2 text-white font-medium rounded">
+      <button
+        onClick={stepUp}
+        className="bg-[#773fc6] p-2 text-white font-medium rounded"
+      >
         Next
       </button>
     </div>

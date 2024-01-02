@@ -5,7 +5,7 @@ import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 const SuccessStories = () => {
   return (
-    <div className="py-10 px-20">
+    <div className="py-10 px-10">
       <div className="flex">
         <div className="w-4/5">
           <h1 className="text-5xl  font-semibold leading-[60px]">
@@ -21,7 +21,7 @@ const SuccessStories = () => {
           </button>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex items-center justify-center ">
         <div className="w-1/2 flex flex-col gap-5 mt-10 pr-20">
           <h2 className="text-2xl">
             "No online course could have helped me this way"

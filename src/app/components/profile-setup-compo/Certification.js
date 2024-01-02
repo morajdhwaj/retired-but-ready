@@ -1,9 +1,9 @@
 import React from "react";
 
-const Certification = () => {
+const Certification = ({ stepUp, stepDown }) => {
   return (
     <div>
-      <div className=" flex flex-col mx-40">
+      <div className=" flex flex-col mx-20">
         <h1 className="text-2xl font-bold ">Certifications</h1>
         <h3 className="text-gray-400 text-noraml mt-5  ">
           [Example:Microsoft Certifified Solution Associate (MCSA)]
@@ -51,11 +51,9 @@ const Certification = () => {
               type="text"
               className="bg-gray-100 border rounded-lg w-[500px]  border-gray-300 py-1 mt-3"
             >
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-              <option> Option 5</option>
+              <option>INR</option>
+              <option>USD</option>
+              <option>EURO</option>
             </select>
           </div>
           <div className="text-gray-700  text-xl mt-5">
@@ -84,7 +82,10 @@ const Certification = () => {
             Preview as visitor
           </h1>
           <div className="text-center mt-5 flex gap-10 items-center justify-center rounded ">
-            <button className="border-2 border-[#773FC6] w-[200px] text-[#773FC6] py-1 text-xl font-semibold ">
+            <button
+              onClick={stepDown}
+              className="border-2 border-[#773FC6] w-[200px] text-[#773FC6] py-1 text-xl font-semibold "
+            >
               Go back
             </button>
             <button className="border-2 border-[#773FC6] w-[200px]  py-1 text-xl font-semibold  bg-[#773FC6] text-white rounded">

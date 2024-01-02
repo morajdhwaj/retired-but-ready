@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { FaCircleUser } from "react-icons/fa6";
@@ -10,10 +10,27 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 
 const page = () => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
+  const hiddenFileInput = useRef(null);
 
-  const handleStep = () => {
+  const handleClick = () => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    handleFile(fileUploaded);
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [step]);
+
+  const handleStepUp = () => {
     setStep(step + 1);
+  };
+  const handleStepDown = () => {
+    setStep(step - 1);
   };
 
   return (
@@ -21,6 +38,7 @@ const page = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
+
         <div className="w-full bg-[#f2f1f3]  p-5 ml-36 pt-24">
           <div className="flex w-full ">
             <div className="w-1/2 flex items-center justify-end">
@@ -28,9 +46,20 @@ const page = () => {
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
               <FaCircleUser size={100} />
-              <button className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded">
+              <button
+                className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded"
+                onClick={handleClick}
+              >
                 Add a profile picture
               </button>
+              <div>
+                <input
+                  type="file"
+                  onChange={handleChange}
+                  ref={hiddenFileInput}
+                  style={{ display: "none" }} // Make the file input element invisible
+                />
+              </div>
             </div>
           </div>
           <div className="mx-40 mt-5 flex flex-col gap-5">
@@ -39,27 +68,56 @@ const page = () => {
               make fo a great profile picture? your smile
             </p>
             <div className="flex items-center justify-center">
-              <h1 className="border-2 border-[#773fc6] self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 1
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 1
               </h1>
               <p className="text-gray-300">- - - - - -</p>
-              <h1 className="border-2 self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 2
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 2
               </h1>
               <p className="text-gray-300">- - - - - -</p>
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 3
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 3
               </h1>
               <p className="text-gray-300">- - - - - -</p>
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 4
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 4
               </h1>
               <p className="text-gray-300">- - - - - -</p>
-              
 
-              <h1 className="border-2  self-start px-5 py-2.5 rounded-full text-2xl ">
+              <h1
+                className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
+                  step === 5
+                    ? "border-[#773fc6] text-[#773fc6]"
+                    : "text-gray-500"
+                } `}
+              >
                 5
               </h1>
             </div>
@@ -68,10 +126,9 @@ const page = () => {
             </p>
             {/* <PersonalInfo /> */}
             {/* <SocialInfo onclick={handleStep} /> */}
-            {/* <SkillsComponent /> */}
+            <SkillsComponent />
             {/* <Experiences /> */}
             {/* <Certification /> */}
-            
           </div>
         </div>
       </div>
