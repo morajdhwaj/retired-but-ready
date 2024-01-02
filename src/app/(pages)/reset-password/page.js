@@ -16,7 +16,7 @@ const page = () => {
             alt="reset-password"
           />
         </div>
-        <div className="w-1/2 bg-white ml-20 mb-20 mr-10 mt-10">
+        <div className="w-1/2 bg-white ml-20 mb-24 mr-10 mt-10">
           <div className="ml-5 mr-10 my-10">
             <h1 className="text-3xl font-medium ">Reset Password</h1>
             <h6 className="text-sm mt-3  ">
