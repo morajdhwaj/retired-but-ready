@@ -1,6 +1,6 @@
 import React from "react";
 
-const Certification = () => {
+const Certification = ({ stepUp, stepDown }) => {
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -51,11 +51,9 @@ const Certification = () => {
               type="text"
               className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
             >
-              <option>Option 1</option>
-              <option>Option 2</option>
-              <option>Option 3</option>
-              <option>Option 4</option>
-              <option> Option 5</option>
+              <option>INR</option>
+              <option>USD</option>
+              <option>EURO</option>
             </select>
           </div>
           <div className="text-gray-500  text-xl mt-5">
@@ -84,8 +82,10 @@ const Certification = () => {
             Preview as visitor
           </h1>
           <div className="text-center mt-5 flex gap-10 items-center justify-center rounded ">
-            {" "}
-            <button className="text-[#773fc6] border-2 border-[#773fc6]  w-[200px]  font-medium  rounded py-1">
+            <button
+              onClick={stepDown}
+              className="border-2 border-[#773FC6] w-[200px] text-[#773FC6] py-1 text-xl font-semibold "
+            >
               Go back
             </button>
             <button className="bg-[#773fc6]  w-[200px] text-white font-medium rounded py-1 ">

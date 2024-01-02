@@ -18,7 +18,7 @@ const wants = [
   { value: "Work sort term", label: "Work sort term" },
 ];
 
-const SocialInfo = ({ onclick }) => {
+const SocialInfo = ({ stepUp, stepDown }) => {
   const [cause, setCause] = useState([]);
 
   const handleCauseChange = async (selected, selection) => {
@@ -108,11 +108,14 @@ const SocialInfo = ({ onclick }) => {
         <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
       </div>
       <div className="flex w-full gap-10">
-        <button className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2">
+        <button
+          onClick={stepDown}
+          className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
+        >
           Go back
         </button>
         <button
-          onClick={onclick}
+          onClick={stepUp}
           className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2"
         >
           Next

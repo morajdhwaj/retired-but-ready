@@ -1,14 +1,48 @@
+"use client";
 import Navbar from "@/app/components/Navbar";
-import { Input } from "postcss";
-import React from "react";
+import PopUp from "@/app/components/PopUp";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const page = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleModal = () => {
+    setShowModal(true);
+    showModal && router.push("/profile-setup");
+  };
+
+  const handleLogin = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/user/login",
+      headers: { "Content-Type": "application/json" },
+      data: { user_email: email, user_password: password },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        handleModal();
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error("Something wrong");
+      });
+  };
   return (
     <div className="  bg-gray-200  ">
       <Navbar />
       {/* Image */}
 
-      <div className="flex gap-48  ">
+      <div className="flex gap-48 pt-20  ">
         <div className=" flex flex-col gap-3 mx-3    ">
           <div className=" h-auto mt-5 rounded-md p-5 border-gray-300 flex     hover:w-auto hover:border-2 hover:border-blue-600  ">
             <img src="\assets\Group-626217.png " />
@@ -75,12 +109,16 @@ const page = () => {
 
           <div className="  h-auto mt-5 rounded-md p-5  border-2 border-gray-300 flex flex-col gap-5  w-[650px] hover:border-2 hover:border-blue-600">
             <input
-              type="text"
-              placeholder="Your full name"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
               className="mt-5   w-[600px] border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
             />
             <input
-              type="password"
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className=" w-[600px] border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2 hover:border-blue-600 hover:border-b-2 "
             />
@@ -89,15 +127,26 @@ const page = () => {
                 forget password?
               </h3>
             </div>
-            <div className="border-2 bg-[#773FC6] rounded-lg p-2 w-[600px] text-xl text-center  text-white flex justify-center items-center">
-              <button>Login</button>
-            </div>
+            <button
+              onClick={handleLogin}
+              className="border-2 bg-[#773FC6] rounded-lg p-2 w-[600px] text-xl text-center  text-white flex justify-center items-center"
+            >
+              Login
+            </button>
           </div>
           <div className="   mt-5 text-center flex justify-center ">
             <h3>Don't have an account?</h3>
             <p className="text-red-400">Create one</p>
           </div>
         </div>
+        {showModal && (
+          <PopUp
+            onClick={handleModal}
+            title="Logged in , lets build your profile now"
+            action="Enter Profile details"
+            message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
+          />
+        )}
       </div>
     </div>
   );
