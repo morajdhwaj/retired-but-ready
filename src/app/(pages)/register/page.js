@@ -50,6 +50,8 @@ const page = () => {
       });
   };
 
+  console.log(mobile);
+
   return (
     <div>
       <Navbar />
