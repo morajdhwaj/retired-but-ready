@@ -8,6 +8,7 @@ const Navbar = () => {
       <div className="w-1/2 flex text-xs justify-between ">
         <Link href="/">
           <Image src="/assets/RBRLogo1.png" width={70} height={70} />
+         
         </Link>
         <div className="flex gap-2">
           <Link href="/profile-setup">Profile-setup</Link>
