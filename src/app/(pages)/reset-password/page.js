@@ -1,16 +1,21 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import axios from "axios";
-
+import PopUp from "@/app/components/PopUp";
 import React, { useState } from "react";
-
+import toast from "react-hot-toast";
 import Image from "next/image";
 
 const page = () => {
+  const [showModal, setShowModal] = useState(false);
   const [oldpassword, setOldpassword] = useState("");
   const [password, setPassword] = useState("");
   console.log(oldpassword);
   console.log(password);
+  const handleModal = () => {
+    setShowModal(true);
+    showModal && router.push("/profile-setup");
+  };
   const handlPassword = () => {
     const options = {
       method: "PATCH",
@@ -24,9 +29,12 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        toast.success(response?.data?.message);
+        handleModal();
       })
       .catch(function (error) {
         console.error(error);
+        toast.error("Something wrong");
       });
   };
   return (
@@ -73,6 +81,14 @@ const page = () => {
             </button>
           </div>
         </div>
+        {showModal && (
+          <PopUp
+            onClick={handleModal}
+            title="Password Reset Successfully"
+            action="Log in"
+            message=" Congratulation"
+          />
+        )}
       </div>
     </div>
   );
