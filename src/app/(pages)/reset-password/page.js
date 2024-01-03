@@ -7,7 +7,7 @@ const page = () => {
     <div>
       <Navbar />
       <div className="bg-[#ECEAF0] flex mt-20">
-        <div className=" w-1/2">
+        <div className=" w-1/2 ">
           <Image
             src="/assets/Group-26113.png"
             width={400}
@@ -28,7 +28,7 @@ const page = () => {
             <input className="h-14 rounded w-full border border-gray-200"></input>
             <h1 className="mt-4 text-gray-500">Confirm Password</h1>
             <input className="h-14 rounded w-full border border-gray-200"></input>
-            <button className="bg-[#773FC6] mt-6 w-full h-12 rounded text-white font-thin">Reset Password</button>
+            <button className="bg-[#773FC6] mt-6 w-full h-12 rounded text-white">Reset Password</button>
           </div>
         </div>
       </div>
