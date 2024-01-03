@@ -1,44 +1,40 @@
-"use client"
+"use client";
 import Navbar from "@/app/components/Navbar";
 import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-
 const page = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
-  
+
   const router = useRouter();
 
-  
+  const handlePassword = () => {
+    const options = {
+      method: "GET",
+      url: "https://retpro.catax.me/user/forgot-password",
+      params: { user_email: email },
+    };
 
-const handlePassword = () => {
-  const options = {
-    method: 'GET',
-    url: 'https://retpro.catax.me/user/forgot-password',
-    params: { user_email: email }
+    axios
+      .request(options)
+      .then(function (response) {
+        if (response.status === 200) {
+          console.log(response.data);
+          router.push("/verification-code");
+        } else {
+          console.error("Unexpected status code:", response.status);
+        }
+      })
+      .catch(function (error) {
+        console.error("Request failed:", error.message);
+        // Display an error message to the user if needed
+      });
   };
 
-  axios.request(options)
-  .then(function (response) {
-    if (response.status === 200) {
-      console.log(response.data);
-      router.push("/Verification-code");
-    } else {
-      console.error("Unexpected status code:", response.status);
-    }
-  })
-  .catch(function (error) {
-    console.error("Request failed:", error.message);
-    // Display an error message to the user if needed
-  });
-}
-
-
   return (
-  
     <div>
       <Navbar />
       <div className="bg-gray-200 flex h-auto">
@@ -46,6 +42,7 @@ const handlePassword = () => {
           <Image
             src="/assets/Group-26113.png"
             width={700}
+            alt="forgot-image"
             height={200}
             className=" pt-10 pl-32 mt-10 ml-10"
           />
@@ -57,15 +54,16 @@ const handlePassword = () => {
               Please enter your email address to reset your password
             </h6>
             <input
-            value={email}
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Johnraymonds@gmail.com"
               className="border border-gray-200 rounded-lg py-4 mt-10 w-full p-3 "
             />
-            <button 
-            onClick={handlePassword}
-            className="bg-[#773FC6] text-white px-28 py-2 rounded-lg mt-8 w-full">
+            <button
+              onClick={handlePassword}
+              className="bg-[#773FC6] text-white px-28 py-2 rounded-lg mt-8 w-full"
+            >
               Send Verification Code
             </button>
             <div className="flex items-center justify-center mt-10 ">
