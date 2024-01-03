@@ -1,6 +1,11 @@
 import React from "react";
 
-const Experiences = ({ stepUp, stepDown }) => {
+const Experiences = ({
+  stepUp,
+  stepDown,
+  englishProficiency,
+  setEnglishProficiency,
+}) => {
   return (
     <div className="h-full mx-20">
       <div>
@@ -11,10 +16,14 @@ const Experiences = ({ stepUp, stepDown }) => {
           <br />
           Please indicate your english language proficiency with honesty.
         </h4>
-        <select className=" mt-5 h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full">
+        <select
+          value={englishProficiency}
+          onChange={(e) => setEnglishProficiency(e.target.value)}
+          className=" mt-5 h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+        >
           <option>Good</option>
-          <option>Not Good</option>
           <option>Bad</option>
+          <option>Best</option>
         </select>
       </div>
       <div className="mt-5">
