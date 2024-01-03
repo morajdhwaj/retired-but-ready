@@ -3,8 +3,39 @@
 import React, { useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
+import toast from "react-hot-toast"
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 const page = ({ length = 4 }) => {
+  
   const [otp, setOtp] = useState(Array(length).fill(""));
+  const finalOtp = otp.join("")
+
+  const router = useRouter();
+ 
+    
+  
+
+  const handleVerification = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/user/verify-otp",
+      params: { user_id: "659510c2f4f7ce4f923051fc", otp: finalOtp },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response.data.message)
+        router.push("/reset-password");
+      })
+      .catch(function (error) {
+        console.log(error.data)
+      });
+  };
 
   const handleInputChange = (index, value) => {
     // Only update the state if the entered value is a number
@@ -26,13 +57,13 @@ const page = ({ length = 4 }) => {
     }
   };
 
-  console.log(otp.join());
+  console.log(finalOtp);
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
       <div className="pt-20 flex">
         <div className="w-1/2  flex justify-center items-center ">
-          <img src="\assets\Group-26113.png" width={450} height={450} />
+          <Image src="/assets/Group-26113.png" width={450} height={450} />
         </div>
         <div className="w-1/2 p-5 ">
           <div className="bg-white m-6 p-10 ">
@@ -60,19 +91,22 @@ const page = ({ length = 4 }) => {
               ))}
             </div>
 
-           
             <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
               {" "}
               I didn't receive a code!{" "}
               <span className="text-[#773FC6] ">Please resend</span>
             </h1>
             <div className="bg-reg-500">
-              <button className="w-full mt-12 h-10 rounded  text-white bg-[#773FC6]">
+              <button
+                className="w-full mt-12 h-10 rounded  text-white bg-[#773FC6]"
+                onClick={handleVerification}
+              >
                 Continue
               </button>
             </div>
           </div>
         </div>
+       
       </div>
     </div>
   );
