@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-
+import Image from "next/image";
 const page = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
@@ -45,7 +45,12 @@ const page = () => {
       <div className="flex gap-48 pt-20  ">
         <div className=" flex flex-col gap-3 mx-3    ">
           <div className=" h-auto mt-5 rounded-md p-5 border-gray-300 flex     hover:w-auto hover:border-2 hover:border-blue-600  ">
-            <img src="\assets\Group-626217.png " />
+            <Image
+              src="/assets/Group-626217.png "
+              alt="login"
+              width={500}
+              height={500}
+            />
           </div>
 
           {/* Logo Image */}
@@ -59,20 +64,24 @@ const page = () => {
             <div className="flex flex-wrap gap-3 items-center justify-center ">
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button>
-                  <img
-                    src="https://p7.hiclipart.com/preview/168/533/94/google-logo-google-home-google-now-google-plus.jpg"
+                  <Image
+                    src="/assets/GOOGLE.png"
                     alt="Google"
-                    className="w-[50px] bg-gray-200"
+                    width={30}
+                    height={30}
+                    className=" bg-gray-200"
                   />
                 </button>
                 <h3 className="font-bold text-xl">Google</h3>
               </div>
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button className="">
-                  <img
-                    src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png"
+                  <Image
+                    src="/assets/Facebook.png"
                     alt="Facebook"
-                    className="w-[30px] bg-gray-200"
+                    width={30}
+                    height={30}
+                    className=" bg-gray-200"
                   />
                 </button>
                 <h3 className="font-bold text-xl">Facebook</h3>
@@ -81,9 +90,11 @@ const page = () => {
             <div className="flex justify-center gap-3 ">
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button className="">
-                  <img
-                    src="https://e7.pngegg.com/pngimages/661/236/png-clipart-computer-icons-smartphone-mobile-app-file-mobile-smartphone-icon-wikimedia-commons-white-and-teal-phone-logo-miscellaneous-blue-thumbnail.png"
+                  <Image
+                    src="/assets/mobile-phone-svgrepo-com-1.png"
                     alt="Mobile"
+                    width={20}
+                    height={20}
                     className="w-[30px] "
                   />
                 </button>
@@ -91,10 +102,11 @@ const page = () => {
               </div>
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] py-1">
                 <button>
-                  <img
-                    src="https://icones.pro/wp-content/uploads/2021/05/icones-de-messagerie-rose.png"
+                  <Image
+                    src="/assets/EMAIL.png"
                     alt="Email"
-                    className="w-[30px] "
+                    width={30}
+                    height={30}
                   />
                 </button>
                 <h3 className="font-bold text-xl">Email</h3>
