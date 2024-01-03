@@ -19,6 +19,8 @@ const PersonalInfo = ({
   setCountry,
   state,
   setState,
+  city,
+  setCity,
 }) => {
   const [countries, setCountries] = useState([]);
 
@@ -45,6 +47,14 @@ const PersonalInfo = ({
 
   return (
     <div className="flex  flex-col gap-5 mx-20 ">
+      <div className="w-full">
+        <h2 className="font-semibold text-gray-500">Profile display name</h2>
+        <input
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
+      </div>
       <div className="flex gap-5">
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Fist Name</h2>
@@ -63,10 +73,6 @@ const PersonalInfo = ({
           />
         </div>
       </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Profile display name</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-      </div>
       <div className="flex gap-5">
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Age</h2>
@@ -84,14 +90,16 @@ const PersonalInfo = ({
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
           />
         </div>
-      </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Mobile Number</h2>
-        <input
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-        />
+      </div>{" "}
+      <div className="flex gap-5">
+        <div className="w-1/2">
+          <h2 className="font-semibold text-gray-500">City</h2>
+          <input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+          />
+        </div>
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">

@@ -15,10 +15,39 @@ const page = () => {
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [mobile, setMobile] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [profileHeadline, setProfileHeadline] = useState("");
+  const [profileSummary, setProfileSummary] = useState("");
+  const [lastDesignation, setLastDesignation] = useState("");
+  const [totalExperience, setTotalExperience] = useState("");
+  const [professionalField, setProfessionalField] = useState("");
+  const [professionalExpertise, setProfessionalExpertise] = useState("");
+  const [skills, setSkills] = useState([]);
+  const [languages, setLanguages] = useState([]);
+  const [englishProficiency, setEnglishProficiency] = useState("Good");
+  const [institutionId, setInstitutionId] = useState("");
+  const [institutionName, setInstitutionName] = useState("");
+  const [degree, setDegree] = useState("");
+  const [field, setField] = useState("");
+  const [institutionStart, setInstitutionStart] = useState("");
+  const [institutionEnd, setInstitutionEnd] = useState("");
+  const [companyId, setCompanyId] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [title, setTitle] = useState("");
+  const [companyStart, setCompanyEnd] = useState("");
+  const [certificateId, setCertificateId] = useState("");
+  const [certificateName, setCertificateName] = useState("");
+  const [certificateDate, setCertificateDate] = useState("");
+  const [credentials, setCredentials] = useState("");
+  const [isCharged, setIsCharged] = useState(false);
+  const [acceptableCurrencies, setAcceptableCurrencies] = useState("");
+  const [interests, setInterests] = useState([]);
+  const [retirementCause, setRetirementCause] = useState("");
+  const [socialLinks, setSocialLinks] = useState({});
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -40,7 +69,78 @@ const page = () => {
     setStep(step - 1);
   };
 
-  console.log(country, "country");
+  const handleUpdate = () => {
+    const options = {
+      method: "PUT",
+      url: "https://retpro.catax.me/user/update-profile",
+      params: { user_id: "string" },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        user_display_name: displayName,
+        user_first_name: firstName,
+        user_last_name: lastName,
+        user_age: age,
+        user_gender: gender,
+        country_id: "string",
+        country_name: country,
+        user_state: state,
+        user_city: city,
+        city_coordinates: ["string"],
+        profile_headline: "string",
+        profile_summary: "string",
+        last_designation: "string",
+        total_experience: "string",
+        professional_field: "string",
+        professional_expertise: "string",
+        skills: null,
+        languages: ["string"],
+        english_proficiency: englishProficiency,
+        education: [
+          {
+            institution_id: "string",
+            institution_name: "string",
+            degree: "string",
+            field: "string",
+            start_year: 0,
+            end_year: 0,
+          },
+        ],
+        work_history: [
+          {
+            company_id: "string",
+            company_name: "string",
+            title: "string",
+            start_date: "string",
+            end_date: null,
+          },
+        ],
+        certifications: [
+          {
+            certification_id: null,
+            certification_name: "string",
+            credentials: "string",
+            certification_date: "string",
+          },
+        ],
+        is_charged: true,
+        acceptable_currencies: ["string"],
+        interests: ["string"],
+        retirement_cause: ["string"],
+        social_links: {},
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  console.log(englishProficiency, "english");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -147,6 +247,10 @@ const page = () => {
                 setGender={setGender}
                 country={country}
                 setCountry={setCountry}
+                state={state}
+                setState={setState}
+                city={city}
+                setCity={setCity}
               />
             )}
             {step === 2 && (
@@ -159,10 +263,25 @@ const page = () => {
               />
             )}
             {step === 4 && (
-              <Experiences stepUp={handleStepUp} stepDown={handleStepDown} />
+              <Experiences
+                stepUp={handleStepUp}
+                stepDown={handleStepDown}
+                englishProficiency={englishProficiency}
+                setEnglishProficiency={setEnglishProficiency}
+              />
             )}
             {step === 5 && <Certification stepDown={handleStepDown} />}
           </div>
+          {step === 5 && (
+            <div className="w-full  p-5 ml-36 pt-24 flex items-center justify-center ">
+              <button
+                onClick={handleUpdate}
+                className=" w-40 bg-[#773fc6] p-2 text-white font-medium rounded"
+              >
+                submit
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
