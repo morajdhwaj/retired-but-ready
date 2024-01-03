@@ -5,35 +5,34 @@ const ContactComponent = () => {
   return (
     <div className="bg-[#EDEBF2]  py-20  ">
       <div
-        className="flex w-full"
+        className=" h-[200px] md:h-[450px] flex flex-col lg:flex-row gap-5 w-full"
         style={{
           backgroundImage: `url('/assets/Group193.png')`,
-          height: "450px",
+
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right",
-          display: "flex",
           alignItems: "center",
         }}
       >
-        <div className="w-1/2 px-10">
+        <div className="md:w-1/2 px-10">
           <h2 className="text-[#2f327d] font-semibold text-2xl">
             Ask us how we are transforming lives.
           </h2>
         </div>
-        <div className="w-1/2 flex  items-center justify-center gap-5">
-          <button className="border-2 border-[#2f327d] px-20 py-2 text-sm rounded-full">
+        <div className="md:w-1/2 flex  items-center justify-center gap-5">
+          <button className="border-2 border-[#2f327d] px-4 md:px-20 py-2 text-sm rounded-full">
             Let's chat
           </button>
-          <button className="border-2 border-green-500 px-20 py-2 text-sm rounded-full">
+          <button className="border-2 border-green-500 px-4 md:px-20 py-2 text-sm rounded-full">
             Request call back
           </button>
         </div>
       </div>
-      <div className="flex px-20">
-        <div className="w-1/2 flex items-center justify-center">
+      <div className="flex  flex-col md:flex-row px-5 md:px-10 lg:px-20">
+        <div className="md:w-1/2 flex items-center justify-center">
           <Image src="/assets/Group-114.png" height={400} width={300} />
         </div>
-        <div className="w-1/2 flex flex-col items-center gap-10">
+        <div className="md:w-1/2 flex flex-col items-center gap-10">
           <div>
             <h3 className="font-semibold text-[#2f327d] text-center text-2xl">
               So much you can do with

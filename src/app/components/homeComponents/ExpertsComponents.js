@@ -3,11 +3,12 @@ import React from "react";
 
 const ExpertsComponents = () => {
   return (
-    <div className="mx-10 py-40">
+    <div className="mx-10 py-5 sm:py-10 md:py-20 lg:py-40">
       <div>
-        <h1 className="text-5xl font-bold text-center text-[#2f327d]">
-          Meet the <span className="text-7xl text-[#773fc6]">RetPro</span> area
-          experts
+        <h1 className="text-3xl md:text-5xl font-bold text-center text-[#2f327d]">
+          Meet the{" "}
+          <span className=" text-5xl md:text-7xl text-[#773fc6]">RetPro</span>{" "}
+          area experts
         </h1>
       </div>
       <div className="flex mt-16 flex-wrap gap-10 items-center justify-center">
