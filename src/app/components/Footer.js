@@ -14,15 +14,15 @@ const Footer = () => {
       }}
     >
       <div className="py-32 ">
-        <div className="flex px-10 gap-20 ">
-          <div className="w-1/5">
+        <div className="flex  justify-between flex-wrap  px-10 gap-20 ">
+          <div className="sm:w-48">
             <Image src="/assets/RBRLogo1.png" width={100} height={100} />
             <p className="text-gray-500 text-justify  mt-5">
               Our mission is to create economic & engagement opportunity for our
               people around the world - age no bar
             </p>
           </div>
-          <div className="w-1/5 flex flex-col gap-5">
+          <div className="sm:w-40 flex flex-col gap-5">
             <h1 className="text-2xl font-semibold">About</h1>
             <div className="flex flex-col gap-5 ">
               <Link href="" className="text-gray-500 ">
@@ -39,7 +39,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="w-1/5 flex flex-col gap-5">
+          <div className="w-40 flex flex-col gap-5">
             <h1 className="text-2xl font-semibold">Support</h1>
             <div className="flex flex-col gap-5 ">
               <Link href="" className="text-gray-500 ">
@@ -59,7 +59,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="w-1/5 flex flex-col gap-5 justify-center">
+          <div className="w-40 flex flex-col gap-5 justify-center">
             <h1 className="text-2xl font-semibold">Get our app</h1>
             <div className="flex flex-col gap-5 ">
               <button className="flex border border-[#2b2b42] text-start self-start py-1 px-2 rounded items-center justify-center gap-2">
@@ -82,7 +82,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-          <div className="w-1/5">
+          <div className="w-40">
             <Image src="/assets/Landingpage1.png" width={180} height={250} />
           </div>
         </div>

@@ -8,11 +8,11 @@ const SuccessStories = () => {
     <div className="py-10 px-10">
       <div className="flex">
         <div className="w-4/5">
-          <h1 className="text-5xl  font-semibold leading-[60px]">
+          <h1 className="text-3xl md:text-5xl  font-semibold leading-[60px]">
             Some real life success stories to get inspired by
           </h1>
         </div>
-        <div className="w-1/5 flex gap-5  ">
+        <div className="w-1/5  gap-5 hidden md:flex  ">
           <button onClick={""}>
             <GoArrowLeft size={40} />
           </button>
@@ -21,8 +21,8 @@ const SuccessStories = () => {
           </button>
         </div>
       </div>
-      <div className="flex items-center justify-center ">
-        <div className="w-1/2 flex flex-col gap-5 mt-10 pr-20">
+      <div className="flex flex-col md:flex-row items-center justify-center ">
+        <div className="md:w-1/2 flex flex-col gap-5  mt-10 md:pr-20">
           <h2 className="text-2xl">
             "No online course could have helped me this way"
           </h2>
@@ -47,7 +47,7 @@ const SuccessStories = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col gap-5 mt-10 pr-20">
+        <div className="md:w-1/2 flex flex-col gap-5 mt-10 md:pr-20">
           <h2 className="text-2xl">
             "I have been rewarded with both help and loyalty"
           </h2>
