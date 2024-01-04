@@ -34,6 +34,7 @@ const page = ({ length = 4 }) => {
       })
       .catch(function (error) {
         console.log(error.data)
+        toast.error("Wrong otp")
       });
   };
 
