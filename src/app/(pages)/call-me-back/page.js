@@ -15,6 +15,7 @@ const page = () => {
           className="  "
         />
       </div>
+      {/* call me back */}
       <div className="flex justify-center items-center mx-5    ">
         <div className=" border-2 mt-16 md:mt-16 lg:mt-40 w-[500px] bg-white p-5  lg:mb-44  ">
           <h1 className="font-bold text-2xl">Call me back!</h1>
