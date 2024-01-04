@@ -3,13 +3,13 @@ import { FaCircleCheck } from "react-icons/fa6";
 
 const CheckBox = () => {
   return (
-    <div className="flex flex-col items-center justify-center mx-80 ">
+    <div className="flex flex-col items-center justify-center mx-10 sm:mx-20 md:mx-40 lg:mx-80 ">
       <div>
-        <h1 className="text-5xl text-center font-semibold leading-[60px]">
+        <h1 className=" text-xl sm:text-3xl md:text-5xl text-center font-semibold leading-[60px]">
           Creating impact for retired and working professionals
         </h1>
       </div>
-      <div className="bg-[#ededf6] w-[60vh] py-10">
+      <div className="bg-[#ededf6] md:w-[60vh] py-10">
         <div className="bg-[#773fc6] flex items-center justify-center text-white font-bold text-2xl py-5 rounded-t-2xl">
           <h2>Why RetPro</h2>
         </div>
