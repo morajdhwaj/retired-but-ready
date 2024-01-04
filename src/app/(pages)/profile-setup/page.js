@@ -147,8 +147,8 @@ const page = () => {
       <div className="flex">
         <Sidebar />
 
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-36 pt-24">
-          <div className="flex w-full ">
+        <div className="w-full bg-[#f2f1f3]  p-5 ml-52 pt-24">
+          <div className="flex w-full  ">
             <div className="w-1/2 flex items-center justify-end">
               <h1 className="text-4xl font-medium"> Profile</h1>
             </div>

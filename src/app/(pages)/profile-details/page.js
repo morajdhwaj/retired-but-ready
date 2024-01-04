@@ -27,7 +27,7 @@ const page = () => {
       <Navbar />
       <div className="flex">
         <Sidebar />
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-36 pt-24 ">
+        <div className="w-full bg-[#f2f1f3]  p-5 ml-52 pt-24 ">
           <div className="relative ">
             <div className="absolute w-[96%] pt-24 mx-5">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex py-5 justify-between rounded-xl px-5">

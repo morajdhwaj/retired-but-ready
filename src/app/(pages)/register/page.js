@@ -55,9 +55,9 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-gray-200 flex pt-16 h-[100vh] ">
-        <div className="w-[54%]  flex flex-col  items-center mt-16">
-          <h1 className="text-2xl font-bold hover:border-b-2 hover:border-blue-500 ">
+      <div className="bg-gray-200 md:flex lg:flex pt-16 md:h-[100vh] lg:h-[100vh]  ">
+        <div className=" md:w-[100%] lg:w-[54%] flex flex-col   items-center ">
+          <h1 className="text-2xl font-bold hover:border-b-2 hover:border-blue-500 mt-5">
             Create an account
           </h1>
           <br />
@@ -106,17 +106,17 @@ const page = () => {
           </div>
         </div>
 
-        <div className=" w-[46%]  flex flex-col  ">
-          <div className="mt-1 p-2">
+        <div className=" md:w-[100%] lg:w-[46%]  flex flex-col  ">
+          <div className="mt-10 flex justify-center items-center ">
          
-          <Image src="/assets/Group-626217.png" width={500} height={500} /> 
+          <Image src="/assets/Group-626217.png" width={400} height={300} /> 
           </div>
           <div className="flex items-center justify-center">
             <div className="h-[1px] w-[100px] bg-gray-400 " />
             <h3 className="ml-2 mr-2">or login through</h3>
             <div className="h-[1px] w-[100px] bg-gray-400" />
           </div>
-          <div className=" w-75% flex justify-center items-center mb-5 mt-2 ">
+          <div className=" w-75% flex justify-center items-center mb-5 mt-5 ">
             <div className="flex flex-col gap-5  ">
               <button className="w-28 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10">
                 <Image

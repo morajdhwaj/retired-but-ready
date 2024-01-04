@@ -34,6 +34,7 @@ const page = ({ length = 4 }) => {
       })
       .catch(function (error) {
         console.log(error.data)
+        toast.error("Wrong otp")
       });
   };
 
@@ -61,11 +62,11 @@ const page = ({ length = 4 }) => {
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
-      <div className="pt-20 flex">
-        <div className="w-1/2  flex justify-center items-center ">
+      <div className="pt-20 md:flex lg:flex">
+        <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
           <Image src="/assets/Group-26113.png" width={450} height={450} />
         </div>
-        <div className="w-1/2 p-5 ">
+        <div className="md:w-[100%] lg:w-1/2 p-5 ">
           <div className="bg-white m-6 p-10 ">
             <h1 className="text-2xl font-bold">Verification Code</h1>
             <p className="mt-5 text-sm font-medium ">
