@@ -42,9 +42,9 @@ const page = () => {
       <Navbar />
       {/* Image */}
 
-      <div className="flex gap-48 pt-20  ">
-        <div className=" flex flex-col gap-3 mx-3    ">
-          <div className=" h-auto mt-5 rounded-md p-5 border-gray-300 flex     hover:w-auto hover:border-2 hover:border-blue-600  ">
+      <div className="  md:flex lg:flex  sm:pt-10 lg:pt-20   ">
+        <div className=" flex flex-col gap-3 mx-3  lg:w-1/2 ">
+          <div className=" h-auto mt-5 rounded-md lg:p-5 border-gray-300 flex justify-center    hover:w-auto hover:border-2 hover:border-blue-600  ">
             <Image
               src="/assets/Group-626217.png "
               alt="login"
@@ -54,14 +54,14 @@ const page = () => {
           </div>
 
           {/* Logo Image */}
-          <div className="  h-auto mt-5 rounded-md p-5 border-gray-300 flex flex-col justify-center gap-5  hover:w-auto hover:border-2 hover:border-blue-600 mb-36">
+          <div className="  h-auto mt-5 rounded-md p-5 border-gray-300 flex flex-col justify-center gap-5  hover:w-auto hover:border-2 hover:border-blue-600 mb-2 sm:mb-3 md:mb-0 lg:mb-36">
             <div className="flex items-center justify-center gap-2">
               <div className="w-[100px] h-[1px] bg-gray-500" />
 
               <h1 className="font-normal"> or login through</h1>
               <div className="w-[100px] h-[1px] bg-gray-500" />
             </div>
-            <div className="flex flex-wrap gap-3 items-center justify-center ">
+            <div className="flex  gap-3 items-center justify-center ">
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button>
                   <Image
@@ -87,7 +87,7 @@ const page = () => {
                 <h3 className="font-bold text-xl">Facebook</h3>
               </div>
             </div>
-            <div className="flex justify-center gap-3 ">
+            <div className="flex  justify-center gap-3 ">
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button className="">
                   <Image
@@ -116,32 +116,32 @@ const page = () => {
         </div>
         {/* Login form */}
 
-        <div className="mt-24 ">
-          <h1 className=" text-3xl font-bold text-center ">Login</h1>
+        <div className="lg:w-1/2 text-center flex flex-col  items-center">
+          <h1 className=" text-3xl font-bold text-center mt-24">Login</h1>
 
-          <div className="  h-auto mt-5 rounded-md p-5  border-2 border-gray-300 flex flex-col gap-5  w-[650px] hover:border-2 hover:border-blue-600">
+          <div className="    rounded-md  p-5  border-2 border-gray-300 flex flex-col  mt-10 gap-5 w-[80%] hover:border-2 hover:border-blue-600">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="mt-5   w-[600px] border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
+              placeholder="Your full name"
+              className="mt-5   w-auto border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
             />
             <input
               type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className=" w-[600px] border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2 hover:border-blue-600 hover:border-b-2 "
+              className=" w-auto border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2 hover:border-blue-600 hover:border-b-2 "
             />
-            <div>
+            <div className="text-start">
               <h3 className="mb-0 hover:border-b-2  hover:border-blue-600 hover:w-40">
                 forget password?
               </h3>
             </div>
             <button
               onClick={handleLogin}
-              className="border-2 bg-[#773FC6] rounded-lg p-2 w-[600px] text-xl text-center  text-white flex justify-center items-center"
+              className="border-2 bg-[#773FC6] rounded-lg p-2  w-auto text-xl text-center  text-white flex justify-center items-center"
             >
               Login
             </button>
