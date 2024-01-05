@@ -12,6 +12,7 @@ const Navbar = () => {
         <div className="flex gap-2">
           <Link href="/profile-setup">Profile-setup</Link>
           <Link href="/profile-details">Profile</Link>
+          <Link href="/walls-page">walls</Link>
         </div>
       </div>
       <div className="w-1/2 flex items-center justify-end gap-2 md:gap-16">
