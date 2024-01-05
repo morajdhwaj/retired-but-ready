@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import Link from "next/link";
 const page = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
@@ -124,7 +125,7 @@ const page = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your full name"
+              placeholder="Email"
               className="mt-5   w-auto border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
             />
             <input
@@ -135,9 +136,12 @@ const page = () => {
               className=" w-auto border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2 hover:border-blue-600 hover:border-b-2 "
             />
             <div className="text-start">
-              <h3 className="mb-0 hover:border-b-2  hover:border-blue-600 hover:w-40">
+              <Link
+                href="/forgot-password"
+                className="mb-0 hover:border-b-2  hover:border-blue-600 hover:w-40"
+              >
                 forget password?
-              </h3>
+              </Link>
             </div>
             <button
               onClick={handleLogin}
@@ -148,7 +152,9 @@ const page = () => {
           </div>
           <div className="   mt-5 text-center flex justify-center ">
             <h3>Don't have an account?</h3>
-            <p className="text-red-400">Create one</p>
+            <Link href="/register" className="text-red-400">
+              Create one
+            </Link>
           </div>
         </div>
         {showModal && (
