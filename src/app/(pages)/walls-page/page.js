@@ -3,6 +3,7 @@
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import All from "@/app/components/wallsComponents/All";
+import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AiFillTool } from "react-icons/ai";
@@ -104,7 +105,7 @@ const page = () => {
                 <All /> <All />
               </div>
             )}
-            {tab === 2 && <div>Tab2</div>}
+            {tab === 2 && <Trending />}
             {tab === 3 && <div>Tab3</div>}
           </div>
         </div>
