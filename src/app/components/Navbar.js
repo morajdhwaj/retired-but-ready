@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const Navbar = () => {
+  
   return (
     <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">

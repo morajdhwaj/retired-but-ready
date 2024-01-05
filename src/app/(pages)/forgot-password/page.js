@@ -37,18 +37,19 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-gray-200 flex h-auto">
-        <div className="w-2/5 mt-28">
+      <div className="mt-20 bg-gray-200 h-auto md:flex lg:flex">
+        <div className="md:w-full lg:w-1/2  justify-center items-center flex ">
           <Image
             src="/assets/Group-26113.png"
-            width={700}
+            width={500}
             alt="forgot-image"
-            height={200}
-            className=" pt-10 pl-32 mt-10 ml-10"
+            height={500}
+            
+            
           />
         </div>
-        <div className="w-3/5 mt-24  ">
-          <div className="bg-white  pb-20 p-10 mr-20 ml-64 mt-10 mb-20">
+        <div className="md:w-full  justify-center flex items-center lg:w-1/2 ">
+          <div className="bg-white  w-[80%] p-10">
             <h1 className="font-bold text-2xl">Forgot Password</h1>
             <h6 className="text-sm pt-2">
               Please enter your email address to reset your password
@@ -58,11 +59,11 @@ const page = () => {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Johnraymonds@gmail.com"
-              className="border border-gray-200 rounded-lg py-4 mt-10 w-full p-3 "
+              className="border border-gray-200 rounded-lg py-4 mt-10 p-3 w-full"
             />
             <button
               onClick={handlePassword}
-              className="bg-[#773FC6] text-white px-28 py-2 rounded-lg mt-8 w-full"
+              className="bg-[#773FC6]  text-white py-3 rounded-lg mt-8 w-full"
             >
               Send Verification Code
             </button>
@@ -71,14 +72,14 @@ const page = () => {
               <h1 className="text-xl font-bold ml-3 mr-3">or</h1>
               <div className="bg-gray-300 h-[1px] w-[200px] " />
             </div>
-            <div className=" mt-3">
+            <div className=" mt-3 ">
               <h1 className="text-xl">Enter your mobile no.</h1>
-              <div className=" flex  ">
+             <div className="   h-full flex justify-between gap-4 ">
                 <input
-                  placeholder="+91 9080590666"
-                  className="border border-gray-200 rounded-lg px-55 py-3 mt-2 text-xl"
+                  placeholder="+91 90805 90666"
+                  className="border border-gray-200 rounded-lg w-1/2 p-3 "
                 />
-                <button className="bg-[#773FC6] rounded-lg  text-white mt-2 ml-3 w-full">
+                <button className="bg-[#773FC6] rounded-lg  text-white w-1/2 p-3 ">
                   Send OTP
                 </button>
               </div>
