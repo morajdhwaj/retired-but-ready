@@ -24,9 +24,9 @@ const page = () => {
           <Sidebar />
         </div>
         <div className="w-full bg-[#f2f1f3]  p-5   lg:ml-52 pt-24 ">
-          <div className="relative ">
-            <div className="absolute w-[96%] pt-24 mx-5">
-              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5">
+          <div className="relative flex  justify-center ">
+            <div className="absolute w-[96%]   pt-24 ">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">

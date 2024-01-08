@@ -5,7 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 // import All from "@/app/components/wallsComponents/All";
 // import Reaction from "@/app/components/jaishreeComponent/Reaction";
 // import  Message  from "@/app/components/jaishreeComponent/Message";
-// import Comments from "@/app/components/jaishreeComponent/Comments"; 
+// import Comments from "@/app/components/jaishreeComponent/Comments";
 // import Details from "@/app/components/jaishreeComponent/Details";
 // import Postpage from "@/app/components/jaishreeComponent/Postpage";
 // import Connection from "@/app/components/jaishreeComponent/Connection";
@@ -75,22 +75,18 @@ const page = () => {
             </div>
           </div>
           <div className="mt-20 mx-5">
-            <div className="flex justify-between w-full text-gray-500">
-             
-              
-              
-            </div>
+            <div className="flex justify-between w-full text-gray-500"></div>
             {tab === 1 && (
               <div>
-                 {/* <All />   */}
-                 {/* <Reaction/> */}
-                 {/* <Message/> */}
-                 {/* <Comments/> */}
-                 {/* <Details/> */}
-                 {/* <Postpage/> */}
-                 {/* <Connection/> */}
-                 {/* <Report/> */}
-                 <Share/>
+                {/* <All />   */}
+                {/* <Reaction/> */}
+                {/* <Message/> */}
+                {/* <Comments/> */}
+                {/* <Details/> */}
+                {/* <Postpage/> */}
+                {/* <Connection/> */}
+                {/* <Report/> */}
+                <Share />
               </div>
             )}
             {tab === 2 && <div>Tab2</div>}
