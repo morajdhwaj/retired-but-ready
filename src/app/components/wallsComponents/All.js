@@ -68,7 +68,7 @@ const All = () => {
             <AiFillLike />
             <p className="text-sm">1,232</p>
           </div>
-          <div className="mt-2 flex justify-between">
+          <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
             <div className="flex items-center gap-2">
               <button>
                 <AiOutlineLike />
