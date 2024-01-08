@@ -2,15 +2,20 @@
 import Navbar from "@/app/components/Navbar";
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
+  const [userId, setUserId] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
 
   const router = useRouter();
   console.log(oldPassword);
@@ -24,7 +29,7 @@ const page = () => {
     const options = {
       method: "PATCH",
       url: "https://retpro.catax.me/user/reset-password-old",
-      params: { user_id: "6593af5ef4f7ce4f923051f3" },
+      params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: { old_password: oldPassword, new_password: password },
     };
@@ -41,6 +46,8 @@ const page = () => {
         toast.error("Something wrong");
       });
   };
+
+  console.log(userId);
   return (
     <div>
       <Navbar />

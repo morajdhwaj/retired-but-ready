@@ -30,6 +30,7 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        localStorage.setItem("userId", response?.data?.user_id);
         toast.success(response?.data?.message);
         handleModal();
       })
@@ -38,6 +39,7 @@ const page = () => {
         toast.error("Something wrong");
       });
   };
+
   return (
     <div className="  bg-gray-200  ">
       <Navbar />

@@ -8,9 +8,11 @@ import SocialInfo from "@/app/components/profile-setup-compo/SocialInfo";
 import SkillsComponent from "@/app/components/profile-setup-compo/SkillsComponent";
 import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
+import axios from "axios";
 
 const page = () => {
   const [step, setStep] = useState(1);
+  const [userId, setUserId] = useState("");
   const hiddenFileInput = useRef(null);
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -49,6 +51,10 @@ const page = () => {
   const [retirementCause, setRetirementCause] = useState("");
   const [socialLinks, setSocialLinks] = useState({});
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
+
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -73,7 +79,7 @@ const page = () => {
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
-      params: { user_id: "string" },
+      params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
         user_display_name: displayName,
@@ -81,11 +87,11 @@ const page = () => {
         user_last_name: lastName,
         user_age: age,
         user_gender: gender,
-        country_id: "string",
+        country_id: "1",
         country_name: country,
         user_state: state,
         user_city: city,
-        city_coordinates: ["string"],
+        city_coordinates: [""],
         profile_headline: "string",
         profile_summary: "string",
         last_designation: "string",
@@ -94,7 +100,7 @@ const page = () => {
         professional_expertise: "string",
         skills: null,
         languages: ["string"],
-        english_proficiency: englishProficiency,
+        english_proficiency: "string",
         education: [
           {
             institution_id: "string",
@@ -140,7 +146,7 @@ const page = () => {
       });
   };
 
-  console.log(englishProficiency, "english");
+  console.log(userId, "user");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
