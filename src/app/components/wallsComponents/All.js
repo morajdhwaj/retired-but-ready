@@ -51,7 +51,7 @@ const All = () => {
           }}
           className="p-5 text-white font-medium flex flex-col justify-between "
         >
-          <h2>
+          <h2 className="text-xs md:text-lg">
             Weekly news round-up: 2022 Hyundai Venue launched more details on
             Mahindra Scropio-N
           </h2>
