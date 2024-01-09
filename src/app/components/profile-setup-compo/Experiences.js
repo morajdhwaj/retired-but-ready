@@ -7,7 +7,7 @@ const Experiences = ({
   setEnglishProficiency,
 }) => {
   return (
-    <div className="h-full mx-20">
+    <div className="h-full mx-20  ">
       <div>
         <h1 className="text-2xl font-semibold">English Proficiency</h1>
         <h4 className="text-gray-400 font-normal text-sm">

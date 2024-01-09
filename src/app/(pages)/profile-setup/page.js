@@ -8,9 +8,12 @@ import SocialInfo from "@/app/components/profile-setup-compo/SocialInfo";
 import SkillsComponent from "@/app/components/profile-setup-compo/SkillsComponent";
 import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [step, setStep] = useState(1);
+  const [userId, setUserId] = useState("");
   const hiddenFileInput = useRef(null);
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -49,6 +52,10 @@ const page = () => {
   const [retirementCause, setRetirementCause] = useState("");
   const [socialLinks, setSocialLinks] = useState({});
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
+
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
@@ -73,7 +80,7 @@ const page = () => {
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
-      params: { user_id: "string" },
+      params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
         user_display_name: displayName,
@@ -81,52 +88,64 @@ const page = () => {
         user_last_name: lastName,
         user_age: age,
         user_gender: gender,
-        country_id: "string",
+        country_id: "1",
         country_name: country,
         user_state: state,
         user_city: city,
-        city_coordinates: ["string"],
-        profile_headline: "string",
-        profile_summary: "string",
-        last_designation: "string",
-        total_experience: "string",
-        professional_field: "string",
-        professional_expertise: "string",
-        skills: null,
-        languages: ["string"],
-        english_proficiency: englishProficiency,
+        city_coordinates: ["12.3210", "43.432123"],
+        profile_headline: "ganja piyo mst rho",
+        profile_summary: "saste ganja ke liye sampark kare",
+        last_designation: "dealer",
+        total_experience: "30+",
+        professional_field: "weed",
+        professional_expertise: "vasooli",
+        skills: {
+          personal: [
+            {
+              skill_id: "657a9aefec8c5016e744d8ba",
+              skill_name: "string",
+            },
+          ],
+          professional: [],
+        },
+        languages: ["english"],
+        english_proficiency: "full imglish",
         education: [
           {
-            institution_id: "string",
-            institution_name: "string",
-            degree: "string",
-            field: "string",
-            start_year: 0,
-            end_year: 0,
+            institution_id: "657aa5ab21d8f5ad8d839413",
+            institution_name: "allen",
+            degree: "dealing",
+            field: "ganja",
+            start_year: 2020,
+            end_year: 2024,
           },
         ],
         work_history: [
           {
-            company_id: "string",
-            company_name: "string",
-            title: "string",
-            start_date: "string",
-            end_date: null,
+            company_id: "657d55d2033cb72b10c630e5",
+            company_name: "catax",
+            title: "intern",
+            start_date: "2022-10-01T00:00:00.000Z",
+            end_date: "present",
           },
         ],
         certifications: [
           {
             certification_id: null,
-            certification_name: "string",
-            credentials: "string",
-            certification_date: "string",
+            certification_name: "Python",
+            credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
+            certification_date: "2022-11-26T00:00:00.000Z",
           },
         ],
         is_charged: true,
-        acceptable_currencies: ["string"],
-        interests: ["string"],
-        retirement_cause: ["string"],
-        social_links: {},
+        acceptable_currencies: ["rupyaa"],
+        interests: ["ganja"],
+        retirement_cause: ["heavy dose"],
+        social_links: {
+          linkedIn: "string",
+          facebook: "string",
+          twitter: "string",
+        },
       },
     };
 
@@ -134,13 +153,15 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        toast.success(response?.data?.message);
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
-  console.log(englishProficiency, "english");
+  console.log(userId, "user");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />

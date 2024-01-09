@@ -16,7 +16,12 @@ const Footer = () => {
       <div className="py-32 ">
         <div className="flex  justify-between flex-wrap  px-10 gap-20 ">
           <div className="sm:w-48">
-            <Image src="/assets/RBRLogo1.png" width={100} height={100} />
+            <Image
+              src="/assets/RBRLogo1.png"
+              alt="/assets/RBRLogo1.png"
+              width={100}
+              height={100}
+            />
             <p className="text-gray-500 text-justify  mt-5">
               Our mission is to create economic & engagement opportunity for our
               people around the world - age no bar
@@ -83,7 +88,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="w-40">
-            <Image src="/assets/Landingpage1.png" width={180} height={250} />
+            <Image
+              src="/assets/Landingpage1.png"
+              alt="/assets/Landingpage1.png"
+              width={180}
+              height={250}
+            />
           </div>
         </div>
         <div className="  bg-gray-400 mx-20 h-[1px] mt-20 " />

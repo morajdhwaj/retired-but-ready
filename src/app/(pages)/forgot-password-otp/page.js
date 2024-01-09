@@ -10,27 +10,31 @@ import Image from "next/image";
 
 const page = ({ length = 4 }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
+  const [password, setPassword] = useState("");
+
   const finalOtp = otp.join("");
 
   const router = useRouter();
 
   const handleVerification = () => {
     const options = {
-      method: "POST",
-      url: "https://retpro.catax.me/user/verify-otp",
-      params: { user_id: "6593af5ef4f7ce4f923051f3", otp: finalOtp },
+      method: "PATCH",
+      url: "https://retpro.catax.me/user/reset-password-otp",
+      params: { user_id: "6593af5ef4f7ce4f923051f3" },
+      headers: { "Content-Type": "application/json" },
+      data: { otp: finalOtp, new_password: password },
     };
 
     axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success(response.data.message);
-        router.push("/reset-password");
+        toast.success(response?.data?.message);
+        router.push("/");
       })
       .catch(function (error) {
-        console.log(error.data);
-        toast.error("Wrong otp");
+        console.error(error);
+        toast.error(error.response.data.detail);
       });
   };
 
@@ -55,6 +59,7 @@ const page = ({ length = 4 }) => {
   };
 
   console.log(finalOtp);
+  console.log(password);
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
@@ -70,10 +75,11 @@ const page = ({ length = 4 }) => {
               <span className="text-[#773FC6] text-sm">
                 johnrahmands@mail.com
               </span>
-              <br />
-              or OTP sent to your mobile number.
             </p>
-            <div className="flex justify-evenly mt-10">
+
+            <h1 className="mt-4 text-gray-500"> OTP</h1>
+
+            <div className="flex justify-between ">
               {otp.map((digit, index) => (
                 <input
                   key={index}
@@ -82,11 +88,19 @@ const page = ({ length = 4 }) => {
                   type="text"
                   maxLength="1"
                   value={digit}
+                  placeholder="-"
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
                 />
               ))}
             </div>
+            <h1 className="mt-4 text-gray-500">New Password</h1>
+            <input
+              type="text"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="h-14 rounded w-full border border-gray-200"
+            />
 
             <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
               {" "}

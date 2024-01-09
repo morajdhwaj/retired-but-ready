@@ -32,7 +32,12 @@ const SuccessStories = () => {
           </p>
           <div className="flex gap-5 mt-5">
             <div className="flex items-center justify-center">
-              <Image src="/assets/Ellipse-38.png" height={50} width={50} />
+              <Image
+                src="/assets/Ellipse-38.png"
+                alt="/assets/Ellipse-38.png"
+                height={50}
+                width={50}
+              />
             </div>
             <div className="">
               <h2 className="font-semibold text-xl">Wilson Thai</h2>
@@ -58,7 +63,12 @@ const SuccessStories = () => {
           </p>
           <div className="flex gap-5 mt-5">
             <div className="flex items-center justify-center">
-              <Image src="/assets/Ellipse-39.png" height={50} width={50} />
+              <Image
+                src="/assets/Ellipse-39.png"
+                alt="/assets/Ellipse-39.png"
+                height={50}
+                width={50}
+              />
             </div>
             <div className="">
               <h2 className="font-semibold text-xl">Milena Belmar</h2>
