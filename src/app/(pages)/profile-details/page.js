@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
@@ -14,13 +14,21 @@ import WhyRBR from "@/app/components/profile-details-compo/WhyRBR";
 import SocialMedia from "@/app/components/profile-details-compo/SocialMedia";
 import WorkExperience from "@/app/components/profile-details-compo/WorkExperience";
 import WorkHistory from "@/app/components/profile-details-compo/WorkHistory";
+import axios from "axios";
 
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, []);
 
   const handleToggle = (index) => {
     activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
   };
+
+  console.log(userId, "userId");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -32,7 +40,12 @@ const page = () => {
             <div className="absolute w-[96%] pt-24 mx-5">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex py-5 justify-between rounded-xl px-5">
                 <div className="flex items-center justify-center gap-2">
-                  <Image src="/assets/110.png" height={50} width={50} />
+                  <Image
+                    src="/assets/110.png"
+                    alt="/assets/110.png"
+                    height={50}
+                    width={50}
+                  />
                   <div className="font-semibold">
                     <h2>Steve Jacob</h2>
                     <p className="text-gray-500">CEO & Co-founder</p>
@@ -97,7 +110,7 @@ const page = () => {
                 {activeIndex === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 1 && <ProfileDetails />}
+            {activeIndex === 1 && <ProfileDetails userId={userId} />}
 
             <div
               onClick={() => handleToggle(2)}
