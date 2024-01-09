@@ -8,51 +8,51 @@ import Image from "next/image";
 
 const Reaction = () => {
   return (
-    <div className='mx-4'>
-        <div className='bg-[#FFFFFF] flex justify-between p-2 shadow-md'>
+    <div className='mx-4  '>
+        <div className='bg-[#FFFFFF] flex justify-between p-2 shadow-md mt-40 sm:mt-20 md:mt-10 '>
             <div className='flex gap-2'>
                 <IoIosArrowBack className='text-[#773FC6] mt-1' />
                 <h1 className='text-[#773FC6]'>Reactions</h1>
             </div>
             <h1 className='text-[#773FC6] font-medium text-lg'>x</h1>
        </div>
-       {/* ------------------- */}
-       <div className='flex p-5 gap-4'>
-        <button className='text-[#773FC6] font-bold'>All 123445</button>
-        <button className='flex gap-2'>
-        <AiFillLike className='mt-1' />
+       
+       <div className=' flex-wrap sm:flex md:flex lg:flex   p-2  w-full '>
+        <button className='text-[#773FC6]  font-bold'>All 123445</button>
+        <button className='flex '>
+        <AiFillLike className='mt-1 text-sm' />
         <p>456</p>
         </button>
-        <button className='flex gap-2'>
-        <IoHeartCircle className='mt-1' />
+        <button className='flex '>
+        <IoHeartCircle className='mt-1 text-sm' />
         <p>412</p>
         </button>
-        <button className='flex gap-2'>
-        <PiHandsClapping className='mt-1' />
+        <button className='flex '>
+        <PiHandsClapping className='mt-1 text-sm' />
         <p>400</p>
         </button>
-        <button className='flex gap-2'>
-        <HiOutlineLightBulb className='mt-1'/>
+        <button className='flex'>
+        <HiOutlineLightBulb className='mt-1 text-sm'/>
         <p>200</p>
         </button>
-        <button className='flex gap-2'>
-        <AiFillLike className='mt-1'/>
+        <button className='flex '>
+        <AiFillLike className='mt-1 text-sm'/>
         <p>456</p>
         </button>
-        <button className='flex gap-2'>
-        <IoHeartCircle className='mt-1'/>
+        <button className='flex '>
+        <IoHeartCircle className='mt-1 text-sm'/>
         <p>412</p>
         </button>
-        <button className='flex gap-2'>
-        <PiHandsClapping className='mt-1' />
+        <button className='flex '>
+        <PiHandsClapping className='mt-1 text-sm' />
         <p>400</p>
         </button>
-        <button className='flex gap-2'>
-        <HiOutlineLightBulb className='mt-1' />
+        <button className='flex '>
+        <HiOutlineLightBulb className='mt-1 text-sm' />
         <p>200</p>
         </button>
     </div>
-      {/* ------------------- */}
+     
       <div className='bg-[#FFFFFF] shadow-md flex gap-2 p-6'>
        <div>
        <Image

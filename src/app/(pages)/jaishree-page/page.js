@@ -5,12 +5,12 @@ import Sidebar from "@/app/components/Sidebar";
 // import All from "@/app/components/wallsComponents/All";
 // import Reaction from "@/app/components/jaishreeComponent/Reaction";
 // import  Message  from "@/app/components/jaishreeComponent/Message";
-// import Comments from "@/app/components/jaishreeComponent/Comments";
+ import Comments from "@/app/components/jaishreeComponent/Comments";
 // import Details from "@/app/components/jaishreeComponent/Details";
 // import Postpage from "@/app/components/jaishreeComponent/Postpage";
 // import Connection from "@/app/components/jaishreeComponent/Connection";
 // import Report from "@/app/components/jaishreeComponent/Report";
-import Share from "@/app/components/jaishreeComponent/Share";
+// import Share from "@/app/components/jaishreeComponent/Share";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AiFillTool } from "react-icons/ai";
@@ -27,11 +27,13 @@ const page = () => {
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
       <div className="flex">
+      <div className="hidden lg:flex">
         <Sidebar />
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-52 pt-24 ">
-          <div className="relative ">
-            <div className="absolute w-[96%] pt-24 mx-5">
-              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex py-5 justify-between rounded-xl px-5">
+        </div>
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24 ">
+          <div className="relative flex  justify-center  ">
+            <div className="absolute w-[96%] pt-24 ">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
@@ -39,7 +41,7 @@ const page = () => {
                     <p className="text-gray-500">CEO & Co-founder</p>
                   </div>
                 </div>
-                <div className="text-xs flex items-center justify-center gap-5">
+                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button className="flex items-center gap-1 p-2 bg-white rounded-lg">
                     <FaBox size={10} />
                     OVERVIEW
@@ -69,7 +71,7 @@ const page = () => {
                 My Tabs{" "}
                 <span className="text-sm font-normal">/ profile Overview</span>
               </h2>
-              <p className="text-sm font-normal mt-5">
+              <p className="text-sm font-normal mt-5 hidden md:flex">
                 Previewing as a visitor
               </p>
             </div>
@@ -79,14 +81,14 @@ const page = () => {
             {tab === 1 && (
               <div>
                 {/* <All />   */}
-                {/* <Reaction/> */}
+                 {/* <Reaction/>  */}
                 {/* <Message/> */}
-                {/* <Comments/> */}
-                {/* <Details/> */}
+                <Comments/> 
+                {/* <Details/>  */}
                 {/* <Postpage/> */}
                 {/* <Connection/> */}
-                {/* <Report/> */}
-                <Share />
+                 {/* <Report/>  */}
+                {/* <Share /> */}
               </div>
             )}
             {tab === 2 && <div>Tab2</div>}
