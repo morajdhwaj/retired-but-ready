@@ -51,18 +51,16 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className="bg-[#ECEAF0] flex mt-20">
-        <div className=" w-1/2 ">
+      <div className="md:flex  bg-[#ECEAF0]  mt-20">
+        <div className="md:w-full lg:w-1/2  flex justify-center items-center ">
           <Image
             src="/assets/Group-26113.png"
             alt="reset-password"
             width={400}
             height={500}
-            className="mx-32 mt-20 "
           />
         </div>
-        <div className="w-1/2 bg-white ml-20 mb-24 mr-10 mt-10">
-          <div className="ml-5 mr-10 my-10">
+        <div className="lg:w-1/2 bg-white lg:mr-20 p-10 mb-10">
             <h1 className="text-3xl font-medium ">Reset Password</h1>
             <h6 className="text-sm mt-3  ">
               Do ensure your new password is atleast 6 character long
@@ -90,7 +88,7 @@ const page = () => {
             >
               Reset Password
             </button>
-          </div>
+          
         </div>
         {showModal && (
           <PopUp
