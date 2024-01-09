@@ -19,36 +19,16 @@ import axios from "axios";
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
-  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
-    getUserData();
-  }, [userId]);
+  }, []);
 
   const handleToggle = (index) => {
     activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
   };
 
-  const getUserData = () => {
-    const options = {
-      method: "GET",
-      url: `https://retpro.catax.me/user/profile/${userId}`,
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response?.data);
-        setUserData(response?.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-
-  // console.log(userId, "userId");
-  // console.log(userData, "userData");
+  console.log(userId, "userId");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -130,7 +110,7 @@ const page = () => {
                 {activeIndex === 1 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 1 && <ProfileDetails userData={userData} />}
+            {activeIndex === 1 && <ProfileDetails userId={userId} />}
 
             <div
               onClick={() => handleToggle(2)}
