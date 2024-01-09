@@ -6,16 +6,17 @@ import { IoSave } from "react-icons/io5";
 
 const Reaction = () => {
   return (
-    <div className="mx-4">
-      <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-10">
+    <div>
+    <div className=" h-[100vh]">
+       <div className="flex justify-between mt-40 sm:mt-20 md:mt-10  bg-white p-2 border-b-2 border-gray-300 ">
         <div className="flex gap-2">
           <IoIosArrowBack className="text-[#773FC6] mt-1 text-xl" />
           <h1 className="text-[#773FC6] text-xl font-semibold">Share</h1>
         </div>
-        <div>
+        
           <h1 className="text-2xl font-semibold text-[#773FC6]">x</h1>
-        </div>
-      </div>
+        
+      </div> 
       {/* ------------------- */}
       <div className="bg-[#FFFFFF] mt-1 pl-16 pt-5 pb-5 pr-4 rounded-t-lg">
         <div className="flex  justify-between">
@@ -38,6 +39,7 @@ const Reaction = () => {
         
         
       </div>
+    </div>
     </div>
   );
 };

@@ -11,8 +11,8 @@ import { IoSave } from "react-icons/io5";
 
 const Reaction = () => {
   return (
-    <div className="mx-4">
-      <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-10">
+    <div className="mx-4  h-[100vh]">
+      <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-40 sm:mt-20 md:mt-10">
         <div className="flex gap-2">
           <IoIosArrowBack className="text-[#773FC6] mt-1 text-xl" />
           <h1 className="text-[#773FC6] text-xl font-semibold">Details</h1>

@@ -9,8 +9,8 @@ import { MdComment } from "react-icons/md";
 const All = () => {
   return (
     <div>
-      <div className=" mt-5">
-        <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300">
+      <div className=" mt-5 ">
+        <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">
             <div>
               <Image
