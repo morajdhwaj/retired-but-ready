@@ -10,12 +10,9 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Image from "next/image";
-import { data } from "autoprefixer";
 
 const page = () => {
   const [step, setStep] = useState(1);
-  const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
   const hiddenFileInput = useRef(null);
   const [displayName, setDisplayName] = useState("");
@@ -57,8 +54,7 @@ const page = () => {
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
-    getUserData();
-  }, [userId]);
+  }, []);
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -78,31 +74,6 @@ const page = () => {
   };
   const handleStepDown = () => {
     setStep(step - 1);
-  };
-
-  const getUserData = () => {
-    const options = {
-      method: "GET",
-      url: `https://retpro.catax.me/user/profile/${userId}`,
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response?.data);
-        setUserData(response?.data);
-        setDisplayName(response?.data?.user_display_name);
-        setFirstName(response?.data?.user_first_name);
-        setLastName(response?.data?.user_last_name);
-        setAge(response?.data?.user_age);
-        setGender(response?.data?.user_gender);
-        setCity(response?.data?.user_city);
-        setState(response?.data?.user_state);
-        setCountry(response?.data?.country_name);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
   };
 
   const handleUpdate = () => {
@@ -190,7 +161,7 @@ const page = () => {
       });
   };
 
-  console.log(userData, "user");
+  console.log(userId, "user");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -203,17 +174,7 @@ const page = () => {
               <h1 className="text-4xl font-medium"> Profile</h1>
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
-              {userData.user_image ? (
-                <Image
-                  src={userData?.user_image}
-                  alt=""
-                  height={150}
-                  width={150}
-                  className="rounded-full"
-                />
-              ) : (
-                <FaCircleUser size={100} />
-              )}
+              <FaCircleUser size={100} />
               <button
                 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded"
                 onClick={handleClick}
