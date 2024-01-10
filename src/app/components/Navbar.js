@@ -1,15 +1,33 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">
-        <Link href="/">
-          <Image alt="logo" src="/assets/RBRLogo1.png" width={70} height={70} />
-        </Link>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-5">
+          <Link href="/">
+            <Image
+              alt="logo"
+              src="/assets/RBRLogo1.png"
+              width={70}
+              height={70}
+            />
+          </Link>
+          <button
+            onClick={() => setShowSidebar(!showSidebar)}
+            className="flex lg:hidden h-full w-full"
+          >
+            <GiHamburgerMenu size={25} />
+          </button>
+        </div>
+        <div className=" gap-2 hidden lg:flex">
           <Link href="/profile-setup">Profile-setup</Link>
           <Link href="/profile-details">Profile</Link>
           <Link href="/walls-page">walls</Link>
@@ -34,6 +52,7 @@ const Navbar = () => {
           Login
         </Link>
       </div>
+      {showSidebar && <Sidebar />}
     </div>
   );
 };
