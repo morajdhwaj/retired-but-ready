@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrFormNext } from "react-icons/gr";
 
-const Reaction = () => {
+const Report = () => {
   return (
     <div className="mx-4 h-[100vh] ">
       <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-32 sm:mt-20 md:mt-10">
@@ -62,4 +62,4 @@ const Reaction = () => {
   );
 };
 
-export default Reaction;
+export default Report;

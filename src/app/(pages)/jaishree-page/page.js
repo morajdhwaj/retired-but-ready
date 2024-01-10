@@ -5,9 +5,9 @@ import Sidebar from "@/app/components/Sidebar";
 // import All from "@/app/components/wallsComponents/All";
 // import Reaction from "@/app/components/jaishreeComponent/Reaction";
 // import  Message  from "@/app/components/jaishreeComponent/Message";
- import Comments from "@/app/components/jaishreeComponent/Comments";
+//import Comments from "@/app/components/jaishreeComponent/Comments";
 // import Details from "@/app/components/jaishreeComponent/Details";
-// import Postpage from "@/app/components/jaishreeComponent/Postpage";
+import Postpage from "@/app/components/jaishreeComponent/Postpage";
 // import Connection from "@/app/components/jaishreeComponent/Connection";
 // import Report from "@/app/components/jaishreeComponent/Report";
 // import Share from "@/app/components/jaishreeComponent/Share";
@@ -27,8 +27,8 @@ const page = () => {
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
       <div className="flex">
-      <div className="hidden lg:flex">
-        <Sidebar />
+        <div className="hidden lg:flex">
+          <Sidebar />
         </div>
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24 ">
           <div className="relative flex  justify-center  ">
@@ -81,14 +81,14 @@ const page = () => {
             {tab === 1 && (
               <div>
                 {/* <All />   */}
-                 {/* <Reaction/>  */}
+                {/* <Reaction/>  */}
                 {/* <Message/> */}
-                <Comments/> 
+                {/* <Comments/>  */}
                 {/* <Details/>  */}
-                {/* <Postpage/> */}
+                <Postpage />
                 {/* <Connection/> */}
-                 {/* <Report/>  */}
-                {/* <Share /> */}
+                {/* <Report/>   */}
+                {/* <Share />  */}
               </div>
             )}
             {tab === 2 && <div>Tab2</div>}

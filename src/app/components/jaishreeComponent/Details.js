@@ -9,7 +9,7 @@ import { FaFlag } from "react-icons/fa";
 
 import { IoSave } from "react-icons/io5";
 
-const Reaction = () => {
+const Details = () => {
   return (
     <div className="mx-4  h-[100vh]">
       <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-40 sm:mt-20 md:mt-10">
@@ -58,4 +58,4 @@ const Reaction = () => {
   );
 };
 
-export default Reaction;
+export default Details;
