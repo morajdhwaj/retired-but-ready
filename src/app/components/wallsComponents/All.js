@@ -9,8 +9,8 @@ import { MdComment } from "react-icons/md";
 const All = () => {
   return (
     <div>
-      <div className=" mt-5">
-        <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300">
+      <div className=" mt-5 ">
+        <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">
             <div>
               <Image
@@ -51,7 +51,7 @@ const All = () => {
           }}
           className="p-5 text-white font-medium flex flex-col justify-between "
         >
-          <h2>
+          <h2 className="text-xs md:text-lg">
             Weekly news round-up: 2022 Hyundai Venue launched more details on
             Mahindra Scropio-N
           </h2>
@@ -68,7 +68,7 @@ const All = () => {
             <AiFillLike />
             <p className="text-sm">1,232</p>
           </div>
-          <div className="mt-2 flex justify-between">
+          <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
             <div className="flex items-center gap-2">
               <button>
                 <AiOutlineLike />

@@ -8,7 +8,6 @@ const ContactComponent = () => {
         className=" h-[200px] md:h-[450px] flex flex-col lg:flex-row gap-5 w-full"
         style={{
           backgroundImage: `url('/assets/Group193.png')`,
-
           backgroundRepeat: "no-repeat",
           backgroundPosition: "right",
           alignItems: "center",
@@ -30,7 +29,12 @@ const ContactComponent = () => {
       </div>
       <div className="flex  flex-col md:flex-row px-5 md:px-10 lg:px-20">
         <div className="md:w-1/2 flex items-center justify-center">
-          <Image src="/assets/Group-114.png" height={400} width={300} />
+          <Image
+            src="/assets/Group-114.png"
+            alt="/assets/Group-114.png"
+            height={400}
+            width={300}
+          />
         </div>
         <div className="md:w-1/2 flex flex-col items-center gap-10">
           <div>
@@ -45,7 +49,12 @@ const ContactComponent = () => {
             </h3>
           </div>
           <div className="">
-            <Image src="/assets/Group-626024.png" height={400} width={900} />
+            <Image
+              src="/assets/Group-626024.png"
+              alt="/assets/Group-626024.png"
+              height={400}
+              width={900}
+            />
           </div>
         </div>
       </div>

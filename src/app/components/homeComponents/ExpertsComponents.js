@@ -13,19 +13,39 @@ const ExpertsComponents = () => {
       </div>
       <div className="flex mt-16 flex-wrap gap-10 items-center justify-center">
         <div className="border border-[#773fc6] self-start px-14 py-8 rounded-2xl bg-gray-100">
-          <Image src="/assets/Business-1.png" height={150} width={150} />
+          <Image
+            src="/assets/Business-1.png"
+            alt="/assets/Business-1.png"
+            height={150}
+            width={150}
+          />
           <h2 className="text-center font-medium text-2xl mt-5">Engineers</h2>
         </div>
         <div className="border border-[#773fc6] self-start px-14 py-8 rounded-2xl bg-gray-100">
-          <Image src="/assets/Entertainment-1.png" height={150} width={150} />
+          <Image
+            src="/assets/Entertainment-1.png"
+            alt="/assets/Entertainment-1.png"
+            height={150}
+            width={150}
+          />
           <h2 className="text-center font-medium text-2xl mt-5">Professors</h2>
         </div>
         <div className="border border-[#773fc6] self-start px-14 py-8 rounded-2xl bg-gray-100">
-          <Image src="/assets/Law-&-Order-1.png" height={150} width={150} />
+          <Image
+            src="/assets/Law-&-Order-1.png"
+            alt="/assets/Law-&-Order-1.png"
+            height={150}
+            width={150}
+          />
           <h2 className="text-center font-medium text-2xl mt-5">Mentors</h2>
         </div>
         <div className="border border-[#773fc6] self-start px-14 py-8 rounded-2xl bg-gray-100">
-          <Image src="/assets/110.png" height={150} width={150} />
+          <Image
+            src="/assets/110.png"
+            alt="/assets/110.png"
+            height={150}
+            width={150}
+          />
           <h2 className="text-center font-medium text-2xl mt-5">Consultants</h2>
         </div>
       </div>

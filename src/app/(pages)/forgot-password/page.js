@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,7 @@ const page = () => {
 
   const router = useRouter();
 
-  const handlePassword = () => {
+  const handleEmail = () => {
     const options = {
       method: "GET",
       url: "https://retpro.catax.me/user/forgot-password",
@@ -21,34 +22,31 @@ const page = () => {
     axios
       .request(options)
       .then(function (response) {
-        if (response.status === 200) {
-          console.log(response.data);
-          router.push("/verification-code");
-        } else {
-          console.error("Unexpected status code:", response.status);
-        }
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        router.push("/forgot-password-otp");
       })
       .catch(function (error) {
-        console.error("Request failed:", error.message);
-        // Display an error message to the user if needed
+        console.error(error);
       });
   };
+
+  console.log(email);
 
   return (
     <div>
       <Navbar />
-      <div className="bg-gray-200 flex h-auto">
-        <div className="w-2/5 mt-28">
+      <div className="mt-10 bg-gray-200 h-[100vh] md:flex lg:flex">
+        <div className="md:w-full lg:w-1/2  justify-center items-center flex ">
           <Image
             src="/assets/Group-26113.png"
-            width={700}
+            width={500}
             alt="forgot-image"
-            height={200}
-            className=" pt-10 pl-32 mt-10 ml-10"
+            height={500}
           />
         </div>
-        <div className="w-3/5 mt-24  ">
-          <div className="bg-white  pb-20 p-10 mr-20 ml-64 mt-10 mb-20">
+        <div className="md:w-full  justify-center flex items-center lg:w-1/2 ">
+          <div className="bg-white  w-[80%] p-10">
             <h1 className="font-bold text-2xl">Forgot Password</h1>
             <h6 className="text-sm pt-2">
               Please enter your email address to reset your password
@@ -58,31 +56,15 @@ const page = () => {
               type="email"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Johnraymonds@gmail.com"
-              className="border border-gray-200 rounded-lg py-4 mt-10 w-full p-3 "
+              className="border border-gray-200 rounded-lg py-4 mt-10 p-3 w-full"
+              autoComplete="email"
             />
             <button
-              onClick={handlePassword}
-              className="bg-[#773FC6] text-white px-28 py-2 rounded-lg mt-8 w-full"
+              onClick={handleEmail}
+              className="bg-[#773FC6]  text-white py-3 rounded-lg mt-8 w-full"
             >
               Send Verification Code
             </button>
-            <div className="flex items-center justify-center mt-10 ">
-              <div className="bg-gray-300 h-[1px] w-[200px]" />
-              <h1 className="text-xl font-bold ml-3 mr-3">or</h1>
-              <div className="bg-gray-300 h-[1px] w-[200px] " />
-            </div>
-            <div className=" mt-3">
-              <h1 className="text-xl">Enter your mobile no.</h1>
-              <div className=" flex  ">
-                <input
-                  placeholder="+91 9080590666"
-                  className="border border-gray-200 rounded-lg px-55 py-3 mt-2 text-xl"
-                />
-                <button className="bg-[#773FC6] rounded-lg  text-white mt-2 ml-3 w-full">
-                  Send OTP
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
