@@ -17,7 +17,7 @@ const Reaction = () => {
         <h1 className="text-[#773FC6] font-medium text-lg">x</h1>
       </div>
 
-      <div className=" flex-wrap sm:flex md:flex lg:flex   p-2  w-full ">
+      <div className=" flex flex-wrap gap-2 p-2  w-full ">
         <button className="text-[#773FC6]  font-bold">All 123445</button>
         <button className="flex ">
           <AiFillLike className="mt-1 text-sm" />
