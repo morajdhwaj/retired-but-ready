@@ -6,7 +6,7 @@ import { ImUsers } from "react-icons/im";
 import { FaUsersGear } from "react-icons/fa6";
 import { TbMessageCircleOff } from "react-icons/tb";
 
-const Reaction = () => {
+const Connection = () => {
   return (
     <div className="mx-4">
       <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-10">
@@ -85,4 +85,4 @@ const Reaction = () => {
   );
 };
 
-export default Reaction;
+export default Connection;
