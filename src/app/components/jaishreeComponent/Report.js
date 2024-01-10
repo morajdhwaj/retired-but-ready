@@ -15,7 +15,7 @@ const Report = () => {
         </div>
       </div>
       {/* ------------------- */}
-      <div className="bg-[#FFFFFF] mt-1 pl-16 pt-5 pb-5 pr-4 rounded-t-lg  ">
+      <div className="bg-[#FFFFFF] mt-1 pl-5 pt-5 pb-5 pr-4 rounded-t-lg  ">
         <div className="flex  justify-between">
           <div className="flex  gap-2 ">
             <h1 className="font-semibold text-sm mt-1 text-[#1F2937]">Spam</h1>

@@ -8,8 +8,8 @@ import { TbMessageCircleOff } from "react-icons/tb";
 
 const Connection = () => {
   return (
-    <div className="mx-4">
-      <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-10">
+    <div className="mx-4 h-[100vh]">
+      <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md  mt-40 sm:mt-20 md:mt-10">
         <div className="flex gap-2">
           <IoIosArrowBack className="text-[#773FC6] mt-1 text-xl" />
           <h1 className="text-[#773FC6] text-xl font-semibold">
@@ -21,7 +21,7 @@ const Connection = () => {
         </div>
       </div>
       {/* ------------------- */}
-      <div className="bg-[#FFFFFF] mt-1 pl-16 pt-5 pb-5 pr-4 rounded-t-lg">
+      <div className="bg-[#FFFFFF] mt-1 pl-5 pt-5 pb-5 pr-4 rounded-t-lg">
         <div className="flex  justify-between">
           <div className="flex  gap-2 ">
             <FaGlobeEurope className="text-[#666666] text-xl mt-1" />

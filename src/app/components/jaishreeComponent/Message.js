@@ -1,15 +1,12 @@
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { AiFillLike } from "react-icons/ai";
-import { IoHeartCircle } from "react-icons/io5";
-import { PiHandsClapping } from "react-icons/pi";
-import { HiOutlineLightBulb } from "react-icons/hi";
+
 import Image from "next/image";
 
 const Message = () => {
   return (
     <div className="mx-4">
-      <div className="bg-[#FFFFFF] flex justify-between p-2 shadow-md">
+      <div className="bg-[#FFFFFF] flex justify-between p-2 shadow-md mt-40 sm:mt-20 md:mt-10">
         <div className="flex gap-2">
           <IoIosArrowBack className="text-[#773FC6] mt-1 " />
           <h1 className="text-[#773FC6] font-semibold">New Message</h1>
