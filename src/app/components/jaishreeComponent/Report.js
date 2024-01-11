@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrFormNext } from "react-icons/gr";
 
-const Reaction = () => {
+const Report = () => {
   return (
     <div className="mx-4 h-[100vh] ">
       <div className="bg-[#FFFFFF] flex justify-between p-4 shadow-md mt-32 sm:mt-20 md:mt-10">
@@ -15,7 +15,7 @@ const Reaction = () => {
         </div>
       </div>
       {/* ------------------- */}
-      <div className="bg-[#FFFFFF] mt-1 pl-16 pt-5 pb-5 pr-4 rounded-t-lg  ">
+      <div className="bg-[#FFFFFF] mt-1 pl-5 pt-5 pb-5 pr-4 rounded-t-lg  ">
         <div className="flex  justify-between">
           <div className="flex  gap-2 ">
             <h1 className="font-semibold text-sm mt-1 text-[#1F2937]">Spam</h1>
@@ -62,4 +62,4 @@ const Reaction = () => {
   );
 };
 
-export default Reaction;
+export default Report;

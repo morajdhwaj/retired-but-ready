@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <div>
       <div className="mx-10 fixed py-10 top-10 left-0 bottom-0  h-10 z-50 flex justify-center">
-        <div className="border border-[#773fc6]  rounded-lg fixe flex flex-col items-center p-5 gap-5 self-start">
+        <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-5 self-start">
           <div className="flex gap-5 items-center w-40 bg-white p-2 rounded-xl hover:bg-gray-200">
             <div className="bg-[#773fc6] p-2 rounded-lg">
               <IoIosHome color="white" />
