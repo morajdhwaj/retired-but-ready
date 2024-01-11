@@ -43,12 +43,12 @@ const Leave = () => {
         <h2 className="font-medium text-[#773fc6]">
           New Toyota mid-size SUV spotted
         </h2>
-        <p className="text-xs flex">
+        <p className="text-xs flex flex-wrap sm:flex sm:flex-wrap lg:flex">
           www.msn.com/en-in/auto <LuDot className="text-xl" /> 6 min.read
           <LuDot className="text-xl" /> 2 days ago
         </p>
       </div>
-      <div className="text-xl">
+      <div className="text-xl mt-2 sm:mt-2 lg:mt-0">
         <button>
           <AiOutlineLike />
         </button>
@@ -63,7 +63,7 @@ const Leave = () => {
         </button>
       </div>
       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-        <div className="flex items-center gap-2">
+        <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex lg:items-center gap-2">
           <button>
             <AiOutlineLike />
           </button>
@@ -82,7 +82,7 @@ const Leave = () => {
           </button>
           <p className="text-sm">Send</p>
         </div>
-        <div className="flex items-center gap-2 text-sm">
+        <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex items-center gap-2 text-sm">
           3215
           <p className="text-sm">
             Comments
@@ -94,13 +94,15 @@ const Leave = () => {
       <div className=" gap-2 mt-5">
         <div className="mt-5 flex items-center gap-2">
           <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
-          <p className="text-gray-400">Leave your thoughts here..</p>
+          <p className=" text-xs sm:text-base text-gray-400">
+            Leave your thoughts here..
+          </p>
         </div>
         <div className="flex gap-2 mx-5 mt-5">
           <button>
             <FaEye />
           </button>
-          <p> 47 Views of your post </p>
+          <p className="text-xs sm:text-base"> 47 Views of your post </p>
         </div>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
@@ -132,12 +134,12 @@ const Leave = () => {
         <h2 className="font-medium text-[#773fc6]">
           New Toyota mid-size SUV spotted
         </h2>
-        <p className="text-xs flex">
+        <p className="text-xs flex flex-wrap sm:flex sm:flex-wrap lg:flex">
           www.msn.com/en-in/auto <LuDot className="text-xl" /> 6 min.read
           <LuDot className="text-xl" /> 2 days ago
         </p>
       </div>
-      <div className="text-xl">
+      <div className="text-xl mt-2 sm:mt-2 lg:mt-0">
         <button>
           <AiOutlineLike />
         </button>
@@ -152,7 +154,7 @@ const Leave = () => {
         </button>
       </div>
       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-        <div className="flex items-center gap-2">
+        <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex items-center gap-2">
           <button>
             <AiOutlineLike />
           </button>
@@ -171,7 +173,7 @@ const Leave = () => {
           </button>
           <p className="text-sm">Send</p>
         </div>
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex flex-wrap sm:flex sm:flex-wrap lg:flex items-center gap-2 text-sm">
           3215
           <p className="text-sm">
             Comments
@@ -184,7 +186,7 @@ const Leave = () => {
         <button>
           <FaEye />
         </button>
-        <p> 47 Views of your post </p>
+        <p className="text-xs sm:text-base"> 47 Views of your post </p>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
       <div className="mt-5">

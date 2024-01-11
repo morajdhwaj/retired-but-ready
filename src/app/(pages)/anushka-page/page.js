@@ -7,7 +7,7 @@ import Leave from "@/app/components/anushkaComponent/Leave";
 import Post from "@/app/components/anushkaComponent/Post";
 import Spotted from "@/app/components/anushkaComponent/Spotted";
 import Youtube from "@/app/components/anushkaComponent/Youtube";
-// import All from "@/app/components/wallsComponents/All";
+import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -111,10 +111,10 @@ const page = () => {
               <div>
                 {/* <All /> <All /> */}
                 {/* <Covered /> */}
-                {/* <Youtube /> */}
+                <Youtube />
                 {/* <Post /> */}
                 {/* <Spotted /> */}
-                <Leave />
+                {/* <Leave /> */}
               </div>
             )}
             {tab === 2 && <Trending />}
