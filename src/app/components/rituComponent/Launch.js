@@ -11,7 +11,7 @@ import Image from "next/image";
 const Launch = () => {
   return (
     <div>
-      <div className="flex justify-between bg-white py-2">
+      <div className="mt-10 sm:mt-10 md:mt-10 flex justify-between bg-white py-2">
         <div className=" flex gap-2">
           <IoMdClose className="text-[#773FC6] mt-1 text-xl ml-2" />
           <h1 className="text-[#773FC6] ">Share a Post</h1>
@@ -21,8 +21,8 @@ const Launch = () => {
         </div>
       </div>
 
-      <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 mt-10 ">
-        <div className="flex items-center gap-2 justify-center">
+      <div className="flex md:flex lg:flex justify-between bg-white p-2 border-b-2 border-gray-300 mt-10 ">
+        <div className=" lg:flex items-center gap-2 justify-center">
           <div>
             <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
           </div>
@@ -35,7 +35,7 @@ const Launch = () => {
           </div>
         </div>
         <div>
-          <select className="text-start flex justify-evenly border border-black rounded m-5 px-10 py-2">
+          <select className="text-start flex justify-evenly border border-black rounded m-5 lg:px-10 py-2">
             <option>Anyone</option>
             <option>2</option>
             <option>3</option>
@@ -95,7 +95,7 @@ const Launch = () => {
 
       <div className="border bg-gray-300 w-full h-1 " />
 
-      <div className="flex justify-between items-center p-5">
+      <div className="sm:mt-5 lg:flex justify-between items-center p-5">
         <div className="flex gap-5">
           <FaCamera />
           <GrGallery />
