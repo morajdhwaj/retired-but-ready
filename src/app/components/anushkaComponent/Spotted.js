@@ -4,12 +4,12 @@ const Spotted = () => {
   return (
     <div>
       <div className="mt-5">
-        <p className="text-lg ">
+        <p className="text-sm sm:text-sm lg:text-lg ">
           Weekly news round-up: 2022 Hyundai Venue launched, More details on
           Mahindra Scorpio-N, New Toy mid-size SUV spotted
         </p>
         <div className="flex items-center">
-          <p className="text-xs ">Nikhil Puthran</p>
+          <p className="text-xs sm:text-xs lg:text-xs ">Nikhil Puthran</p>
           <p>
             <LuDot />
           </p>
@@ -34,7 +34,7 @@ const Spotted = () => {
         <p className="text-xs font-normal">18 June 2022 13:42</p>
       </div>
       <div className="mt-5">
-        <p className="text-base font-normal">
+        <p className=" text-sm sm:text-sm md:text-base lg:text-base lg:font-normal">
           In the week gone by we had covered the launch of one of the most
           awaited compact SUVs in the country. Additionally, we also covered a
           series of spy shots for upcoming new cars. Read below to learn more
@@ -43,7 +43,7 @@ const Spotted = () => {
         <p className="text-[#8444dd] mt-5 font-semibold text-lg">
           Toyota's new mid-size SUV leaked ahead of debut
         </p>
-        <p>
+        <p className="text-sm sm:text-sm md:text-base">
           The front design of the Toyota's upcoming mid-size SUV was leaked on
           the web ahead of its debut in the country on 1 July. It is believed
           that the upcoming vehicle might be called the Urban Cruiser Hyryder, a
@@ -55,7 +55,7 @@ const Spotted = () => {
         <p className="text-[#8444dd] mt-5 font-semibold text-lg">
           2022 Maruti Suzuki Vitara Brezza - What to expect?
         </p>
-        <p>
+        <p className="text-sm sm:text-sm md:text-base">
           The 2022 Maruti Suzuki Vitara Brezza will be launched in India on 30
           June 2022. The bookings for the vehicle will commence soon and the
           vehicle has already started reaching across Maruti Suzuki dealerships
@@ -67,7 +67,7 @@ const Spotted = () => {
         <p className="text-[#8444dd] mt-5 font-semibold text-lg">
           2022 Hyundai Venue launched in India; prices start at Rs 7.53 lakh
         </p>
-        <p>
+        <p className="text-sm sm:text-sm md:text-base">
           Post much wait, Hyundai India launched the 2022 Venue in the country.
           The updated model has been introduced at an introductory starting
           price of Rs 7.53 lakh. The vehicle is available in three engines and
@@ -75,13 +75,19 @@ const Spotted = () => {
           features and over 60 connected car features.
         </p>
       </div>
-      <div className="flex gap-2 mt-2 font-medium">
-        <p>For More</p>
-        <p className="text-[#8444dd]">#news,</p>
-        <p className="text-[#8444dd]">#review,</p>
-        <p className="text-[#8444dd]">#Video</p>
-        <p>and information about cars,visit</p>
-        <p className="text-[#8444dd]">CarWale.com</p>
+      <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex gap-2 mt-2 sm:mt-2 lg:mt-2 font-medium">
+        <p className="text-sm sm:text-sm md:text-base">For More</p>
+        <p className="text-[#8444dd] text-sm sm:text-sm md:text-base">#news,</p>
+        <p className="text-[#8444dd] text-sm sm:text-sm md:text-base">
+          #review,
+        </p>
+        <p className="text-[#8444dd] text-sm sm:text-sm md:text-base">#Video</p>
+        <p className="text-sm sm:text-sm md:text-base">
+          and information about cars,visit
+        </p>
+        <p className="text-[#8444dd] text-sm sm:text-sm md:text-base">
+          CarWale.com
+        </p>
       </div>
     </div>
   );

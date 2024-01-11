@@ -16,18 +16,20 @@ import { FaCamera } from "react-icons/fa";
 const Post = () => {
   return (
     <div>
-      <div className="w-full  h-[100px] bg-white mt-10">
+      <div className="w-full  lg:h-[100px] bg-white mt-10">
         <div className=" flex m-2 items-center gap-2 justify-between">
-          <div className="flex gap-2 mt-5">
+          <div className=" md:flex lg:flex gap-2 mt-5">
             <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
             <div className="">
-              <p className="  text-[#773fc6] font-semibold text-lg ">
+              <p className="  text-[#773fc6] font-semibold text-xs sm:text-sm lg:text-lg ">
                 Munawar Raj Singh
               </p>
-              <p className="text-black font-normal text-sm">
+              <p className="text-black font-normal  text-xs sm:text-sm lg:text-sm">
                 Chief Executive Officer
               </p>
-              <p className="text-black font-normal text-sm">17h</p>
+              <p className="text-black font-normal text-xs sm:text-sm lg:text-sm">
+                17h
+              </p>
             </div>
           </div>
           <div className="mt-1 m-5">
@@ -65,12 +67,12 @@ const Post = () => {
         <h2 className="font-medium text-[#773fc6]">
           New Toyota mid-size SUV spotted
         </h2>
-        <p className="text-xs flex">
+        <p className="text-xs flex flex-wrap sm:flex sm:flex-wrap lg:flex">
           www.msn.com/en-in/auto <LuDot className="text-xl" /> 6 min.read
           <LuDot className="text-xl" /> 2 days ago
         </p>
       </div>
-      <div className="text-lg flex">
+      <div className="text-lg mt-2 sm:mt-2 lg:mt-0 flex">
         <button>
           <AiOutlineLike />
         </button>
@@ -87,7 +89,7 @@ const Post = () => {
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
       <div className=" flex flex-col sm:flex-row gap-5 justify-between mt-5">
-        <div className="flex items-center gap-2">
+        <div className=" flex flex-wrap gap-1 sm:flex sm:flex-wrap sm:gap-1 lg:flex lg:items-center lg:gap-2">
           <button>
             <AiOutlineLike />
           </button>
@@ -106,7 +108,7 @@ const Post = () => {
           </button>
           <p className="text-sm">Send</p>
         </div>
-        <div className="flex items-center gap-2 text-sm">
+        <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex items-center gap-2 text-sm">
           3215
           <p className="text-sm">
             Comments
@@ -117,16 +119,18 @@ const Post = () => {
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
       <div className="mt-5 flex items-center gap-2">
         <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
-        <p className="text-gray-400">Leave your thoughts here..</p>
+        <p className="text-gray-400 text-xs sm:text-base">
+          Leave your thoughts here..
+        </p>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
-      <div className="flex justify-between text-lg items-center gap-2 mt-2">
-        <div className="flex mt-5 gap-2 text-2xl">
+      <div className=" flex justify-between text-lg items-center gap-2 mt-2">
+        <div className="flex flex-wrap sm:flex sm:flex-wrap lg:flex mt-5 gap-2 text-sm sm:text-base lg:text-2xl">
           <TbKeyboard />
           <PiAtThin />
           <FaCamera />
         </div>
-        <div className="font-semibold text-[#773fc6] text-center mx-5">
+        <div className=" font-normal sm:font-normal lg:font-semibold text-[#773fc6] text-center mx-5 text-sm sm:text-base">
           <p>Post</p>
         </div>
       </div>
