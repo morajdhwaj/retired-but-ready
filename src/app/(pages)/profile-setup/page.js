@@ -171,8 +171,8 @@ const page = () => {
         </div>
 
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
-          <div className="flex w-full  ">
-            <div className="w-1/2 flex items-center justify-end">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-5 w-full ">
+            <div className="md:w-1/2 md:flex items-center justify-end">
               <h1 className="text-4xl font-medium"> Profile</h1>
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
@@ -198,7 +198,7 @@ const page = () => {
               A photo that shows your face clearly is ideal. You know what else
               make fo a great profile picture? your smile
             </p>
-            <div className="flex items-center  gap-5 xl:gap-0 flex-wrap justify-center">
+            <div className="flex items-center  gap-5 md:gap-10 xl:gap-0 flex-wrap justify-center">
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
                   step === 1
