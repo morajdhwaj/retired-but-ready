@@ -81,14 +81,17 @@ const Certification = ({ stepUp, stepDown }) => {
           <h1 className="  text-2xl text-[#773FC6] mt-10 text-center">
             Preview as visitor
           </h1>
-          <div className="text-center mt-5 flex gap-10 items-center justify-center rounded ">
+          <div className="mt-10 gap-10 flex w-full">
             <button
               onClick={stepDown}
-              className="border-2 border-[#773FC6] w-[200px] text-[#773FC6] py-1 text-xl font-semibold "
+              className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
             >
               Go back
             </button>
-            <button className="bg-[#773fc6]  w-[200px] text-white font-medium rounded py-1 ">
+            <button
+              onClick={stepUp}
+              className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
+            >
               Next
             </button>
           </div>

@@ -34,11 +34,13 @@ const page = () => {
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
       <div className="flex">
-        <Sidebar />
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-52 pt-24 ">
-          <div className="relative ">
+        <div className="hidden lg:flex">
+          <Sidebar />
+        </div>
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
+          <div className="relative flex  justify-center ">
             <div className="absolute w-[96%] pt-24 mx-5">
-              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex py-5 justify-between rounded-xl px-5">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
                   <Image
                     src="/assets/110.png"
@@ -51,7 +53,7 @@ const page = () => {
                     <p className="text-gray-500">CEO & Co-founder</p>
                   </div>
                 </div>
-                <div className="text-xs flex items-center justify-center gap-5">
+                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 ">
                   <button className="flex items-center gap-1 p-2 bg-white rounded-lg">
                     <FaBox size={10} />
                     OVERVIEW
@@ -81,12 +83,12 @@ const page = () => {
                 My Tabs{" "}
                 <span className="text-sm font-normal">/ profile Overview</span>
               </h2>
-              <p className="text-sm font-normal mt-5">
+              <p className="text-sm font-normal mt-5 hidden md:flex">
                 Previewing as a visitor
               </p>
             </div>
           </div>
-          <div className="mt-20 mx-5">
+          <div className="mt-48 sm:mt-32 md:mt-20 mx-5">
             <p className="text-gray-500 text-lg text-center leading-8">
               I'm steve jacob , an ex-banker with over 30 years of experience in
               Retail Banking, I've spent good amount of years with JPMorgen
