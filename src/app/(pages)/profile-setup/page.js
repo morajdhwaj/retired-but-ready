@@ -10,6 +10,7 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [step, setStep] = useState(1);
@@ -54,6 +55,7 @@ const page = () => {
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -79,7 +81,7 @@ const page = () => {
     setStep(step - 1);
   };
 
-  const handleUpdate = () => {
+  const handleSubmit = () => {
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
@@ -111,7 +113,7 @@ const page = () => {
           ],
           professional: [],
         },
-        languages: [languages],
+        languages: languages,
         english_proficiency: "full imglish",
         education: [
           {
@@ -143,7 +145,7 @@ const page = () => {
         is_charged: true,
         acceptable_currencies: ["rupyaa"],
         interests: ["ganja"],
-        retirement_cause: retirementCause,
+        retirement_cause: ["heavy dose"],
         social_links: {
           linkedIn: linkedin,
           facebook: facebook,
@@ -157,6 +159,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
+        router.push("/profile-details");
       })
       .catch(function (error) {
         console.error(error);
@@ -168,7 +171,7 @@ const page = () => {
     console.log("trial");
   };
 
-  console.log(languages, "last");
+  console.log(retirementCause);
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -334,7 +337,7 @@ const page = () => {
 
           <div className="w-full  p-5 ml-36  flex items-center justify-center ">
             <button
-              onClick={handleUpdate}
+              onClick={handleSubmit}
               className="  bg-[#773fc6] p-2 text-white font-medium rounded"
             >
               submit
