@@ -25,7 +25,7 @@ const page = () => {
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
   const [profileSummary, setProfileSummary] = useState("");
-  const [lastDesignation, setLastDesignation] = useState("");
+  const [lastDesignation, setLastDesignation] = useState("Software Developer");
   const [totalExperience, setTotalExperience] = useState("");
   const [professionalField, setProfessionalField] = useState("");
   const [professionalExpertise, setProfessionalExpertise] = useState("");
@@ -49,8 +49,11 @@ const page = () => {
   const [isCharged, setIsCharged] = useState(false);
   const [acceptableCurrencies, setAcceptableCurrencies] = useState("");
   const [interests, setInterests] = useState([]);
-  const [retirementCause, setRetirementCause] = useState("");
+  const [retirementCause, setRetirementCause] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [linkedin, setLinkedin] = useState("");
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -108,7 +111,7 @@ const page = () => {
           ],
           professional: [],
         },
-        languages: ["english"],
+        languages: [languages],
         english_proficiency: "full imglish",
         education: [
           {
@@ -123,8 +126,8 @@ const page = () => {
         work_history: [
           {
             company_id: "657d55d2033cb72b10c630e5",
-            company_name: "catax",
-            title: "intern",
+            company_name: companyName,
+            title: title,
             start_date: "2022-10-01T00:00:00.000Z",
             end_date: "present",
           },
@@ -140,11 +143,11 @@ const page = () => {
         is_charged: true,
         acceptable_currencies: ["rupyaa"],
         interests: ["ganja"],
-        retirement_cause: ["heavy dose"],
+        retirement_cause: retirementCause,
         social_links: {
-          linkedIn: "string",
-          facebook: "string",
-          twitter: "string",
+          linkedIn: linkedin,
+          facebook: facebook,
+          twitter: twitter,
         },
       },
     };
@@ -161,7 +164,11 @@ const page = () => {
       });
   };
 
-  console.log(userId, "user");
+  const trial = () => {
+    console.log("trial");
+  };
+
+  console.log(languages, "last");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -277,12 +284,33 @@ const page = () => {
               />
             )}
             {step === 2 && (
-              <SocialInfo stepUp={handleStepUp} stepDown={handleStepDown} />
+              <SocialInfo
+                stepUp={handleStepUp}
+                stepDown={handleStepDown}
+                retirementCause={retirementCause}
+                setRetirementCause={setRetirementCause}
+                facebook={facebook}
+                setFacebook={setFacebook}
+                twitter={twitter}
+                setTwitter={setTwitter}
+                linkedIn={linkedin}
+                setLinkedin={setLinkedin}
+              />
             )}
             {step === 3 && (
               <SkillsComponent
                 stepUp={handleStepUp}
                 stepDown={handleStepDown}
+                lastDesignation={lastDesignation}
+                setLastDesignation={setLastDesignation}
+                totalExperience={totalExperience}
+                setTotalExperience={setTotalExperience}
+                professionalField={professionalField}
+                setProfessionalField={setProfessionalField}
+                professionalExpertise={professionalExpertise}
+                setProfessionalExpertise={setProfessionalExpertise}
+                skills={skills}
+                setSkills={setSkills}
               />
             )}
             {step === 4 && (
@@ -291,20 +319,27 @@ const page = () => {
                 stepDown={handleStepDown}
                 englishProficiency={englishProficiency}
                 setEnglishProficiency={setEnglishProficiency}
+                languages={languages}
+                setLanguages={setLanguages}
+                companyName={companyName}
+                setCompanyName={setCompanyName}
+                title={title}
+                setTitle={setTitle}
               />
             )}
-            {step === 5 && <Certification stepDown={handleStepDown} />}
+            {step === 5 && (
+              <Certification stepDown={handleStepDown} handleUpdate={trial} />
+            )}
           </div>
-          {step === 5 && (
-            <div className="w-full  p-5 ml-36 pt-24 flex items-center justify-center ">
-              <button
-                onClick={handleUpdate}
-                className=" w-40 bg-[#773fc6] p-2 text-white font-medium rounded"
-              >
-                submit
-              </button>
-            </div>
-          )}
+
+          <div className="w-full  p-5 ml-36  flex items-center justify-center ">
+            <button
+              onClick={handleUpdate}
+              className="  bg-[#773fc6] p-2 text-white font-medium rounded"
+            >
+              submit
+            </button>
+          </div>
         </div>
       </div>
     </div>
