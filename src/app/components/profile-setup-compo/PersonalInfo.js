@@ -46,7 +46,7 @@ const PersonalInfo = ({
   };
 
   return (
-    <div className="flex  flex-col gap-5 mx-20 ">
+    <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Profile display name</h2>
         <input

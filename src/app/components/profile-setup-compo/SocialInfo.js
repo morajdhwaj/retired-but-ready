@@ -40,7 +40,7 @@ const SocialInfo = ({ stepUp, stepDown }) => {
     setCause(selected);
   };
   return (
-    <div className="flex  flex-col gap-5 mx-20 ">
+    <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
           What is the cause of your retirement
