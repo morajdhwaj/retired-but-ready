@@ -5,6 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import Covered from "@/app/components/anushkaComponent/Covered";
 import Leave from "@/app/components/anushkaComponent/Leave";
 import Post from "@/app/components/anushkaComponent/Post";
+import Send from "@/app/components/anushkaComponent/Send";
 import Spotted from "@/app/components/anushkaComponent/Spotted";
 import Youtube from "@/app/components/anushkaComponent/Youtube";
 import All from "@/app/components/wallsComponents/All";
@@ -75,7 +76,7 @@ const page = () => {
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            <div className="flex justify-between w-full text-gray-500">
+            {/*<div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}
                 className={`border-b-4 w-1/3 text-sm md:text-xl font-medium p-2  ${
@@ -106,15 +107,16 @@ const page = () => {
               >
                 Surprise Me!
               </button>
-            </div>
+            </div> */}
             {tab === 1 && (
               <div>
                 {/* <All /> <All /> */}
                 {/* <Covered /> */}
-                <Youtube />
+                {/* <Youtube /> */}
                 {/* <Post /> */}
                 {/* <Spotted /> */}
                 {/* <Leave /> */}
+                <Send />
               </div>
             )}
             {tab === 2 && <Trending />}
