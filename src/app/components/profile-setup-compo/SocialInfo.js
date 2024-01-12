@@ -37,7 +37,7 @@ const SocialInfo = ({
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setRetirementCause(selected.map((item) => item.label));
+    setRetirementCause(selected);
   };
   const handleWantChange = async (selected, selection) => {
     const { action } = selection;
