@@ -18,9 +18,18 @@ const wants = [
   { value: "Work sort term", label: "Work sort term" },
 ];
 
-const SocialInfo = ({ stepUp, stepDown }) => {
-  const [cause, setCause] = useState([]);
-
+const SocialInfo = ({
+  stepUp,
+  stepDown,
+  retirementCause,
+  setRetirementCause,
+  facebook,
+  setFacebook,
+  twitter,
+  setTwitter,
+  linkedIn,
+  setLinkedin,
+}) => {
   const handleCauseChange = async (selected, selection) => {
     const { action } = selection;
     if (action === "clear") {
@@ -28,7 +37,7 @@ const SocialInfo = ({ stepUp, stepDown }) => {
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setCause(selected);
+    setRetirementCause(selected);
   };
   const handleWantChange = async (selected, selection) => {
     const { action } = selection;
@@ -37,8 +46,9 @@ const SocialInfo = ({ stepUp, stepDown }) => {
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setCause(selected);
+    setRetirementCause(selected);
   };
+
   return (
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
@@ -47,6 +57,7 @@ const SocialInfo = ({ stepUp, stepDown }) => {
         </h2>
         <Select
           id="selectCause"
+          value={retirementCause}
           instanceId="selectCause"
           isMulti
           name="colors"
@@ -85,15 +96,27 @@ const SocialInfo = ({ stepUp, stepDown }) => {
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Facebook</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={facebook}
+          onChange={(e) => setFacebook(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Twitter</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={twitter}
+          onChange={(e) => setTwitter(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Linkedin</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={linkedIn}
+          onChange={(e) => setLinkedin(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Instagram</h2>

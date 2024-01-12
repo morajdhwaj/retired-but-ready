@@ -1,6 +1,6 @@
 import React from "react";
 
-const Certification = ({ stepUp, stepDown }) => {
+const Certification = ({ stepUp, stepDown, handleUpdate }) => {
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -89,10 +89,10 @@ const Certification = ({ stepUp, stepDown }) => {
               Go back
             </button>
             <button
-              onClick={stepUp}
+              onClick={handleUpdate}
               className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
             >
-              Next
+              Submit
             </button>
           </div>
         </div>
