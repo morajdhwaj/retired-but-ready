@@ -166,9 +166,11 @@ const page = () => {
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
       <div className="flex">
-        <Sidebar />
+        <div className="hidden lg:flex">
+          <Sidebar />
+        </div>
 
-        <div className="w-full bg-[#f2f1f3]  p-5 ml-52 pt-24">
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
           <div className="flex w-full  ">
             <div className="w-1/2 flex items-center justify-end">
               <h1 className="text-4xl font-medium"> Profile</h1>
@@ -191,12 +193,12 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="mx-40 mt-5 flex flex-col gap-5">
+          <div className="lg:mx-40 mt-5 flex flex-col gap-5">
             <p className="text-gray-500 text-center">
               A photo that shows your face clearly is ideal. You know what else
               make fo a great profile picture? your smile
             </p>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center  gap-5 xl:gap-0 flex-wrap justify-center">
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
                   step === 1
@@ -206,7 +208,7 @@ const page = () => {
               >
                 1
               </h1>
-              <p className="text-gray-300">- - - - - -</p>
+              <p className="text-gray-300 hidden xl:flex ">- - - - - -</p>
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
                   step === 2
@@ -216,7 +218,7 @@ const page = () => {
               >
                 2
               </h1>
-              <p className="text-gray-300">- - - - - -</p>
+              <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
 
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
@@ -227,7 +229,7 @@ const page = () => {
               >
                 3
               </h1>
-              <p className="text-gray-300">- - - - - -</p>
+              <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
 
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
@@ -238,7 +240,7 @@ const page = () => {
               >
                 4
               </h1>
-              <p className="text-gray-300">- - - - - -</p>
+              <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
 
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${

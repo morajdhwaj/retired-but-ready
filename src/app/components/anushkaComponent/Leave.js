@@ -14,7 +14,7 @@ import Image from "next/image";
 const Leave = () => {
   return (
     <div>
-      <div className="mt-5">
+      <div className=" mt-5">
         <p className="text-sm">
           In the week gone by, we had covered the launch of one of the most
           awaited compact SUV in country, Additionally, we also covered a series
