@@ -112,11 +112,12 @@ const page = () => {
               <div>
                 {/* <All /> <All /> */}
                 {/* <Covered /> */}
-                {/* <Youtube /> */}
+                <Youtube />
                 {/* <Post /> */}
                 {/* <Spotted /> */}
                 {/* <Leave /> */}
-                <Send />
+
+                <Send /
               </div>
             )}
             {tab === 2 && <Trending />}
