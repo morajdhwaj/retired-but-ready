@@ -5,6 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import Covered from "@/app/components/anushkaComponent/Covered";
 import Leave from "@/app/components/anushkaComponent/Leave";
 import Post from "@/app/components/anushkaComponent/Post";
+import Send from "@/app/components/anushkaComponent/Send";
 import Spotted from "@/app/components/anushkaComponent/Spotted";
 import Youtube from "@/app/components/anushkaComponent/Youtube";
 import All from "@/app/components/wallsComponents/All";
@@ -115,6 +116,7 @@ const page = () => {
                 {/* <Post /> */}
                 {/* <Spotted /> */}
                 {/* <Leave /> */}
+                <Send />
               </div>
             )}
             {tab === 2 && <Trending />}
