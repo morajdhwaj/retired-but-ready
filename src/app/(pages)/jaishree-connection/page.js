@@ -6,9 +6,9 @@ import Sidebar from "@/app/components/Sidebar";
 // import ConnectionTwo from "@/app/components/jaishreeConnectionComponent/ConnectionTwo";
 // import ConnectionThree from "@/app/components/jaishreeConnectionComponent/ConnectionThree";
 // import ConnectionSix from "@/app/components/jaishreeConnectionComponent/ConnectionSix";
-import Main from "@/app/components/jaishreeConnectionComponent/Main";
+// import Main from "@/app/components/jaishreeConnectionComponent/Main";
 
-// import Network from "@/app/components/jaishreeConnectionComponent/Network";
+import Network from "@/app/components/jaishreeConnectionComponent/Network";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -80,12 +80,12 @@ const page = () => {
             {tab === 1 && (
               <div>
                
-                 {/* <Network/> */}
+                  <Network/> 
                  {/* <ConnectionOne/> */}
                  {/* <ConnectionTwo/> */}
                  {/* <ConnectionThree/> */}
                  {/* <ConnectionSix/> */}
-                 <Main/>
+                 {/* <Main/> */}
 
               </div>
             )}

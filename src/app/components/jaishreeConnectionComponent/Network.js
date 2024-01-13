@@ -12,9 +12,9 @@ import { BsThreeDots } from "react-icons/bs";
 
 const Network = () => {
   return (
-    <div className="">
-      <div className=" flex mx-6 justify-between bg-scroll">
-        <div>
+    <div className=" ">
+      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex flex-wrap items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
+        <div className="">
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
               <p className="text-xs "></p>
@@ -88,10 +88,10 @@ const Network = () => {
         RetPro's (123456)already in my network
       </h1>
       <div className=" border border-[#9079af] w-[60%] h-0.5" />
-      <div className="grid grid-cols-5  gap-10 mt-5 ">
-        <div className="border border-gray-300 rounded-md ">
+      <div className=" grid grid-cols-1  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5  gap-5 mt-5">
+        <div className="border border-gray-300 rounded-md  ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -101,25 +101,25 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
-        <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <p className="  text-center text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className=" text-center text-sm text-gray-500"> text of the</p>
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
         <div className="flex justify-center items-center mt-2 gap-1">
         <MdOutlineJoinInner className="text-gray-700" />
-        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
+        <h1 className="text-gray-500 text-sm font-medium ">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
 
         <div className="border border-gray-300 rounded-md ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -129,9 +129,9 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
         <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
@@ -139,125 +139,15 @@ const Network = () => {
         <MdOutlineJoinInner className="text-gray-700" />
         <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
-          <BsThreeDots className="text-gray-600 size-5"/>
-        </div>
-        </div>
-
-       <div className="border border-gray-300 rounded-md ">
-          <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
-            <div className="flex items-center justify-center pb-4">  
-            <Image src="/assets/110.png"
-            width={40}
-            height={40}
-            alt="pic"
-            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
-            </div>
-        </div>
-        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
-        <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
-        <SiHsbc className="fill-red-600 size-8"/>
-        <h1>HSBC</h1>
-        </div>
-        <div className="flex justify-center items-center mt-2 gap-1">
-        <MdOutlineJoinInner className="text-gray-700" />
-        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
-        </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
-          <BsThreeDots className="text-gray-600 size-5"/>
-        </div>
-        </div>
-
-        <div className="border border-gray-300 rounded-md ">
-          <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
-            <div className="flex items-center justify-center pb-4">  
-            <Image src="/assets/110.png"
-            width={40}
-            height={40}
-            alt="pic"
-            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
-            </div>
-        </div>
-        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
-        <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
-        <SiHsbc className="fill-red-600 size-8"/>
-        <h1>HSBC</h1>
-        </div>
-        <div className="flex justify-center items-center mt-2 gap-1">
-        <MdOutlineJoinInner className="text-gray-700" />
-        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
-        </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
-          <BsThreeDots className="text-gray-600 size-5"/>
-        </div>
-        </div>
-        <div className="border border-gray-300 rounded-md ">
-          <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
-            <div className="flex items-center justify-center pb-4">  
-            <Image src="/assets/110.png"
-            width={40}
-            height={40}
-            alt="pic"
-            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
-            </div>
-        </div>
-        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
-        <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
-        <SiHsbc className="fill-red-600 size-8"/>
-        <h1>HSBC</h1>
-        </div>
-        <div className="flex justify-center items-center mt-2 gap-1">
-        <MdOutlineJoinInner className="text-gray-700" />
-        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
-        </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
-          <BsThreeDots className="text-gray-600 size-5"/>
-        </div>
-        </div>
-       <div className="border border-gray-300 rounded-md ">
-          <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
-            <div className="flex items-center justify-center pb-4">  
-            <Image src="/assets/110.png"
-            width={40}
-            height={40}
-            alt="pic"
-            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
-            </div>
-        </div>
-        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
-        <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
-        <SiHsbc className="fill-red-600 size-8"/>
-        <h1>HSBC</h1>
-        </div>
-        <div className="flex justify-center items-center mt-2 gap-1">
-        <MdOutlineJoinInner className="text-gray-700" />
-        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
-        </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className="  p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
 
        <div className="border border-gray-300 rounded-md ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -267,9 +157,9 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
         <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
@@ -277,15 +167,15 @@ const Network = () => {
         <MdOutlineJoinInner className="text-gray-700" />
         <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
 
         <div className="border border-gray-300 rounded-md ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -295,9 +185,9 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
         <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
@@ -305,14 +195,14 @@ const Network = () => {
         <MdOutlineJoinInner className="text-gray-700" />
         <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
         <div className="border border-gray-300 rounded-md ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -322,9 +212,9 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
         <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
@@ -332,15 +222,125 @@ const Network = () => {
         <MdOutlineJoinInner className="text-gray-700" />
         <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+          <BsThreeDots className="text-gray-600 size-5"/>
+        </div>
+        </div>
+       <div className="border border-gray-300 rounded-md ">
+          <div className=" bg-[#B3CEE2] ">
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
+            <div className="flex items-center justify-center pb-4">  
+            <Image src="/assets/110.png"
+            width={40}
+            height={40}
+            alt="pic"
+            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
+            </div>
+        </div>
+        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center text-sm text-gray-500"> text of the</p>
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
+        <SiHsbc className="fill-red-600 size-8"/>
+        <h1>HSBC</h1>
+        </div>
+        <div className="flex justify-center items-center mt-2 gap-1">
+        <MdOutlineJoinInner className="text-gray-700" />
+        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
+        </div>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className="  p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+          <BsThreeDots className="text-gray-600 size-5"/>
+        </div>
+        </div>
+
+       <div className="border border-gray-300 rounded-md ">
+          <div className=" bg-[#B3CEE2] ">
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
+            <div className="flex items-center justify-center pb-4">  
+            <Image src="/assets/110.png"
+            width={40}
+            height={40}
+            alt="pic"
+            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
+            </div>
+        </div>
+        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center text-sm text-gray-500"> text of the</p>
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
+        <SiHsbc className="fill-red-600 size-8"/>
+        <h1>HSBC</h1>
+        </div>
+        <div className="flex justify-center items-center mt-2 gap-1">
+        <MdOutlineJoinInner className="text-gray-700" />
+        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
+        </div>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+          <BsThreeDots className="text-gray-600 size-5"/>
+        </div>
+        </div>
+
+        <div className="border border-gray-300 rounded-md ">
+          <div className=" bg-[#B3CEE2] ">
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
+            <div className="flex items-center justify-center pb-4">  
+            <Image src="/assets/110.png"
+            width={40}
+            height={40}
+            alt="pic"
+            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
+            </div>
+        </div>
+        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center text-sm text-gray-500"> text of the</p>
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
+        <SiHsbc className="fill-red-600 size-8"/>
+        <h1>HSBC</h1>
+        </div>
+        <div className="flex justify-center items-center mt-2 gap-1">
+        <MdOutlineJoinInner className="text-gray-700" />
+        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
+        </div>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+          <BsThreeDots className="text-gray-600 size-5"/>
+        </div>
+        </div>
+        <div className="border border-gray-300 rounded-md ">
+          <div className=" bg-[#B3CEE2] ">
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
+            <div className="flex items-center justify-center pb-4">  
+            <Image src="/assets/110.png"
+            width={40}
+            height={40}
+            alt="pic"
+            className=" w-24  h-24 rounded-full border-2   border-gray-200 "/>
+            </div>
+        </div>
+        <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center text-sm text-gray-500"> text of the</p>
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
+        <SiHsbc className="fill-red-600 size-8"/>
+        <h1>HSBC</h1>
+        </div>
+        <div className="flex justify-center items-center mt-2 gap-1">
+        <MdOutlineJoinInner className="text-gray-700" />
+        <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
+        </div>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className="  p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
 
       <div className="border border-gray-300 rounded-md ">
           <div className=" bg-[#B3CEE2] ">
-            <IoMdCloseCircle className="size-8 mx-32 "/>
+            <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36"/>
             <div className="flex items-center justify-center pb-4">  
             <Image src="/assets/110.png"
             width={40}
@@ -350,9 +350,9 @@ const Network = () => {
             </div>
         </div>
         <h1 className="mt-5 flex items-center justify-center font-sans text-xl">Adel Calzoni</h1>
-        <p className="text-center flex text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
+        <p className="text-center  text-xs mt-1 text-gray-500">Lorem  Ipsum  is  simply  dummy</p> 
         <p className="text-center text-sm text-gray-500"> text of the</p>
-        <div className="flex justify-center items-center gap-2 mt-2">
+        <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
         <SiHsbc className="fill-red-600 size-8"/>
         <h1>HSBC</h1>
         </div>
@@ -360,8 +360,8 @@ const Network = () => {
         <MdOutlineJoinInner className="text-gray-700" />
         <h1 className="text-gray-500 text-sm font-medium">19 connections</h1>
         </div>
-        <div className="flex justify-center gap-2 items-center mt-2 mb-4">
-          <button className=" p-2 px-6 border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
+        <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
+          <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]"><h1 className="text-[#773fc6] font-medium">Message</h1></button>
           <BsThreeDots className="text-gray-600 size-5"/>
         </div>
         </div>
