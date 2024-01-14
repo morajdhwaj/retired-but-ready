@@ -153,7 +153,7 @@ const SkillsComponent = ({
           Add 3 to 5 personal skills that you are proud of
         </h6>
         <Select
-          id="skills"
+          id="personal"
           value={skills}
           instanceId="selectSkills"
           isMulti
@@ -170,7 +170,7 @@ const SkillsComponent = ({
           Add 3 to 5 personal skills that you are proud of
         </h6>
         <Select
-          id="skills"
+          id="professional"
           value={skills}
           instanceId="selectSkills"
           isMulti

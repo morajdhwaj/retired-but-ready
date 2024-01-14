@@ -23,6 +23,8 @@ const PersonalInfo = ({
   setCity,
 }) => {
   const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountryStates, setSelectedCountryStates] = useState([]);
 
   useEffect(() => {
     getCountries();
@@ -44,6 +46,19 @@ const PersonalInfo = ({
         console.error(error);
       });
   };
+  useEffect(() => {
+    if (selectedCountry) {
+      const selectedCountryObject = countries.find(
+        (country) => country.name === selectedCountry
+      );
+
+      if (selectedCountryObject) {
+        setSelectedCountryStates(selectedCountryObject.states);
+      }
+    } else {
+      setSelectedCountryStates([]);
+    }
+  }, [selectedCountry, countries]);
 
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
@@ -105,22 +120,30 @@ const PersonalInfo = ({
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Country</h2>
           <select
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            value={selectedCountry}
+            onChange={(e) => setSelectedCountry(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
           >
             {countries?.map((country) => (
-              <option key={country.id}>{country.name}</option>
+              <option key={country.id} value={country.name}>
+                {country.name}
+              </option>
             ))}
           </select>
         </div>
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">State</h2>
-          <input
+          <select
             value={state}
             onChange={(e) => setState(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
-          />
+          >
+            {selectedCountryStates.map((state) => (
+              <option key={state.id} value={state.name}>
+                {state.name}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       <button
