@@ -56,7 +56,6 @@ const PersonalInfo = ({
         setSelectedCountryStates(selectedCountryObject.states);
       }
     } else {
-      // If no country is selected, reset the states.
       setSelectedCountryStates([]);
     }
   }, [selectedCountry, countries]);
