@@ -53,8 +53,8 @@ const SkillsComponent = ({
     (skill) => skill.skill_category === "professional"
   );
 
-  console.log("Personal Skills:", personalSkills);
-  console.log("Professional Skills:", professionalSkills);
+  // console.log("Personal Skills:", personalSkills);
+  // console.log("Professional Skills:", professionalSkills);
 
   const transformedPersonalSkills = personalSkills.map((skill) => {
     return { value: skill.skill_name, label: skill.skill_name };

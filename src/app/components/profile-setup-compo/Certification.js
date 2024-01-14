@@ -1,6 +1,13 @@
 import React from "react";
 
-const Certification = ({ stepUp, stepDown, handleUpdate }) => {
+const Certification = ({
+  stepDown,
+  handleSubmit,
+  certificateName,
+  setCertificateName,
+  acceptableCurrencies,
+  setAcceptableCurrencies,
+}) => {
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -10,26 +17,8 @@ const Certification = ({ stepUp, stepDown, handleUpdate }) => {
         </h3>
         <div className="mt-8 flex flex-col gap-4 w-auto  ">
           <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
+            value={certificateName}
+            onChange={(e) => setCertificateName(e.target.value)}
             type="text"
             className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
           />
@@ -50,6 +39,8 @@ const Certification = ({ stepUp, stepDown, handleUpdate }) => {
             <select
               type="text"
               className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+              value={acceptableCurrencies}
+              onChange={(e) => setAcceptableCurrencies(e.target.value)}
             >
               <option>INR</option>
               <option>USD</option>
@@ -89,7 +80,7 @@ const Certification = ({ stepUp, stepDown, handleUpdate }) => {
               Go back
             </button>
             <button
-              onClick={handleUpdate}
+              onClick={handleSubmit}
               className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
             >
               Submit
