@@ -48,7 +48,7 @@ const page = () => {
   const [certificateDate, setCertificateDate] = useState("");
   const [credentials, setCredentials] = useState("");
   const [isCharged, setIsCharged] = useState(false);
-  const [acceptableCurrencies, setAcceptableCurrencies] = useState("");
+  const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
   const [interests, setInterests] = useState([]);
   const [retirementCause, setRetirementCause] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
@@ -108,7 +108,7 @@ const page = () => {
           personal: [
             {
               skill_id: "657a9aefec8c5016e744d8ba",
-              skill_name: "string",
+              skill_name: "my-skills",
             },
           ],
           professional: [],
@@ -137,15 +137,15 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: "Python",
+            certification_name: certificateName,
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },
         ],
         is_charged: true,
-        acceptable_currencies: ["rupyaa"],
+        acceptable_currencies: [acceptableCurrencies],
         interests: ["ganja"],
-        retirement_cause: ["heavy dose"],
+        retirement_cause: retirementCause.map((item) => item.label),
         social_links: {
           linkedIn: linkedin,
           facebook: facebook,
@@ -167,11 +167,7 @@ const page = () => {
       });
   };
 
-  const trial = () => {
-    console.log("trial");
-  };
-
-  console.log(retirementCause);
+  console.log(acceptableCurrencies, "last");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -331,17 +327,15 @@ const page = () => {
               />
             )}
             {step === 5 && (
-              <Certification stepDown={handleStepDown} handleUpdate={trial} />
+              <Certification
+                stepDown={handleStepDown}
+                handleSubmit={handleSubmit}
+                certificateName={certificateName}
+                setCertificateName={setCertificateName}
+                acceptableCurrencies={acceptableCurrencies}
+                setAcceptableCurrencies={setAcceptableCurrencies}
+              />
             )}
-          </div>
-
-          <div className="w-full  p-5 ml-36  flex items-center justify-center ">
-            <button
-              onClick={handleSubmit}
-              className="  bg-[#773fc6] p-2 text-white font-medium rounded"
-            >
-              submit
-            </button>
           </div>
         </div>
       </div>
