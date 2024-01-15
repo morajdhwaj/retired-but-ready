@@ -13,7 +13,7 @@ import { IoIosSend } from "react-icons/io";
 const ConnectionFive = () => {
   return (
     <div>
-      <div className=" flex mx-6 justify-between bg-scroll">
+      <div className=" flex flex-wrap gap-4 mx-6 justify-between bg-scroll   mt-52 sm:mt-40 lg:mt-0">
         <div>
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
@@ -97,7 +97,7 @@ const ConnectionFive = () => {
         <h1 className="text-lg font-semibold mt-10">1,573 Connection</h1>
       </div>
       <div className="mt-5 flex justify-between">
-        <div className="flex">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -112,13 +112,13 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 ">
                 <p className="text-[#773fc6] font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 mx-2 ">
+              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 md:mx-2 lg:mx-2 ">
                 <p className="text-[#773fc6] font-bold text-center"> Message</p>
               </button>
             </div>
@@ -129,9 +129,9 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
-      <div className="border border-gray-300 mx-2 w-96 mt-5" />
-      <div className="mt-5 flex justify-between">
-        <div className="flex">
+      <div className="border border-gray-300 mx-2  w-60 sm:w-72 md:w-96 lg:w-96 mt-5" />
+      <div className="mt-5 flex justify-between ">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -146,13 +146,13 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 ">
                 <p className="text-[#773fc6] font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 mx-2 ">
+              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 md:mx-2  lg:mx-2 ">
                 <p className="text-[#773fc6] font-bold text-center"> Message</p>
               </button>
             </div>
@@ -163,8 +163,9 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
+      <div className="border border-gray-300 mx-2  w-60 sm:w-72 md:w-96 lg:w-96 mt-5" />
       <div className="mt-5 flex justify-between">
-        <div className="flex">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -179,13 +180,13 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2 border-green-600 h-9 ">
                 <p className="text-green-600 font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2 border-green-600 h-9 mx-2 ">
+              <button className="border-2 rounded-lg  w-36 mt-2 border-green-600 h-9 md:mx-2  lg:mx-2 ">
                 <p className="text-green-600 font-bold text-center"> Message</p>
               </button>
             </div>
@@ -196,9 +197,9 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
-      <div className="border border-gray-300 mx-2 w-96 mt-5" />
+      <div className="border border-gray-300 mx-2  w-60 sm:w-72 md:w-96 lg:w-96 mt-5" />
       <div className="mt-5 flex justify-between">
-        <div className="flex">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -213,13 +214,13 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 ">
                 <p className="text-[#773fc6] font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 mx-2 ">
+              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 md:mx-2  lg:mx-2 ">
                 <p className="text-[#773fc6] font-bold text-center"> Message</p>
               </button>
             </div>
@@ -230,10 +231,10 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
-      <div className="border border-gray-300 mx-2 w-96 mt-5" />
+      <div className="border border-gray-300 mx-2 w-60 sm:w-72 md:w-96 lg:w-96 mt-5" />
 
       <div className="mt-5 flex justify-between">
-        <div className="flex">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -248,17 +249,14 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2  border-green-600 h-9 ">
                 <p className="text-green-600 font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2  border-green-600 h-9 mx-2 ">
-                <p className="text-green-600 text-center font-bold text-center">
-                  {" "}
-                  Message
-                </p>
+              <button className="border-2 rounded-lg  w-36 mt-2  border-green-600 h-9 md:mx-2  lg:mx-2 ">
+                <p className="text-green-600 font-bold text-center"> Message</p>
               </button>
             </div>
           </div>
@@ -268,9 +266,9 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
-      <div className="border border-gray-300 mx-2 w-96 mt-5" />
+      <div className="border border-gray-300 mx-2 w-60 sm:w-72 md:w-96 lg:w-96  mt-5" />
       <div className="mt-5 flex justify-between">
-        <div className="flex">
+        <div className="flex flex-wrap ">
           <Image
             alt="Ellipse"
             src="/assets/Ellipse-39.png"
@@ -285,13 +283,13 @@ const ConnectionFive = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div>
+            <div className="flex gap-2 flex-wrap">
               <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 ">
                 <p className="text-[#773fc6] font-bold text-center">
                   View Job Post
                 </p>
               </button>
-              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9 mx-2 ">
+              <button className="border-2 rounded-lg  w-36 mt-2 border-[#773fc6] h-9  ">
                 <p className="text-[#773fc6] font-bold text-center"> Message</p>
               </button>
             </div>
@@ -302,7 +300,7 @@ const ConnectionFive = () => {
           <IoIosSend />
         </div>
       </div>
-      <div className="border border-gray-300 mx-2 w-96 mt-5" />
+      <div className="border border-gray-300 mx-2 w-60 sm:w-72 md:w-96 lg:w-96 mt-5" />
     </div>
   );
 };
