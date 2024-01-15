@@ -10,6 +10,7 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [step, setStep] = useState(1);
@@ -19,7 +20,7 @@ const page = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
@@ -47,13 +48,14 @@ const page = () => {
   const [certificateDate, setCertificateDate] = useState("");
   const [credentials, setCredentials] = useState("");
   const [isCharged, setIsCharged] = useState(false);
-  const [acceptableCurrencies, setAcceptableCurrencies] = useState("");
+  const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
   const [interests, setInterests] = useState([]);
   const [retirementCause, setRetirementCause] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -79,7 +81,7 @@ const page = () => {
     setStep(step - 1);
   };
 
-  const handleUpdate = () => {
+  const handleSubmit = () => {
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
@@ -106,12 +108,12 @@ const page = () => {
           personal: [
             {
               skill_id: "657a9aefec8c5016e744d8ba",
-              skill_name: "string",
+              skill_name: "my-skills",
             },
           ],
           professional: [],
         },
-        languages: [languages],
+        languages: languages,
         english_proficiency: "full imglish",
         education: [
           {
@@ -135,15 +137,15 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: "Python",
+            certification_name: certificateName,
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },
         ],
         is_charged: true,
-        acceptable_currencies: ["rupyaa"],
+        acceptable_currencies: [acceptableCurrencies],
         interests: ["ganja"],
-        retirement_cause: retirementCause,
+        retirement_cause: retirementCause.map((item) => item.label),
         social_links: {
           linkedIn: linkedin,
           facebook: facebook,
@@ -157,6 +159,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
+        router.push("/profile-details");
       })
       .catch(function (error) {
         console.error(error);
@@ -164,11 +167,7 @@ const page = () => {
       });
   };
 
-  const trial = () => {
-    console.log("trial");
-  };
-
-  console.log(languages, "last");
+  console.log(retirementCause, "last");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -328,17 +327,15 @@ const page = () => {
               />
             )}
             {step === 5 && (
-              <Certification stepDown={handleStepDown} handleUpdate={trial} />
+              <Certification
+                stepDown={handleStepDown}
+                handleSubmit={handleSubmit}
+                certificateName={certificateName}
+                setCertificateName={setCertificateName}
+                acceptableCurrencies={acceptableCurrencies}
+                setAcceptableCurrencies={setAcceptableCurrencies}
+              />
             )}
-          </div>
-
-          <div className="w-full  p-5 ml-36  flex items-center justify-center ">
-            <button
-              onClick={handleUpdate}
-              className="  bg-[#773fc6] p-2 text-white font-medium rounded"
-            >
-              submit
-            </button>
           </div>
         </div>
       </div>

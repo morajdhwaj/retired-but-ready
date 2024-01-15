@@ -53,8 +53,8 @@ const SkillsComponent = ({
     (skill) => skill.skill_category === "professional"
   );
 
-  console.log("Personal Skills:", personalSkills);
-  console.log("Professional Skills:", professionalSkills);
+  // console.log("Personal Skills:", personalSkills);
+  // console.log("Professional Skills:", professionalSkills);
 
   const transformedPersonalSkills = personalSkills.map((skill) => {
     return { value: skill.skill_name, label: skill.skill_name };
@@ -153,7 +153,7 @@ const SkillsComponent = ({
           Add 3 to 5 personal skills that you are proud of
         </h6>
         <Select
-          id="skills"
+          id="personal"
           value={skills}
           instanceId="selectSkills"
           isMulti
@@ -170,7 +170,7 @@ const SkillsComponent = ({
           Add 3 to 5 personal skills that you are proud of
         </h6>
         <Select
-          id="skills"
+          id="professional"
           value={skills}
           instanceId="selectSkills"
           isMulti

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import Select from "react-select";
 
 const RetireCause = [
@@ -30,6 +31,8 @@ const SocialInfo = ({
   linkedIn,
   setLinkedin,
 }) => {
+  const [selectedValues, setSelectedValues] = useState([]);
+
   const handleCauseChange = async (selected, selection) => {
     const { action } = selection;
     if (action === "clear") {
@@ -37,16 +40,18 @@ const SocialInfo = ({
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setRetirementCause(selected);
-  };
-  const handleWantChange = async (selected, selection) => {
-    const { action } = selection;
-    if (action === "clear") {
-    } else if (action === "select-option") {
-    } else if (action === "remove-value") {
-      console.log("remove");
+    if (retirementCause.length <= 5) {
+      setRetirementCause(selected);
+    } else {
+      toast.error("Maximum selection limit is 5");
     }
-    setRetirementCause(selected);
+  };
+  const handleWantChange = (selectedOptions) => {
+    if (selectedOptions.length <= 5) {
+      setSelectedValues(selectedOptions);
+    } else {
+      toast.error("Maximum selection limit is 5");
+    }
   };
 
   return (
@@ -79,6 +84,7 @@ const SocialInfo = ({
           className="basic-multi-select"
           classNamePrefix="select"
           options={wants}
+          value={selectedValues}
           onChange={handleWantChange}
         />
       </div>
