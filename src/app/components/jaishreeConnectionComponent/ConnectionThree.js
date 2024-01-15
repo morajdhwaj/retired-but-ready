@@ -10,7 +10,7 @@ import { IoIosSend } from "react-icons/io";
 const ConnectionThree = () => {
   return (
     <div>
-      <div className=" flex mx-6 justify-between bg-scroll">
+      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex gap-4 flex-wrap items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll">
         <div>
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
@@ -86,10 +86,10 @@ const ConnectionThree = () => {
         </h1>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2 mt-5">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2  ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={50}
             height={50}
@@ -113,10 +113,10 @@ const ConnectionThree = () => {
         </div>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2 ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={30}
             height={30}
@@ -140,10 +140,10 @@ const ConnectionThree = () => {
         </div>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2 ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={50}
             height={50}
@@ -167,10 +167,10 @@ const ConnectionThree = () => {
         </div>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2 ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={50}
             height={50}
@@ -194,10 +194,10 @@ const ConnectionThree = () => {
         </div>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2 ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={50}
             height={50}
@@ -221,10 +221,10 @@ const ConnectionThree = () => {
         </div>
       </div>
       <div className=" flex justify-between pt-2 pb-2  border-gray-300 border-b-2">
-        <div className="flex gap-2 w-1/2 ">
+        <div className="flex flex-wrap w-full gap-2 md:w-1/2 ">
           <Image
             src="/assets/Business-1.png"
-            className="w-1/5 p-2"
+            className="w-1/2 sm:w-1/5 md:w-1/5 p-1"
             alt="Business"
             width={50}
             height={50}

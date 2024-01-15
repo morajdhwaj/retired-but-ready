@@ -12,7 +12,7 @@ const Main = () => {
 
   return (
     <div>
-      <div className='flex  p-3 border-2 border-gray-300 rounded-md'>
+      <div className='flex  p-3 border-2 border-gray-300 rounded-md mt-56 sm:mt-5 md:mt-5 lg:mt-10'>
         <IoIosSearch className='mt-1' />
         <input
           type='text'
@@ -26,9 +26,10 @@ const Main = () => {
       </h1>
 
       <div className='flex justify-between  p-2 border-b-2 border-gray-300 mt-5'>
-        <div className='flex items-center gap-2 justify-center'>
-          <div>
-            <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
+        <div className='flex flex-wrap items-center gap-2  '>
+          <div className=' '>
+            <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50}
+             />
           </div>
           <div>
             <h2 className='text-sm font-semibold text-[#773fc6]  '>
@@ -53,7 +54,7 @@ const Main = () => {
         </div>
       </div>
       <div className='flex justify-between p-2 border-b-2 border-gray-300 '>
-        <div className='flex items-center gap-2 justify-center'>
+        <div className='flex flex-wrap items-center gap-2 '>
           <div>
             <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
           </div>
@@ -75,7 +76,7 @@ const Main = () => {
         </div>
       </div>
       <div className='flex justify-between  p-2 border-b-2 border-gray-300 '>
-        <div className='flex items-center gap-2 justify-center'>
+        <div className='flex flex-wrap items-center gap-2 '>
           <div>
             <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
           </div>
@@ -97,7 +98,7 @@ const Main = () => {
         </div>
       </div>
       <div className='flex justify-between p-2 border-b-2 border-gray-300 '>
-        <div className='flex items-center gap-2 justify-center'>
+        <div className='flex flex-wrap items-center gap-2 '>
           <div>
             <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
           </div>
@@ -119,7 +120,7 @@ const Main = () => {
         </div>
       </div>
       <div className='flex justify-between p-2 border-b-2 border-gray-300 mt-5'>
-        <div className='flex items-center gap-2 justify-center'>
+        <div className='flex flex-wrap items-center gap-2'>
           <div>
             <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
           </div>
@@ -141,7 +142,7 @@ const Main = () => {
         </div>
       </div>
       <div className='flex justify-between p-2 border-b-2 border-gray-300 mt-5'>
-        <div className='flex items-center gap-2 justify-center'>
+        <div className='flex flex-wrap items-center gap-2 '>
           <div>
             <Image alt='' src='/assets/Ellipse-39.png' height={50} width={50} />
           </div>
