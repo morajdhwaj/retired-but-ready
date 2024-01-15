@@ -15,6 +15,7 @@ import SocialMedia from "@/app/components/profile-details-compo/SocialMedia";
 import WorkExperience from "@/app/components/profile-details-compo/WorkExperience";
 import WorkHistory from "@/app/components/profile-details-compo/WorkHistory";
 import axios from "axios";
+import Link from "next/link";
 
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -177,12 +178,12 @@ const page = () => {
         </div>
       </div>
       <div className="flex bg-[#f2f1f3] ml-36  items-center justify-center gap-10 py-10">
-        <button className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-40 ">
-          Cancel
-        </button>
-        <button className="bg-[#773fc6]  p-2 text-white font-medium rounded w-40 ">
-          Submit
-        </button>
+        <Link
+          href="/login"
+          className="bg-[#773fc6] text-center  p-2 text-white font-medium rounded w-40 "
+        >
+          Log Out
+        </Link>
       </div>
     </div>
   );

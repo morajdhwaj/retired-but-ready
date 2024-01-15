@@ -21,6 +21,8 @@ const PersonalInfo = ({
   setState,
   city,
   setCity,
+  countryId,
+  setCompanyId,
 }) => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -54,16 +56,18 @@ const PersonalInfo = ({
 
       if (selectedCountryObject) {
         setSelectedCountryStates(selectedCountryObject.states);
+        setCountry(selectedCountryObject.name);
+        setCompanyId(selectedCountryObject.id); // Set the country id here
       }
     } else {
       setSelectedCountryStates([]);
     }
-  }, [selectedCountry, countries]);
+  }, [selectedCountry, countries, setCompanyId]);
 
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Profile display name</h2>
+        <h2 className="font-semibold text-gray-500">Profile display name*</h2>
         <input
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
@@ -72,7 +76,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Fist Name</h2>
+          <h2 className="font-semibold text-gray-500">Fist Name*</h2>
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -80,7 +84,7 @@ const PersonalInfo = ({
           />
         </div>
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Last Name</h2>
+          <h2 className="font-semibold text-gray-500">Last Name*</h2>
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -90,7 +94,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Age</h2>
+          <h2 className="font-semibold text-gray-500">Age*</h2>
           <input
             value={age}
             type="number"
@@ -99,7 +103,7 @@ const PersonalInfo = ({
           />
         </div>
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Gender</h2>
+          <h2 className="font-semibold text-gray-500">Gender*</h2>
           <select
             value={gender}
             onChange={(e) => setGender(e.target.value)}
@@ -113,7 +117,7 @@ const PersonalInfo = ({
       </div>{" "}
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">City</h2>
+          <h2 className="font-semibold text-gray-500">City*</h2>
           <input
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -123,7 +127,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Country</h2>
+          <h2 className="font-semibold text-gray-500">Country*</h2>
           <select
             value={selectedCountry}
             onChange={(e) => setSelectedCountry(e.target.value)}
@@ -137,7 +141,7 @@ const PersonalInfo = ({
           </select>
         </div>
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">State</h2>
+          <h2 className="font-semibold text-gray-500">State*</h2>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}

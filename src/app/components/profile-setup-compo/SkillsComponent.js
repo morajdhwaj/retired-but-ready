@@ -107,7 +107,7 @@ const SkillsComponent = ({
           <div className="flex">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Most recent Designation
+              Most recent Designation*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -128,7 +128,7 @@ const SkillsComponent = ({
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Total Work Experience
+              Total Work Experience*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -144,7 +144,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional field
+              Professional field*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -160,7 +160,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional expertise
+              Professional expertise*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
