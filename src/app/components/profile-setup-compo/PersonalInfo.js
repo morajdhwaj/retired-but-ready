@@ -84,11 +84,15 @@ const PersonalInfo = ({
         </div>
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Gender</h2>
-          <input
+          <select
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
-          />
+          >
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
         </div>
       </div>{" "}
       <div className="flex gap-5">

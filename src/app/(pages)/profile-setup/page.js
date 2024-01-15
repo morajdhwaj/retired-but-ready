@@ -20,7 +20,7 @@ const page = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
@@ -167,7 +167,7 @@ const page = () => {
       });
   };
 
-  console.log(acceptableCurrencies, "last");
+  console.log(retirementCause, "last");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
