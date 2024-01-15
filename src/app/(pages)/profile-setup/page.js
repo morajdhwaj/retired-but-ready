@@ -31,6 +31,8 @@ const page = () => {
   const [professionalField, setProfessionalField] = useState("");
   const [professionalExpertise, setProfessionalExpertise] = useState("");
   const [skills, setSkills] = useState([]);
+  const [personalSkills, setPersonalSkills] = useState([]);
+  const [professionalSkills, setProfessionalSkills] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [englishProficiency, setEnglishProficiency] = useState("Good");
   const [institutionId, setInstitutionId] = useState("");
@@ -105,16 +107,14 @@ const page = () => {
         professional_field: "weed",
         professional_expertise: "vasooli",
         skills: {
-          personal: [
-            {
-              skill_id: "657a9aefec8c5016e744d8ba",
-              skill_name: "my-skills",
-            },
-          ],
+          personal: personalSkills.map((item) => ({
+            skill_id: item.value,
+            skill_name: item.label,
+          })),
           professional: [],
         },
         languages: languages,
-        english_proficiency: "full imglish",
+        english_proficiency: englishProficiency,
         education: [
           {
             institution_id: "657aa5ab21d8f5ad8d839413",
@@ -167,7 +167,16 @@ const page = () => {
       });
   };
 
-  console.log(retirementCause, "last");
+  // console.log(
+  //   professionalSkills.map((item) => ({
+  //     skill_id: item.value,
+  //     skill_name: item.label,
+  //   })),
+  //   "last"
+  // );
+
+  console.log(englishProficiency, "last");
+
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -310,6 +319,10 @@ const page = () => {
                 setProfessionalExpertise={setProfessionalExpertise}
                 skills={skills}
                 setSkills={setSkills}
+                personalSkills={personalSkills}
+                setPersonalSkills={setPersonalSkills}
+                professionalSkills={professionalSkills}
+                setProfessionalSkills={setProfessionalSkills}
               />
             )}
             {step === 4 && (

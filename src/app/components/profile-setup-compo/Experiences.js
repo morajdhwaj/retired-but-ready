@@ -44,9 +44,8 @@ const Experiences = ({
         <br />
         <div className="flex flex-col gap-2">
           <input
-            value={languages}
-            onChange={(e) => setLanguages(e.target.value)}
-            className=" h-10  bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+            //
+            className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full"
           />
         </div>
       </div>
@@ -67,7 +66,7 @@ const Experiences = ({
             <input
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
-              className=" h-10  bg-[#f2f1f3] border-gray-300 border rounded w-full"
+              className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
           <div className="mt-5">
@@ -75,7 +74,7 @@ const Experiences = ({
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className=" h-10  bg-[#f2f1f3] border-gray-300 border rounded w-full"
+              className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
           <div className="flex gap-6 mt-5">
@@ -107,7 +106,7 @@ const Experiences = ({
               <input
                 // value={companyName}
                 // onChange={(e) => setCompanyName(e.target.value)}
-                className=" h-10  bg-[#f2f1f3] border-gray-300 border rounded w-full"
+                className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
               />
             </div>
             <div className="mt-5">
@@ -115,7 +114,7 @@ const Experiences = ({
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className=" h-10  bg-[#f2f1f3] border-gray-300 border rounded w-full"
+                className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
               />
             </div>
             <div className="flex gap-6 mt-5">

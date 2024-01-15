@@ -40,10 +40,10 @@ const SocialInfo = ({
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    if (retirementCause.length <= 5) {
+    if (selected.length <= 1) {
       setRetirementCause(selected);
     } else {
-      toast.error("Maximum selection limit is 5");
+      toast.error("Maximum selection limit is 1");
     }
   };
   const handleWantChange = (selectedOptions) => {
@@ -90,7 +90,13 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Age Category</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <select className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full">
+          <option>18-25 Years</option>
+          <option>25-40 Years</option>
+          <option>40-50 Years</option>
+          <option>50-60 Years</option>
+          <option>60+ Years</option>
+        </select>
       </div>
       <div className="">
         <h2 className="font-medium">Link your accounts</h2>

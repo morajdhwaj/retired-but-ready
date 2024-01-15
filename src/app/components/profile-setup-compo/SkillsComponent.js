@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Select from "react-select";
 
 const RetireCausssse = [
@@ -22,6 +23,10 @@ const SkillsComponent = ({
   setProfessionalField,
   professionalExpertise,
   setProfessionalExpertise,
+  personalSkills,
+  setPersonalSkills,
+  professionalSkills,
+  setProfessionalSkills,
 }) => {
   const [allSkills, setAllSkills] = useState([]);
 
@@ -46,34 +51,55 @@ const SkillsComponent = ({
       });
   };
 
-  const personalSkills = allSkills.filter(
+  const displayPersonalSkills = allSkills.filter(
     (skill) => skill.skill_category === "personal"
   );
-  const professionalSkills = allSkills.filter(
+  const displayProfessionalSkills = allSkills.filter(
     (skill) => skill.skill_category === "professional"
   );
 
-  // console.log("Personal Skills:", personalSkills);
-  // console.log("Professional Skills:", professionalSkills);
-
-  const transformedPersonalSkills = personalSkills.map((skill) => {
-    return { value: skill.skill_name, label: skill.skill_name };
+  const transformedPersonalSkills = displayPersonalSkills.map((skill) => {
+    return { value: skill._id, label: skill.skill_name };
   });
-  const transformedProfessionalSkills = professionalSkills.map((skill) => {
-    return { value: skill.skill_name, label: skill.skill_name };
-  });
-
-  const handleCauseChange = async (selected, selection) => {
-    const { action } = selection;
-    if (action === "clear") {
-    } else if (action === "select-option") {
-    } else if (action === "remove-value") {
-      console.log("remove");
+  const transformedProfessionalSkills = displayProfessionalSkills.map(
+    (skill) => {
+      return { value: skill._id, label: skill.skill_name };
     }
-    setSkills(selected);
+  );
+
+  const handlePersonalSkill = (selected, selection) => {
+    const { action } = selection;
+
+    if (action === "clear") {
+      setPersonalSkills([]);
+    } else if (action === "select-option") {
+      if (selected.length <= 5) {
+        setPersonalSkills(selected);
+      } else {
+        toast.error("Maximum selection limit is 5");
+      }
+    } else if (action === "remove-value") {
+      setPersonalSkills(selected);
+    }
   };
 
-  // console.log(allSkills, "ss");
+  const handleProfessionalSkill = (selected, selection) => {
+    const { action } = selection;
+
+    if (action === "clear") {
+      setProfessionalSkills([]);
+    } else if (action === "select-option") {
+      if (selected.length <= 5) {
+        setProfessionalSkills(selected);
+      } else {
+        toast.error("Maximum selection limit is 5");
+      }
+    } else if (action === "remove-value") {
+      setProfessionalSkills(selected);
+    }
+  };
+
+  // console.log(personalSkills, "ss");
   return (
     <div className="mx-20 mb-40 ">
       <div className="flex  flex-col gap-8 ">
@@ -90,7 +116,7 @@ const SkillsComponent = ({
           <select
             value={lastDesignation}
             onChange={(e) => setLastDesignation(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
             <option>Software Developer</option>
             <option>Testing</option>
@@ -111,7 +137,7 @@ const SkillsComponent = ({
           <input
             value={totalExperience}
             onChange={(e) => setTotalExperience(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           ></input>
         </div>
 
@@ -127,7 +153,7 @@ const SkillsComponent = ({
           <input
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-72 rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
           ></input>
         </div>
 
@@ -143,7 +169,7 @@ const SkillsComponent = ({
           <input
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 w-72 rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
           ></input>
         </div>
       </div>
@@ -154,14 +180,14 @@ const SkillsComponent = ({
         </h6>
         <Select
           id="personal"
-          value={skills}
+          value={personalSkills}
           instanceId="selectSkills"
           isMulti
           name="colors"
           className="basic-multi-select"
           classNamePrefix="select"
           options={transformedPersonalSkills}
-          onChange={handleCauseChange}
+          onChange={handlePersonalSkill}
         />
       </div>
       <div className="w-full  mt-5">
@@ -171,14 +197,14 @@ const SkillsComponent = ({
         </h6>
         <Select
           id="professional"
-          value={skills}
+          value={displayProfessionalSkills.skill_name}
           instanceId="selectSkills"
           isMulti
           name="colors"
           className="basic-multi-select"
           classNamePrefix="select"
           options={transformedProfessionalSkills}
-          onChange={handleCauseChange}
+          onChange={handleProfessionalSkill}
         />
       </div>
 
