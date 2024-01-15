@@ -22,6 +22,7 @@ const page = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("India");
+  const [countryId, setCountryId] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
@@ -87,21 +88,13 @@ const page = () => {
     if (
       !displayName ||
       !firstName ||
-      age ||
-      gender ||
-      city ||
-      country ||
-      state ||
-      retirementCause ||
-      facebook ||
-      twitter ||
-      linkedin ||
-      personalSkills ||
-      professionalSkills ||
-      professionalSkills ||
-      professionalSkills ||
-      professionalSkills ||
-      certificateName
+      !age ||
+      !gender ||
+      !retirementCause ||
+      !facebook ||
+      !twitter ||
+      !linkedin ||
+      !personalSkills
     ) {
       toast.error("All fields marked * are mandatory");
 
@@ -118,7 +111,7 @@ const page = () => {
         user_last_name: lastName,
         user_age: age,
         user_gender: gender,
-        country_id: "1",
+        country_id: toString(countryId) || "11",
         country_name: country,
         user_state: state,
         user_city: city,
@@ -198,7 +191,8 @@ const page = () => {
   //   "last"
   // );
 
-  console.log(englishProficiency, "last");
+  console.log(country, "last");
+  console.log(countryId, "Id");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -307,6 +301,8 @@ const page = () => {
                 gender={gender}
                 setGender={setGender}
                 country={country}
+                countryId={countryId}
+                setCompanyId={setCountryId}
                 setCountry={setCountry}
                 state={state}
                 setState={setState}

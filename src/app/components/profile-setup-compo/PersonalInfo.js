@@ -21,6 +21,8 @@ const PersonalInfo = ({
   setState,
   city,
   setCity,
+  countryId,
+  setCompanyId,
 }) => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -54,11 +56,13 @@ const PersonalInfo = ({
 
       if (selectedCountryObject) {
         setSelectedCountryStates(selectedCountryObject.states);
+        setCountry(selectedCountryObject.name);
+        setCompanyId(selectedCountryObject.id); // Set the country id here
       }
     } else {
       setSelectedCountryStates([]);
     }
-  }, [selectedCountry, countries]);
+  }, [selectedCountry, countries, setCompanyId]);
 
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
