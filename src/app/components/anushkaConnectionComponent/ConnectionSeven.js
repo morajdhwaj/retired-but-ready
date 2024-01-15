@@ -15,7 +15,7 @@ import { RiPinDistanceLine } from "react-icons/ri";
 const ConnectionSeven = () => {
   return (
     <div>
-      <div className=" flex flex-wrap mx-6 justify-between bg-scroll mt-52 sm:mt-40 lg:mt-0">
+      <div className=" flex flex-wrap mx-6 justify-between bg-scroll mt-52 sm:mt-40 lg:mt-0 gap-4">
         <div>
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
@@ -98,7 +98,8 @@ const ConnectionSeven = () => {
       <div>
         <h1 className="text-lg font-semibold mt-10">1,573 Connection</h1>
       </div>
-      <div className="mt-5 flex flex-wrap justify-between">
+      {/* First */}
+      <div className="mt-5 flex  justify-between">
         <div className="flex flex-wrap">
           <Image
             alt="Ellipse"
@@ -114,18 +115,18 @@ const ConnectionSeven = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div className="flex flex-wrap">
-              <button className="flex gap-3">
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
                 <MdJoinInner className="mt-1" />3 mutual connections
               </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
+              <button className="flex  gap-1 lg:mx-2">
                 <RiPinDistanceLine className="mt-1" />
                 200 mts Distance
               </button>
             </div>
           </div>
         </div>
-        <div className="flex  flex-wrap mt-2 lg:mx-5">
+        <div className="flex mt-2 lg:mx-5">
           <button>
             <BsThreeDotsVertical />
           </button>
@@ -135,7 +136,8 @@ const ConnectionSeven = () => {
         </div>
       </div>
       <div className="border border-gray-300 mx-2 w-full mt-5" />
-      <div className="mt-5 flex flex-wrap justify-between">
+      {/* Second */}
+      <div className="mt-5 flex  justify-between">
         <div className="flex flex-wrap">
           <Image
             alt="Ellipse"
@@ -151,54 +153,18 @@ const ConnectionSeven = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div className="flex flex-wrap">
-              <button className="flex  flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
                 <MdJoinInner className="mt-1" />3 mutual connections
               </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
+              <button className="flex  gap-1 lg:mx-2">
                 <RiPinDistanceLine className="mt-1" />
                 200 mts Distance
               </button>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap mt-2 lg:mx-5">
-          <button>
-            <BsThreeDotsVertical />
-          </button>
-          <button>
-            <IoIosSend />
-          </button>
-        </div>
-      </div>
-      <div className="mt-5 flex flex-wrap justify-between">
-        <div className="flex flex-wrap">
-          <Image
-            alt="Ellipse"
-            src="/assets/Ellipse-39.png"
-            height={80}
-            width={80}
-          />
-          <div className="mt-2 mx-2">
-            <p className="text-green-600 font-semibold ">Munawar Raj Singh</p>
-            <p className="text-sm font-medium">
-              Ret.OPPO India Marketing Head,
-            </p>
-            <p className="text-sm font-medium">
-              Tech Connection India Pvt.Ltd.
-            </p>
-            <div className="flex flex-wrap">
-              <button className="flex flex-wrap gap-3">
-                <MdJoinInner className="mt-1" />3 mutual connections
-              </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
-                <RiPinDistanceLine className="mt-1" />
-                200 mts Distance
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap mt-2 lg:mx-5">
+        <div className="flex mt-2 lg:mx-5">
           <button>
             <BsThreeDotsVertical />
           </button>
@@ -208,7 +174,8 @@ const ConnectionSeven = () => {
         </div>
       </div>
       <div className="border border-gray-300 mx-2 w-full mt-5" />
-      <div className="mt-5 flex flex-wrap justify-between">
+      {/*  Third*/}
+      <div className="mt-5 flex  justify-between">
         <div className="flex flex-wrap">
           <Image
             alt="Ellipse"
@@ -224,18 +191,18 @@ const ConnectionSeven = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div className="flex flex-wrap">
-              <button className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
                 <MdJoinInner className="mt-1" />3 mutual connections
               </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
+              <button className="flex  gap-1 lg:mx-2">
                 <RiPinDistanceLine className="mt-1" />
                 200 mts Distance
               </button>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap mt-2 lg:mx-5">
+        <div className="flex mt-2 lg:mx-5">
           <button>
             <BsThreeDotsVertical />
           </button>
@@ -245,45 +212,8 @@ const ConnectionSeven = () => {
         </div>
       </div>
       <div className="border border-gray-300 mx-2 w-full mt-5" />
-
-      <div className="mt-5 flex flex-wrap justify-between">
-        <div className="flex flex-wrap">
-          <Image
-            alt="Ellipse"
-            src="/assets/Ellipse-39.png"
-            height={80}
-            width={80}
-          />
-          <div className="mt-2 mx-2">
-            <p className="text-green-600 font-semibold ">Munawar Raj Singh</p>
-            <p className="text-sm font-medium">
-              Ret.OPPO India Marketing Head,
-            </p>
-            <p className="text-sm font-medium">
-              Tech Connection India Pvt.Ltd.
-            </p>
-            <div className="flex flex-wrap">
-              <button className="flex flex-wrap gap-3">
-                <MdJoinInner className="mt-1" />3 mutual connections
-              </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
-                <RiPinDistanceLine className="mt-1" />
-                200 mts Distance
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap mt-2 lg:mx-5">
-          <button>
-            <BsThreeDotsVertical />
-          </button>
-          <button>
-            <IoIosSend />
-          </button>
-        </div>
-      </div>
-      <div className="border border-gray-300 mx-2 w-full mt-5" />
-      <div className="mt-5 flex flex-wrap justify-between">
+      {/* Fourth */}
+      <div className="mt-5 flex  justify-between">
         <div className="flex flex-wrap">
           <Image
             alt="Ellipse"
@@ -299,17 +229,55 @@ const ConnectionSeven = () => {
             <p className="text-sm font-medium">
               Tech Connection India Pvt.Ltd.
             </p>
-            <div className="flex flex-wrap">
-              <button className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
                 <MdJoinInner className="mt-1" />3 mutual connections
               </button>
-              <button className="flex flex-wrap gap-1 lg:mx-2">
-                <RiPinDistanceLine className="mt-1" /> 200 mts Distance
+              <button className="flex  gap-1 lg:mx-2">
+                <RiPinDistanceLine className="mt-1" />
+                200 mts Distance
               </button>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap mt-2 lg:mx-5">
+        <div className="flex mt-2 lg:mx-5">
+          <button>
+            <BsThreeDotsVertical />
+          </button>
+          <button>
+            <IoIosSend />
+          </button>
+        </div>
+      </div>
+      {/* Fifth */}
+      <div className="mt-5 flex  justify-between">
+        <div className="flex flex-wrap">
+          <Image
+            alt="Ellipse"
+            src="/assets/Ellipse-39.png"
+            height={80}
+            width={80}
+          />
+          <div className="mt-2 mx-2">
+            <p className="text-[#773fc6] font-semibold ">Munawar Raj Singh</p>
+            <p className="text-sm font-medium">
+              Ret.OPPO India Marketing Head,
+            </p>
+            <p className="text-sm font-medium">
+              Tech Connection India Pvt.Ltd.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
+                <MdJoinInner className="mt-1" />3 mutual connections
+              </button>
+              <button className="flex  gap-1 lg:mx-2">
+                <RiPinDistanceLine className="mt-1" />
+                200 mts Distance
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex mt-2 lg:mx-5">
           <button>
             <BsThreeDotsVertical />
           </button>
@@ -319,6 +287,81 @@ const ConnectionSeven = () => {
         </div>
       </div>
       <div className="border border-gray-300 mx-2 w-full mt-5" />
+      {/* Sixth */}
+      <div className="mt-5 flex  justify-between">
+        <div className="flex flex-wrap">
+          <Image
+            alt="Ellipse"
+            src="/assets/Ellipse-39.png"
+            height={80}
+            width={80}
+          />
+          <div className="mt-2 mx-2">
+            <p className="text-[#773fc6] font-semibold ">Munawar Raj Singh</p>
+            <p className="text-sm font-medium">
+              Ret.OPPO India Marketing Head,
+            </p>
+            <p className="text-sm font-medium">
+              Tech Connection India Pvt.Ltd.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
+                <MdJoinInner className="mt-1" />3 mutual connections
+              </button>
+              <button className="flex  gap-1 lg:mx-2">
+                <RiPinDistanceLine className="mt-1" />
+                200 mts Distance
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex mt-2 lg:mx-5">
+          <button>
+            <BsThreeDotsVertical />
+          </button>
+          <button>
+            <IoIosSend />
+          </button>
+        </div>
+      </div>
+      <div className="border border-gray-300 mx-2 w-full mt-5" />
+      {/* Sevent */}
+      <div className="mt-5 flex  justify-between">
+        <div className="flex flex-wrap">
+          <Image
+            alt="Ellipse"
+            src="/assets/Ellipse-39.png"
+            height={80}
+            width={80}
+          />
+          <div className="mt-2 mx-2">
+            <p className="text-[#773fc6] font-semibold ">Munawar Raj Singh</p>
+            <p className="text-sm font-medium">
+              Ret.OPPO India Marketing Head,
+            </p>
+            <p className="text-sm font-medium">
+              Tech Connection India Pvt.Ltd.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button className="flex gap-1">
+                <MdJoinInner className="mt-1" />3 mutual connections
+              </button>
+              <button className="flex  gap-1 lg:mx-2">
+                <RiPinDistanceLine className="mt-1" />
+                200 mts Distance
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex mt-2 lg:mx-5">
+          <button>
+            <BsThreeDotsVertical />
+          </button>
+          <button>
+            <IoIosSend />
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
