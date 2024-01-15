@@ -67,7 +67,7 @@ const PersonalInfo = ({
         <input
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
       <div className="flex gap-5">
@@ -76,7 +76,7 @@ const PersonalInfo = ({
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
         <div className="w-1/2">
@@ -84,7 +84,7 @@ const PersonalInfo = ({
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
       </div>
@@ -93,8 +93,9 @@ const PersonalInfo = ({
           <h2 className="font-semibold text-gray-500">Age</h2>
           <input
             value={age}
+            type="number"
             onChange={(e) => setAge(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded "
           />
         </div>
         <div className="w-1/2">
@@ -102,7 +103,7 @@ const PersonalInfo = ({
           <select
             value={gender}
             onChange={(e) => setGender(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           >
             <option>Male</option>
             <option>Female</option>
@@ -116,7 +117,7 @@ const PersonalInfo = ({
           <input
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
       </div>
@@ -126,7 +127,7 @@ const PersonalInfo = ({
           <select
             value={selectedCountry}
             onChange={(e) => setSelectedCountry(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           >
             {countries?.map((country) => (
               <option key={country.id} value={country.name}>
@@ -140,7 +141,7 @@ const PersonalInfo = ({
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           >
             {selectedCountryStates.map((state) => (
               <option key={state.id} value={state.name}>
