@@ -4,12 +4,6 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
 
-const RetireCausssse = [
-  { value: "Medical issues", label: "Medical issues" },
-  { value: "Family issues", label: "Family issues" },
-  { value: "Retired from service", label: "Retired from service" },
-];
-
 const SkillsComponent = ({
   skills,
   stepUp,
@@ -134,11 +128,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={totalExperience}
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
@@ -150,11 +148,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
@@ -166,11 +168,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
       </div>
       <div className="w-full  mt-5">

@@ -66,7 +66,7 @@ const page = () => {
     setUserId(localStorage.getItem("userId"));
   }, []);
 
-  const handleClick = () => {
+  const handleImage = () => {
     hiddenFileInput.current.click();
   };
 
@@ -183,6 +183,7 @@ const page = () => {
   //   "last"
   // );
 
+  console.log(hiddenFileInput, "image");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -200,7 +201,7 @@ const page = () => {
               <FaCircleUser size={100} />
               <button
                 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded"
-                onClick={handleClick}
+                onClick={handleImage}
               >
                 Add a profile picture
               </button>
