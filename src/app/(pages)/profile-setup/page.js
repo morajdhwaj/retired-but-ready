@@ -11,9 +11,11 @@ import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import PopUp from "@/app/components/PopUp";
 
 const page = () => {
   const [step, setStep] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
   const hiddenFileInput = useRef(null);
   const [displayName, setDisplayName] = useState("");
@@ -85,18 +87,8 @@ const page = () => {
   };
 
   const handleSubmit = () => {
-    if (
-      !displayName ||
-      !firstName ||
-      !age ||
-      !gender ||
-      !retirementCause ||
-      !facebook ||
-      !twitter ||
-      !linkedin ||
-      !personalSkills
-    ) {
-      toast.error("All fields marked * are mandatory");
+    if (!facebook || !twitter || !linkedin || !companyName || !title) {
+      setShowModal(true);
 
       return;
     }
@@ -153,7 +145,7 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: certificateName,
+            certification_name: "aws cloud",
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },
@@ -190,9 +182,6 @@ const page = () => {
   //   })),
   //   "last"
   // );
-
-  console.log(country, "last");
-  console.log(countryId, "Id");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -370,6 +359,14 @@ const page = () => {
             )}
           </div>
         </div>
+        {showModal && (
+          <PopUp
+            onClick={() => setShowModal(false)}
+            title=" Something doesn't look right"
+            action="Take me back"
+            message="You may have left one or more field empty  while filling the form, please check and fill in th field to continue"
+          />
+        )}
       </div>
     </div>
   );
