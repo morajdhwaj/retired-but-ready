@@ -165,6 +165,7 @@ const page = () => {
             onClick={handleModal}
             title="Logged in , lets build your profile now"
             action="Enter Profile details"
+            error="error"
             message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
           />
         )}

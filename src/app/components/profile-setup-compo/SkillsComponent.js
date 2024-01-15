@@ -4,12 +4,6 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
 
-const RetireCausssse = [
-  { value: "Medical issues", label: "Medical issues" },
-  { value: "Family issues", label: "Family issues" },
-  { value: "Retired from service", label: "Retired from service" },
-];
-
 const SkillsComponent = ({
   skills,
   stepUp,
@@ -107,7 +101,7 @@ const SkillsComponent = ({
           <div className="flex">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Most recent Designation*
+              Most recent Designation
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -128,49 +122,61 @@ const SkillsComponent = ({
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Total Work Experience*
+              Total Work Experience
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={totalExperience}
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional field*
+              Professional field
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional expertise*
+              Professional expertise
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
       </div>
       <div className="w-full  mt-5">

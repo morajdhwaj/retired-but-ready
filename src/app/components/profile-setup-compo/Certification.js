@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Select from "react-select";
 
 const Certification = ({
   stepDown,
@@ -8,6 +10,47 @@ const Certification = ({
   acceptableCurrencies,
   setAcceptableCurrencies,
 }) => {
+  const [certificates, setCertificates] = useState([]);
+
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      url: "https://retpro.catax.me/get-all-certifications",
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setCertificates(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
+  const transformedCertificates = certificates.map((cert) => {
+    return { value: cert.certification_name, label: cert.certification_name };
+  });
+
+  const handleCertificate = (selected, selection) => {
+    const { action } = selection;
+
+    if (action === "clear") {
+      setCertificateName([]);
+    } else if (action === "select-option") {
+      if (selected.length <= 5) {
+        setCertificateName(selected);
+      } else {
+        toast.error("Maximum selection limit is 5");
+      }
+    } else if (action === "remove-value") {
+      setCertificateName(selected);
+    }
+  };
+
+  // console.log(certificates, "certi");
+
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -16,11 +59,16 @@ const Certification = ({
           [Example:Microsoft Certifified Solution Associate (MCSA)]
         </h3>
         <div className="mt-8 flex flex-col gap-4 w-auto  ">
-          <input
-            value={certificateName}
-            onChange={(e) => setCertificateName(e.target.value)}
-            type="text"
-            className="bg-[#f2f1f3] border px-2 border-gray-300 h-10   rounded w-full"
+          <Select
+            id="certificate"
+            value={certificates.certification_name}
+            instanceId="selectSkills"
+            isMulti
+            name="colors"
+            className="basic-multi-select"
+            classNamePrefix="select"
+            options={transformedCertificates}
+            onChange={handleCertificate}
           />
         </div>
         <div className="mt-8">
