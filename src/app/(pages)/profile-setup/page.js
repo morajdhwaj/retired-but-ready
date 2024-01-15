@@ -21,7 +21,7 @@ const page = () => {
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("India");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
@@ -84,6 +84,29 @@ const page = () => {
   };
 
   const handleSubmit = () => {
+    if (
+      !displayName ||
+      !firstName ||
+      age ||
+      gender ||
+      city ||
+      country ||
+      state ||
+      retirementCause ||
+      facebook ||
+      twitter ||
+      linkedin ||
+      personalSkills ||
+      professionalSkills ||
+      professionalSkills ||
+      professionalSkills ||
+      professionalSkills ||
+      certificateName
+    ) {
+      toast.error("All fields marked * are mandatory");
+
+      return;
+    }
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",

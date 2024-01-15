@@ -58,7 +58,7 @@ const SocialInfo = ({
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
-          What is the cause of your retirement
+          What is the cause of your retirement*
         </h2>
         <Select
           id="selectCause"
@@ -74,7 +74,7 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
-          What do you want to do on this platform
+          What do you want to do on this platform*
         </h2>
         <Select
           id="selectWant"
@@ -89,7 +89,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Age Category</h2>
+        <h2 className="font-semibold text-gray-500">Age Category*</h2>
         <select className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full">
           <option>18-25 Years</option>
           <option>25-40 Years</option>
@@ -107,7 +107,7 @@ const SocialInfo = ({
         </p>
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Facebook</h2>
+        <h2 className="font-semibold text-gray-500">Facebook*</h2>
         <input
           value={facebook}
           onChange={(e) => setFacebook(e.target.value)}
@@ -115,7 +115,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Twitter</h2>
+        <h2 className="font-semibold text-gray-500">Twitter*</h2>
         <input
           value={twitter}
           onChange={(e) => setTwitter(e.target.value)}
@@ -123,7 +123,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Linkedin</h2>
+        <h2 className="font-semibold text-gray-500">Linkedin*</h2>
         <input
           value={linkedIn}
           onChange={(e) => setLinkedin(e.target.value)}
@@ -131,7 +131,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Instagram</h2>
+        <h2 className="font-semibold text-gray-500">Instagram*</h2>
         <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
       </div>
       <div className="w-full">
