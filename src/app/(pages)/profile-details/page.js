@@ -127,7 +127,7 @@ const page = () => {
                 {activeIndex === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 2 && <WhyRBR />}
+            {activeIndex === 2 && <WhyRBR userId={userId} />}
 
             <div
               onClick={() => handleToggle(3)}
@@ -142,7 +142,7 @@ const page = () => {
                 {activeIndex === 3 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 3 && <SocialMedia />}
+            {activeIndex === 3 && <SocialMedia userId={userId} />}
 
             <div
               onClick={() => handleToggle(4)}
@@ -157,7 +157,7 @@ const page = () => {
                 {activeIndex === 4 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 4 && <WorkExperience />}
+            {activeIndex === 4 && <WorkExperience userId={userId} />}
 
             <div
               onClick={() => handleToggle(5)}
@@ -172,7 +172,7 @@ const page = () => {
                 {activeIndex === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 5 && <WorkHistory />}
+            {activeIndex === 5 && <WorkHistory userId={userId} />}
           </div>
         </div>
       </div>
