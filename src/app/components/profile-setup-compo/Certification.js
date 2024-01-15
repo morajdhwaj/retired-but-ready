@@ -1,6 +1,13 @@
 import React from "react";
 
-const Certification = ({ stepUp, stepDown }) => {
+const Certification = ({
+  stepDown,
+  handleSubmit,
+  certificateName,
+  setCertificateName,
+  acceptableCurrencies,
+  setAcceptableCurrencies,
+}) => {
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -10,28 +17,10 @@ const Certification = ({ stepUp, stepDown }) => {
         </h3>
         <div className="mt-8 flex flex-col gap-4 w-auto  ">
           <input
+            value={certificateName}
+            onChange={(e) => setCertificateName(e.target.value)}
             type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-          <input
-            type="text"
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border px-2 border-gray-300 h-10   rounded w-full"
           />
         </div>
         <div className="mt-8">
@@ -49,7 +38,9 @@ const Certification = ({ stepUp, stepDown }) => {
             <h1 className="text-gray-500  text-base">Currency you accept</h1>
             <select
               type="text"
-              className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+              className="bg-[#f2f1f3] border px-2 border-gray-300 h-10   rounded w-full"
+              value={acceptableCurrencies}
+              onChange={(e) => setAcceptableCurrencies(e.target.value)}
             >
               <option>INR</option>
               <option>USD</option>
@@ -71,7 +62,7 @@ const Certification = ({ stepUp, stepDown }) => {
           type="text"
           placeholder="(this will be visible to other along with your photo ,so make it crisp and classy)
           "
-          className="bg-gray-100 border rounded-lg mt-3   border-gray-300    h-[200px]"
+          className="bg-gray-100 border rounded-lg mt-3 px-2 border-gray-300    h-[200px]"
         />
         <h2 className="text-gray-500  text-sm mt-10">
           Max character limit-1000
@@ -89,10 +80,10 @@ const Certification = ({ stepUp, stepDown }) => {
               Go back
             </button>
             <button
-              onClick={stepUp}
+              onClick={handleSubmit}
               className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
             >
-              Next
+              Submit
             </button>
           </div>
         </div>

@@ -2,8 +2,12 @@
 
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-import ConnectionOne from "@/app/components/jaishreeConnectionComponent/ConnectionOne";
-// import All from "@/app/components/wallsComponents/All";
+ // import ConnectionOne from "@/app/components/jaishreeConnectionComponent/ConnectionOne"; 
+// import ConnectionTwo from "@/app/components/jaishreeConnectionComponent/ConnectionTwo";
+ // import ConnectionThree from "@/app/components/jaishreeConnectionComponent/ConnectionThree";
+ // import ConnectionSix from "@/app/components/jaishreeConnectionComponent/ConnectionSix";
+ import Main from "@/app/components/jaishreeConnectionComponent/Main";
+
 // import Network from "@/app/components/jaishreeConnectionComponent/Network";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
@@ -75,9 +79,14 @@ const page = () => {
             
             {tab === 1 && (
               <div>
-                 {/* <All /> <All />  */}
-                 {/* <Network/> */}
-                 <ConnectionOne/>
+               
+                  {/* <Network/>  */}
+                 {/* <ConnectionOne/>  */}
+                 {/* <ConnectionTwo/> */}
+                  {/* <ConnectionThree/> */}
+                 {/* <ConnectionSix/> */}
+                 <Main/> 
+
               </div>
             )}
             {tab === 2 && <Trending />}

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import Select from "react-select";
 
 const RetireCause = [
@@ -18,8 +19,19 @@ const wants = [
   { value: "Work sort term", label: "Work sort term" },
 ];
 
-const SocialInfo = ({ stepUp, stepDown }) => {
-  const [cause, setCause] = useState([]);
+const SocialInfo = ({
+  stepUp,
+  stepDown,
+  retirementCause,
+  setRetirementCause,
+  facebook,
+  setFacebook,
+  twitter,
+  setTwitter,
+  linkedIn,
+  setLinkedin,
+}) => {
+  const [selectedValues, setSelectedValues] = useState([]);
 
   const handleCauseChange = async (selected, selection) => {
     const { action } = selection;
@@ -28,25 +40,29 @@ const SocialInfo = ({ stepUp, stepDown }) => {
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setCause(selected);
-  };
-  const handleWantChange = async (selected, selection) => {
-    const { action } = selection;
-    if (action === "clear") {
-    } else if (action === "select-option") {
-    } else if (action === "remove-value") {
-      console.log("remove");
+    if (selected.length <= 1) {
+      setRetirementCause(selected);
+    } else {
+      toast.error("Maximum selection limit is 1");
     }
-    setCause(selected);
   };
+  const handleWantChange = (selectedOptions) => {
+    if (selectedOptions.length <= 5) {
+      setSelectedValues(selectedOptions);
+    } else {
+      toast.error("Maximum selection limit is 5");
+    }
+  };
+
   return (
-    <div className="flex  flex-col gap-5 mx-20 ">
+    <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
           What is the cause of your retirement
         </h2>
         <Select
           id="selectCause"
+          value={retirementCause}
           instanceId="selectCause"
           isMulti
           name="colors"
@@ -68,12 +84,19 @@ const SocialInfo = ({ stepUp, stepDown }) => {
           className="basic-multi-select"
           classNamePrefix="select"
           options={wants}
+          value={selectedValues}
           onChange={handleWantChange}
         />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Age Category</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <select className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full">
+          <option>18-25 Years</option>
+          <option>25-40 Years</option>
+          <option>40-50 Years</option>
+          <option>50-60 Years</option>
+          <option>60+ Years</option>
+        </select>
       </div>
       <div className="">
         <h2 className="font-medium">Link your accounts</h2>
@@ -85,15 +108,27 @@ const SocialInfo = ({ stepUp, stepDown }) => {
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Facebook</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={facebook}
+          onChange={(e) => setFacebook(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Twitter</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={twitter}
+          onChange={(e) => setTwitter(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Linkedin</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input
+          value={linkedIn}
+          onChange={(e) => setLinkedin(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Instagram</h2>

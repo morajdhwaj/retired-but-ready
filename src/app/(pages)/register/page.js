@@ -29,7 +29,7 @@ const page = () => {
       url: "https://retpro.catax.me/user/register",
       headers: { "Content-Type": "application/json" },
       data: {
-        user_mobile: mobile,
+        user_mobile: mobile.toString(),
         user_email: email,
         user_fullname: userName,
         user_display_name: displayName,
@@ -77,7 +77,7 @@ const page = () => {
               className="mb-4 bg-gray-200  border-gray-300 border-2  text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500 "
             />
             <input
-              type="text"
+              type="Number"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
               placeholder="mobile number"
@@ -91,7 +91,7 @@ const page = () => {
               className="mb-4 bg-gray-200  border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500"
             />
             <input
-              type="text"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"

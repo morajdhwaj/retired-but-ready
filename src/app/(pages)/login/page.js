@@ -47,7 +47,7 @@ const page = () => {
 
       <div className="  md:flex lg:flex  sm:pt-10 lg:pt-20   ">
         <div className=" flex flex-col gap-3 mx-3  lg:w-1/2 ">
-          <div className=" h-auto mt-5 rounded-md lg:p-5 border-gray-300 flex justify-center    hover:w-auto hover:border-2 hover:border-blue-600  ">
+          <div className=" h-auto mt-5 rounded-md lg:p-5 border-transparent flex justify-center border-2  hover:w-auto hover:border-2 hover:border-blue-600  ">
             <Image
               src="/assets/Group-626217.png "
               alt="login"
@@ -57,7 +57,7 @@ const page = () => {
           </div>
 
           {/* Logo Image */}
-          <div className="  h-auto mt-5 rounded-md p-5 border-gray-300 flex flex-col justify-center gap-5  hover:w-auto hover:border-2 hover:border-blue-600 mb-2 sm:mb-3 md:mb-0 lg:mb-36">
+          <div className="  h-auto mt-5 rounded-md p-5 border-transparent flex flex-col justify-center gap-5 border-2 hover:w-auto hover:border-2 hover:border-blue-600 mb-2 sm:mb-3 md:mb-0 lg:mb-36">
             <div className="flex items-center justify-center gap-2">
               <div className="w-[100px] h-[1px] bg-gray-500" />
 
@@ -132,7 +132,7 @@ const page = () => {
               className="mt-5   w-auto border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
             />
             <input
-              type="text"
+              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
@@ -143,7 +143,7 @@ const page = () => {
                 href="/forgot-password"
                 className="mb-0 hover:border-b-2  hover:border-blue-600 hover:w-40"
               >
-                forget password?
+                Forget password ?
               </Link>
             </div>
             <button
@@ -154,7 +154,7 @@ const page = () => {
             </button>
           </div>
           <div className="   mt-5 text-center flex justify-center ">
-            <h3>Don't have an account?</h3>
+            <h3>Don't have an account ? &nbsp; </h3>
             <Link href="/register" className="text-red-400">
               Create one
             </Link>

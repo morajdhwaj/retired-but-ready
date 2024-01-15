@@ -10,6 +10,7 @@ import Experiences from "@/app/components/profile-setup-compo/Experiences";
 import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [step, setStep] = useState(1);
@@ -19,17 +20,19 @@ const page = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
   const [profileSummary, setProfileSummary] = useState("");
-  const [lastDesignation, setLastDesignation] = useState("");
+  const [lastDesignation, setLastDesignation] = useState("Software Developer");
   const [totalExperience, setTotalExperience] = useState("");
   const [professionalField, setProfessionalField] = useState("");
   const [professionalExpertise, setProfessionalExpertise] = useState("");
   const [skills, setSkills] = useState([]);
+  const [personalSkills, setPersonalSkills] = useState([]);
+  const [professionalSkills, setProfessionalSkills] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [englishProficiency, setEnglishProficiency] = useState("Good");
   const [institutionId, setInstitutionId] = useState("");
@@ -47,10 +50,14 @@ const page = () => {
   const [certificateDate, setCertificateDate] = useState("");
   const [credentials, setCredentials] = useState("");
   const [isCharged, setIsCharged] = useState(false);
-  const [acceptableCurrencies, setAcceptableCurrencies] = useState("");
+  const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
   const [interests, setInterests] = useState([]);
-  const [retirementCause, setRetirementCause] = useState("");
+  const [retirementCause, setRetirementCause] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -76,7 +83,7 @@ const page = () => {
     setStep(step - 1);
   };
 
-  const handleUpdate = () => {
+  const handleSubmit = () => {
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
@@ -100,16 +107,14 @@ const page = () => {
         professional_field: "weed",
         professional_expertise: "vasooli",
         skills: {
-          personal: [
-            {
-              skill_id: "657a9aefec8c5016e744d8ba",
-              skill_name: "string",
-            },
-          ],
+          personal: personalSkills.map((item) => ({
+            skill_id: item.value,
+            skill_name: item.label,
+          })),
           professional: [],
         },
-        languages: ["english"],
-        english_proficiency: "full imglish",
+        languages: languages,
+        english_proficiency: englishProficiency,
         education: [
           {
             institution_id: "657aa5ab21d8f5ad8d839413",
@@ -123,8 +128,8 @@ const page = () => {
         work_history: [
           {
             company_id: "657d55d2033cb72b10c630e5",
-            company_name: "catax",
-            title: "intern",
+            company_name: companyName,
+            title: title,
             start_date: "2022-10-01T00:00:00.000Z",
             end_date: "present",
           },
@@ -132,19 +137,19 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: "Python",
+            certification_name: certificateName,
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },
         ],
         is_charged: true,
-        acceptable_currencies: ["rupyaa"],
+        acceptable_currencies: [acceptableCurrencies],
         interests: ["ganja"],
-        retirement_cause: ["heavy dose"],
+        retirement_cause: retirementCause.map((item) => item.label),
         social_links: {
-          linkedIn: "string",
-          facebook: "string",
-          twitter: "string",
+          linkedIn: linkedin,
+          facebook: facebook,
+          twitter: twitter,
         },
       },
     };
@@ -154,6 +159,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
+        router.push("/profile-details");
       })
       .catch(function (error) {
         console.error(error);
@@ -161,7 +167,16 @@ const page = () => {
       });
   };
 
-  console.log(userId, "user");
+  // console.log(
+  //   professionalSkills.map((item) => ({
+  //     skill_id: item.value,
+  //     skill_name: item.label,
+  //   })),
+  //   "last"
+  // );
+
+  console.log(englishProficiency, "last");
+
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -171,8 +186,8 @@ const page = () => {
         </div>
 
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
-          <div className="flex w-full  ">
-            <div className="w-1/2 flex items-center justify-end">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-5 w-full ">
+            <div className="md:w-1/2 md:flex items-center justify-end">
               <h1 className="text-4xl font-medium"> Profile</h1>
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
@@ -198,7 +213,7 @@ const page = () => {
               A photo that shows your face clearly is ideal. You know what else
               make fo a great profile picture? your smile
             </p>
-            <div className="flex items-center  gap-5 xl:gap-0 flex-wrap justify-center">
+            <div className="flex items-center  gap-5 md:gap-10 xl:gap-0 flex-wrap justify-center">
               <h1
                 className={`border-2  self-start px-5 py-2.5 rounded-full text-2xl ${
                   step === 1
@@ -277,12 +292,37 @@ const page = () => {
               />
             )}
             {step === 2 && (
-              <SocialInfo stepUp={handleStepUp} stepDown={handleStepDown} />
+              <SocialInfo
+                stepUp={handleStepUp}
+                stepDown={handleStepDown}
+                retirementCause={retirementCause}
+                setRetirementCause={setRetirementCause}
+                facebook={facebook}
+                setFacebook={setFacebook}
+                twitter={twitter}
+                setTwitter={setTwitter}
+                linkedIn={linkedin}
+                setLinkedin={setLinkedin}
+              />
             )}
             {step === 3 && (
               <SkillsComponent
                 stepUp={handleStepUp}
                 stepDown={handleStepDown}
+                lastDesignation={lastDesignation}
+                setLastDesignation={setLastDesignation}
+                totalExperience={totalExperience}
+                setTotalExperience={setTotalExperience}
+                professionalField={professionalField}
+                setProfessionalField={setProfessionalField}
+                professionalExpertise={professionalExpertise}
+                setProfessionalExpertise={setProfessionalExpertise}
+                skills={skills}
+                setSkills={setSkills}
+                personalSkills={personalSkills}
+                setPersonalSkills={setPersonalSkills}
+                professionalSkills={professionalSkills}
+                setProfessionalSkills={setProfessionalSkills}
               />
             )}
             {step === 4 && (
@@ -291,20 +331,25 @@ const page = () => {
                 stepDown={handleStepDown}
                 englishProficiency={englishProficiency}
                 setEnglishProficiency={setEnglishProficiency}
+                languages={languages}
+                setLanguages={setLanguages}
+                companyName={companyName}
+                setCompanyName={setCompanyName}
+                title={title}
+                setTitle={setTitle}
               />
             )}
-            {step === 5 && <Certification stepDown={handleStepDown} />}
+            {step === 5 && (
+              <Certification
+                stepDown={handleStepDown}
+                handleSubmit={handleSubmit}
+                certificateName={certificateName}
+                setCertificateName={setCertificateName}
+                acceptableCurrencies={acceptableCurrencies}
+                setAcceptableCurrencies={setAcceptableCurrencies}
+              />
+            )}
           </div>
-          {step === 5 && (
-            <div className="w-full  p-5 ml-36 pt-24 flex items-center justify-center ">
-              <button
-                onClick={handleUpdate}
-                className=" w-40 bg-[#773fc6] p-2 text-white font-medium rounded"
-              >
-                submit
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>
