@@ -108,8 +108,12 @@ const page = () => {
 
         <div className=" md:w-[100%] lg:w-[46%]  flex flex-col  ">
           <div className="mt-10 flex justify-center items-center ">
-         
-          <Image src="/assets/Group-626217.png" width={400} height={300} /> 
+            <Image
+              alt="register"
+              src="/assets/Group-626217.png"
+              width={400}
+              height={300}
+            />
           </div>
           <div className="flex items-center justify-center">
             <div className="h-[1px] w-[100px] bg-gray-400 " />
@@ -120,7 +124,7 @@ const page = () => {
             <div className="flex flex-col gap-5  ">
               <button className="w-28 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10">
                 <Image
-            src="/assets/GOOGLE.png"
+                  src="/assets/GOOGLE.png"
                   alt="google"
                   width={20}
                   height={20}
@@ -157,7 +161,7 @@ const page = () => {
                 />
                 EMAIL
               </button>
-            </div> 
+            </div>
           </div>
         </div>
         {showModal && (
