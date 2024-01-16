@@ -11,9 +11,9 @@ const PopUp = ({ onClick, title, message, action, error }) => {
       >
         <div className="flex flex-col items-center justify-center h-full gap-5 mx-32">
           {error ? (
-            <SiCachet size={50} color="#39b54a" />
-          ) : (
             <MdError size={50} color="gray" />
+          ) : (
+            <SiCachet size={50} color="#39b54a" />
           )}
           <h2 className="text-xl font-medium text-[#773fc6] text-center">
             {title}

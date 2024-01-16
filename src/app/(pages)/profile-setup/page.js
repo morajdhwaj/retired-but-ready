@@ -408,6 +408,7 @@ const page = () => {
             onClick={() => setShowModal(false)}
             title=" Something doesn't look right"
             action="Take me back"
+            error="error"
             message="You may have left one or more field empty  while filling the form, please check and fill in th field to continue"
           />
         )}

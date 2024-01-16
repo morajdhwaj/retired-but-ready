@@ -20,16 +20,41 @@ import Link from "next/link";
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
-  }, []);
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data);
+        setUserData(response?.data);
+        setCompanyName(response?.data?.work_history[0].company_name);
+        setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   const handleToggle = (index) => {
     activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
   };
 
-  console.log(userId, "userId");
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
+  console.log(userData, "userId");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -50,8 +75,13 @@ const page = () => {
                     width={50}
                   />
                   <div className="font-semibold">
-                    <h2>Steve Jacob</h2>
-                    <p className="text-gray-500">CEO & Co-founder</p>
+                    <h2>
+                      {userData.user_first_name} {userData.user_last_name}
+                    </h2>
+                    <p className="text-gray-500">
+                      {" "}
+                      {userData.last_designation}
+                    </p>
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 ">
