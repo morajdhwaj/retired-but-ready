@@ -138,7 +138,7 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: certificateName,
+            certification_name: "aws cloud",
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },

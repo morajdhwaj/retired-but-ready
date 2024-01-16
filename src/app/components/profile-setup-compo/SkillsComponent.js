@@ -229,7 +229,7 @@ const SkillsComponent = ({
         />
       </div>
 
-      <div className=" mt-8 flex gap-20">
+      <div className=" mt-10 flex w-full gap-10">
         <button
           onClick={stepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"

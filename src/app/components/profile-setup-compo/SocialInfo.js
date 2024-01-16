@@ -139,7 +139,7 @@ const SocialInfo = ({
         <h2 className="font-semibold text-gray-500">Others</h2>
         <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
       </div>
-      <div className="flex w-full gap-10">
+      <div className=" mt-5 flex w-full gap-10">
         <button
           onClick={stepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"

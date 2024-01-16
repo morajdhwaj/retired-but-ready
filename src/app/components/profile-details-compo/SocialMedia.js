@@ -84,6 +84,10 @@ const SocialMedia = ({ userId }) => {
       });
   };
 
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
   console.log(userData?.social_links);
 
   return (
