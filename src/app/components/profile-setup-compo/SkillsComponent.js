@@ -75,6 +75,13 @@ const SkillsComponent = ({
     } else if (action === "remove-value") {
       setPersonalSkills(selected);
     }
+    const hasMinimumSkills = selected.length >= 3;
+
+    if (!hasMinimumSkills) {
+      toast("Please select at least 3 professional skills", {
+        icon: "👍",
+      });
+    }
   };
 
   const handleProfessionalSkill = (selected, selection) => {
@@ -91,9 +98,17 @@ const SkillsComponent = ({
     } else if (action === "remove-value") {
       setProfessionalSkills(selected);
     }
+
+    const hasMinimumSkills = selected.length >= 3;
+
+    if (!hasMinimumSkills) {
+      toast("Please select at least 3 professional skills", {
+        icon: "👍",
+      });
+    }
   };
 
-  // console.log(personalSkills, "ss");
+  console.log(displayPersonalSkills, "dd");
   return (
     <div className="mx-20 mb-40 ">
       <div className="flex  flex-col gap-8 ">
