@@ -80,7 +80,7 @@ const page = () => {
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button className="">
                   <Image
-                    src="/assets/Facebook.png"
+                    src="/assets/facebook.png"
                     alt="Facebook"
                     width={30}
                     height={30}
