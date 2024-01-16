@@ -24,6 +24,7 @@ const wants = [
 
 const WhyRBR = ({ userId }) => {
   const [cause, setCause] = useState([]);
+  const [updatedCause, setUpdatedCause] = useState([]);
   const [userData, setUserData] = useState([]);
   const [edit, setEdit] = useState(false);
 
@@ -56,16 +57,7 @@ const WhyRBR = ({ userId }) => {
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    setCause(selected);
-  };
-  const handleWantChange = async (selected, selection) => {
-    const { action } = selection;
-    if (action === "clear") {
-    } else if (action === "select-option") {
-    } else if (action === "remove-value") {
-      console.log("remove");
-    }
-    setCause(selected);
+    setUpdatedCause(selected);
   };
 
   const updateUser = () => {
@@ -100,7 +92,7 @@ const WhyRBR = ({ userId }) => {
         is_charged: userData?.is_charged,
         acceptable_currencies: userData?.acceptable_currencies,
         interests: userData?.interests,
-        retirement_cause: cause.map((item) => item.label),
+        retirement_cause: updatedCause.map((item) => item.label),
         social_links: userData?.social_links,
       },
     };
@@ -123,21 +115,26 @@ const WhyRBR = ({ userId }) => {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
-  console.log(userData);
+  console.log(userData, "data");
+  console.log(
+    updatedCause.map((item) => item.label),
+    "update cause"
+  );
+
   console.log(cause);
 
   return (
-    <div className="flex  flex-col gap-5  m-5 ">
-      {/* <div className="flex  gap-5 justify-end ">
+    <div className="flex  flex-col gap-5  m-3 ">
+      <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
         {edit && (
           <button onClick={updateUser}>
-            <h2 className="font-semibold text-blue-500">Update</h2>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div> */}
+      </div>
 
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
@@ -149,7 +146,7 @@ const WhyRBR = ({ userId }) => {
             id="selectCause"
             instanceId="selectCause"
             isMulti
-            value={cause[0]}
+            value={updatedCause}
             name="colors"
             className="basic-multi-select"
             classNamePrefix="select"
@@ -157,26 +154,15 @@ const WhyRBR = ({ userId }) => {
             onChange={handleCauseChange}
           />
         ) : (
-          <h2 className="font-semibold ">{cause[0]}</h2>
+          <div>
+            {cause.map((item) => (
+              <h1 key={item} className="font-semibold">
+                {item}
+              </h1>
+            ))}
+          </div>
         )}
       </div>
-      {edit && (
-        <div className="w-full">
-          <h2 className="font-semibold text-gray-500">
-            What do you want to do on this platform
-          </h2>
-          <Select
-            id="selectWant"
-            instanceId="selectWant"
-            isMulti
-            name="colors"
-            className="basic-multi-select"
-            classNamePrefix="select"
-            options={wants}
-            onChange={handleWantChange}
-          />
-        </div>
-      )}
     </div>
   );
 };

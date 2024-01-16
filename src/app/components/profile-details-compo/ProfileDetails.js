@@ -129,7 +129,7 @@ const ProfileDetails = ({ userId }) => {
         </button>
         {edit && (
           <button onClick={updateUser}>
-            <h2 className="font-semibold text-blue-500">Update</h2>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
       </div>
