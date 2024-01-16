@@ -133,7 +133,7 @@ const page = () => {
               </button>
               <button className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10">
                 <Image
-                  src="/assets/mobile-phone-svgrepo-com-1.png "
+                  src="/assets/mobile-phone-svgrepo-com-1.png"
                   alt="mobile"
                   width={20}
                   height={20}
