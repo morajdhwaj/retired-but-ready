@@ -44,9 +44,6 @@ const Experiences = ({
         <br />
         <div className="flex flex-col gap-5">
           <input className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full" />
-          <input className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full" />
-          <input className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full" />
-          <input className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full" />
         </div>
       </div>
       <div className="mt-5">
