@@ -75,9 +75,7 @@ const page = () => {
                     width={50}
                   />
                   <div className="font-semibold">
-                    <h2>
-                      {userData.user_first_name} {userData.user_last_name}
-                    </h2>
+                    <h2>{userData.user_display_name}</h2>
                     <p className="text-gray-500">
                       {" "}
                       {userData.last_designation}

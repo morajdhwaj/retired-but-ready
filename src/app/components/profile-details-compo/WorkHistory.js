@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 
 const WorkHistory = ({ userId }) => {
@@ -31,6 +32,65 @@ const WorkHistory = ({ userId }) => {
       });
   };
 
+  const updateUser = () => {
+    const options = {
+      method: "PUT",
+      url: "https://retpro.catax.me/user/update-profile",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        user_display_name: userData?.user_display_name,
+        user_first_name: userData?.user_first_name,
+        user_last_name: userData?.user_last_name,
+        user_age: userData?.user_age,
+        user_gender: userData?.user_gender,
+        country_id: userData?.country_id,
+        country_name: userData?.country_name,
+        user_state: userData?.user_state,
+        user_city: userData?.user_city,
+        city_coordinates: userData?.city_coordinates,
+        profile_headline: userData?.profile_headline,
+        profile_summary: userData?.profile_summary,
+        last_designation: userData?.last_designation,
+        total_experience: userData?.total_experience,
+        professional_field: userData?.professional_field,
+        professional_expertise: userData?.professional_expertise,
+        skills: userData?.skills,
+        languages: userData?.languages,
+        english_proficiency: userData?.english_proficiency,
+        education: userData?.education,
+        work_history: [
+          {
+            company_id: "657d55d2033cb72b10c630e5",
+            company_name: companyName,
+            title: title,
+            start_date: "2022-10-01T00:00:00.000Z",
+            end_date: "present",
+          },
+        ],
+        certifications: userData?.certifications,
+        is_charged: userData?.is_charged,
+        acceptable_currencies: userData?.acceptable_currencies,
+        interests: userData?.interests,
+        retirement_cause: userData?.retirement_cause,
+        social_links: userData?.social_links,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setEdit(!edit);
+        getUserData();
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
   if (userData.length === 0) {
     return <h1 className="mx-5">Loading...</h1>;
   }
@@ -39,15 +99,25 @@ const WorkHistory = ({ userId }) => {
 
   return (
     <div className="m-5">
-      {/* <div className="flex justify-end ">
-        <button>
+      <div className="flex  gap-5 justify-end ">
+        <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
-      </div> */}
+        {edit && (
+          <button onClick={updateUser}>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
+          </button>
+        )}
+      </div>
+
       <div>
         <h2 className="text-[#808184] font-medium">Company Name</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{companyName}</h2>
         )}
@@ -55,7 +125,11 @@ const WorkHistory = ({ userId }) => {
       <div className="mt-5">
         <h2 className="text-[#808184] font-medium">Title/Role</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{title}</h2>
         )}{" "}

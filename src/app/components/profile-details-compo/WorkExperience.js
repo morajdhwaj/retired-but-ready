@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 
 const WorkExperience = ({ userId }) => {
@@ -46,22 +47,22 @@ const WorkExperience = ({ userId }) => {
       params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
-        user_display_name: displayName,
-        user_first_name: firstName,
-        user_last_name: lastName,
-        user_age: age,
-        user_gender: gender,
+        user_display_name: userData?.user_display_name,
+        user_first_name: userData?.user_first_name,
+        user_last_name: userData?.user_last_name,
+        user_age: userData?.user_age,
+        user_gender: userData?.user_gender,
         country_id: userData?.country_id,
-        country_name: country,
-        user_state: state,
-        user_city: city,
+        country_name: userData?.country_name,
+        user_state: userData?.user_state,
+        user_city: userData?.user_city,
         city_coordinates: userData?.city_coordinates,
         profile_headline: userData?.profile_headline,
         profile_summary: userData?.profile_summary,
         last_designation: userData?.last_designation,
-        total_experience: userData?.total_experience,
-        professional_field: userData?.professional_field,
-        professional_expertise: userData?.professional_expertise,
+        total_experience: experience,
+        professional_field: professionalField,
+        professional_expertise: professionalExpertise,
         skills: userData?.skills,
         languages: userData?.languages,
         english_proficiency: userData?.english_proficiency,
@@ -98,24 +99,25 @@ const WorkExperience = ({ userId }) => {
 
   return (
     <div className="flex  m-5 flex-col gap-5  ">
-      {/* <div className="flex justify-end mt-5">
-        <button>
+      <div className="flex  gap-5 justify-end ">
+        <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
-      </div> */}
-
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Country</h2>
-        {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
-        ) : (
-          <h2 className="font-semibold ">{country}</h2>
+        {edit && (
+          <button onClick={updateUser}>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
+          </button>
         )}
       </div>
+
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Total work experience</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={experience}
+            onChange={(e) => setExperience(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{experience} Year</h2>
         )}
@@ -123,7 +125,11 @@ const WorkExperience = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Professional field</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={professionalField}
+            onChange={(e) => setProfessionalField(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{professionalField}</h2>
         )}
@@ -131,12 +137,16 @@ const WorkExperience = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Professional Expertise</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={professionalExpertise}
+            onChange={(e) => setProfessionalExpertise(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{professionalExpertise}</h2>
         )}
       </div>
-      <div className="w-full">
+      {/* <div className="w-full">
         <h2 className="font-semibold text-gray-500">Personal Skills</h2>
         {edit ? (
           <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
@@ -147,7 +157,7 @@ const WorkExperience = ({ userId }) => {
             })}
           </div>
         )}
-      </div>
+      </div> */}
       <div>
         <h2 className="font-semibold text-gray-500">English Proficiency</h2>
 
