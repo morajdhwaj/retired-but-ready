@@ -31,6 +31,10 @@ const WorkHistory = ({ userId }) => {
       });
   };
 
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
   console.log(companyName);
 
   return (
