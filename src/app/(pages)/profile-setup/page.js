@@ -222,7 +222,7 @@ const page = () => {
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
               {selectedImage ? (
-                <div className="rounded-full">
+                <div className="rounded-full flex  flex-col items-center justify-center bg-red-20">
                   <Image
                     src={URL.createObjectURL(selectedImage)}
                     alt="Selected Profile"
