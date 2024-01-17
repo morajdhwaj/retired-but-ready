@@ -10,11 +10,11 @@ import Image from "next/image";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
+  const [mobile, setMobile] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const router = useRouter();
 
