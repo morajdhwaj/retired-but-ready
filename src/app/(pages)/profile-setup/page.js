@@ -18,7 +18,7 @@ const page = () => {
   const [step, setStep] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
-
+  const [userData, setUserData] = useState([]);
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,14 +31,15 @@ const page = () => {
   const [profileHeadline, setProfileHeadline] = useState("");
   const [profileSummary, setProfileSummary] = useState("");
   const [lastDesignation, setLastDesignation] = useState("Software Developer");
-  const [totalExperience, setTotalExperience] = useState("");
-  const [professionalField, setProfessionalField] = useState("");
-  const [professionalExpertise, setProfessionalExpertise] = useState("");
+  const [totalExperience, setTotalExperience] = useState("0-5 Years");
+  const [professionalField, setProfessionalField] = useState("Healthcare");
+  const [professionalExpertise, setProfessionalExpertise] =
+    useState("Data Analysis");
   const [skills, setSkills] = useState([]);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [professionalSkills, setProfessionalSkills] = useState([]);
-  const [languages, setLanguages] = useState([]);
-  const [englishProficiency, setEnglishProficiency] = useState("Good");
+  const [languages, setLanguages] = useState("");
+  const [englishProficiency, setEnglishProficiency] = useState("Basic");
   const [institutionId, setInstitutionId] = useState("");
   const [institutionName, setInstitutionName] = useState("");
   const [degree, setDegree] = useState("");
@@ -48,39 +49,58 @@ const page = () => {
   const [companyId, setCompanyId] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [title, setTitle] = useState("");
-  const [companyStart, setCompanyEnd] = useState("");
+  const [companyStart, setCompanyStart] = useState("");
+  const [companyEnd, setCompanyEnd] = useState("");
   const [certificateId, setCertificateId] = useState("");
   const [certificateName, setCertificateName] = useState("");
   const [certificateDate, setCertificateDate] = useState("");
   const [credentials, setCredentials] = useState("");
-  const [isCharged, setIsCharged] = useState(false);
+  const [isCharged, setIsCharged] = useState(true);
+  const [aboutYou, setAboutYou] = useState("");
   const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
   const [interests, setInterests] = useState([]);
   const [retirementCause, setRetirementCause] = useState([]);
+  const [wantFrom, setWantFrom] = useState([]);
   const [socialLinks, setSocialLinks] = useState({});
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+
   const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
-  }, []);
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data);
+        setUserData(response?.data);
+        setDisplayName(response?.data?.user_display_name);
+        setFirstName(response?.data?.user_first_name);
+        setLastName(response?.data?.user_last_name);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [step]);
 
-  const handleStepUp = () => {
-    setStep(step + 1);
-  };
-  const handleStepDown = () => {
-    setStep(step - 1);
-  };
-
   const handleSubmit = () => {
-    if (!facebook || !twitter || !linkedin || !companyName || !title) {
+    if (!title) {
       setShowModal(true);
 
       return;
@@ -114,7 +134,7 @@ const page = () => {
           })),
           professional: [],
         },
-        languages: languages,
+        languages: [],
         english_proficiency: englishProficiency,
         education: [
           {
@@ -204,9 +224,8 @@ const page = () => {
         console.error(error);
       });
   };
-  console.log(selectedImage, "image");
-  console.log(userId, "id");
 
+  console.log(userData, "userData");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -322,7 +341,9 @@ const page = () => {
             </p>
             {step === 1 && (
               <PersonalInfo
-                stepUp={handleStepUp}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
                 firstName={firstName}
                 setFirstName={setFirstName}
                 lastName={lastName}
@@ -345,8 +366,9 @@ const page = () => {
             )}
             {step === 2 && (
               <SocialInfo
-                stepUp={handleStepUp}
-                stepDown={handleStepDown}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
                 retirementCause={retirementCause}
                 setRetirementCause={setRetirementCause}
                 facebook={facebook}
@@ -355,12 +377,17 @@ const page = () => {
                 setTwitter={setTwitter}
                 linkedIn={linkedin}
                 setLinkedin={setLinkedin}
+                instagram={instagram}
+                setInstagram={setInstagram}
+                wantFrom={wantFrom}
+                setWantFrom={setWantFrom}
               />
             )}
             {step === 3 && (
               <SkillsComponent
-                stepUp={handleStepUp}
-                stepDown={handleStepDown}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
                 lastDesignation={lastDesignation}
                 setLastDesignation={setLastDesignation}
                 totalExperience={totalExperience}
@@ -379,8 +406,9 @@ const page = () => {
             )}
             {step === 4 && (
               <Experiences
-                stepUp={handleStepUp}
-                stepDown={handleStepDown}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
                 englishProficiency={englishProficiency}
                 setEnglishProficiency={setEnglishProficiency}
                 languages={languages}
@@ -389,11 +417,21 @@ const page = () => {
                 setCompanyName={setCompanyName}
                 title={title}
                 setTitle={setTitle}
+                companyStart={companyStart}
+                setCompanyStart={setCompanyStart}
+                companyEnd={companyEnd}
+                setCompanyEnd={setCompanyEnd}
               />
             )}
             {step === 5 && (
               <Certification
-                stepDown={handleStepDown}
+                step={step}
+                setStep={setStep}
+                isCharged={isCharged}
+                aboutYou={aboutYou}
+                setAboutYou={setAboutYou}
+                setIsCharged={setIsCharged}
+                setShowModal={setShowModal}
                 handleSubmit={handleSubmit}
                 certificateName={certificateName}
                 setCertificateName={setCertificateName}
