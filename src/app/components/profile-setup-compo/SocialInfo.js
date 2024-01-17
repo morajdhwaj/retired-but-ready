@@ -150,7 +150,7 @@ const SocialInfo = ({
         <h2 className="font-semibold text-gray-500">Facebook*</h2>
         <input
           value={facebook}
-          onChange={handleFacebookChange}
+          onChange={(e) => setFacebook(e.target.value)}
           placeholder="https://www.facebook.com/in/user-name/"
           className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
         />
@@ -177,6 +177,7 @@ const SocialInfo = ({
         <h2 className="font-semibold text-gray-500">Instagram*</h2>
         <input
           value={instagram}
+          placeholder="https://www.instagram.com/in/user-name/"
           onChange={(e) => setInstagram(e.target.value)}
           className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
         />
