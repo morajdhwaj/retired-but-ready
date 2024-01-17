@@ -21,8 +21,29 @@ const SkillsComponent = ({
   setPersonalSkills,
   professionalSkills,
   setProfessionalSkills,
+  step,
+  setStep,
+  setShowModal,
 }) => {
   const [allSkills, setAllSkills] = useState([]);
+
+  const handleStepUp = () => {
+    if (
+      !lastDesignation ||
+      !totalExperience ||
+      !professionalField ||
+      !professionalExpertise ||
+      personalSkills?.length === 0 ||
+      professionalSkills?.length === 0
+    ) {
+      setShowModal(true);
+      return;
+    }
+    setStep(step + 1);
+  };
+  const handleStepDown = () => {
+    setStep(step - 1);
+  };
 
   useEffect(() => {
     getSkills();
@@ -108,7 +129,8 @@ const SkillsComponent = ({
     }
   };
 
-  console.log(displayPersonalSkills, "dd");
+  console.log(personalSkills, "dd");
+  console.log(personalSkills?.length === 0, "dd");
   return (
     <div className="mx-20 mb-40 ">
       <div className="flex  flex-col gap-8 ">
@@ -148,9 +170,11 @@ const SkillsComponent = ({
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
+            <option>0-5 Years</option>
+            <option>5-10 Years</option>
+            <option>10-15Years</option>
+            <option>15-20 Years</option>
+            <option>20+ Years</option>
           </select>
         </div>
 
@@ -168,9 +192,13 @@ const SkillsComponent = ({
             onChange={(e) => setProfessionalField(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
           >
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
+            <option>Healthcare</option>
+            <option>Information Technology</option>
+            <option>Finance</option>
+            <option>Education</option>
+            <option>Engineering</option>
+            <option>Sales</option>
+            <option>Agriculture</option>
           </select>
         </div>
 
@@ -188,9 +216,12 @@ const SkillsComponent = ({
             onChange={(e) => setProfessionalExpertise(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
           >
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
+            <option>Data Analysis</option>
+            <option>Software Development</option>
+            <option>Project Management </option>
+            <option>Content Creation </option>
+            <option>Social Media Marketing </option>
+            <option>Network Security </option>
           </select>
         </div>
       </div>
@@ -218,7 +249,7 @@ const SkillsComponent = ({
         </h6>
         <Select
           id="professional"
-          value={displayProfessionalSkills.skill_name}
+          value={professionalSkills}
           instanceId="selectSkills"
           isMulti
           name="colors"
@@ -231,13 +262,13 @@ const SkillsComponent = ({
 
       <div className=" mt-10 flex w-full gap-10">
         <button
-          onClick={stepDown}
+          onClick={handleStepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
         >
           Go back
         </button>
         <button
-          onClick={stepUp}
+          onClick={handleStepUp}
           className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2"
         >
           Next

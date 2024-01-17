@@ -15,7 +15,7 @@ const page = () => {
 
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/profile-setup");
+    showModal && router.push("/profile-details");
   };
 
   const handleLogin = () => {

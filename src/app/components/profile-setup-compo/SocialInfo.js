@@ -30,8 +30,30 @@ const SocialInfo = ({
   setTwitter,
   linkedIn,
   setLinkedin,
+  instagram,
+  setInstagram,
+  step,
+  setStep,
+  setShowModal,
+  wantFrom,
+  setWantFrom,
 }) => {
-  const [selectedValues, setSelectedValues] = useState([]);
+  const handleStepUp = () => {
+    if (
+      !facebook ||
+      !twitter ||
+      !linkedIn ||
+      !instagram ||
+      retirementCause?.length === 0
+    ) {
+      setShowModal(true);
+      return;
+    }
+    setStep(step + 1);
+  };
+  const handleStepDown = () => {
+    setStep(step - 1);
+  };
 
   const handleCauseChange = async (selected, selection) => {
     const { action } = selection;
@@ -45,12 +67,13 @@ const SocialInfo = ({
   };
   const handleWantChange = (selectedOptions) => {
     if (selectedOptions.length <= 5) {
-      setSelectedValues(selectedOptions);
+      setWantFrom(selectedOptions);
     } else {
       toast.error("Maximum selection limit is 5");
     }
   };
 
+  console.log(wantFrom, "want");
   return (
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
@@ -81,7 +104,7 @@ const SocialInfo = ({
           className="basic-multi-select"
           classNamePrefix="select"
           options={wants}
-          value={selectedValues}
+          value={wantFrom}
           onChange={handleWantChange}
         />
       </div>
@@ -128,8 +151,12 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Instagram</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <h2 className="font-semibold text-gray-500">Instagram*</h2>
+        <input
+          value={instagram}
+          onChange={(e) => setInstagram(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Behance</h2>
@@ -141,13 +168,13 @@ const SocialInfo = ({
       </div>
       <div className=" mt-5 flex w-full gap-10">
         <button
-          onClick={stepDown}
+          onClick={handleStepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
         >
           Go back
         </button>
         <button
-          onClick={stepUp}
+          onClick={handleStepUp}
           className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2"
         >
           Next

@@ -20,10 +20,14 @@ const page = () => {
 
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/login");
+    showModal && router.push("/profile-setup");
   };
 
   const handleRegister = () => {
+    if (!userName || !displayName || !mobile || !email || !password) {
+      toast.error("Please fill all fields, all fields are mandatory");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/register",
@@ -41,6 +45,7 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        localStorage.setItem("userId", response?.data?.user_id);
         toast.success(response.data.message);
         handleModal();
       })
@@ -73,28 +78,28 @@ const page = () => {
               type="text"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="display name"
+              placeholder="display name*"
               className="mb-4 bg-gray-200  border-gray-300 border-2  text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500 "
             />
             <input
               type="Number"
               value={mobile}
               onChange={(e) => setMobile(e.target.value)}
-              placeholder="mobile number"
+              placeholder="mobile number*"
               className="mb-4 bg-gray-200 border-gray-300 border-2  text-md rounded-lg block w-full  h-10 p-1.5 hover:border-blue-500"
             />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
+              placeholder="email*"
               className="mb-4 bg-gray-200  border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
+              placeholder="password*"
               className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5  hover:border-blue-500 hover:rounded-none "
             />
             <button

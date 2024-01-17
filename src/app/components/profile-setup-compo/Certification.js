@@ -9,8 +9,15 @@ const Certification = ({
   setCertificateName,
   acceptableCurrencies,
   setAcceptableCurrencies,
+  step,
+  setStep,
+  setShowModal,
 }) => {
   const [certificates, setCertificates] = useState([]);
+
+  const handleStepDown = () => {
+    setStep(step - 1);
+  };
 
   useEffect(() => {
     const options = {
@@ -48,8 +55,6 @@ const Certification = ({
       setCertificateName(selected);
     }
   };
-
-  // console.log(certificates, "certi");
 
   return (
     <div>
@@ -122,7 +127,7 @@ const Certification = ({
           </h1>
           <div className="mt-10 gap-10 flex w-full">
             <button
-              onClick={stepDown}
+              onClick={handleStepDown}
               className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
             >
               Go back
