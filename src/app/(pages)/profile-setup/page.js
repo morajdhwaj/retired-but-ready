@@ -55,7 +55,8 @@ const page = () => {
   const [certificateName, setCertificateName] = useState("");
   const [certificateDate, setCertificateDate] = useState("");
   const [credentials, setCredentials] = useState("");
-  const [isCharged, setIsCharged] = useState(false);
+  const [isCharged, setIsCharged] = useState(true);
+  const [aboutYou, setAboutYou] = useState("");
   const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
   const [interests, setInterests] = useState([]);
   const [retirementCause, setRetirementCause] = useState([]);
@@ -426,6 +427,10 @@ const page = () => {
               <Certification
                 step={step}
                 setStep={setStep}
+                isCharged={isCharged}
+                aboutYou={aboutYou}
+                setAboutYou={setAboutYou}
+                setIsCharged={setIsCharged}
                 setShowModal={setShowModal}
                 handleSubmit={handleSubmit}
                 certificateName={certificateName}

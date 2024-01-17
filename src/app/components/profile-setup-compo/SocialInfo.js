@@ -94,7 +94,7 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
-          What do you want to do on this platform
+          What do you want to do on this platform*
         </h2>
         <Select
           id="selectWant"

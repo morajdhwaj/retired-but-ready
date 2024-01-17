@@ -11,6 +11,10 @@ const Certification = ({
   setAcceptableCurrencies,
   step,
   setStep,
+  isCharged,
+  setIsCharged,
+  aboutYou,
+  setAboutYou,
   setShowModal,
 }) => {
   const [certificates, setCertificates] = useState([]);
@@ -56,6 +60,8 @@ const Certification = ({
     }
   };
 
+  console.log(aboutYou, "sddd");
+
   return (
     <div>
       <div className=" flex flex-col mx-20">
@@ -66,7 +72,7 @@ const Certification = ({
         <div className="mt-8 flex flex-col gap-4 w-auto  ">
           <Select
             id="certificate"
-            value={certificates.certification_name}
+            value={certificateName}
             instanceId="selectSkills"
             isMulti
             name="colors"
@@ -78,13 +84,24 @@ const Certification = ({
         </div>
         <div className="mt-8">
           <h2 className="text-gray-500  text-lg">
-            Would you like to charge for your services?
+            Would you like to charge for your services*
           </h2>
-          <div className="flex  items-center gap-5 mt-3 ">
-            <input type="radio" value="yes" id="Yes" name="option" />
-            <label for="yes">Yes</label>
-            <input type="radio" value="no" id="No" name="option" />
-            <label for="No">No</label>
+          <div className="flex items-center gap-5 mt-3">
+            <input
+              id="yes"
+              type="radio"
+              checked={isCharged}
+              onChange={() => setIsCharged(true)}
+            />
+            <label htmlFor="yes">Yes</label>
+
+            <input
+              id="no"
+              type="radio"
+              checked={!isCharged}
+              onChange={() => setIsCharged(false)}
+            />
+            <label htmlFor="no">No</label>
           </div>
 
           <div className=" mt-5 ">
@@ -111,11 +128,11 @@ const Certification = ({
             Or Quirks
           </h3>
         </div>
-        <input
-          type="text"
-          placeholder="(this will be visible to other along with your photo ,so make it crisp and classy)
-          "
-          className="bg-gray-100 border rounded-lg mt-3 px-2 border-gray-300    h-[200px]"
+        <textarea
+          value={aboutYou}
+          onChange={(e) => setAboutYou(e.target.value)}
+          placeholder="(this will be visible to others along with your photo, so make it crisp and classy)"
+          className="bg-gray-100 border rounded-lg mt-3 px-2 border-gray-300 h-[200px] resize-none p-5"
         />
         <h2 className="text-gray-500  text-sm mt-10">
           Max character limit-1000

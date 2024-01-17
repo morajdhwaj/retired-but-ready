@@ -10,12 +10,36 @@ import Link from "next/link";
 const page = () => {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
+  const [userData, setUserData] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/profile-details");
+    showModal &&
+      router.push(
+        userData.english_proficiency ? "/profile-details" : "/profile-setup"
+      );
+  };
+
+  const getUserData = (userId) => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data);
+        setUserData(response?.data);
+        setDisplayName(response?.data?.user_display_name);
+        setFirstName(response?.data?.user_first_name);
+        setLastName(response?.data?.user_last_name);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   const handleLogin = () => {
@@ -31,6 +55,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         localStorage.setItem("userId", response?.data?.user_id);
+        getUserData(response?.data?.user_id);
         toast.success(response?.data?.message);
         handleModal();
       })
@@ -39,6 +64,8 @@ const page = () => {
         toast.error(error?.response?.data?.detail || "Something wrong");
       });
   };
+
+  console.log(userData);
 
   return (
     <div className="  bg-gray-200  ">
