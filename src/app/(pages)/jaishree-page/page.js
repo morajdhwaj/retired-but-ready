@@ -5,7 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 // import All from "@/app/components/wallsComponents/All";
 import Reaction from "@/app/components/jaishreeComponent/Reaction";
 // import  Message  from "@/app/components/jaishreeComponent/Message";
-//import Comments from "@/app/components/jaishreeComponent/Comments";
+// import Comments from "@/app/components/jaishreeComponent/Comments";
 // import Details from "@/app/components/jaishreeComponent/Details";
 //import Postpage from "@/app/components/jaishreeComponent/Postpage";
 // import Connection from "@/app/components/jaishreeComponent/Connection";
@@ -81,9 +81,9 @@ const page = () => {
             {tab === 1 && (
               <div>
                 {/* <All />   */}
-                <Reaction />
+                 <Reaction /> 
                 {/* <Message/>  */}
-                {/* <Comments/>   */}
+               {/* <Comments/>    */}
                 {/* <Details/>  */}
                 {/* <Postpage /> */}
                 {/* <Connection/> */}
