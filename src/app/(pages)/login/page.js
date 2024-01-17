@@ -36,7 +36,7 @@ const page = () => {
       })
       .catch(function (error) {
         console.error(error);
-        toast.error("Something wrong");
+        toast.error(error?.response?.data?.detail || "Something wrong");
       });
   };
 
@@ -49,10 +49,10 @@ const page = () => {
         <div className=" flex flex-col gap-3 mx-3  lg:w-1/2 ">
           <div className=" h-auto mt-5 rounded-md lg:p-5 border-transparent flex justify-center border-2  hover:w-auto hover:border-2 hover:border-blue-600  ">
             <Image
-              src="/assets/Group-626217.png "
+              src="/assets/Group-626217.png"
               alt="login"
-              width={500}
-              height={500}
+              width={300}
+              height={300}
             />
           </div>
 
@@ -80,7 +80,7 @@ const page = () => {
               <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
                 <button className="">
                   <Image
-                    src="/assets/Facebook.png"
+                    src="/assets/facebook.png"
                     alt="Facebook"
                     width={30}
                     height={30}

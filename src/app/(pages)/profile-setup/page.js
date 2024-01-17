@@ -11,17 +11,21 @@ import Certification from "@/app/components/profile-setup-compo/Certification";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import PopUp from "@/app/components/PopUp";
+import Image from "next/image";
 
 const page = () => {
   const [step, setStep] = useState(1);
+  const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
-  const hiddenFileInput = useRef(null);
+
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("India");
+  const [countryId, setCountryId] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
@@ -57,20 +61,12 @@ const page = () => {
   const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
   }, []);
-
-  const handleClick = () => {
-    hiddenFileInput.current.click();
-  };
-
-  const handleChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    handleFile(fileUploaded);
-  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -84,6 +80,11 @@ const page = () => {
   };
 
   const handleSubmit = () => {
+    if (!facebook || !twitter || !linkedin || !companyName || !title) {
+      setShowModal(true);
+
+      return;
+    }
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
@@ -95,7 +96,7 @@ const page = () => {
         user_last_name: lastName,
         user_age: age,
         user_gender: gender,
-        country_id: "1",
+        country_id: toString(countryId) || "11",
         country_name: country,
         user_state: state,
         user_city: city,
@@ -137,7 +138,7 @@ const page = () => {
         certifications: [
           {
             certification_id: null,
-            certification_name: certificateName,
+            certification_name: "aws cloud",
             credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
             certification_date: "2022-11-26T00:00:00.000Z",
           },
@@ -167,22 +168,51 @@ const page = () => {
       });
   };
 
-  // console.log(
-  //   professionalSkills.map((item) => ({
-  //     skill_id: item.value,
-  //     skill_name: item.label,
-  //   })),
-  //   "last"
-  // );
+  const form = new FormData();
+  form.append("file", selectedImage);
 
-  console.log(englishProficiency, "last");
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
+  };
+  const uploadImg = () => {
+    if (!selectedImage) {
+      console.error("No image selected");
+      return;
+    }
+
+    const form = new FormData();
+    form.append("file", selectedImage, selectedImage.name);
+
+    const options = {
+      method: "POST",
+      url: `https://retpro.catax.me/user/upload-profile-pic?user_id=${userId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      data: form,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+  console.log(selectedImage, "image");
+  console.log(userId, "id");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
-          <Sidebar />
+          <Sidebar />s
         </div>
 
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
@@ -191,21 +221,41 @@ const page = () => {
               <h1 className="text-4xl font-medium"> Profile</h1>
             </div>
             <div className="w-1/2 flex items-center justify-center flex-col gap-5">
-              <FaCircleUser size={100} />
-              <button
-                className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded"
-                onClick={handleClick}
-              >
-                Add a profile picture
-              </button>
-              <div>
-                <input
-                  type="file"
-                  onChange={handleChange}
-                  ref={hiddenFileInput}
-                  style={{ display: "none" }} // Make the file input element invisible
-                />
-              </div>
+              {selectedImage ? (
+                <div className="rounded-full flex  flex-col items-center justify-center bg-red-20">
+                  <Image
+                    src={URL.createObjectURL(selectedImage)}
+                    alt="Selected Profile"
+                    className="mt-2 rounded-full"
+                    height={150}
+                    width={150}
+                  />
+                  <button
+                    onClick={uploadImg}
+                    className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 "
+                  >
+                    Add a profile picture
+                  </button>
+                </div>
+              ) : (
+                <div className="">
+                  <label htmlFor="profile-picture" className="cursor-pointer">
+                    <div className="flex items-center justify-center">
+                      <FaCircleUser size={100} />
+                    </div>
+                    <input
+                      type="file"
+                      id="profile-picture"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleImageChange}
+                    />
+                    <h1 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 ">
+                      Click here for upload profile
+                    </h1>
+                  </label>
+                </div>
+              )}
             </div>
           </div>
           <div className="lg:mx-40 mt-5 flex flex-col gap-5">
@@ -284,6 +334,8 @@ const page = () => {
                 gender={gender}
                 setGender={setGender}
                 country={country}
+                countryId={countryId}
+                setCompanyId={setCountryId}
                 setCountry={setCountry}
                 state={state}
                 setState={setState}
@@ -351,6 +403,15 @@ const page = () => {
             )}
           </div>
         </div>
+        {showModal && (
+          <PopUp
+            onClick={() => setShowModal(false)}
+            title=" Something doesn't look right"
+            action="Take me back"
+            error="error"
+            message="You may have left one or more field empty  while filling the form, please check and fill in th field to continue"
+          />
+        )}
       </div>
     </div>
   );

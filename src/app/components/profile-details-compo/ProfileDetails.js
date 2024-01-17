@@ -115,6 +115,10 @@ const ProfileDetails = ({ userId }) => {
       });
   };
 
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
   console.log(userData, "profile");
 
   return (
@@ -125,7 +129,7 @@ const ProfileDetails = ({ userId }) => {
         </button>
         {edit && (
           <button onClick={updateUser}>
-            <h2 className="font-semibold text-blue-500">Update</h2>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
       </div>
@@ -140,9 +144,7 @@ const ProfileDetails = ({ userId }) => {
               className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
             />
           ) : (
-            <h2 className="font-semibold text-gray-500">
-              {userData.user_display_name}
-            </h2>
+            <h2 className="font-semibold ">{userData.user_display_name}</h2>
           )}
         </div>
         <div className="flex gap-5">
@@ -155,9 +157,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_first_name}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_first_name}</h2>
             )}
           </div>
           <div className="w-1/2">
@@ -169,9 +169,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_last_name}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_last_name}</h2>
             )}
           </div>
         </div>
@@ -185,9 +183,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_age}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_age}</h2>
             )}
           </div>
           <div className="w-1/2">
@@ -199,9 +195,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_gender}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_gender}</h2>
             )}
           </div>
         </div>{" "}
@@ -215,9 +209,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_city}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_city}</h2>
             )}
           </div>
         </div>
@@ -235,9 +227,7 @@ const ProfileDetails = ({ userId }) => {
                 ))}
               </select>
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.country_name}
-              </h2>
+              <h2 className="font-semibold ">{userData.country_name}</h2>
             )}
           </div>
           <div className="w-1/2">
@@ -249,9 +239,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold text-gray-500">
-                {userData.user_state}
-              </h2>
+              <h2 className="font-semibold ">{userData.user_state}</h2>
             )}
           </div>
         </div>

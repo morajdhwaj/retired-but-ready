@@ -6,7 +6,7 @@ import Sidebar from "@/app/components/Sidebar";
 // import ConnectionTwo from "@/app/components/jaishreeConnectionComponent/ConnectionTwo";
  // import ConnectionThree from "@/app/components/jaishreeConnectionComponent/ConnectionThree";
  // import ConnectionSix from "@/app/components/jaishreeConnectionComponent/ConnectionSix";
- import Main from "@/app/components/jaishreeConnectionComponent/Main";
+import Main from "@/app/components/jaishreeConnectionComponent/Main";
 
 // import Network from "@/app/components/jaishreeConnectionComponent/Network";
 import Trending from "@/app/components/wallsComponents/Trending";
@@ -82,10 +82,10 @@ const page = () => {
                
                   {/* <Network/>  */}
                  {/* <ConnectionOne/>  */}
-                 {/* <ConnectionTwo/> */}
+                  {/* <ConnectionTwo/> */}
                   {/* <ConnectionThree/> */}
                  {/* <ConnectionSix/> */}
-                 <Main/> 
+                  <Main/>  
 
               </div>
             )}

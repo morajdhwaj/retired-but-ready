@@ -4,12 +4,6 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
 
-const RetireCausssse = [
-  { value: "Medical issues", label: "Medical issues" },
-  { value: "Family issues", label: "Family issues" },
-  { value: "Retired from service", label: "Retired from service" },
-];
-
 const SkillsComponent = ({
   skills,
   stepUp,
@@ -81,6 +75,13 @@ const SkillsComponent = ({
     } else if (action === "remove-value") {
       setPersonalSkills(selected);
     }
+    const hasMinimumSkills = selected.length >= 3;
+
+    if (!hasMinimumSkills) {
+      toast("Please select at least 3 professional skills", {
+        icon: "👍",
+      });
+    }
   };
 
   const handleProfessionalSkill = (selected, selection) => {
@@ -97,9 +98,17 @@ const SkillsComponent = ({
     } else if (action === "remove-value") {
       setProfessionalSkills(selected);
     }
+
+    const hasMinimumSkills = selected.length >= 3;
+
+    if (!hasMinimumSkills) {
+      toast("Please select at least 3 professional skills", {
+        icon: "👍",
+      });
+    }
   };
 
-  // console.log(personalSkills, "ss");
+  console.log(displayPersonalSkills, "dd");
   return (
     <div className="mx-20 mb-40 ">
       <div className="flex  flex-col gap-8 ">
@@ -134,11 +143,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={totalExperience}
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
@@ -150,11 +163,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
 
         <div>
@@ -166,11 +183,15 @@ const SkillsComponent = ({
               (Before Retirement)
             </h6>
           </div>
-          <input
+          <select
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
-          ></input>
+          >
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
       </div>
       <div className="w-full  mt-5">
@@ -208,7 +229,7 @@ const SkillsComponent = ({
         />
       </div>
 
-      <div className=" mt-8 flex gap-20">
+      <div className=" mt-10 flex w-full gap-10">
         <button
           onClick={stepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"

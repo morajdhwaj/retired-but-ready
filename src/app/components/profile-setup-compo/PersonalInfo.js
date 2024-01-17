@@ -21,6 +21,8 @@ const PersonalInfo = ({
   setState,
   city,
   setCity,
+  countryId,
+  setCompanyId,
 }) => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -54,11 +56,13 @@ const PersonalInfo = ({
 
       if (selectedCountryObject) {
         setSelectedCountryStates(selectedCountryObject.states);
+        setCountry(selectedCountryObject.name);
+        setCompanyId(selectedCountryObject.id); // Set the country id here
       }
     } else {
       setSelectedCountryStates([]);
     }
-  }, [selectedCountry, countries]);
+  }, [selectedCountry, countries, setCompanyId]);
 
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
@@ -72,7 +76,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Fist Name</h2>
+          <h2 className="font-semibold text-gray-500">First Name</h2>
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}

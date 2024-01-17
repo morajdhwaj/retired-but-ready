@@ -15,20 +15,46 @@ import SocialMedia from "@/app/components/profile-details-compo/SocialMedia";
 import WorkExperience from "@/app/components/profile-details-compo/WorkExperience";
 import WorkHistory from "@/app/components/profile-details-compo/WorkHistory";
 import axios from "axios";
+import Link from "next/link";
 
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
-  }, []);
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data);
+        setUserData(response?.data);
+        setCompanyName(response?.data?.work_history[0].company_name);
+        setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   const handleToggle = (index) => {
     activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
   };
 
-  console.log(userId, "userId");
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
+  console.log(userData, "userId");
 
   return (
     <div className="bg-[#EDEBF2] px-10 ">
@@ -49,8 +75,11 @@ const page = () => {
                     width={50}
                   />
                   <div className="font-semibold">
-                    <h2>Steve Jacob</h2>
-                    <p className="text-gray-500">CEO & Co-founder</p>
+                    <h2>{userData.user_display_name}</h2>
+                    <p className="text-gray-500">
+                      {" "}
+                      {userData.last_designation}
+                    </p>
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 ">
@@ -127,7 +156,7 @@ const page = () => {
                 {activeIndex === 2 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 2 && <WhyRBR />}
+            {activeIndex === 2 && <WhyRBR userId={userId} />}
 
             <div
               onClick={() => handleToggle(3)}
@@ -142,7 +171,7 @@ const page = () => {
                 {activeIndex === 3 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 3 && <SocialMedia />}
+            {activeIndex === 3 && <SocialMedia userId={userId} />}
 
             <div
               onClick={() => handleToggle(4)}
@@ -157,7 +186,7 @@ const page = () => {
                 {activeIndex === 4 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 4 && <WorkExperience />}
+            {activeIndex === 4 && <WorkExperience userId={userId} />}
 
             <div
               onClick={() => handleToggle(5)}
@@ -172,17 +201,17 @@ const page = () => {
                 {activeIndex === 5 ? <IoIosArrowDown /> : <IoIosArrowForward />}
               </div>
             </div>
-            {activeIndex === 5 && <WorkHistory />}
+            {activeIndex === 5 && <WorkHistory userId={userId} />}
           </div>
         </div>
       </div>
       <div className="flex bg-[#f2f1f3] ml-36  items-center justify-center gap-10 py-10">
-        <button className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-40 ">
-          Cancel
-        </button>
-        <button className="bg-[#773fc6]  p-2 text-white font-medium rounded w-40 ">
-          Submit
-        </button>
+        <Link
+          href="/login"
+          className="bg-[#773fc6] text-center  p-2 text-white font-medium rounded w-40 "
+        >
+          Log Out
+        </Link>
       </div>
     </div>
   );

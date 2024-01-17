@@ -10,7 +10,7 @@ import { IoIosSend } from "react-icons/io";
 const ConnectionTwo = () => {
   return (
     <div>
-      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex gap-4 flex-wrap items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
+      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex gap-4 flex-wrap  items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
         <div>
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">

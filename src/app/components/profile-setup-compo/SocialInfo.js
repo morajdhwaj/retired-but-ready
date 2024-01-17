@@ -40,11 +40,8 @@ const SocialInfo = ({
     } else if (action === "remove-value") {
       console.log("remove");
     }
-    if (selected.length <= 1) {
-      setRetirementCause(selected);
-    } else {
-      toast.error("Maximum selection limit is 1");
-    }
+
+    setRetirementCause(selected);
   };
   const handleWantChange = (selectedOptions) => {
     if (selectedOptions.length <= 5) {
@@ -58,7 +55,7 @@ const SocialInfo = ({
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
-          What is the cause of your retirement
+          What is the cause of your retirement*
         </h2>
         <Select
           id="selectCause"
@@ -107,7 +104,7 @@ const SocialInfo = ({
         </p>
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Facebook</h2>
+        <h2 className="font-semibold text-gray-500">Facebook*</h2>
         <input
           value={facebook}
           onChange={(e) => setFacebook(e.target.value)}
@@ -115,7 +112,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Twitter</h2>
+        <h2 className="font-semibold text-gray-500">Twitter*</h2>
         <input
           value={twitter}
           onChange={(e) => setTwitter(e.target.value)}
@@ -123,7 +120,7 @@ const SocialInfo = ({
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Linkedin</h2>
+        <h2 className="font-semibold text-gray-500">Linkedin*</h2>
         <input
           value={linkedIn}
           onChange={(e) => setLinkedin(e.target.value)}
@@ -142,7 +139,7 @@ const SocialInfo = ({
         <h2 className="font-semibold text-gray-500">Others</h2>
         <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
       </div>
-      <div className="flex w-full gap-10">
+      <div className=" mt-5 flex w-full gap-10">
         <button
           onClick={stepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
