@@ -30,8 +30,30 @@ const SocialInfo = ({
   setTwitter,
   linkedIn,
   setLinkedin,
+  instagram,
+  setInstagram,
+  step,
+  setStep,
+  setShowModal,
+  wantFrom,
+  setWantFrom,
 }) => {
-  const [selectedValues, setSelectedValues] = useState([]);
+  const handleStepUp = () => {
+    if (
+      !facebook ||
+      !twitter ||
+      !linkedIn ||
+      !instagram ||
+      retirementCause?.length === 0
+    ) {
+      setShowModal(true);
+      return;
+    }
+    setStep(step + 1);
+  };
+  const handleStepDown = () => {
+    setStep(step - 1);
+  };
 
   const handleCauseChange = async (selected, selection) => {
     const { action } = selection;
@@ -45,12 +67,33 @@ const SocialInfo = ({
   };
   const handleWantChange = (selectedOptions) => {
     if (selectedOptions.length <= 5) {
-      setSelectedValues(selectedOptions);
+      setWantFrom(selectedOptions);
     } else {
       toast.error("Maximum selection limit is 5");
     }
   };
+  const handleFacebookChange = (e) => {
+    const inputValue = e.target.value;
 
+    if (inputValue === "" || inputValue.startsWith("https://")) {
+      setFacebook(inputValue);
+    } else {
+      // Show toast for invalid input
+      toast.error("Invalid facebook URL");
+    }
+  };
+
+  const handleLinkedInChange = (e) => {
+    const inputValue = e.target.value;
+
+    if (inputValue === "" || inputValue.startsWith("https://")) {
+      setLinkedin(inputValue);
+    } else {
+      // Show toast for invalid input
+      toast.error("Invalid LinkedIn URL");
+    }
+  };
+  console.log(wantFrom, "want");
   return (
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
@@ -71,7 +114,7 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
-          What do you want to do on this platform
+          What do you want to do on this platform*
         </h2>
         <Select
           id="selectWant"
@@ -81,7 +124,7 @@ const SocialInfo = ({
           className="basic-multi-select"
           classNamePrefix="select"
           options={wants}
-          value={selectedValues}
+          value={wantFrom}
           onChange={handleWantChange}
         />
       </div>
@@ -108,6 +151,7 @@ const SocialInfo = ({
         <input
           value={facebook}
           onChange={(e) => setFacebook(e.target.value)}
+          placeholder="https://www.facebook.com/in/user-name/"
           className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
         />
       </div>
@@ -116,20 +160,27 @@ const SocialInfo = ({
         <input
           value={twitter}
           onChange={(e) => setTwitter(e.target.value)}
+          placeholder="https://www.twitter.com/in/user-name/"
           className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Linkedin*</h2>
+        <h2 className="font-semibold text-gray-500">LinkedIn*</h2>
         <input
           value={linkedIn}
           onChange={(e) => setLinkedin(e.target.value)}
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 rounded w-full"
+          placeholder="https://www.linkedin.com/in/user-name-a44677249/"
         />
       </div>
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Instagram</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <h2 className="font-semibold text-gray-500">Instagram*</h2>
+        <input
+          value={instagram}
+          placeholder="https://www.instagram.com/in/user-name/"
+          onChange={(e) => setInstagram(e.target.value)}
+          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+        />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Behance</h2>
@@ -141,13 +192,13 @@ const SocialInfo = ({
       </div>
       <div className=" mt-5 flex w-full gap-10">
         <button
-          onClick={stepDown}
+          onClick={handleStepDown}
           className="border border-[#773fc6] p-2 text-[#773fc6] font-medium rounded w-1/2"
         >
           Go back
         </button>
         <button
-          onClick={stepUp}
+          onClick={handleStepUp}
           className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2"
         >
           Next
