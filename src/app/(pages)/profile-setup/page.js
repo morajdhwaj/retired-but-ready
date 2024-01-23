@@ -123,10 +123,10 @@ const page = () => {
         city_coordinates: ["12.3210", "43.432123"],
         profile_headline: "ganja piyo mst rho",
         profile_summary: "saste ganja ke liye sampark kare",
-        last_designation: "dealer",
+        last_designation: "Product manager",
         total_experience: "30+",
-        professional_field: "weed",
-        professional_expertise: "vasooli",
+        professional_field: "IT",
+        professional_expertise: "Management",
         skills: {
           personal: personalSkills.map((item) => ({
             skill_id: item.value,
@@ -140,8 +140,8 @@ const page = () => {
           {
             institution_id: "657aa5ab21d8f5ad8d839413",
             institution_name: "allen",
-            degree: "dealing",
-            field: "ganja",
+            degree: "B.tech",
+            field: "IT",
             start_year: 2020,
             end_year: 2024,
           },

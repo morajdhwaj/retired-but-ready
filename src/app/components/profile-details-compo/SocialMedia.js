@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 
 const SocialMedia = ({ userId }) => {
@@ -40,15 +41,15 @@ const SocialMedia = ({ userId }) => {
       params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
-        user_display_name: displayName,
-        user_first_name: firstName,
-        user_last_name: lastName,
-        user_age: age,
-        user_gender: gender,
+        user_display_name: userData?.user_display_name,
+        user_first_name: userData?.user_first_name,
+        user_last_name: userData?.user_last_name,
+        user_age: userData?.user_age,
+        user_gender: userData?.user_gender,
         country_id: userData?.country_id,
-        country_name: country,
-        user_state: state,
-        user_city: city,
+        country_name: userData?.country_name,
+        user_state: userData?.user_state,
+        user_city: userData?.user_city,
         city_coordinates: userData?.city_coordinates,
         profile_headline: userData?.profile_headline,
         profile_summary: userData?.profile_summary,
@@ -66,7 +67,11 @@ const SocialMedia = ({ userId }) => {
         acceptable_currencies: userData?.acceptable_currencies,
         interests: userData?.interests,
         retirement_cause: userData?.retirement_cause,
-        social_links: userData?.social_links,
+        social_links: {
+          linkedIn: linkedin,
+          facebook: facebook,
+          twitter: twitter,
+        },
       },
     };
 
@@ -92,16 +97,16 @@ const SocialMedia = ({ userId }) => {
 
   return (
     <div className="flex  flex-col gap-5 m-5  ">
-      {/* <div className="flex  gap-5 justify-end mt-5">
+      <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
         {edit && (
           <button onClick={updateUser}>
-            <h2 className="font-semibold text-blue-500">Update</h2>
+            <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div> */}
+      </div>
 
       {edit && (
         <div className="">
@@ -116,7 +121,11 @@ const SocialMedia = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Facebook</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            value={facebook}
+            onChange={(e) => setFacebook(e.target.value)}
+          />
         ) : (
           <h2 className="font-semibold ">{facebook}</h2>
         )}
@@ -124,7 +133,11 @@ const SocialMedia = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Twitter</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={twitter}
+            onChange={(e) => setTwitter(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{twitter}</h2>
         )}
@@ -132,7 +145,11 @@ const SocialMedia = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Linkedin</h2>
         {edit ? (
-          <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+          <input
+            value={linkedin}
+            onChange={(e) => setLinkedin(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          />
         ) : (
           <h2 className="font-semibold ">{linkedin}</h2>
         )}
