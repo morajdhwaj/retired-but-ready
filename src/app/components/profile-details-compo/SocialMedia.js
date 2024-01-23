@@ -92,7 +92,7 @@ const SocialMedia = ({ userId }) => {
 
   return (
     <div className="flex  flex-col gap-5 m-5  ">
-      <div className="flex  gap-5 justify-end ">
+      {/* <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
@@ -101,7 +101,7 @@ const SocialMedia = ({ userId }) => {
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div>
+      </div> */}
 
       {edit && (
         <div className="">
