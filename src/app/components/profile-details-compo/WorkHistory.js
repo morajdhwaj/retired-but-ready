@@ -7,6 +7,7 @@ const WorkHistory = ({ userId }) => {
   const [userData, setUserData] = useState([]);
   const [edit, setEdit] = useState(false);
   const [companyName, setCompanyName] = useState("");
+  const [companies, setCompanies] = useState([]);
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const WorkHistory = ({ userId }) => {
         setUserData(response?.data);
         setCompanyName(response?.data?.work_history[0].company_name);
         setTitle(response?.data?.work_history[0].title);
+        setCompanies(response?.data?.work_history);
       })
       .catch(function (error) {
         console.error(error);
@@ -95,11 +97,11 @@ const WorkHistory = ({ userId }) => {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
-  console.log(companyName);
+  console.log(companies);
 
   return (
     <div className="m-5">
-      <div className="flex  gap-5 justify-end ">
+      {/* <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
@@ -108,31 +110,34 @@ const WorkHistory = ({ userId }) => {
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div>
+      </div> */}
+      <div className="flex flex-wrap gap-7">
+        {companies.map((company) => {
+          return (
+            <div
+              className="mt-5 border  self-start gap-5 w-52 p-5 border-[#773fc6] rounded-lg   "
+              key={company.company_name}
+            >
+              <div>
+                <h2 className="text-[#808184] font-medium">Company Name</h2>
 
-      <div>
-        <h2 className="text-[#808184] font-medium">Company Name</h2>
-        {edit ? (
-          <input
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-        ) : (
-          <h2 className="font-semibold ">{companyName}</h2>
-        )}
-      </div>
-      <div className="mt-5">
-        <h2 className="text-[#808184] font-medium">Title/Role</h2>
-        {edit ? (
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-          />
-        ) : (
-          <h2 className="font-semibold ">{title}</h2>
-        )}{" "}
+                {edit ? (
+                  <input
+                    value={company.company_name}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                  />
+                ) : (
+                  <h2 className="font-semibold ">{company.company_name}</h2>
+                )}
+              </div>
+              <div className="">
+                <h2 className="text-[#808184] font-medium">Title/Role</h2>
+
+                <h2 className="font-semibold ">{company.title}</h2>
+              </div>
+            </div>
+          );
+        })}
       </div>
       {/* <div className="flex gap-6 mt-5">
         <div className="w-1/2">

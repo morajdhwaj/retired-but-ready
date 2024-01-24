@@ -152,7 +152,7 @@ const SocialInfo = ({
           value={facebook}
           onChange={(e) => setFacebook(e.target.value)}
           placeholder="https://www.facebook.com/in/user-name/"
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
       <div className="w-full">
@@ -161,7 +161,7 @@ const SocialInfo = ({
           value={twitter}
           onChange={(e) => setTwitter(e.target.value)}
           placeholder="https://www.twitter.com/in/user-name/"
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
         />
       </div>
       <div className="w-full">
@@ -169,7 +169,7 @@ const SocialInfo = ({
         <input
           value={linkedIn}
           onChange={(e) => setLinkedin(e.target.value)}
-          className="bg-[#f2f1f3] border border-gray-300 h-10 rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
           placeholder="https://www.linkedin.com/in/user-name-a44677249/"
         />
       </div>
@@ -179,16 +179,16 @@ const SocialInfo = ({
           value={instagram}
           placeholder="https://www.instagram.com/in/user-name/"
           onChange={(e) => setInstagram(e.target.value)}
-          className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+          className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Behance</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full" />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Others</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full" />
+        <input className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full" />
       </div>
       <div className=" mt-5 flex w-full gap-10">
         <button
