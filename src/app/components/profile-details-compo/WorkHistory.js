@@ -111,30 +111,34 @@ const WorkHistory = ({ userId }) => {
           </button>
         )}
       </div> */}
-      {companies.map((company) => {
-        return (
-          <div className="mt-5" key={company.company_name}>
-            <div>
-              <h2 className="text-[#808184] font-medium">Company Name</h2>
+      <div className="flex flex-wrap gap-7">
+        {companies.map((company) => {
+          return (
+            <div
+              className="mt-5 border  self-start gap-5 w-52 p-5 border-[#773fc6] rounded-lg   "
+              key={company.company_name}
+            >
+              <div>
+                <h2 className="text-[#808184] font-medium">Company Name</h2>
 
-              {edit ? (
-                <input
-                  value={company.company_name}
-                  className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
-                />
-              ) : (
-                <h2 className="font-semibold ">{company.company_name}</h2>
-              )}
+                {edit ? (
+                  <input
+                    value={company.company_name}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                  />
+                ) : (
+                  <h2 className="font-semibold ">{company.company_name}</h2>
+                )}
+              </div>
+              <div className="">
+                <h2 className="text-[#808184] font-medium">Title/Role</h2>
+
+                <h2 className="font-semibold ">{company.title}</h2>
+              </div>
             </div>
-            <div className="mt-5">
-              <h2 className="text-[#808184] font-medium">Title/Role</h2>
-
-              <h2 className="font-semibold ">{company.title}</h2>
-            </div>
-          </div>
-        );
-      })}
-
+          );
+        })}
+      </div>
       {/* <div className="flex gap-6 mt-5">
         <div className="w-1/2">
           <h2 className="text-[#808184] font-medium">From</h2>
