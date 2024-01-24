@@ -46,11 +46,7 @@ const page = () => {
   const [field, setField] = useState("");
   const [institutionStart, setInstitutionStart] = useState("");
   const [institutionEnd, setInstitutionEnd] = useState("");
-  const [companyId, setCompanyId] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [title, setTitle] = useState("");
-  const [companyStart, setCompanyStart] = useState("");
-  const [companyEnd, setCompanyEnd] = useState("");
+  const [experiences, setExperiences] = useState([]);
   const [certificateId, setCertificateId] = useState("");
   const [certificateName, setCertificateName] = useState("");
   const [certificateDate, setCertificateDate] = useState("");
@@ -100,11 +96,6 @@ const page = () => {
   }, [step]);
 
   const handleSubmit = () => {
-    if (!title) {
-      setShowModal(true);
-
-      return;
-    }
     const options = {
       method: "PUT",
       url: "https://retpro.catax.me/user/update-profile",
@@ -146,15 +137,7 @@ const page = () => {
             end_year: 2024,
           },
         ],
-        work_history: [
-          {
-            company_id: "657d55d2033cb72b10c630e5",
-            company_name: companyName,
-            title: title,
-            start_date: "2022-10-01T00:00:00.000Z",
-            end_date: "present",
-          },
-        ],
+        work_history: experiences,
         certifications: [
           {
             certification_id: null,
@@ -413,14 +396,8 @@ const page = () => {
                 setEnglishProficiency={setEnglishProficiency}
                 languages={languages}
                 setLanguages={setLanguages}
-                companyName={companyName}
-                setCompanyName={setCompanyName}
-                title={title}
-                setTitle={setTitle}
-                companyStart={companyStart}
-                setCompanyStart={setCompanyStart}
-                companyEnd={companyEnd}
-                setCompanyEnd={setCompanyEnd}
+                experiences={experiences}
+                setExperiences={setExperiences}
               />
             )}
             {step === 5 && (
