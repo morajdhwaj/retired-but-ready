@@ -141,7 +141,7 @@ const ProfileDetails = ({ userId }) => {
             <input
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+              className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
             />
           ) : (
             <h2 className="font-semibold ">{userData.user_display_name}</h2>
@@ -154,7 +154,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2  rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_first_name}</h2>
@@ -166,7 +166,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10   px-2 rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_last_name}</h2>
@@ -180,7 +180,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_age}</h2>
@@ -192,7 +192,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_gender}</h2>
@@ -206,7 +206,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_city}</h2>
@@ -220,7 +220,7 @@ const ProfileDetails = ({ userId }) => {
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10  w-full rounded"
+                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 w-full rounded"
               >
                 {countries?.map((country) => (
                   <option key={country.id}>{country.name}</option>
@@ -236,7 +236,7 @@ const ProfileDetails = ({ userId }) => {
               <input
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
               />
             ) : (
               <h2 className="font-semibold ">{userData.user_state}</h2>

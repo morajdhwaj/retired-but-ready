@@ -122,7 +122,7 @@ const SocialMedia = ({ userId }) => {
         <h2 className="font-semibold text-gray-500">Facebook</h2>
         {edit ? (
           <input
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
             value={facebook}
             onChange={(e) => setFacebook(e.target.value)}
           />
@@ -136,7 +136,7 @@ const SocialMedia = ({ userId }) => {
           <input
             value={twitter}
             onChange={(e) => setTwitter(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10   px-2 rounded w-full"
           />
         ) : (
           <h2 className="font-semibold ">{twitter}</h2>
@@ -148,7 +148,7 @@ const SocialMedia = ({ userId }) => {
           <input
             value={linkedin}
             onChange={(e) => setLinkedin(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10   px-2 rounded w-full"
           />
         ) : (
           <h2 className="font-semibold ">{linkedin}</h2>

@@ -116,7 +116,7 @@ const WorkExperience = ({ userId }) => {
           <input
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
           />
         ) : (
           <h2 className="font-semibold ">{experience} Year</h2>
@@ -128,7 +128,7 @@ const WorkExperience = ({ userId }) => {
           <input
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10   px-2 rounded w-full"
           />
         ) : (
           <h2 className="font-semibold ">{professionalField}</h2>
@@ -140,7 +140,7 @@ const WorkExperience = ({ userId }) => {
           <input
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+            className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
           />
         ) : (
           <h2 className="font-semibold ">{professionalExpertise}</h2>
@@ -162,7 +162,7 @@ const WorkExperience = ({ userId }) => {
         <h2 className="font-semibold text-gray-500">English Proficiency</h2>
 
         {edit ? (
-          <select className=" h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full">
+          <select className=" h-10 bg-[#f2f1f3] border-gray-300  border rounded  px-2 w-full">
             <option>Good</option>
             <option>Not Good</option>
             <option>Bad</option>
