@@ -119,10 +119,7 @@ const page = () => {
         professional_field: "IT",
         professional_expertise: "Management",
         skills: {
-          personal: personalSkills.map((item) => ({
-            skill_id: item.value,
-            skill_name: item.label,
-          })),
+          personal: personalSkills.map((item) => item.label),
           professional: [],
         },
         languages: [],
@@ -207,6 +204,11 @@ const page = () => {
         console.error(error);
       });
   };
+
+  console.log(
+    personalSkills.map((item) => item.label),
+    "ps"
+  );
 
   console.log(userData, "userData");
   return (
