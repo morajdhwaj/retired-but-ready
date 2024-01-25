@@ -1,10 +1,27 @@
 "use client";
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { FaClosedCaptioning } from "react-icons/fa6";
 import { GrClose } from "react-icons/gr";
 import { IoClose } from "react-icons/io5";
+import Select from "react-select";
+
+const languagesOption = [
+  { value: "en", label: "English" },
+  { value: "es", label: "Español" },
+  { value: "fr", label: "Français" },
+  { value: "de", label: "Deutsch" },
+  { value: "it", label: "Italiano" },
+  { value: "ja", label: "日本語 (Japanese)" },
+  { value: "ko", label: "한국어 (Korean)" },
+  { value: "zh", label: "中文 (Chinese)" },
+  { value: "hi", label: "हिन्दी (Hindi)" },
+  { value: "ru", label: "Русский (Russian)" },
+];
 
 const Experiences = ({
+  userId,
   englishProficiency,
   setEnglishProficiency,
   languages,
@@ -21,14 +38,51 @@ const Experiences = ({
   const [companyEnd, setCompanyEnd] = useState("");
 
   const handleStepUp = () => {
-    if (!englishProficiency || !languages || experiences?.length === 0) {
+    if (experiences?.length === 0) {
       setShowModal(true);
       return;
     }
-    setStep(step + 1);
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/registration-step/4",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        languages: languages.map((item) => item.label),
+        english_proficiency: englishProficiency,
+        work_history: experiences,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setStep(step + 1);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
   const handleStepDown = () => {
     setStep(step - 1);
+  };
+
+  const handleLanguageChange = async (selected, selection) => {
+    const { action } = selection;
+
+    if (action === "clear") {
+      setLanguages([]);
+    } else if (action === "select-option") {
+      if (selected.length > 5) {
+        toast.error("Max length 5: Please remove some languages");
+        return;
+      }
+    } else if (action === "remove-value") {
+      console.log("remove");
+    }
+
+    setLanguages(selected);
   };
 
   const handleAddExperience = () => {
@@ -51,7 +105,10 @@ const Experiences = ({
     setExperiences(updatedExperiences);
   };
 
-  console.log(experiences, "experiences");
+  console.log(
+    languages.map((item) => item.label),
+    "lang"
+  );
 
   return (
     <div className="h-full mx-20  ">
@@ -82,10 +139,16 @@ const Experiences = ({
         </h4>
         <br />
         <div className="flex flex-col gap-5">
-          <input
+          <Select
+            id="selectLanguage"
             value={languages}
-            onChange={(e) => setLanguages(e.target.value)}
-            className=" h-10  bg-[#f2f1f3] px-2 border-gray-300  border rounded  w-full"
+            instanceId="selectLanguage"
+            isMulti
+            name="colors"
+            className="basic-multi-select"
+            classNamePrefix="select"
+            options={languagesOption}
+            onChange={handleLanguageChange}
           />
         </div>
       </div>
