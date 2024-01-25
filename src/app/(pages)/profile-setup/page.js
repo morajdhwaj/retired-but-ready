@@ -22,7 +22,7 @@ const page = () => {
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState("18-25 Years");
   const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("India");
   const [countryId, setCountryId] = useState("");
@@ -38,7 +38,7 @@ const page = () => {
   const [skills, setSkills] = useState([]);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [professionalSkills, setProfessionalSkills] = useState([]);
-  const [languages, setLanguages] = useState("");
+  const [languages, setLanguages] = useState([]);
   const [englishProficiency, setEnglishProficiency] = useState("Basic");
   const [institutionId, setInstitutionId] = useState("");
   const [institutionName, setInstitutionName] = useState("");
@@ -53,7 +53,7 @@ const page = () => {
   const [credentials, setCredentials] = useState("");
   const [isCharged, setIsCharged] = useState(true);
   const [aboutYou, setAboutYou] = useState("");
-  const [acceptableCurrencies, setAcceptableCurrencies] = useState("INR");
+  const [acceptableCurrencies, setAcceptableCurrencies] = useState([]);
   const [interests, setInterests] = useState([]);
   const [retirementCause, setRetirementCause] = useState([]);
   const [wantFrom, setWantFrom] = useState([]);
@@ -95,81 +95,78 @@ const page = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [step]);
 
-  const handleSubmit = () => {
-    const options = {
-      method: "PUT",
-      url: "https://retpro.catax.me/user/update-profile",
-      params: { user_id: userId },
-      headers: { "Content-Type": "application/json" },
-      data: {
-        user_display_name: displayName,
-        user_first_name: firstName,
-        user_last_name: lastName,
-        user_age: age,
-        user_gender: gender,
-        country_id: toString(countryId) || "11",
-        country_name: country,
-        user_state: state,
-        user_city: city,
-        city_coordinates: ["12.3210", "43.432123"],
-        profile_headline: "ganja piyo mst rho",
-        profile_summary: "saste ganja ke liye sampark kare",
-        last_designation: "Product manager",
-        total_experience: "30+",
-        professional_field: "IT",
-        professional_expertise: "Management",
-        skills: {
-          personal: personalSkills.map((item) => ({
-            skill_id: item.value,
-            skill_name: item.label,
-          })),
-          professional: [],
-        },
-        languages: [],
-        english_proficiency: englishProficiency,
-        education: [
-          {
-            institution_id: "657aa5ab21d8f5ad8d839413",
-            institution_name: "allen",
-            degree: "B.tech",
-            field: "IT",
-            start_year: 2020,
-            end_year: 2024,
-          },
-        ],
-        work_history: experiences,
-        certifications: [
-          {
-            certification_id: null,
-            certification_name: "aws cloud",
-            credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
-            certification_date: "2022-11-26T00:00:00.000Z",
-          },
-        ],
-        is_charged: true,
-        acceptable_currencies: [acceptableCurrencies],
-        interests: ["ganja"],
-        retirement_cause: retirementCause.map((item) => item.label),
-        social_links: {
-          linkedIn: linkedin,
-          facebook: facebook,
-          twitter: twitter,
-        },
-      },
-    };
+  // const handleSubmit = () => {
+  //   const options = {
+  //     method: "PUT",
+  //     url: "https://retpro.catax.me/user/update-profile",
+  //     params: { user_id: userId },
+  //     headers: { "Content-Type": "application/json" },
+  //     data: {
+  //       user_display_name: displayName,
+  //       user_first_name: firstName,
+  //       user_last_name: lastName,
+  //       user_age: age,
+  //       user_gender: gender,
+  //       country_id: toString(countryId) || "11",
+  //       country_name: country,
+  //       user_state: state,
+  //       user_city: city,
+  //       city_coordinates: ["12.3210", "43.432123"],
+  //       profile_headline: "ganja piyo mst rho",
+  //       profile_summary: "saste ganja ke liye sampark kare",
+  //       last_designation: "Product manager",
+  //       total_experience: "30+",
+  //       professional_field: "IT",
+  //       professional_expertise: "Management",
+  //       skills: {
+  //         personal: personalSkills.map((item) => item.label),
+  //         professional: [],
+  //       },
+  //       languages: [],
+  //       english_proficiency: englishProficiency,
+  //       education: [
+  //         {
+  //           institution_id: "657aa5ab21d8f5ad8d839413",
+  //           institution_name: "allen",
+  //           degree: "B.tech",
+  //           field: "IT",
+  //           start_year: 2020,
+  //           end_year: 2024,
+  //         },
+  //       ],
+  //       work_history: experiences,
+  //       certifications: [
+  //         {
+  //           certification_id: null,
+  //           certification_name: "aws cloud",
+  //           credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
+  //           certification_date: "2022-11-26T00:00:00.000Z",
+  //         },
+  //       ],
+  //       is_charged: true,
+  //       acceptable_currencies: [acceptableCurrencies],
+  //       interests: ["ganja"],
+  //       retirement_cause: retirementCause.map((item) => item.label),
+  //       social_links: {
+  //         linkedIn: linkedin,
+  //         facebook: facebook,
+  //         twitter: twitter,
+  //       },
+  //     },
+  //   };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success(response?.data?.message);
-        router.push("/profile-details");
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error(error?.response?.data?.detail);
-      });
-  };
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       toast.success(response?.data?.message);
+  //       router.push("/profile-details");
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //       toast.error(error?.response?.data?.detail);
+  //     });
+  // };
 
   const form = new FormData();
   form.append("file", selectedImage);
@@ -207,6 +204,11 @@ const page = () => {
         console.error(error);
       });
   };
+
+  console.log(
+    personalSkills.map((item) => item.label),
+    "ps"
+  );
 
   console.log(userData, "userData");
   return (
@@ -325,6 +327,7 @@ const page = () => {
             {step === 1 && (
               <PersonalInfo
                 step={step}
+                userId={userId}
                 setStep={setStep}
                 setShowModal={setShowModal}
                 firstName={firstName}
@@ -333,8 +336,6 @@ const page = () => {
                 setLastName={setLastName}
                 displayName={displayName}
                 setDisplayName={setDisplayName}
-                age={age}
-                setAge={setAge}
                 gender={gender}
                 setGender={setGender}
                 country={country}
@@ -350,15 +351,18 @@ const page = () => {
             {step === 2 && (
               <SocialInfo
                 step={step}
+                userId={userId}
                 setStep={setStep}
                 setShowModal={setShowModal}
                 retirementCause={retirementCause}
                 setRetirementCause={setRetirementCause}
+                age={age}
+                setAge={setAge}
                 facebook={facebook}
                 setFacebook={setFacebook}
                 twitter={twitter}
                 setTwitter={setTwitter}
-                linkedIn={linkedin}
+                linkedin={linkedin}
                 setLinkedin={setLinkedin}
                 instagram={instagram}
                 setInstagram={setInstagram}
@@ -368,6 +372,7 @@ const page = () => {
             )}
             {step === 3 && (
               <SkillsComponent
+                userId={userId}
                 step={step}
                 setStep={setStep}
                 setShowModal={setShowModal}
@@ -389,6 +394,7 @@ const page = () => {
             )}
             {step === 4 && (
               <Experiences
+                userId={userId}
                 step={step}
                 setStep={setStep}
                 setShowModal={setShowModal}
@@ -402,6 +408,7 @@ const page = () => {
             )}
             {step === 5 && (
               <Certification
+                userId={userId}
                 step={step}
                 setStep={setStep}
                 isCharged={isCharged}
@@ -409,7 +416,6 @@ const page = () => {
                 setAboutYou={setAboutYou}
                 setIsCharged={setIsCharged}
                 setShowModal={setShowModal}
-                handleSubmit={handleSubmit}
                 certificateName={certificateName}
                 setCertificateName={setCertificateName}
                 acceptableCurrencies={acceptableCurrencies}

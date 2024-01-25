@@ -21,7 +21,7 @@ const PersonalInfo = ({
   setState,
   city,
   setCity,
-  countryId,
+  userId,
   setCompanyId,
   step,
   setStep,
@@ -36,23 +36,38 @@ const PersonalInfo = ({
   }, []);
 
   const handleStepUp = () => {
-    if (
-      !displayName ||
-      !firstName ||
-      !lastName ||
-      !age ||
-      !gender ||
-      !city ||
-      !country ||
-      !state
-    ) {
+    if (!city || !country || !state) {
       setShowModal(true);
       return;
     }
-    setStep(step + 1);
-  };
-  const handleStepDown = () => {
-    setStep(step - 1);
+
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/registration-step/1",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        user_first_name: firstName,
+        user_last_name: lastName,
+        user_display_name: displayName,
+        user_mobile: 989789797,
+        country_id: "11",
+        country_name: country,
+        user_state: state,
+        user_city: city,
+        city_coordinates: ["12.3210", "43.432123"],
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setStep(step + 1);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   const getCountries = () => {
@@ -90,7 +105,7 @@ const PersonalInfo = ({
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
       <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Profile display name*</h2>
+        <h2 className="font-semibold text-gray-500">Profile display name</h2>
         <input
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
@@ -99,7 +114,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">First Name*</h2>
+          <h2 className="font-semibold text-gray-500">First Name</h2>
           <input
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -107,7 +122,7 @@ const PersonalInfo = ({
           />
         </div>
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Last Name*</h2>
+          <h2 className="font-semibold text-gray-500">Last Name</h2>
           <input
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -117,16 +132,7 @@ const PersonalInfo = ({
       </div>
       <div className="flex gap-5">
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Age*</h2>
-          <input
-            value={age}
-            type="number"
-            onChange={(e) => setAge(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded "
-          />
-        </div>
-        <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">Gender*</h2>
+          <h2 className="font-semibold text-gray-500">Gender</h2>
           <select
             value={gender}
             onChange={(e) => setGender(e.target.value)}
@@ -137,8 +143,6 @@ const PersonalInfo = ({
             <option>Other</option>
           </select>
         </div>
-      </div>{" "}
-      <div className="flex gap-5">
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">City*</h2>
           <input
@@ -147,7 +151,7 @@ const PersonalInfo = ({
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
-      </div>
+      </div>{" "}
       <div className="flex gap-5">
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Country*</h2>

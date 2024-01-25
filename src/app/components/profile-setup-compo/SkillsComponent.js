@@ -3,12 +3,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 const SkillsComponent = ({
-  skills,
-  stepUp,
-  stepDown,
-  setSkills,
+  userId,
   lastDesignation,
   setLastDesignation,
   totalExperience,
@@ -39,7 +37,33 @@ const SkillsComponent = ({
       setShowModal(true);
       return;
     }
-    setStep(step + 1);
+
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/registration-step/3",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        last_designation: lastDesignation,
+        total_experience: totalExperience,
+        professional_field: professionalField,
+        professional_expertise: professionalExpertise,
+        skills: {
+          personal: personalSkills.map((item) => item.label),
+          professional: professionalSkills.map((item) => item.label),
+        },
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setStep(step + 1);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
   const handleStepDown = () => {
     setStep(step - 1);
@@ -76,6 +100,7 @@ const SkillsComponent = ({
   const transformedPersonalSkills = displayPersonalSkills.map((skill) => {
     return { value: skill._id, label: skill.skill_name };
   });
+
   const transformedProfessionalSkills = displayProfessionalSkills.map(
     (skill) => {
       return { value: skill._id, label: skill.skill_name };
@@ -83,54 +108,69 @@ const SkillsComponent = ({
   );
 
   const handlePersonalSkill = (selected, selection) => {
-    const { action } = selection;
+    const { action, option } = selection;
 
     if (action === "clear") {
       setPersonalSkills([]);
     } else if (action === "select-option") {
-      if (selected.length <= 5) {
+      if (selected.length < 6) {
         setPersonalSkills(selected);
       } else {
         toast.error("Maximum selection limit is 5");
       }
     } else if (action === "remove-value") {
       setPersonalSkills(selected);
+    } else if (action === "create-option") {
+      // Allow creating a new option only if the limit is not reached
+      if (selected.length <= 5) {
+        const newOption = { value: option.value, label: option.label };
+        setAllSkills((prevSkills) => [...prevSkills, newOption]);
+        setPersonalSkills((prevSkills) => [...prevSkills, newOption]);
+      } else {
+        toast.error("Maximum total limit is 5");
+      }
     }
-    const hasMinimumSkills = selected.length >= 3;
 
-    if (!hasMinimumSkills) {
-      toast("Please select at least 3 professional skills", {
-        icon: "👍",
-      });
-    }
+    const hasMaximumSkills = selected.length >= 5;
+
+    // if (hasMaximumSkills) {
+    //   // toast.error("Maximum selection limit is 5");
+    // }
   };
 
   const handleProfessionalSkill = (selected, selection) => {
-    const { action } = selection;
+    const { action, option } = selection;
 
     if (action === "clear") {
       setProfessionalSkills([]);
     } else if (action === "select-option") {
-      if (selected.length <= 5) {
+      if (selected.length < 6) {
         setProfessionalSkills(selected);
       } else {
         toast.error("Maximum selection limit is 5");
       }
     } else if (action === "remove-value") {
       setProfessionalSkills(selected);
+    } else if (action === "create-option") {
+      // Allow creating a new option only if the limit is not reached
+      if (selected.length <= 5) {
+        const newOption = { value: option.value, label: option.label };
+        setAllSkills((prevSkills) => [...prevSkills, newOption]);
+        setProfessionalSkills((prevSkills) => [...prevSkills, newOption]);
+      } else {
+        toast.error("Maximum total limit is 5");
+      }
     }
 
-    const hasMinimumSkills = selected.length >= 3;
+    const hasMaximumSkills = selected.length >= 5;
 
-    if (!hasMinimumSkills) {
-      toast("Please select at least 3 professional skills", {
-        icon: "👍",
-      });
-    }
+    // if (hasMaximumSkills) {
+    //   // toast.error("Maximum selection limit is 5");
+    // }
   };
 
-  console.log(personalSkills, "dd");
-  console.log(personalSkills?.length === 0, "dd");
+  console.log(professionalExpertise, "pssddddsss");
+
   return (
     <div className="mx-20 mb-40 ">
       <div className="flex  flex-col gap-8 ">
@@ -138,7 +178,7 @@ const SkillsComponent = ({
           <div className="flex">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Most recent Designation
+              Most recent Designation*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -159,7 +199,7 @@ const SkillsComponent = ({
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Total Work Experience
+              Total Work Experience*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -181,7 +221,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional field
+              Professional field*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -205,7 +245,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional expertise
+              Professional expertise*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -226,11 +266,11 @@ const SkillsComponent = ({
         </div>
       </div>
       <div className="w-full  mt-5">
-        <h1 className="font-bold text-2xl ">Personal Skills</h1>
+        <h1 className="font-bold text-2xl ">Personal Skills*</h1>
         <h6 className="text-sm text-gray-400 mt-3">
           Add 3 to 5 personal skills that you are proud of
         </h6>
-        <Select
+        <CreatableSelect
           id="personal"
           value={personalSkills}
           instanceId="selectSkills"
@@ -243,11 +283,11 @@ const SkillsComponent = ({
         />
       </div>
       <div className="w-full  mt-5">
-        <h1 className="font-bold text-2xl ">Professional Skills</h1>
+        <h1 className="font-bold text-2xl ">Professional Skills*</h1>
         <h6 className="text-sm text-gray-400 mt-3">
           Add 3 to 5 personal skills that you are proud of
         </h6>
-        <Select
+        <CreatableSelect
           id="professional"
           value={professionalSkills}
           instanceId="selectSkills"
