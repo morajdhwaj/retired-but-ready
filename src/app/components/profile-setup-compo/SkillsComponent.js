@@ -6,6 +6,7 @@ import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 
 const SkillsComponent = ({
+  userId,
   lastDesignation,
   setLastDesignation,
   totalExperience,
@@ -36,7 +37,33 @@ const SkillsComponent = ({
       setShowModal(true);
       return;
     }
-    setStep(step + 1);
+
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/registration-step/3",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        last_designation: lastDesignation,
+        total_experience: totalExperience,
+        professional_field: professionalField,
+        professional_expertise: professionalExpertise,
+        skills: {
+          personal: personalSkills.map((item) => item.label),
+          professional: professionalSkills.map((item) => item.label),
+        },
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setStep(step + 1);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
   const handleStepDown = () => {
     setStep(step - 1);
@@ -142,7 +169,7 @@ const SkillsComponent = ({
     // }
   };
 
-  console.log(personalSkills, "dd");
+  console.log(professionalExpertise, "pssddddsss");
 
   return (
     <div className="mx-20 mb-40 ">
@@ -151,7 +178,7 @@ const SkillsComponent = ({
           <div className="flex">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Most recent Designation
+              Most recent Designation*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -172,7 +199,7 @@ const SkillsComponent = ({
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
               {" "}
-              Total Work Experience
+              Total Work Experience*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -194,7 +221,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional field
+              Professional field*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -218,7 +245,7 @@ const SkillsComponent = ({
         <div>
           <div className="flex w-full">
             <h2 className=" text-gray-500 font-medium text-xl">
-              Professional expertise
+              Professional expertise*
             </h2>
             <h6 className="font-small text-gray-300 ml-3">
               (Before Retirement)
@@ -239,7 +266,7 @@ const SkillsComponent = ({
         </div>
       </div>
       <div className="w-full  mt-5">
-        <h1 className="font-bold text-2xl ">Personal Skills</h1>
+        <h1 className="font-bold text-2xl ">Personal Skills*</h1>
         <h6 className="text-sm text-gray-400 mt-3">
           Add 3 to 5 personal skills that you are proud of
         </h6>
@@ -256,7 +283,7 @@ const SkillsComponent = ({
         />
       </div>
       <div className="w-full  mt-5">
-        <h1 className="font-bold text-2xl ">Professional Skills</h1>
+        <h1 className="font-bold text-2xl ">Professional Skills*</h1>
         <h6 className="text-sm text-gray-400 mt-3">
           Add 3 to 5 personal skills that you are proud of
         </h6>
