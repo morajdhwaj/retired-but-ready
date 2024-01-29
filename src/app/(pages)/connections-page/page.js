@@ -1,6 +1,9 @@
+"use client";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import React from "react";
+// import Main from "@/app/components/jaishreeConnectionComponent/Main";
+import Network from "@/app/components/jaishreeConnectionComponent/Network";
 
 const page = () => {
   return (
@@ -10,8 +13,10 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  h-[100vh]  ">
-          connections-page
+        <div className="w-full bg-gray-200  p-5 lg:ml-52 pt-24  h-[100%]  ">
+          
+           {/* <Main/>     */}
+           <Network/> 
         </div>
       </div>
     </div>
