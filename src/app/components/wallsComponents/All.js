@@ -6,7 +6,8 @@ import { FaHeart } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 
-const All = () => {
+const All = ({ userId }) => {
+  console.log(userId, "user");
   return (
     <div>
       <div className=" mt-5 ">
