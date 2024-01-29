@@ -113,11 +113,11 @@ const Network = () => {
       </h1>
       <div className=" border border-[#9079af] w-[60%] h-0.5" />
 
-      {connection.map((currentElem, key) => (
-        <div className="  gap-5 mt-5">
-          <div className="border border-gray-300 rounded-md" key={key}>
+      <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
+        {connection.map((currentElem, key) => (
+          <div className="border border-gray-300  rounded-md" key={key}>
             <div className=" bg-[#B3CEE2] ">
-              <IoMdCloseCircle className="size-8 mx-40  md:mx-24 lg:mx-36" />
+              <IoMdCloseCircle className="size-8 mx-20" />
 
               <div className="flex items-center justify-center pb-4">
                 {currentElem.from_user_image && (
@@ -155,8 +155,8 @@ const Network = () => {
               <BsThreeDots className="text-gray-600 size-5" />
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <div className="mt-2 ">
         <h1 className="flex justify-center items-center text-[#773fc6] font-medium">
