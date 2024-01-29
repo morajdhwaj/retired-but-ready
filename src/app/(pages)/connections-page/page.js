@@ -2,7 +2,8 @@
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import React from "react";
-import Main from "@/app/components/jaishreeConnectionComponent/Main";
+// import Main from "@/app/components/jaishreeConnectionComponent/Main";
+import Network from "@/app/components/jaishreeConnectionComponent/Network";
 
 const page = () => {
   return (
@@ -14,7 +15,8 @@ const page = () => {
         </div>
         <div className="w-full bg-gray-200  p-5 lg:ml-52 pt-24  h-[100%]  ">
           
-          <Main/>   
+           {/* <Main/>     */}
+           <Network/> 
         </div>
       </div>
     </div>

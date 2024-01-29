@@ -8,7 +8,9 @@ const Main = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 5;
   const [dropdownOpen, setDropdownOpen] = useState(Array(20).fill(false));
+ 
 
+ 
   const toggleDropdown = (index) => {
     console.log(index, "index");
 
@@ -24,7 +26,7 @@ const Main = () => {
 
     
     return (
-      <div className="absolute border  border-gray-300 shadow-md rounded-md flex flex-col right-0 p-2">
+      <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-0 p-2">
         <button className="hover:bg-[#773fc6]  rounded-md hover:text-white text-black p-2">
           Add a connection
         </button>
@@ -137,6 +139,8 @@ const Main = () => {
       company: "Tech Connection India Pvt.Ltd.",
     },
     
+    
+    
   ];
   const indexOfLastItem = currentPage * itemsPerPage;//1*5 
   console.log(currentPage,'currentPage')
@@ -164,7 +168,7 @@ const Main = () => {
       <span className="font-semibold text-[#374151] dark:text-white text-sm mt-5">
             {cards.length}
           </span>{" "}
-          {" "}connections 
+          connections 
        
 
       {currentItems.map((card, index) => (
@@ -203,8 +207,16 @@ const Main = () => {
           </div>
         </div>
       ))}
-      <div className="flex flex-col items-center mt-3">
-        <span className="text-sm text-gray-700 dark:text-gray-400">
+      <div className="flex items-center justify-center mt-3">
+      <button
+            className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-600 rounded hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+          <div className="p-2">
+          <span className="text-sm text-gray-700 dark:text-gray-400">
           Showing{" "}
           <span className="font-semibold text-gray-900 dark:text-white">
             {indexOfFirstItem + 1}
@@ -219,25 +231,20 @@ const Main = () => {
           </span>{" "}
           Entries
         </span>
-
-        <div className="inline-flex mt-2 xs:mt-0">
-          <button
-            className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Prev
-          </button>
-          <button
-            className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            onClick={() => paginate(currentPage + 1)}
-            disabled={indexOfLastItem >= cards.length}
-          >
-            Next
-          </button>
+          </div>
+        <button
+             className="flex items-center justify-center px-3 h-8 text-sm font-medium text-white bg-gray-600 border-0 border-s border-gray-700 rounded hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+             onClick={() => paginate(currentPage + 1)}
+             disabled={indexOfLastItem >= cards.length}
+           >
+             Next
+           </button>
+          
+          
+         
         </div>
       </div>
-    </div>
+   
   );
 };
 
