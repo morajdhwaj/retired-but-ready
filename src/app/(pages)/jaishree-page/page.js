@@ -12,7 +12,7 @@ import Reaction from "@/app/components/jaishreeComponent/Reaction";
 //import Report from "@/app/components/jaishreeComponent/Report";
 //import Share from "@/app/components/jaishreeComponent/Share";
 import Image from "next/image";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
@@ -57,7 +57,7 @@ const page = () => {
   }
 
   console.log(userData, "userId");
- console.log(tab);
+  console.log(tab);
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
@@ -73,12 +73,8 @@ const page = () => {
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
-                  <h2>{userData.user_display_name}</h2>
-                    <p className="text-gray-500">
-                    
-                      {userData.last_designation}
-                    </p>
-                    
+                    <h2>{userData.user_display_name}</h2>
+                    <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
@@ -107,11 +103,7 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">
-                My Walls
-               
-              </h2>
-             
+              <h2 className="font-semibold text-2xl">My Walls</h2>
             </div>
           </div>
           <div className="mt-20 mx-5">
@@ -119,9 +111,9 @@ const page = () => {
             {tab === 1 && (
               <div>
                 {/* <All />   */}
-                 <Reaction /> 
+                <Reaction />
                 {/* <Message/>  */}
-               {/* <Comments/>    */}
+                {/* <Comments/>    */}
                 {/* <Details/>  */}
                 {/* <Postpage /> */}
                 {/* <Connection/> */}
