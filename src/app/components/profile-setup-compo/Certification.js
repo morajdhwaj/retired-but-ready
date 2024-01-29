@@ -1,10 +1,24 @@
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import Select from "react-select";
 
+const currencies = [
+  { value: "USD", label: "United States Dollar" },
+  { value: "EUR", label: "Euro" },
+  { value: "INR", label: "Indian Rupees" },
+  { value: "GBP", label: "British Pound Sterling" },
+  { value: "AUD", label: "Australian Dollar" },
+  { value: "CAD", label: "Canadian Dollar" },
+  { value: "CHF", label: "Swiss Franc" },
+  { value: "CNY", label: "Chinese Yuan" },
+  { value: "SEK", label: "Swedish Krona" },
+  { value: "NZD", label: "New Zealand Dollar" },
+];
+
 const Certification = ({
-  stepDown,
-  handleSubmit,
+  userId,
   certificateName,
   setCertificateName,
   acceptableCurrencies,
@@ -18,6 +32,8 @@ const Certification = ({
   setShowModal,
 }) => {
   const [certificates, setCertificates] = useState([]);
+
+  const router = useRouter();
 
   const handleStepDown = () => {
     setStep(step - 1);
@@ -60,7 +76,66 @@ const Certification = ({
     }
   };
 
-  console.log(aboutYou, "sddd");
+  const handleCurrencyChange = async (selected, selection) => {
+    const { action } = selection;
+
+    if (action === "clear") {
+      setAcceptableCurrencies([]);
+    } else if (action === "select-option") {
+      if (selected.length > 3) {
+        toast.error("Max length 3: Please remove some currencies");
+        return;
+      }
+    } else if (action === "remove-value") {
+      console.log("remove");
+    }
+
+    setAcceptableCurrencies(selected);
+  };
+
+  const handleSubmit = () => {
+    if (acceptableCurrencies?.length === 0) {
+      setShowModal(true);
+      return;
+    }
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/registration-step/5",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        certifications: [
+          {
+            certification_id: null,
+            certification_name: "aws cloud",
+            credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
+            certification_date: "2022-11-26T00:00:00.000Z",
+          },
+        ],
+        is_charged: true,
+        acceptable_currencies: acceptableCurrencies.map((item) => item.label),
+        profile_headline: "string",
+        profile_summary: "string",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        router.push("/profile-details");
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
+  console.log(
+    acceptableCurrencies.map((item) => item.label),
+    "sddd"
+  );
 
   return (
     <div>
@@ -106,16 +181,17 @@ const Certification = ({
 
           <div className=" mt-5 ">
             <h1 className="text-gray-500  text-base">Currency you accept</h1>
-            <select
-              type="text"
-              className="bg-[#f2f1f3] border px-2 border-gray-300 h-10   rounded w-full"
+            <Select
+              id="selectCurrency"
               value={acceptableCurrencies}
-              onChange={(e) => setAcceptableCurrencies(e.target.value)}
-            >
-              <option>INR</option>
-              <option>USD</option>
-              <option>EURO</option>
-            </select>
+              instanceId="selectCurrencies"
+              isMulti
+              name="colors"
+              className="basic-multi-select"
+              classNamePrefix="select"
+              options={currencies}
+              onChange={handleCurrencyChange}
+            />
           </div>
           <div className="text-gray-500  text-xl mt-5">
             <h1>About you</h1>
