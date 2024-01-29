@@ -11,14 +11,50 @@ import Youtube from "@/app/components/anushkaComponent/Youtube";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
-
+import axios from "axios";
 const page = () => {
   const [tab, setTab] = useState(1);
+  const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data);
+        setUserData(response?.data);
+        setCompanyName(response?.data?.work_history[0].company_name);
+        setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handleToggle = (index) => {
+    activeIndex === index ? setActiveIndex(null) : setActiveIndex(index);
+  };
+
+  if (userData.length === 0) {
+    return <h1 className="mx-5">Loading...</h1>;
+  }
+
+  console.log(userData, "userId");
 
   console.log(tab);
 
@@ -36,8 +72,8 @@ const page = () => {
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
-                    <h2>Steve Jacob</h2>
-                    <p className="text-gray-500">CEO & Co-founder</p>
+                    <h2>{userData.user_display_name}</h2>
+                    <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
@@ -66,13 +102,7 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">
-                My Tabs{" "}
-                <span className="text-sm font-normal">/ profile Overview</span>
-              </h2>
-              <p className="text-sm font-normal mt-5 hidden md:flex">
-                Previewing as a visitor
-              </p>
+              <h2 className="font-semibold text-2xl">My Walls</h2>
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
