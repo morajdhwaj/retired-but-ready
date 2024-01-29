@@ -111,9 +111,15 @@ const page = () => {
             {tab === 1 && (
               <div>
                 {/* <All />   */}
+
                 {/* <Reaction />  */}
                 {/* <Message/>  */}
                 <Comments />
+
+              
+                {/* <Message/>  */}
+                {/* <Comments/>    */}
+
                 {/* <Details/>  */}
                 {/* <Postpage /> */}
                 {/* <Connection/> */}

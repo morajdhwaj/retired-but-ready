@@ -52,7 +52,7 @@ const SocialInfo = ({
       headers: { "Content-Type": "application/json" },
       data: {
         user_age: age,
-        interests: ["string"],
+        interests: wantFrom.map((item) => item.label),
         retirement_cause: retirementCause.map((item) => item.label),
         social_links: {
           linkedIn: linkedin,
@@ -114,7 +114,10 @@ const SocialInfo = ({
       toast.error("Invalid LinkedIn URL");
     }
   };
-  console.log(wantFrom, "want");
+  console.log(
+    wantFrom.map((item) => item.label),
+    "want"
+  );
   return (
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">

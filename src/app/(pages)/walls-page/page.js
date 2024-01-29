@@ -5,7 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
@@ -60,32 +60,21 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:mx-60 pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
-                  <h2>{userData.user_display_name}</h2>
-                    <p className="text-gray-500">
-                    
-                      {userData.last_designation}
-                    </p>
-                    
+                    <h2>{userData.user_display_name}</h2>
+                    <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button className="flex items-center gap-1 p-2 bg-white rounded-lg">
                     <FaBox size={10} />
-                    OVERVIEW
-                  </button>
-                  <button className="flex items-center gap-1 ">
-                    <PiFilesFill size={15} /> TEAMS
-                  </button>
-                  <button className="flex items-center gap-1 ">
-                    <AiFillTool size={15} />
-                    PROJECTS
+                    Add Post
                   </button>
                 </div>
               </div>
@@ -101,10 +90,7 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">
-                My Walls
-              </h2>
-              
+              <h2 className="font-semibold text-2xl">My Walls</h2>
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
@@ -142,7 +128,7 @@ const page = () => {
             </div>
             {tab === 1 && (
               <div>
-                <All /> <All />
+                <All userId={userId} />
               </div>
             )}
             {tab === 2 && <Trending />}
