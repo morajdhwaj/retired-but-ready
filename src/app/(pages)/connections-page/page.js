@@ -13,10 +13,9 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-gray-200  p-5 lg:ml-52 pt-24  h-[100%]  ">
-          
-           {/* <Main/>     */}
-           <Network/> 
+        <div className="w-full bg-gray-200  p-5 lg:ml-52 pt-24  h-[100vh]  ">
+          {/* <Main/>     */}
+          <Network />
         </div>
       </div>
     </div>

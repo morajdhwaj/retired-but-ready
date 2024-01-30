@@ -20,18 +20,20 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className="mx-10 fixed py-10 top-80 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center">
-        <div className="flex justify-end my-2">
+      <div className="mx-5 fixed py-10 top-[46vh] left-0 bottom-0  h-10 z-50 flex flex-col  justify-center ">
+        <div
+          className={`flex ${close ? "justify-center" : "justify-end"} my-2`}
+        >
           <button onClick={() => setClose(!close)}>
             {close ? (
-              <MdOutlineArrowForwardIos size={20} />
+              <MdOutlineArrowForwardIos color="#773fc6" size={20} />
             ) : (
-              <MdOutlineArrowBackIosNew size={20} />
+              <MdOutlineArrowBackIosNew color="#773fc6" size={20} />
             )}
           </button>
         </div>
         {close ? (
-          <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-5 self-start">
+          <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg  flex flex-col items-center p-5 gap-2 self-start">
             <Link
               href="/"
               className="flex gap-5 items-center  bg-white p-2 rounded-xl hover:bg-gray-200"
@@ -101,7 +103,7 @@ const Sidebar = () => {
             </Link>
           </div>
         ) : (
-          <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-5 self-start">
+          <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-2 self-start">
             <Link
               href="/"
               className="flex gap-5 items-center w-40 bg-white p-2 rounded-xl hover:bg-gray-200"
@@ -179,6 +181,9 @@ const Sidebar = () => {
             </Link>
           </div>
         )}
+        <div className="border   bg-[#c5cad7]  rounded-lg  flex justify-center w-full items-center mt-5 p-5 gap-5 self-start">
+          <div className="bg-[#c5cad7]">Download Now</div>
+        </div>
       </div>
     </div>
   );

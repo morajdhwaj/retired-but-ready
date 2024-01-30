@@ -97,7 +97,7 @@ const page = () => {
             <div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}
-                className={`border-b-4 w-1/3 text-sm md:text-xl font-medium p-2  ${
+                className={`border-b-4 w-1/2 text-sm md:text-xl font-medium p-2  ${
                   tab === 1
                     ? "border-[#773fc6] text-[#773fc6]"
                     : "border-gray-200"
@@ -107,7 +107,7 @@ const page = () => {
               </button>
               <button
                 onClick={() => setTab(2)}
-                className={`border-b-4  text-sm md:text-xl font-medium w-1/3 p-2 ${
+                className={`border-b-4  text-sm md:text-xl font-medium w-1/2 p-2 ${
                   tab === 2
                     ? "border-[#773fc6] text-[#773fc6]"
                     : "border-gray-200"
@@ -115,7 +115,7 @@ const page = () => {
               >
                 <span className="text-red-500">Trending</span> News
               </button>
-              <button
+              {/* <button
                 onClick={() => setTab(3)}
                 className={`border-b-4  text-sm md:text-xl font-medium w-1/3 p-2 ${
                   tab === 3
@@ -124,7 +124,7 @@ const page = () => {
                 } `}
               >
                 Surprise Me!
-              </button>
+              </button> */}
             </div>
             {tab === 1 && (
               <div>
@@ -132,7 +132,7 @@ const page = () => {
               </div>
             )}
             {tab === 2 && <Trending />}
-            {tab === 3 && <div>Tab3</div>}
+            {/* {tab === 3 && <div>Tab3</div>} */}
           </div>
         </div>
       </div>
