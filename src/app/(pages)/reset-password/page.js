@@ -22,7 +22,7 @@ const page = () => {
   console.log(password);
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/profile-setup");
+    showModal && router.push("/call-me-back");
   };
 
   const handlePassword = () => {
@@ -61,34 +61,33 @@ const page = () => {
           />
         </div>
         <div className="lg:w-1/2 bg-white lg:mr-20 p-10 mb-10">
-            <h1 className="text-3xl font-medium ">Reset Password</h1>
-            <h6 className="text-sm mt-3  ">
-              Do ensure your new password is atleast 6 character long
-            </h6>
-            <h1 className="mt-8 text-gray-500 ">Old Password</h1>
-            <input
-              type="text"
-              value={oldPassword}
-              onChange={(e) => setOldPassword(e.target.value)}
-              className=" w-full h-14 rounded border border-gray-200 "
-            />
+          <h1 className="text-3xl font-medium ">Reset Password</h1>
+          <h6 className="text-sm mt-3  ">
+            Do ensure your new password is atleast 6 character long
+          </h6>
+          <h1 className="mt-8 text-gray-500 ">Old Password</h1>
+          <input
+            type="text"
+            value={oldPassword}
+            onChange={(e) => setOldPassword(e.target.value)}
+            className=" w-full h-14 rounded border border-gray-200 "
+          />
 
-            <h1 className="mt-4 text-gray-500">New Password</h1>
-            <input
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="h-14 rounded w-full border border-gray-200"
-            />
-            <h1 className="mt-4 text-gray-500">Confirm Password</h1>
-            <input className="h-14 rounded w-full border border-gray-200"></input>
-            <button
-              onClick={handlePassword}
-              className="bg-[#773FC6] mt-6 w-full h-12 rounded text-white font-thin"
-            >
-              Reset Password
-            </button>
-          
+          <h1 className="mt-4 text-gray-500">New Password</h1>
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="h-14 rounded w-full border border-gray-200"
+          />
+          <h1 className="mt-4 text-gray-500">Confirm Password</h1>
+          <input className="h-14 rounded w-full border border-gray-200"></input>
+          <button
+            onClick={handlePassword}
+            className="bg-[#773FC6] mt-6 w-full h-12 rounded text-white font-thin"
+          >
+            Reset Password
+          </button>
         </div>
         {showModal && (
           <PopUp

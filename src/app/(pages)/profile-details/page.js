@@ -54,8 +54,6 @@ const page = () => {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
-  console.log(userData, "userId");
-
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
