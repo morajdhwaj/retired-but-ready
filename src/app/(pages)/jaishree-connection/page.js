@@ -2,7 +2,7 @@
 
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-import ConnectionOne from "@/app/components/jaishreeConnectionComponent/ConnectionOne";
+import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 // import ConnectionTwo from "@/app/components/jaishreeConnectionComponent/ConnectionTwo";
 // import ConnectionThree from "@/app/components/jaishreeConnectionComponent/ConnectionThree";
 // import ConnectionSix from "@/app/components/jaishreeConnectionComponent/ConnectionSix";
@@ -78,8 +78,8 @@ const page = () => {
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             {tab === 1 && (
               <div>
-                {/* <Network/>  */}
-                <ConnectionOne />
+                {/* <Suggestion/>  */}
+                <Network />
                 {/* <ConnectionTwo/> */}
                 {/* <ConnectionThree/> */}
                 {/* <ConnectionSix/> */}

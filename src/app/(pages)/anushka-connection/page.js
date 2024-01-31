@@ -2,8 +2,8 @@
 
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-import ConnectionFive from "@/app/components/anushkaConnectionComponent/ConnectionFive";
-import ConnectionSeven from "@/app/components/anushkaConnectionComponent/ConnectionSeven";
+import ConnectionFive from "@/app/components/anushkaConnectionComponent/HiringConnection";
+import ConnectionSeven from "@/app/components/anushkaConnectionComponent/BestConnection";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";

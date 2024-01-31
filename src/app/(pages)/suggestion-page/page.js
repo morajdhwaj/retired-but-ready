@@ -2,16 +2,13 @@
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
-// import Main from "@/app/components/jaishreeConnectionComponent/Main";
-
-import ConnectionOne from "@/app/components/jaishreeConnectionComponent/Network";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
-import Network from "@/app/components/jaishreeConnectionComponent/Network";
+import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
@@ -61,9 +58,9 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <Link href="/suggestion-page">
-                  <h1> SUGGESTION</h1>
-                </Link>
+                <div className="flex items-center  p-1 bg-white rounded-lg ">
+                  <button>SUGGESTION</button>
+                </div>
               </div>
             </div>
             <div
@@ -84,14 +81,7 @@ const page = () => {
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            <div>
-              {<Network />}
-              {/* <Network /> */}
-              {/* <ConnectionTwo/> */}
-              {/* <ConnectionThree/> */}
-              {/* <ConnectionSix/> */}
-              {/* <Main /> */}
-            </div>
+            {<Suggestion />}
           </div>
         </div>
       </div>
