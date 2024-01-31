@@ -1,19 +1,14 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
+
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
-import Network from "@/app/components/jaishreeConnectionComponent/Network";
-// import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
-// import GpsConnection from "@/app/components/jaishreeConnectionComponent/GpsConnection";
-// import MyConnection from "@/app/components/jaishreeConnectionComponent/MyConnection";
-// import ProfileConnection from "@/app/components/jaishreeConnectionComponent/ProfileConnection";
-// import Main from "@/app/components/jaishreeConnectionComponent/Main";
-// import WorkConnection from "@/app/components/jaishreeConnectionComponent/WorkConnection";
+import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
@@ -52,7 +47,6 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
@@ -64,9 +58,9 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <Link href="/suggestion-page">
-                  <h1> SUGGESTION</h1>
-                </Link>
+                <div className="flex items-center  p-1 bg-white rounded-lg ">
+                  <button>SUGGESTION</button>
+                </div>
               </div>
             </div>
             <div
@@ -87,17 +81,8 @@ const page = () => {
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            <div>
-              <Network />
-              {/* <Suggestion/>  */}
-              {/* <GpsConnection />
-              <MyConnection />
-              <ProfileConnection />
-              <WorkConnection /> */}
-              {/* <Main /> */}
-            </div>
+            {<Suggestion />}
           </div>
-
         </div>
       </div>
     </div>
