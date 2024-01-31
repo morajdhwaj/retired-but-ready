@@ -14,7 +14,6 @@ import toast from "react-hot-toast";
 const All = ({ userId }) => {
   const [feeds, setFeeds] = useState([]);
   const [showComments, setShowComments] = useState("");
-  const [comments, setComments] = useState("");
 
   useEffect(() => {
     getFeeds();
@@ -38,34 +37,7 @@ const All = ({ userId }) => {
   };
 
   const handleComments = (feedId) => {
-    setComments("");
     setShowComments(feedId);
-  };
-
-  const postComment = (postId, postUser) => {
-    const options = {
-      method: "POST",
-      url: "https://retpro.catax.me/comments/add-comment",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        comment_location: "global",
-        parent_id: postId,
-        comment_by: postUser,
-        comment_content: comments,
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success(response?.data?.message);
-        getFeeds();
-        setComments("");
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
   };
 
   const postReaction = (postId, postUser) => {
@@ -174,21 +146,7 @@ const All = ({ userId }) => {
                 </div>
               </div>
               {feed._id == showComments && (
-                <div className="m-2">
-                  <textarea
-                    value={comments}
-                    onChange={(e) => setComments(e.target.value)}
-                    className="w-full p-2 text-sm"
-                    placeholder="Leave your thoughts here"
-                  />
-                  <button
-                    onClick={() => postComment(feed._id, feed.post_user)}
-                    className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
-                  >
-                    Post
-                  </button>
-                  <Comments postId={feed?._id} />
-                </div>
+                <Comments userId={userId} postId={feed?._id} />
               )}
             </div>
           </div>
