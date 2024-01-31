@@ -8,9 +8,13 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
+import Comments from "../jaishreeComponent/Comments";
+import toast from "react-hot-toast";
 
 const All = ({ userId }) => {
   const [feeds, setFeeds] = useState([]);
+  const [showComments, setShowComments] = useState("");
+  const [comments, setComments] = useState("");
 
   useEffect(() => {
     getFeeds();
@@ -32,6 +36,56 @@ const All = ({ userId }) => {
         console.error(error);
       });
   };
+
+  const handleComments = (feedId) => {
+    setComments("");
+    setShowComments(feedId);
+  };
+
+  const postComment = (postId, postUser) => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/comments/add-comment",
+      headers: { "Content-Type": "application/json" },
+      data: {
+        comment_location: "global",
+        parent_id: postId,
+        comment_by: postUser,
+        comment_content: comments,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        getFeeds();
+        setComments("");
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const postReaction = (postId, postUser) => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/post/react",
+      params: { post_id: postId, user_id: postUser, reaction_type: "like" },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getFeeds();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   console.log(feeds, "feed");
   return (
     <div>
@@ -94,15 +148,17 @@ const All = ({ userId }) => {
             <div>
               <div className="flex gap-1 items-center  ">
                 <AiFillLike />
-                <p className="text-sm">1,232</p>
+                <p className="text-sm">{feed?.reaction_like?.length}</p>
               </div>
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
-                  <button>
+                  <button
+                    onClick={() => postReaction(feed._id, feed.post_user)}
+                  >
                     <AiOutlineLike />
                   </button>
                   <p className="text-sm">Like</p>
-                  <button>
+                  <button onClick={() => handleComments(feed?._id)}>
                     <MdComment />
                   </button>
                   <p className="text-sm">Comment</p>
@@ -112,17 +168,34 @@ const All = ({ userId }) => {
                   <p className="text-sm">Share</p>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  321
-                  <p className="text-sm">Comments</p> | 24
+                  {feed?.post_comment_id?.length}
+                  <p className="text-sm">Comments</p> | {feed?.shares?.length}
                   <p className="text-sm">Shares</p>
                 </div>
               </div>
+              {feed._id == showComments && (
+                <div className="m-2">
+                  <textarea
+                    value={comments}
+                    onChange={(e) => setComments(e.target.value)}
+                    className="w-full p-2 text-sm"
+                    placeholder="Leave your thoughts here"
+                  />
+                  <button
+                    onClick={() => postComment(feed._id, feed.post_user)}
+                    className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
+                  >
+                    Post
+                  </button>
+                  <Comments postId={feed?._id} />
+                </div>
+              )}
             </div>
           </div>
         );
       })}
 
-      <div className=" mt-5 ">
+      {/* <div className=" mt-5 ">
         <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">
             <div>
@@ -203,7 +276,7 @@ const All = ({ userId }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

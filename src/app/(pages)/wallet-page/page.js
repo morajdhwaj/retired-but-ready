@@ -11,7 +11,7 @@ const page = () => {
           <Sidebar />
         </div>
         <div className="w-full bg-[#f2f1f3] flex items-center justify-center p-5 lg:ml-52 pt-24  h-[100vh]  ">
-          Coming soon...
+          Wallet coming soon...
         </div>
       </div>
     </div>

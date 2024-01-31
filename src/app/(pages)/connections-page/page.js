@@ -52,6 +52,7 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
+
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
@@ -96,6 +97,7 @@ const page = () => {
               {/* <Main /> */}
             </div>
           </div>
+
         </div>
       </div>
     </div>
