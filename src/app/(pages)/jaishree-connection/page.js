@@ -2,20 +2,22 @@
 
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
-// import ConnectionTwo from "@/app/components/jaishreeConnectionComponent/ConnectionTwo";
-// import ConnectionThree from "@/app/components/jaishreeConnectionComponent/ConnectionThree";
-// import ConnectionSix from "@/app/components/jaishreeConnectionComponent/ConnectionSix";
+// import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
+
 // import Main from "@/app/components/jaishreeConnectionComponent/Main";
 
-// import Network from "@/app/components/jaishreeConnectionComponent/Network";
+import Network from "@/app/components/jaishreeConnectionComponent/Network";
+// import GpsConnection from "@/app/components/jaishreeConnectionComponent/GpsConnection";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AiFillTool } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
+
 import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
+// import MyConnection from "@/app/components/jaishreeConnectionComponent/MyConnection";
+// import ProfileConnection from "@/app/components/jaishreeConnectionComponent/ProfileConnection";
+// import WorkConnection from "@/app/components/jaishreeConnectionComponent/WorkConnection";
 
 const page = () => {
   const [tab, setTab] = useState(1);
@@ -80,9 +82,10 @@ const page = () => {
               <div>
                 {/* <Suggestion/>  */}
                 <Network />
-                {/* <ConnectionTwo/> */}
-                {/* <ConnectionThree/> */}
-                {/* <ConnectionSix/> */}
+                {/* <GpsConnection/>
+               <MyConnection/>
+               <ProfileConnection/>
+               <WorkConnection/> */}
                 {/* <Main/>   */}
               </div>
             )}

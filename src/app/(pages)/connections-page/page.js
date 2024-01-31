@@ -4,7 +4,6 @@ import Sidebar from "@/app/components/Sidebar";
 
 // import Main from "@/app/components/jaishreeConnectionComponent/Main";
 
-import ConnectionOne from "@/app/components/jaishreeConnectionComponent/Network";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -12,6 +11,12 @@ import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 import Network from "@/app/components/jaishreeConnectionComponent/Network";
+import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
+import GpsConnection from "@/app/components/jaishreeConnectionComponent/GpsConnection";
+import MyConnection from "@/app/components/jaishreeConnectionComponent/MyConnection";
+import ProfileConnection from "@/app/components/jaishreeConnectionComponent/ProfileConnection";
+
+import WorkConnection from "@/app/components/jaishreeConnectionComponent/WorkConnection";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
@@ -85,11 +90,12 @@ const page = () => {
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             <div>
-              {<Network />}
               {/* <Network /> */}
-              {/* <ConnectionTwo/> */}
-              {/* <ConnectionThree/> */}
-              {/* <ConnectionSix/> */}
+              {/* <Suggestion/>  */}
+              <GpsConnection />
+              <MyConnection />
+              <ProfileConnection />
+              <WorkConnection />
               {/* <Main /> */}
             </div>
           </div>
