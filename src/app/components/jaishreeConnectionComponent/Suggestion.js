@@ -16,6 +16,7 @@ import WorkConnection from "./WorkConnection";
 import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
 import BestConnection from "../anushkaConnectionComponent/BestConnection";
 import MyConnection from "./MyConnection";
+import Request from "@/Request";
 
 const cards = [
   {
@@ -72,6 +73,7 @@ const Suggestion = () => {
 
   return (
     <div className=" ">
+      <Request />
       <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex flex-wrap items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
         <div
           className="hover:border-gray-400 hover:border-b-2"
