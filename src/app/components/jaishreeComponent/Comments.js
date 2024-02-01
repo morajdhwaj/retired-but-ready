@@ -78,6 +78,7 @@ const Comments = ({ postId, userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -97,6 +98,7 @@ const Comments = ({ postId, userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -127,6 +129,7 @@ const Comments = ({ postId, userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -150,6 +153,7 @@ const Comments = ({ postId, userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -173,6 +177,7 @@ const Comments = ({ postId, userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 

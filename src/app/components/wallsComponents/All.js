@@ -33,6 +33,7 @@ const All = ({ userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -55,6 +56,7 @@ const All = ({ userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
