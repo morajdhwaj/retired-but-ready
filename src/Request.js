@@ -46,16 +46,15 @@ const Request = () => {
     .catch(function (error) {
       console.error(error);
     });
-
-  const handleIgnore = (networkRequestId) => {
+  const handleAccept = (networkRequestId) => {
     setAccept(networkRequestId);
-    console.log("Ignoring request with ID:", networkRequestId);
-    // Add logic to handle ignore action
+    console.log("Accepting request with ID:", networkRequestId);
+    // Add logic to handle accept action
   };
 
   const options1 = {
     method: "PUT",
-    url: `https://retpro.catax.me/accept-request/${ignore}`,
+    url: `https://retpro.catax.me/reject-request/${ignore}`,
   };
 
   axios
@@ -68,18 +67,17 @@ const Request = () => {
     .catch(function (error) {
       console.error(error);
     });
-
-  const handleAccept = (networkRequestId) => {
+  const handleIgnore = (networkRequestId) => {
     setIgnore(networkRequestId);
-    console.log("Accepting request with ID:", networkRequestId);
-    // Add logic to handle accept action
+    console.log("Ignoring request with ID:", networkRequestId);
+    // Add logic to handle ignore action
   };
+
   return (
     <div>
       <div className="bg-white border-2 border-gray-300 w-full h-full rounded-lg">
         <div className="flex justify-between mx-5 text-gray-500 mt-2">
-          <h2> Invitation </h2>
-          <h2>See all </h2>
+          {invitation.length === 0 ? "No Pending Request" : "Invitations "}
         </div>
         <div className="border-b-2 border-gray-200 h-1 w-full mt-2" />
         {invitation.map((curEle, key) => (
