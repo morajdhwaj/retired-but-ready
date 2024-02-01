@@ -5,6 +5,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { RiSpam2Fill } from "react-icons/ri";
+import PopUp from "../PopUp";
 
 const Comments = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
@@ -12,7 +14,9 @@ const Comments = ({ postId, userId }) => {
   const [editComment, setEditComment] = useState("");
   const [showDropDown, setShowDropDown] = useState(false);
   const [commentId, setCommentId] = useState("");
+  const [reportCommentId, setReportCommentId] = useState("");
   const [editCommentId, setEditCommentId] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getComments();
@@ -22,6 +26,11 @@ const Comments = ({ postId, userId }) => {
     setShowDropDown(!showDropDown);
     setCommentId(comment_id);
     setEditComment(content);
+  };
+
+  const handleModal = (comment_id) => {
+    setShowModal(!showModal);
+    setReportCommentId(comment_id);
   };
 
   const getComments = () => {
@@ -138,6 +147,29 @@ const Comments = ({ postId, userId }) => {
       });
   };
 
+  const reportSpam = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/comments/report-comment-as-spam",
+      params: {
+        comment_id: reportCommentId,
+        reported_by: userId,
+        spam_type: "hate_speech",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setShowModal(false);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   console.log(postId, "post");
 
   console.log(commentId, "cccc");
@@ -174,13 +206,17 @@ const Comments = ({ postId, userId }) => {
                     {comment?.comment_by}
                   </h2>
                   <div>
-                    {userId == comment.comment_by && (
+                    {userId == comment.comment_by ? (
                       <button
                         onClick={() =>
                           handleDropdown(comment?._id, comment.comment_content)
                         }
                       >
                         <BsThreeDotsVertical size={25} color="gray" />
+                      </button>
+                    ) : (
+                      <button onClick={() => handleModal(comment?._id)}>
+                        <RiSpam2Fill size={25} color="gray" />
                       </button>
                     )}
                     {commentId == comment._id && (
@@ -251,6 +287,16 @@ const Comments = ({ postId, userId }) => {
           </div>
         ))}
       </div>
+      {showModal && (
+        <PopUp
+          close={handleModal}
+          onClick={reportSpam}
+          title="Are you want to report this comment"
+          action="Report"
+          message=""
+          error="error"
+        />
+      )}
     </div>
   );
 };
