@@ -17,6 +17,7 @@ const Comments = ({ postId, userId }) => {
   const [reportCommentId, setReportCommentId] = useState("");
   const [editCommentId, setEditCommentId] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     getComments();
@@ -31,6 +32,10 @@ const Comments = ({ postId, userId }) => {
   const handleModal = (comment_id) => {
     setShowModal(!showModal);
     setReportCommentId(comment_id);
+  };
+
+  const handleDeleteModal = (comment_id) => {
+    setShowDeleteModal(!showDeleteModal);
   };
 
   const getComments = () => {
@@ -88,6 +93,7 @@ const Comments = ({ postId, userId }) => {
         console.log(response.data);
         getComments();
         toast.success(response?.data?.message);
+        setShowDeleteModal(false);
       })
       .catch(function (error) {
         console.error(error);
@@ -238,7 +244,7 @@ const Comments = ({ postId, userId }) => {
                             Edit
                           </button>
                           <button
-                            onClick={deleteComment}
+                            onClick={handleDeleteModal}
                             className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                           >
                             delete
@@ -293,6 +299,16 @@ const Comments = ({ postId, userId }) => {
           onClick={reportSpam}
           title="Are you want to report this comment"
           action="Report"
+          message=""
+          error="error"
+        />
+      )}
+      {showDeleteModal && (
+        <PopUp
+          close={handleDeleteModal}
+          onClick={deleteComment}
+          title="Are you want Delete this comment"
+          action="Delete"
           message=""
           error="error"
         />
