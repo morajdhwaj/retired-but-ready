@@ -8,8 +8,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
-import Comments from "../jaishreeComponent/Comments";
 import toast from "react-hot-toast";
+import FeedComments from "../feed-components/FeedComments";
 
 const All = ({ userId }) => {
   const [feeds, setFeeds] = useState([]);
@@ -59,6 +59,10 @@ const All = ({ userId }) => {
         toast.error(error?.response?.data?.detail);
       });
   };
+
+  if (feeds.length === 0) {
+    return <div className="h-[100vh]">Loading...</div>;
+  }
 
   console.log(feeds, "feed");
   return (
@@ -148,7 +152,7 @@ const All = ({ userId }) => {
                 </div>
               </div>
               {feed._id == showComments && (
-                <Comments userId={userId} postId={feed?._id} />
+                <FeedComments userId={userId} postId={feed?._id} />
               )}
             </div>
           </div>

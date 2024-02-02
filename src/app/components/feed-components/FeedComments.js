@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { RiSpam2Fill } from "react-icons/ri";
 import PopUp from "../PopUp";
 
-const Comments = ({ postId, userId }) => {
+const FeedComments = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -18,6 +18,7 @@ const Comments = ({ postId, userId }) => {
   const [editCommentId, setEditCommentId] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [reportType, setReportType] = useState("hate_speech");
 
   useEffect(() => {
     getComments();
@@ -164,7 +165,7 @@ const Comments = ({ postId, userId }) => {
       params: {
         comment_id: reportCommentId,
         reported_by: userId,
-        spam_type: "hate_speech",
+        spam_type: reportType,
       },
     };
 
@@ -183,6 +184,7 @@ const Comments = ({ postId, userId }) => {
 
   console.log(postId, "post");
   console.log(commentId, "cccc");
+  console.log(reportType, "report type");
 
   return (
     <div className=" w-full mt-5">
@@ -307,6 +309,8 @@ const Comments = ({ postId, userId }) => {
           action="Report"
           message=""
           error="error"
+          reportType={reportType}
+          setReportType={setReportType}
         />
       )}
       {showDeleteModal && (
@@ -323,4 +327,4 @@ const Comments = ({ postId, userId }) => {
   );
 };
 
-export default Comments;
+export default FeedComments;
