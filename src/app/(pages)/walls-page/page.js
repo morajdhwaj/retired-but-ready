@@ -17,6 +17,7 @@ const page = () => {
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
+  const [addPost, setAddPost] = useState(false);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -73,7 +74,10 @@ const page = () => {
                   </div>
                 </div>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
-                  <button className="flex items-center gap-1 p-2 bg-white rounded-lg">
+                  <button
+                    onClick={() => setAddPost(!addPost)}
+                    className="flex items-center gap-1 p-2 bg-white rounded-lg hover:bg-gray-100"
+                  >
                     <FaBox size={10} />
                     Add Post
                   </button>
@@ -94,10 +98,13 @@ const page = () => {
               <h2 className="font-semibold text-2xl">My Walls</h2>
             </div>
           </div>
-          <div className="mt-44 sm:mt-32 md:mt-20">
-            <PostInput />
-          </div>
-          <div className="   mx-5 ">
+          {addPost && (
+            <div className="mt-44 sm:mt-32 md:mt-20">
+              <PostInput userId={userId} />
+            </div>
+          )}
+
+          <div className={`${!addPost && "mt-44 sm:mt-32 md:mt-20"} mx-5 `}>
             <div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}
