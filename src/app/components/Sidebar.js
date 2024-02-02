@@ -21,9 +21,7 @@ const Sidebar = () => {
   return (
     <div>
       <div className="mx-5 fixed py-10 top-[46vh] left-0 bottom-0  h-10 z-50 flex flex-col  justify-center ">
-        <div
-          className={`flex ${close ? "justify-center" : "justify-end"} my-2`}
-        >
+        <div className={`flex justify-end my-2`}>
           <button onClick={() => setClose(!close)}>
             {close ? (
               <MdOutlineArrowForwardIos color="#773fc6" size={20} />
@@ -181,7 +179,7 @@ const Sidebar = () => {
             </Link>
           </div>
         )}
-        <div className="border   bg-[#c5cad7]  rounded-lg  flex justify-center w-full items-center mt-5 p-5 gap-5 self-start">
+        <div className="border   bg-[#c5cad7]  rounded-lg  flex justify-center w-full items-center mt-5 p-2 gap-5 self-start">
           <div className="bg-[#c5cad7]">Download Now</div>
         </div>
       </div>

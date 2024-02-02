@@ -11,6 +11,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
+import PostInput from "@/app/components/post-components/PostInput";
 
 const page = () => {
   const [tab, setTab] = useState(1);
@@ -93,7 +94,10 @@ const page = () => {
               <h2 className="font-semibold text-2xl">My Walls</h2>
             </div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
+          <div className="mt-44 sm:mt-32 md:mt-20">
+            <PostInput />
+          </div>
+          <div className="   mx-5 ">
             <div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}
@@ -126,6 +130,7 @@ const page = () => {
                 Surprise Me!
               </button> */}
             </div>
+
             {tab === 1 && (
               <div>
                 <All userId={userId} />
