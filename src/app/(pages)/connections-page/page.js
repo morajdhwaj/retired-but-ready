@@ -64,7 +64,10 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <Link href="/suggestion-page">
+                <Link
+                  href="/suggestion-page"
+                  className="flex items-center  p-1 bg-white rounded-lg "
+                >
                   <h1> SUGGESTION</h1>
                 </Link>
               </div>
@@ -88,8 +91,8 @@ const page = () => {
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             <div>
-              {/* <Network /> */}
-              <Suggestion />
+              <Network />
+              {/* <Suggestion /> */}
               {/*  <GpsConnection /> */}
               {/* <MyConnection /> */}
               {/* <ProfileConnection /> */}

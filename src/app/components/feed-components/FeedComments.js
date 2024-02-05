@@ -49,7 +49,7 @@ const FeedComments = ({ postId, userId }) => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setComments(response.data);
+        setComments(response?.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -182,9 +182,10 @@ const FeedComments = ({ postId, userId }) => {
       });
   };
 
-  console.log(postId, "post");
-  console.log(commentId, "cccc");
-  console.log(reportType, "report type");
+  console.log(postId, "postddddd");
+  console.log(comments, "comments");
+  // console.log(commentId, "cccc");
+  // console.log(reportType, "report type");
 
   return (
     <div className=" w-full mt-5">
@@ -215,10 +216,10 @@ const FeedComments = ({ postId, userId }) => {
               <div className="w-full ">
                 <div className="justify-between flex ">
                   <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                    {comment?.comment_by}
+                    {comment?.comment_by?.user_display_name}
                   </h2>
                   <div>
-                    {userId == comment.comment_by ? (
+                    {userId == comment.comment_by.id ? (
                       <button
                         onClick={() =>
                           handleDropdown(comment?._id, comment.comment_content)
@@ -271,7 +272,7 @@ const FeedComments = ({ postId, userId }) => {
                   <div>
                     <div>
                       <textarea
-                        className="border p-2 text-xs"
+                        className="border p-2 text-xs w-1/2"
                         value={editComment}
                         onChange={(e) => setEditComment(e.target.value)}
                       />

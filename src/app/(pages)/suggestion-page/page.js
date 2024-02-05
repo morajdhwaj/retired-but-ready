@@ -59,7 +59,7 @@ const page = () => {
                   </div>
                 </div>
                 <div className="flex items-center  p-1 bg-white rounded-lg ">
-                  <button>SUGGESTION</button>
+                  <Link href="/connections-page">Connections</Link>
                 </div>
               </div>
             </div>
