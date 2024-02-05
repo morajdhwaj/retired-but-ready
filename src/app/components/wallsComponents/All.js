@@ -292,19 +292,35 @@ const All = ({ userId }) => {
               </p>
             </div>
             <div>
-              <div className="flex gap-1 items-center  ">
-                <AiFillLike size={20} />
-                <p className="text-sm">{feed?.reaction_like?.length}</p>
-                <BsHeartFill size={20} />
-                <p className="text-sm">{feed?.reaction_love?.length}</p>
+              <div className="flex gap-2 items-center g   ">
+                {feed?.reaction_like?.length > 0 && (
+                  <div className="flex items-center gap-1 justify-center">
+                    <AiFillLike />
+                    <p className="text-sm w-2">{feed?.reaction_like?.length}</p>
+                  </div>
+                )}
+                {feed?.reaction_love?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <BsHeartFill />
+                    <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
+                  </div>
+                )}
               </div>
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
                   <button onClick={() => postReaction(feed._id, "like")}>
-                    <AiOutlineLike />
+                    {feed?.reaction_like?.length == 0 ? (
+                      <AiOutlineLike size={20} />
+                    ) : (
+                      <AiFillLike size={20} />
+                    )}
                   </button>
                   <button onClick={() => postReaction(feed._id, "love")}>
-                    <CiHeart />
+                    {feed?.reaction_love?.length == 0 ? (
+                      <CiHeart size={20} />
+                    ) : (
+                      <FaHeart size={20} />
+                    )}
                   </button>
 
                   <button onClick={() => handleComments(feed?._id)}>

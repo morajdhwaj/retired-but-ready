@@ -291,7 +291,9 @@ const FeedComments = ({ postId, userId }) => {
                 )}
 
                 <div className="text-xs mt-4 flex gap-5">
-                  <button onClick={() => AddReaction(comment._id)}>Like</button>
+                  <button onClick={() => AddReaction(comment?._id)}>
+                    Like
+                  </button>
                   <button>Love</button>
                   {comment?.reaction_like?.length !== 0 && (
                     <p> {comment?.reaction_like?.length} Likes</p>
