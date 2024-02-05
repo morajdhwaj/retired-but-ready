@@ -79,6 +79,8 @@ const AllTypePost = ({ userId, setAnyTypePost }) => {
               <PostAsMultiMedia
                 descriptions={descriptions}
                 setDescriptions={setDescriptions}
+                userId={userId}
+                setAnyTypePost={setAnyTypePost}
               />
             )}
           </div>

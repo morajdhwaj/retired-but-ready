@@ -4,16 +4,41 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsHeartFill, BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 import toast from "react-hot-toast";
 import FeedComments from "../feed-components/FeedComments";
+import PopUp from "../PopUp";
+import { RiSpam2Fill } from "react-icons/ri";
+import { CiHeart } from "react-icons/ci";
 
 const All = ({ userId }) => {
   const [feeds, setFeeds] = useState([]);
+  const [postId, setPostId] = useState("");
+  const [editPostId, setEditPostId] = useState("");
+  const [reportPostId, setReportPostId] = useState("");
+  const [editDescription, setEditDescription] = useState("");
+  const [showDropDown, setShowDropDown] = useState(false);
   const [showComments, setShowComments] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [reportType, setReportType] = useState("hate_speech");
+
+  const handleDropdown = (feed_id) => {
+    setShowDropDown(!showDropDown);
+    setPostId(feed_id);
+  };
+  const handleEditInput = (editId) => {
+    getPost();
+    setEditPostId(editId);
+    setPostId("");
+  };
+  const handleDiscard = () => {
+    setEditPostId("");
+    setPostId("");
+  };
 
   useEffect(() => {
     getFeeds();
@@ -41,11 +66,11 @@ const All = ({ userId }) => {
     setShowComments(feedId);
   };
 
-  const postReaction = (postId, postUser) => {
+  const postReaction = (postId, type) => {
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/post/react",
-      params: { post_id: postId, user_id: postUser, reaction_type: "like" },
+      params: { post_id: postId, user_id: userId, reaction_type: type },
     };
 
     axios
@@ -56,7 +81,33 @@ const All = ({ userId }) => {
       })
       .catch(function (error) {
         console.error(error);
+      });
+  };
+
+  const handleDeleteModal = (comment_id) => {
+    setShowDeleteModal(!showDeleteModal);
+  };
+
+  const deletePost = () => {
+    const options = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/post/${postId}/delete`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        getFeeds();
+        setPostId("");
+        setShowDeleteModal(false);
+      })
+      .catch(function (error) {
+        console.error(error);
         toast.error(error?.response?.data?.detail);
+        setPostId("");
+        setShowDeleteModal(false);
       });
   };
 
@@ -64,7 +115,71 @@ const All = ({ userId }) => {
     return <div className="h-[100vh]">Loading...</div>;
   }
 
-  console.log(feeds, "feed");
+  const getPost = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/post/${postId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setEditDescription(response?.data?.post_description);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const updatePost = (Post_id) => {
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/post/${Post_id}/update`,
+      headers: { "Content-Type": "application/json" },
+      data: { post_description: editDescription },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setEditPostId("");
+        setPostId("");
+        getFeeds();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handleReportModal = (post_id) => {
+    setShowReportModal(!showReportModal);
+    setReportPostId(post_id);
+  };
+
+  const reportSpam = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/post/report-spam",
+      params: { post_id: reportPostId, user_id: userId, spam_type: reportType },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setShowReportModal(false);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.success(error?.response?.data?.detail);
+      });
+  };
+
+  console.log(reportPostId, "dsds");
   return (
     <div>
       {feeds.map((feed) => {
@@ -89,11 +204,64 @@ const All = ({ userId }) => {
                 </div>
               </div>
               <div>
-                <BsThreeDotsVertical size={25} color="gray" />
+                {userId == feed?.post_user?.id ? (
+                  <button onClick={() => handleDropdown(feed?._id)}>
+                    <BsThreeDotsVertical size={25} color="gray" />
+                  </button>
+                ) : (
+                  <button onClick={() => handleReportModal(feed?._id)}>
+                    <RiSpam2Fill size={25} color="gray" />
+                  </button>
+                )}
+                {postId == feed?._id && (
+                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
+                    <div className="text-xs flex justify-end">
+                      <button
+                        className="hover:text-[#773fc6]"
+                        onClick={() => setPostId("")}
+                      >
+                        x
+                      </button>
+                    </div>
+
+                    <div className="flex flex-col p-2 items-center justify-center">
+                      <button
+                        onClick={() => handleEditInput(feed._id)}
+                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={handleDeleteModal}
+                        className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="mt-5">
-              <p className="text-sm">{feed?.post_description}</p>
+              {editPostId == feed._id ? (
+                <div>
+                  <div>
+                    <textarea
+                      className="border p-2 text-xs w-1/2"
+                      value={editDescription}
+                      onChange={(e) => setEditDescription(e.target.value)}
+                    />
+                  </div>
+                  <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
+                    <button onClick={() => updatePost(feed?._id)}>Post</button>
+                    <button onClick={handleDiscard}>Discard</button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <p className="text-sm">{feed?.post_description}</p>
+                </div>
+              )}
               <p className="text-sm text-end text-[#773fc6]">...see more</p>
             </div>
             {feed.post_media && (
@@ -125,17 +293,20 @@ const All = ({ userId }) => {
             </div>
             <div>
               <div className="flex gap-1 items-center  ">
-                <AiFillLike />
+                <AiFillLike size={20} />
                 <p className="text-sm">{feed?.reaction_like?.length}</p>
+                <BsHeartFill size={20} />
+                <p className="text-sm">{feed?.reaction_love?.length}</p>
               </div>
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => postReaction(feed._id, feed.post_user)}
-                  >
+                  <button onClick={() => postReaction(feed._id, "like")}>
                     <AiOutlineLike />
                   </button>
-                  <p className="text-sm">Like</p>
+                  <button onClick={() => postReaction(feed._id, "love")}>
+                    <CiHeart />
+                  </button>
+
                   <button onClick={() => handleComments(feed?._id)}>
                     <MdComment />
                   </button>
@@ -158,6 +329,29 @@ const All = ({ userId }) => {
           </div>
         );
       })}
+      {showReportModal && (
+        <PopUp
+          close={handleReportModal}
+          onClick={reportSpam}
+          title="Please select the category of spam being reported"
+          action="Report"
+          message=""
+          error="error"
+          reportType={reportType}
+          setReportType={setReportType}
+        />
+      )}
+
+      {showDeleteModal && (
+        <PopUp
+          close={handleDeleteModal}
+          onClick={deletePost}
+          title="Are you want Delete this post"
+          action="Delete"
+          message=""
+          error="error"
+        />
+      )}
 
       {/* <div className=" mt-5 ">
         <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">

@@ -1,9 +1,17 @@
 import axios from "axios";
 import React, { useState, useRef } from "react";
+import toast from "react-hot-toast";
 import { GrClose } from "react-icons/gr";
 
-const PostAsMultiMedia = ({ descriptions, setDescriptions, createPost }) => {
+const PostAsMultiMedia = ({
+  descriptions,
+  setDescriptions,
+  userId,
+  setAnyTypePost,
+}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [showPostButton, setShowPostButton] = useState(false);
+  const [postId, setPostId] = useState("");
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
@@ -36,27 +44,58 @@ const PostAsMultiMedia = ({ descriptions, setDescriptions, createPost }) => {
       });
   };
 
-  const handleUpload = () => {
-    // Perform upload logic using axios or any other method
-    // You can use the selectedFiles array for uploading
-    console.log("Selected Files:", selectedFiles);
-
-    // Add your upload logic here
-    // Example: Use Axios to send files to the server
-    const formData = new FormData();
-    selectedFiles.forEach((dataUrl, index) => {
-      formData.append(`file${index + 1}`, dataUrl);
-    });
+  const createPost = (is_published) => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/post/create",
+      headers: { "Content-Type": "application/json" },
+      data: {
+        post_user: userId,
+        post_type: "multimedia",
+        post_description: descriptions,
+        post_location: "global",
+        location_id: null,
+        is_published: is_published,
+        comment_condition: "string",
+      },
+    };
 
     axios
-      .post("/upload", formData)
-      .then((response) => {
-        // Handle successful upload
-        console.log("Upload successful:", response.data);
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setPostId(response?.data?.post_id);
+        setShowPostButton(true);
       })
-      .catch((error) => {
-        // Handle upload error
-        console.error("Error uploading files:", error);
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
+  const UploadFile = (post_id) => {
+    const form = new FormData();
+
+    const options = {
+      method: "POST",
+      url: `https://retpro.catax.me/post/${postId}/upload-files?publish=true`,
+      headers: {
+        "Content-Type":
+          "multipart/form-data; boundary=---011000010111000001101001",
+      },
+      data: selectedFiles,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setAnyTypePost(false);
+      })
+      .catch(function (error) {
+        console.error(error);
       });
   };
 
@@ -65,6 +104,8 @@ const PostAsMultiMedia = ({ descriptions, setDescriptions, createPost }) => {
     fileInputRef.current.click();
   };
 
+  console.log(postId, "postId");
+  console.log(selectedFiles, "select");
   return (
     <div className="mx-5  flex flex-col items-center justify-center ">
       <div className="mt-10 w-full">
@@ -118,12 +159,21 @@ const PostAsMultiMedia = ({ descriptions, setDescriptions, createPost }) => {
             >
               Draft
             </button>
-            <button
-              onClick={() => createPost(true)}
-              className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
-            >
-              Post
-            </button>
+            {showPostButton ? (
+              <button
+                onClick={UploadFile}
+                className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+              >
+                Post
+              </button>
+            ) : (
+              <button
+                onClick={() => createPost(true)}
+                className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+              >
+                Next
+              </button>
+            )}
           </div>
         )}
       </div>
