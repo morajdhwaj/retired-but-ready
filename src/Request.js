@@ -1,4 +1,6 @@
+"use-client";
 import React, { useState } from "react";
+
 import Image from "next/image";
 
 const invitation = [
@@ -10,10 +12,6 @@ const invitation = [
     name: "Jayshree Nishad",
     Information: "Frontend Developer",
   },
-  {
-    name: "Kanishka Gandhi",
-    Information: "BBA Student",
-  },
 ];
 
 const Request = () => {
@@ -22,14 +20,14 @@ const Request = () => {
   return (
     <div>
       <div className="bg-white border-2 border-gray-300 w-full h-full rounded-lg">
-        <div className="flex justify-between mx-5 text-gray-500 mt-2">
+        <div className="flex  justify-between mx-5 text-gray-500 mt-2">
           <h2> Invitation </h2>
           <h2>See all </h2>
         </div>
         <div className="border-b-2 border-gray-200 h-1 w-full mt-2" />
         {first.map((card, key) => (
-          <div className="flex justify-between  border-b-2 border-gray-200 w-full">
-            <div className="flex mt-2 ">
+          <div className="flex     justify-between  border-b-2 border-gray-200 w-full">
+            <div className="flex  flex-wrap mt-2 ">
               <Image
                 src="/assets/Ellipse-39.png"
                 width={40}
@@ -42,11 +40,11 @@ const Request = () => {
                 <p>{card.Information}</p>
               </div>
             </div>
-            <div className="flex gap-2 items-center">
-              <button className="w-24 h-10 rounded-full hover:border-black hover:border-2">
+            <div className="flex mx-2 gap-2 items-center">
+              <button className="p-1 rounded-full hover:border-black hover:border-2">
                 Ignore
               </button>
-              <button className="w-24 h-10 rounded-full hover:border-black hover:border-2">
+              <button className="p-1 rounded-full hover:border-black hover:border-2">
                 Accept
               </button>
             </div>
