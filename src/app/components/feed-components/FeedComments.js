@@ -7,6 +7,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { RiSpam2Fill } from "react-icons/ri";
 import PopUp from "../PopUp";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa6";
+import { CiHeart } from "react-icons/ci";
 
 const FeedComments = ({ postId, userId }) => {
   const [comments, setComments] = useState([]);
@@ -134,14 +137,14 @@ const FeedComments = ({ postId, userId }) => {
       });
   };
 
-  const AddReaction = (comment_id) => {
+  const AddReaction = (comment_id, type) => {
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
       params: {
         comment_id: comment_id,
         user_id: userId,
-        reaction_type: "reaction_like",
+        reaction_type: type,
       },
     };
 
@@ -291,13 +294,34 @@ const FeedComments = ({ postId, userId }) => {
                 )}
 
                 <div className="text-xs mt-4 flex gap-5">
-                  <button onClick={() => AddReaction(comment?._id)}>
-                    Like
-                  </button>
-                  <button>Love</button>
-                  {comment?.reaction_like?.length !== 0 && (
-                    <p> {comment?.reaction_like?.length} Likes</p>
-                  )}
+                  <div className="flex gap-1 items-center justify-center">
+                    {comment?.reaction_like?.length !== 0 && (
+                      <p> {comment?.reaction_like?.length} </p>
+                    )}
+                    <button
+                      onClick={() => AddReaction(comment?._id, "reaction_like")}
+                    >
+                      {comment?.reaction_like?.length == 0 ? (
+                        <AiOutlineLike size={20} />
+                      ) : (
+                        <AiFillLike size={20} />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex gap-1 items-center justify-center">
+                    {comment?.reaction_love?.length !== 0 && (
+                      <p> {comment?.reaction_love?.length} </p>
+                    )}
+                    <button
+                      onClick={() => AddReaction(comment?._id, "reaction_love")}
+                    >
+                      {comment?.reaction_love?.length == 0 ? (
+                        <CiHeart size={20} />
+                      ) : (
+                        <FaHeart size={20} />
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
