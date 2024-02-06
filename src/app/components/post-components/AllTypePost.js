@@ -7,7 +7,7 @@ import PostAsText from "./PostAsText";
 import toast from "react-hot-toast";
 import PostAsMultiMedia from "./PostAsMultiMedia";
 
-const AllTypePost = ({ userId, setAnyTypePost }) => {
+const AllTypePost = ({ userId, setAnyTypePost, getFeeds }) => {
   const [descriptions, setDescriptions] = useState("");
   const [type, setType] = useState("Text");
 
@@ -33,6 +33,7 @@ const AllTypePost = ({ userId, setAnyTypePost }) => {
         console.log(response.data);
         toast.success(response?.data?.message);
         setAnyTypePost(false);
+        getFeeds();
       })
       .catch(function (error) {
         console.error(error);
@@ -69,6 +70,7 @@ const AllTypePost = ({ userId, setAnyTypePost }) => {
           <div className="mt-5 ">
             {type == "Text" && (
               <PostAsText
+                getFeeds={getFeeds}
                 descriptions={descriptions}
                 setDescriptions={setDescriptions}
                 userId={userId}

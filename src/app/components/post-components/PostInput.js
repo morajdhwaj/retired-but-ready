@@ -8,7 +8,7 @@ import PostAsText from "./PostAsText";
 import PostAsMultiMedia from "./PostAsMultiMedia";
 import AllTypePost from "./AllTypePost";
 
-const PostInput = ({ userId }) => {
+const PostInput = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [anyTypePost, setAnyTypePost] = useState(false);
 
   return (
@@ -39,7 +39,11 @@ const PostInput = ({ userId }) => {
 
       {anyTypePost && (
         <div>
-          <AllTypePost userId={userId} setAnyTypePost={setAnyTypePost} />
+          <AllTypePost
+            getFeeds={getFeeds}
+            userId={userId}
+            setAnyTypePost={setAnyTypePost}
+          />
         </div>
       )}
     </div>

@@ -14,8 +14,7 @@ import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 
-const All = ({ userId }) => {
-  const [feeds, setFeeds] = useState([]);
+const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [reportPostId, setReportPostId] = useState("");
@@ -43,24 +42,6 @@ const All = ({ userId }) => {
   useEffect(() => {
     getFeeds();
   }, []);
-
-  const getFeeds = () => {
-    const options = {
-      method: "GET",
-      url: "https://retpro.catax.me/my-feed/7B6593af5ef4f7ce4f923051f3",
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        setFeeds(response?.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error(error?.response?.data?.detail);
-      });
-  };
 
   const handleComments = (feedId) => {
     setShowComments(feedId);
@@ -197,10 +178,23 @@ const All = ({ userId }) => {
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                    Munwar Raj singh
+                    {feed?.post_user?.user_display_name}
                   </h2>
-                  <p className="text-xs">Chief Executive Officer</p>
-                  <p className="text-xs">17 h</p>
+                  <p className="text-xs">
+                    {" "}
+                    {feed?.post_user?.last_designation}
+                  </p>
+
+                  <p className="text-xs">
+                    {new Date(feed?.publish_time)
+                      .toLocaleTimeString("en-US", {
+                        timeZone: "Asia/Kolkata",
+                        hour12: false,
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })
+                      .substring(0, 5)}
+                  </p>
                 </div>
               </div>
               <div>

@@ -16,32 +16,33 @@ const PostAsMultiMedia = ({
 
   const handleFileChange = (event) => {
     const files = event.target.files;
-    const fileArray = Array.from(files);
+    setSelectedFiles(Array.from(files));
+    // const fileArray = Array.from(files);
 
-    Promise.all(
-      fileArray.map((file) => {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
+    // Promise.all(
+    //   fileArray.map((file) => {
+    //     return new Promise((resolve, reject) => {
+    //       const reader = new FileReader();
 
-          reader.onload = (e) => {
-            resolve(e.target.result);
-          };
+    //       reader.onload = (e) => {
+    //         resolve(e.target.result);
+    //       };
 
-          reader.onerror = (error) => {
-            reject(error);
-          };
+    //       reader.onerror = (error) => {
+    //         reject(error);
+    //       };
 
-          reader.readAsDataURL(file);
-        });
-      })
-    )
-      .then((results) => {
-        // results is an array of data URLs
-        setSelectedFiles(results);
-      })
-      .catch((error) => {
-        console.error("Error reading files:", error);
-      });
+    //       reader.readAsDataURL(file);
+    //     });
+    //   })
+    // )
+    //   .then((results) => {
+    //     // results is an array of data URLs
+    //     setSelectedFiles(results);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error reading files:", error);
+    //   });
   };
 
   const createPost = (is_published) => {
@@ -74,7 +75,7 @@ const PostAsMultiMedia = ({
       });
   };
 
-  const UploadFile = (post_id) => {
+  const uploadFile = () => {
     const form = new FormData();
 
     const options = {
@@ -84,7 +85,7 @@ const PostAsMultiMedia = ({
         "Content-Type":
           "multipart/form-data; boundary=---011000010111000001101001",
       },
-      data: selectedFiles,
+      file: selectedFiles,
     };
 
     axios
@@ -161,7 +162,7 @@ const PostAsMultiMedia = ({
             </button>
             {showPostButton ? (
               <button
-                onClick={UploadFile}
+                onClick={uploadFile}
                 className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
               >
                 Post
