@@ -14,6 +14,7 @@ import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 
 const page = () => {
+  const [feeds, setFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -22,6 +23,7 @@ const page = () => {
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getUserData();
+    getFeeds();
   }, [userId]);
 
   const getUserData = () => {
@@ -40,6 +42,24 @@ const page = () => {
       })
       .catch(function (error) {
         console.error(error);
+      });
+  };
+
+  const getFeeds = () => {
+    const options = {
+      method: "GET",
+      url: "https://retpro.catax.me/my-feed/7B6593af5ef4f7ce4f923051f3",
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setFeeds(response?.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -100,7 +120,12 @@ const page = () => {
           </div>
           {addPost && (
             <div className="mt-44 sm:mt-32 md:mt-20">
-              <PostInput userId={userId} />
+              <PostInput
+                feeds={feeds}
+                setFeeds={setFeeds}
+                getFeeds={getFeeds}
+                userId={userId}
+              />
             </div>
           )}
 
@@ -140,7 +165,12 @@ const page = () => {
 
             {tab === 1 && (
               <div>
-                <All userId={userId} />
+                <All
+                  feeds={feeds}
+                  setFeeds={setFeeds}
+                  getFeeds={getFeeds}
+                  userId={userId}
+                />
               </div>
             )}
             {tab === 2 && <Trending />}

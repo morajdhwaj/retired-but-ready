@@ -9,6 +9,7 @@ const PostAsText = ({
   setDescriptions,
   userId,
   setAnyTypePost,
+  getFeeds,
 }) => {
   const createPost = (is_published) => {
     const options = {
@@ -32,6 +33,7 @@ const PostAsText = ({
         console.log(response.data);
         toast.success(response?.data?.message);
         setAnyTypePost(false);
+        getFeeds();
       })
       .catch(function (error) {
         console.error(error);
