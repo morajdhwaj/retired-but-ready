@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BsHeartFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 import toast from "react-hot-toast";
@@ -169,13 +169,15 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
               <div className="flex items-center gap-2 justify-center">
                 <div>
-                  {feed?.post_user?.user_image && (
+                  {feed?.post_user?.user_image ? (
                     <Image
                       alt=""
                       src={feed?.post_user?.user_image}
                       height={50}
                       width={50}
                     />
+                  ) : (
+                    <FaUserCircle size={50} />
                   )}
                 </div>
                 <div>
@@ -240,7 +242,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div>
                   <div>
                     <textarea
-                      className="border p-2 text-xs w-1/2"
+                      className="border p-2 text-xs w-1/2 rounded-lg"
                       value={editDescription}
                       onChange={(e) => setEditDescription(e.target.value)}
                     />
@@ -251,7 +253,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 </div>
               ) : (
-                <div>
+                <div className="my-5">
                   <p className="text-sm">{feed?.post_description}</p>
                 </div>
               )}
