@@ -11,7 +11,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 
-const FeedComments = ({ postId, userId }) => {
+const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -78,6 +78,7 @@ const FeedComments = ({ postId, userId }) => {
         console.log(response.data);
         toast.success(response?.data?.message);
         getComments();
+        getFeeds();
         setInputComment("");
       })
       .catch(function (error) {
@@ -99,6 +100,7 @@ const FeedComments = ({ postId, userId }) => {
         getComments();
         toast.success(response?.data?.message);
         setShowDeleteModal(false);
+        getFeeds();
       })
       .catch(function (error) {
         console.error(error);
@@ -195,7 +197,7 @@ const FeedComments = ({ postId, userId }) => {
       <textarea
         value={inputComment}
         onChange={(e) => setInputComment(e.target.value)}
-        className="w-full p-2 text-sm"
+        className="w-full p-2 text-sm border rounded-xl"
         placeholder="Leave your thoughts here"
       />
       <button
@@ -275,7 +277,7 @@ const FeedComments = ({ postId, userId }) => {
                   <div>
                     <div>
                       <textarea
-                        className="border p-2 text-xs w-1/2"
+                        className="border  p-2 text-xs w-1/2"
                         value={editComment}
                         onChange={(e) => setEditComment(e.target.value)}
                       />
