@@ -180,15 +180,16 @@ const page = () => {
   const uploadImg = () => {
     if (!selectedImage) {
       console.error("No image selected");
+      toast.error("Please select an image to upload.");
       return;
     }
 
     const form = new FormData();
-    form.append("file", selectedImage, selectedImage.name);
-
+    form.append("pic_file", selectedImage, selectedImage.name);
     const options = {
       method: "POST",
-      url: `https://retpro.catax.me/user/upload-profile-pic?user_id=${userId}`,
+      url: `https://retpro.catax.me/user/upload-profile-pic`,
+      params: { user_id: userId },
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -199,9 +200,13 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        toast.success(response.data.message); // Show success message using toast
+        // Update any state or UI as necessary
       })
       .catch(function (error) {
         console.error(error);
+        toast.error("Failed to upload profile picture."); // Show error message using toast
+        // Handle error more specifically if needed
       });
   };
 
