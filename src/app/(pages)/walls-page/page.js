@@ -12,6 +12,7 @@ import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
+import toast from "react-hot-toast";
 
 const page = () => {
   const [feeds, setFeeds] = useState([]);
@@ -48,7 +49,7 @@ const page = () => {
   const getFeeds = () => {
     const options = {
       method: "GET",
-      url: "https://retpro.catax.me/my-feed/7B6593af5ef4f7ce4f923051f3",
+      url: `https://retpro.catax.me/my-feed/${userId}`,
     };
 
     axios
@@ -59,7 +60,7 @@ const page = () => {
       })
       .catch(function (error) {
         console.error(error);
-        toast.error(error?.response?.data?.detail);
+        // toast.error(error?.response?.data?.detail);
       });
   };
 

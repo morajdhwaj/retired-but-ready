@@ -10,9 +10,8 @@ import PopUp from "../PopUp";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
-import ReplyCommentsComp from "./ReplyCommentsComp";
 
-const FeedComments = ({ postId, userId, getFeeds }) => {
+const ReplyCommentsComp = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -218,19 +217,21 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   // console.log(reportType, "report type");
 
   return (
-    <div className=" w-full mt-5">
-      <textarea
-        value={inputComment}
-        onChange={(e) => setInputComment(e.target.value)}
-        className="w-full p-2 text-sm border rounded-xl"
-        placeholder="Leave your thoughts here"
-      />
-      <button
-        onClick={postComment}
-        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
-      >
-        Post
-      </button>
+    <div className=" w-full mt-5 ml-20">
+      <div className="flex items-center gap-5">
+        <textarea
+          value={inputComment}
+          onChange={(e) => setInputComment(e.target.value)}
+          className=" p-2 text-sm border rounded-xl"
+          placeholder="Leave your thoughts here"
+        />
+        <button
+          onClick={postComment}
+          className="border border-[#773fc6] text-[#773fc6] h-10 p-1 rounded"
+        >
+          Reply
+        </button>
+      </div>
       <div>
         {comments?.map((comment) => (
           <div className="flex gap-2 mt-5" key={comment?._id}>
@@ -380,9 +381,8 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           error="error"
         />
       )}
-      {/* <ReplyCommentsComp /> */}
     </div>
   );
 };
 
-export default FeedComments;
+export default ReplyCommentsComp;

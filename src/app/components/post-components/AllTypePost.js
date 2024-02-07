@@ -63,8 +63,6 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds }) => {
             >
               <option>Text</option>
               <option>Multimedia</option>
-              <option>Document</option>
-              <option>Article</option>
             </select>
           </div>
           <div className="mt-5 ">
