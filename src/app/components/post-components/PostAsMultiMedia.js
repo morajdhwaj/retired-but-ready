@@ -7,42 +7,19 @@ const PostAsMultiMedia = ({
   descriptions,
   setDescriptions,
   userId,
+  getFeeds,
   setAnyTypePost,
 }) => {
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState("");
   const [showPostButton, setShowPostButton] = useState(false);
   const [postId, setPostId] = useState("");
   const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
     const files = event.target.files;
-    setSelectedFiles(Array.from(files));
-    // const fileArray = Array.from(files);
-
-    // Promise.all(
-    //   fileArray.map((file) => {
-    //     return new Promise((resolve, reject) => {
-    //       const reader = new FileReader();
-
-    //       reader.onload = (e) => {
-    //         resolve(e.target.result);
-    //       };
-
-    //       reader.onerror = (error) => {
-    //         reject(error);
-    //       };
-
-    //       reader.readAsDataURL(file);
-    //     });
-    //   })
-    // )
-    //   .then((results) => {
-    //     // results is an array of data URLs
-    //     setSelectedFiles(results);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error reading files:", error);
-    //   });
+    if (files) {
+      setSelectedFiles(files);
+    }
   };
 
   const createPost = (is_published) => {
@@ -75,28 +52,26 @@ const PostAsMultiMedia = ({
       });
   };
 
-  const uploadFile = () => {
-    const form = new FormData();
-
-    const options = {
-      method: "POST",
-      url: `https://retpro.catax.me/post/${postId}/upload-files?publish=true`,
-      headers: {
-        "Content-Type":
-          "multipart/form-data; boundary=---011000010111000001101001",
-      },
-      file: selectedFiles,
-    };
+  const UploadFile = () => {
+    const formData = new FormData();
+    Array.from(selectedFiles).forEach((file) => {
+      formData.append("files", file);
+    });
 
     axios
-      .request(options)
-      .then(function (response) {
+      .post(`https://retpro.catax.me/post/${postId}/upload-files`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
         console.log(response.data);
         toast.success(response?.data?.message);
+        getFeeds();
         setAnyTypePost(false);
       })
-      .catch(function (error) {
-        console.error(error);
+      .catch((error) => {
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -110,7 +85,7 @@ const PostAsMultiMedia = ({
   return (
     <div className="mx-5  flex flex-col items-center justify-center ">
       <div className="mt-10 w-full">
-        {selectedFiles.length > 0 && (
+        {selectedFiles && (
           <div>
             <textarea
               value={descriptions}
@@ -138,21 +113,21 @@ const PostAsMultiMedia = ({
             </button>
           </label>
           <div>
-            {selectedFiles.length > 0 && (
+            {selectedFiles && (
               <div className=" text-xs">
                 <h2 className="text-sm font-bold">Selected Files:</h2>
-                <ul>
-                  {selectedFiles.map((dataUrl, index) => (
+                {/* <ul>
+                  {selectedFiles.map((item, index) => (
                     <li key={index}>{`File ${index + 1}: ${
                       fileInputRef?.current?.files[index]?.name
                     }`}</li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             )}
           </div>
         </div>
-        {selectedFiles.length > 0 && (
+        {selectedFiles && (
           <div className="flex justify-between mx-10 mt-5 gap-5">
             <button
               onClick={() => createPost(false)}
@@ -162,7 +137,7 @@ const PostAsMultiMedia = ({
             </button>
             {showPostButton ? (
               <button
-                onClick={uploadFile}
+                onClick={UploadFile}
                 className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
               >
                 Post

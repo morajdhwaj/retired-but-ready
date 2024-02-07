@@ -79,6 +79,7 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds }) => {
             )}
             {type == "Multimedia" && (
               <PostAsMultiMedia
+                getFeeds={getFeeds}
                 descriptions={descriptions}
                 setDescriptions={setDescriptions}
                 userId={userId}
