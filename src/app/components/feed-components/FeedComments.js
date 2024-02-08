@@ -353,7 +353,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                         <CiHeart size={20} />
                       )}
                     </button>
-                    <button className="text-xs ml-5">Reply</button>
+                    {/* <button className="text-xs ml-5">Reply</button> */}
                   </div>
                 </div>
               </div>
