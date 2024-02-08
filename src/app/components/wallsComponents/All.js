@@ -295,7 +295,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 )}
               </div>
-              {console.log(feed?.reaction_like, "like")}
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
                   <button onClick={() => postReaction(feed._id, "like")}>
