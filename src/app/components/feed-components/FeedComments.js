@@ -157,7 +157,6 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       .then(function (response) {
         console.log(response.data);
         getComments();
-        toast.success(response?.data?.message);
       })
       .catch(function (error) {
         console.error(error);
@@ -330,10 +329,12 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     <button
                       onClick={() => AddReaction(comment?._id, "reaction_like")}
                     >
-                      {comment?.reaction_like?.length == 0 ? (
-                        <AiOutlineLike size={20} />
-                      ) : (
+                      {comment?.reaction_like?.some(
+                        (user) => user.user_id === userId
+                      ) ? (
                         <AiFillLike size={20} />
+                      ) : (
+                        <AiOutlineLike size={20} />
                       )}
                     </button>
                   </div>
@@ -344,10 +345,12 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     <button
                       onClick={() => AddReaction(comment?._id, "reaction_love")}
                     >
-                      {comment?.reaction_love?.length == 0 ? (
-                        <CiHeart size={20} />
-                      ) : (
+                      {comment?.reaction_love?.some(
+                        (user) => user.user_id === userId
+                      ) ? (
                         <FaHeart size={20} />
+                      ) : (
+                        <CiHeart size={20} />
                       )}
                     </button>
                     <button className="text-xs ml-5">Reply</button>
