@@ -130,6 +130,7 @@ const page = () => {
             <div className="mt-44 sm:mt-32 md:mt-20">
               <PostInput
                 feeds={feeds}
+                userData={userData}
                 setFeeds={setFeeds}
                 getFeeds={getFeeds}
                 userId={userId}

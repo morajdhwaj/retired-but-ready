@@ -234,12 +234,16 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
         {comments?.map((comment) => (
           <div className="flex gap-2 mt-5" key={comment?._id}>
             <div>
-              <Image
-                alt=""
-                src="/assets/Ellipse-39.png"
-                height={50}
-                width={50}
-              />
+              {comment?.comment_by?.user_image ? (
+                <Image
+                  alt=""
+                  src={comment?.comment_by?.user_image}
+                  height={50}
+                  width={50}
+                />
+              ) : (
+                <FaUserCircle size={50} />
+              )}
             </div>
             <div className="flex border-gray-300 bg-white border rounded-b-lg w-full rounded-tr-lg p-2">
               <div className="w-full ">
