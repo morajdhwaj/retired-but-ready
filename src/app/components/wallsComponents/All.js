@@ -13,6 +13,7 @@ import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
+import dayjs from "dayjs";
 
 const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
