@@ -332,10 +332,22 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
                   <button onClick={() => postReaction(feed._id, "like")}>
-                    <AiOutlineLike size={20} />
+                    {feed?.reaction_like?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <AiFillLike size={20} />
+                    ) : (
+                      <AiOutlineLike size={20} />
+                    )}
                   </button>
                   <button onClick={() => postReaction(feed._id, "love")}>
-                    <CiHeart size={20} />
+                    {feed?.reaction_love?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <FaHeart size={20} />
+                    ) : (
+                      <CiHeart size={20} />
+                    )}
                   </button>
 
                   <button onClick={() => handleComments(feed?._id)}>

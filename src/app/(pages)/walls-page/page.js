@@ -8,7 +8,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox } from "react-icons/fa";
+import { FaBox, FaUserCircle } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -74,8 +74,6 @@ const page = () => {
 
   console.log(userData, "userId");
 
-  console.log(tab);
-
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
@@ -88,7 +86,16 @@ const page = () => {
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
-                  <Image alt="" src="/assets/110.png" height={50} width={50} />
+                  {userData?.user_image ? (
+                    <Image
+                      alt=""
+                      src={userData?.user_image}
+                      height={50}
+                      width={50}
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
                   <div className="font-semibold">
                     <h2>{userData.user_display_name}</h2>
                     <p className="text-gray-500">{userData.last_designation}</p>
@@ -123,6 +130,7 @@ const page = () => {
             <div className="mt-44 sm:mt-32 md:mt-20">
               <PostInput
                 feeds={feeds}
+                userData={userData}
                 setFeeds={setFeeds}
                 getFeeds={getFeeds}
                 userId={userId}
