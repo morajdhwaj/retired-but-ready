@@ -13,6 +13,10 @@ import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
+import dayjs from "dayjs";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
@@ -24,7 +28,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
-
   const handleDropdown = (feed_id) => {
     setShowDropDown(!showDropDown);
     setPostId(feed_id);
@@ -236,6 +239,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col gap-10">
+      {console.log("feeds", feeds)};
       {feeds.map((feed) => {
         return (
           <div key={feed?._id} className="mt-5 bg-white p-2">
@@ -259,16 +263,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </h2>
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
-                  <p className="text-xs">
-                    {new Date(feed?.publish_time)
-                      .toLocaleTimeString("en-US", {
-                        timeZone: "Asia/Kolkata",
-                        hour12: false,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                      .substring(0, 5)}
-                  </p>
+                  <div className="flex gap-10">
+                    <p className="text-xs">
+                      Date:{" "}
+                      {feed?.publish_time
+                        ? new Date(feed.publish_time).toLocaleDateString(
+                            "en-IN",
+                            { timeZone: "Asia/Kolkata" }
+                          )
+                        : ""}
+                    </p>
+                    <p className="text-xs">
+                      Time:{" "}
+                      {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div>
@@ -407,7 +416,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               {feed._id == showComments && (
                 <FeedComments
                   getFeeds={getFeeds}
-                  setShowComments={setShowComments}
                   userId={userId}
                   postId={feed?._id}
                 />
@@ -428,7 +436,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           setReportType={setReportType}
         />
       )}
-
       {showDeleteModal && (
         <PopUp
           close={handleDeleteModal}
@@ -439,7 +446,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           error="error"
         />
       )}
-
       {/* <div className=" mt-5 ">
         <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">
