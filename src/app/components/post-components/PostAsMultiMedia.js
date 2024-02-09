@@ -114,7 +114,7 @@ const PostAsMultiMedia = ({
     <div className="mx-5  flex flex-col items-center justify-center ">
       {postLoading ? (
         <div className="mt-10 w-full flex items-center justify-center">
-          File Uploading... Please wait
+          File posting please wait...
         </div>
       ) : (
         <div className="mt-10 w-full">
