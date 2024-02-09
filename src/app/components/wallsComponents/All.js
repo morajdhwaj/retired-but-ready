@@ -241,6 +241,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
     <div className=" flex flex-col gap-10">
       {console.log("feeds", feeds)};
       {feeds.map((feed) => {
+        console.log(
+          dayjs(new Date(feed?.publish_time + "Z")).date() - dayjs().date()
+        );
         return (
           <div key={feed?._id} className="mt-5 bg-white p-2">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
@@ -264,19 +267,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
                   <div className="flex gap-10">
-                    <p className="text-xs">
-                      Date:{" "}
-                      {feed?.publish_time
-                        ? new Date(feed.publish_time).toLocaleDateString(
-                            "en-IN",
-                            { timeZone: "Asia/Kolkata" }
-                          )
-                        : ""}
-                    </p>
-                    <p className="text-xs">
-                      Time:{" "}
-                      {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
-                    </p>
+                    {dayjs().date() -
+                      dayjs(new Date(feed?.publish_time + "Z")).date() <
+                    2 ? (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
+                      </p>
+                    ) : (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).format(
+                          "DD-MM-YYYY HH:mm a"
+                        )}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
