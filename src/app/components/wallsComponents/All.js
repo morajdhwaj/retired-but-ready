@@ -86,7 +86,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       })
       .catch(function (error) {
         console.error(error);
-        toast.error(error?.response?.data?.detail);
+
         setPostId("");
         setShowDeleteModal(false);
       });
