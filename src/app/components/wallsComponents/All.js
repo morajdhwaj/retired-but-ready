@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BsHeartFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 import toast from "react-hot-toast";
@@ -86,7 +86,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       })
       .catch(function (error) {
         console.error(error);
-        toast.error(error?.response?.data?.detail);
+
         setPostId("");
         setShowDeleteModal(false);
       });
@@ -160,30 +160,104 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       });
   };
 
-  console.log(reportPostId, "dsds");
+  // the list of our video elements
+  var videos = document.querySelectorAll("video");
+  // an array to store the top and bottom of each of our elements
+  var videoPos = [];
+  // a counter to check our elements position when videos are loaded
+  var loaded = 0;
+
+  // Here we get the position of every element and store it in an array
+  function checkPos() {
+    // loop through all our videos
+    for (var i = 0; i < videos.length; i++) {
+      var element = videos[i];
+      // get its bounding rect
+      var rect = element.getBoundingClientRect();
+      // we may already have scrolled in the page
+      // so add the current pageYOffset position too
+      var top = rect.top + window.pageYOffset;
+      var bottom = rect.bottom + window.pageYOffset;
+      // it's not the first call, don't create useless objects
+      if (videoPos[i]) {
+        videoPos[i].el = element;
+        videoPos[i].top = top;
+        videoPos[i].bottom = bottom;
+      } else {
+        // first time, add an event listener to our element
+        element.addEventListener("loadeddata", function () {
+          if (++loaded === videos.length - 1) {
+            // all our video have ben loaded, recheck the positions
+            // using rAF here just to make sure elements are rendered on the page
+            requestAnimationFrame(checkPos);
+          }
+        });
+        // push the object in our array
+        videoPos.push({
+          el: element,
+          top: top,
+          bottom: bottom,
+        });
+      }
+    }
+  }
+  // an initial check
+  checkPos();
+
+  var scrollHandler = function () {
+    // our current scroll position
+
+    // the top of our page
+    var min = window.pageYOffset;
+    // the bottom of our page
+    var max = min + window.innerHeight;
+
+    videoPos.forEach(function (vidObj) {
+      // the top of our video is visible
+      if (vidObj.top >= min && vidObj.top < max) {
+        // play the video
+        vidObj.el.play();
+      }
+
+      // the bottom of the video is above the top of our page
+      // or the top of the video is below the bottom of our page
+      // ( === not visible anyhow )
+      if (vidObj.bottom <= min || vidObj.top >= max) {
+        // stop the video
+        vidObj.el.pause();
+      }
+    });
+  };
+  // add the scrollHandler
+  window.addEventListener("scroll", scrollHandler, true);
+  // don't forget to update the positions again if we do resize the page
+  window.addEventListener("resize", checkPos);
+
+  console.log(reportPostId, "reportPost ID");
   return (
-    <div>
+    <div className=" flex flex-col gap-10">
       {feeds.map((feed) => {
         return (
-          <div key={feed?._id} className=" mt-5 ">
+          <div key={feed?._id} className="mt-5 bg-white p-2">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
               <div className="flex items-center gap-2 justify-center">
                 <div>
-                  <Image
-                    alt=""
-                    src="/assets/Ellipse-39.png"
-                    height={50}
-                    width={50}
-                  />
+                  {feed?.post_user?.user_image ? (
+                    <Image
+                      alt=""
+                      src={feed?.post_user?.user_image}
+                      height={50}
+                      width={50}
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-[#773fc6]  ">
                     {feed?.post_user?.user_display_name}
                   </h2>
-                  <p className="text-xs">
-                    {" "}
-                    {feed?.post_user?.last_designation}
-                  </p>
+                  <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
                   <p className="text-xs">
                     {new Date(feed?.publish_time)
@@ -241,7 +315,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div>
                   <div>
                     <textarea
-                      className="border p-2 text-xs w-1/2"
+                      className="border p-2 text-xs w-1/2 rounded-lg"
                       value={editDescription}
                       onChange={(e) => setEditDescription(e.target.value)}
                     />
@@ -252,40 +326,34 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 </div>
               ) : (
-                <div>
+                <div className="my-5">
                   <p className="text-sm">{feed?.post_description}</p>
                 </div>
               )}
-              <p className="text-sm text-end text-[#773fc6]">...see more</p>
+              {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
             </div>
             {feed.post_media && (
-              <div
-                style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent, transparent, rgba(0, 0, 0, 0.7)), url(${feed?.post_media[0]?.url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "100%", // full screen width
-                  height: "70vh", // full screen height
-                  borderRadius: 10,
-                }}
-                className="p-5 text-white font-medium flex flex-col justify-between "
-              >
-                <h2 className="text-xs md:text-lg">
-                  Weekly news round-up: 2022 Hyundai Venue launched more details
-                  on Mahindra Scropio-N
-                </h2>
-                <p className="text-xs font-normal">{feed.publish_time}</p>
+              <div className="flex items-center justify-center">
+                {["png", "jpeg", "jpg"].includes(feed?.post_media[0].type) && (
+                  <Image
+                    alt=""
+                    src={feed?.post_media[0]?.url}
+                    height={200}
+                    width={300}
+                    className=""
+                  />
+                )}
+
+                {feed?.post_media[0].type == "mp4" && (
+                  <video controls style={{ width: "50%", height: "50%" }}>
+                    <source src={feed?.post_media[0]?.url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
             )}
+
             <div className="mt-5">
-              <h2 className="font-medium text-[#773fc6]">
-                New Toyota mid-size SUV spotted
-              </h2>
-              <p className="text-xs">
-                www.msn.com/en-in/auto | 6 min | 2 days ago
-              </p>
-            </div>
-            <div>
               <div className="flex gap-2 items-center g   ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
@@ -303,17 +371,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
                   <button onClick={() => postReaction(feed._id, "like")}>
-                    {feed?.reaction_like?.length == 0 ? (
-                      <AiOutlineLike size={20} />
-                    ) : (
+                    {feed?.reaction_like?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
                       <AiFillLike size={20} />
+                    ) : (
+                      <AiOutlineLike size={20} />
                     )}
                   </button>
                   <button onClick={() => postReaction(feed._id, "love")}>
-                    {feed?.reaction_love?.length == 0 ? (
-                      <CiHeart size={20} />
-                    ) : (
+                    {feed?.reaction_love?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
                       <FaHeart size={20} />
+                    ) : (
+                      <CiHeart size={20} />
                     )}
                   </button>
 
@@ -328,12 +400,17 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> | {feed?.shares?.length}
-                  <p className="text-sm">Shares</p>
+                  <p className="text-sm">Comments</p> |
+                  <button className="">Shares</button>
                 </div>
               </div>
               {feed._id == showComments && (
-                <FeedComments userId={userId} postId={feed?._id} />
+                <FeedComments
+                  getFeeds={getFeeds}
+                  setShowComments={setShowComments}
+                  userId={userId}
+                  postId={feed?._id}
+                />
               )}
             </div>
           </div>

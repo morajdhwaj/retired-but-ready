@@ -7,8 +7,9 @@ import { SlNote } from "react-icons/sl";
 import PostAsText from "./PostAsText";
 import PostAsMultiMedia from "./PostAsMultiMedia";
 import AllTypePost from "./AllTypePost";
+import { FaUserCircle } from "react-icons/fa";
 
-const PostInput = ({ userId, feeds, setFeeds, getFeeds }) => {
+const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
   const [anyTypePost, setAnyTypePost] = useState(false);
 
   return (
@@ -16,7 +17,11 @@ const PostInput = ({ userId, feeds, setFeeds, getFeeds }) => {
       <div className="mx-10 border rounded-xl p-5 bg-white">
         <div className="flex gap-5">
           <div>
-            <Image alt="" src="/assets/110.png" height={50} width={50} />
+            {userData?.user_image ? (
+              <Image alt="" src={userData?.user_image} height={50} width={50} />
+            ) : (
+              <FaUserCircle size={50} />
+            )}
           </div>
           <button
             onClick={() => setAnyTypePost(true)}
@@ -26,14 +31,14 @@ const PostInput = ({ userId, feeds, setFeeds, getFeeds }) => {
           </button>
         </div>
         <div className="mx-20 mt-5 flex  justify-between">
-          <button className=" p-3 rounded hover:bg-gray-100 flex  items-center gap-2">
+          <div className=" p-3 rounded  flex  items-center gap-2">
             <TfiGallery color="#773fc3" size="20" />
             <p>Media</p>
-          </button>
-          <button className=" p-3 rounded hover:bg-gray-100 flex  items-center gap-2">
+          </div>
+          <div className=" p-3 rounded  flex  items-center gap-2">
             <SlNote color="#773fc3" size="20" />
             <p>Write Article</p>
-          </button>
+          </div>
         </div>
       </div>
 
