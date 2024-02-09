@@ -233,7 +233,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   // don't forget to update the positions again if we do resize the page
   window.addEventListener("resize", checkPos);
 
-  console.log(reportPostId, "dsds");
+  console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col gap-10">
       {feeds.map((feed) => {
