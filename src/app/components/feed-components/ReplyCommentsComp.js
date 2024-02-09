@@ -11,6 +11,7 @@ import PopUp from "../PopUp";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
+import { FaUserCircle } from "react-icons/fa";
 
 const ReplyCommentsComp = ({
   userId,

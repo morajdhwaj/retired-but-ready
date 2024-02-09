@@ -7,6 +7,7 @@ import { SlNote } from "react-icons/sl";
 import PostAsText from "./PostAsText";
 import PostAsMultiMedia from "./PostAsMultiMedia";
 import AllTypePost from "./AllTypePost";
+import { FaUserCircle } from "react-icons/fa";
 
 const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
   const [anyTypePost, setAnyTypePost] = useState(false);
