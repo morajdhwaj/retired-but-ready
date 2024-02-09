@@ -28,6 +28,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
   const [currentTime, setCurrentTime] = useState("");
 
+  const c = dayjs();
+  console.log("c", c);
+
   const handleDropdown = (feed_id) => {
     setShowDropDown(!showDropDown);
     setPostId(feed_id);
@@ -369,7 +372,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               {feed._id == showComments && (
                 <FeedComments
                   getFeeds={getFeeds}
-                  setShowComments={setShowComments}
                   userId={userId}
                   postId={feed?._id}
                 />
