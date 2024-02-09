@@ -22,13 +22,13 @@ const PostAsMultiMedia = ({
         const fileType = file.type.split("/")[1];
         const validTypes = ["png", "jpeg", "jpg", "mp4"];
         const fileSize = file.size / (1024 * 1024);
-        if (validTypes.includes(fileType) && fileSize <= 20) {
+        if (validTypes.includes(fileType) && fileSize <= 10) {
           return true;
         } else {
           if (!validTypes.includes(fileType)) {
             alert("Please upload only PNG, JPEG, or MP4 files.");
-          } else if (fileSize > 20) {
-            alert("Please upload files smaller than 20MB.");
+          } else if (fileSize > 10) {
+            alert("Please upload files smaller than 10MB.");
           }
           return false;
         }

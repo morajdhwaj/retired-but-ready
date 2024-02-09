@@ -12,6 +12,7 @@ import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose } from "react-icons/gr";
+import { FaUserCircle } from "react-icons/fa";
 
 const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
   const [comments, setComments] = useState([]);
