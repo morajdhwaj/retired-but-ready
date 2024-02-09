@@ -25,6 +25,8 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
 
+  const [currentTime, setCurrentTime] = useState("");
+
   const handleDropdown = (feed_id) => {
     setShowDropDown(!showDropDown);
     setPostId(feed_id);
@@ -38,6 +40,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
     setEditPostId("");
     setPostId("");
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(
+        new Date().toLocaleTimeString("en-IN", {
+          hour12: true,
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Asia/Kolkata",
+        })
+      );
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     getFeeds();
@@ -186,16 +203,33 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </h2>
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
-                  <p className="text-xs">
-                    {new Date(feed?.publish_time)
-                      .toLocaleTimeString("en-US", {
-                        timeZone: "Asia/Kolkata",
-                        hour12: false,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                      .substring(0, 5)}
-                  </p>
+                  <div className="flex gap-10">
+                    <p className="text-xs">
+                      Date:{" "}
+                      {feed?.publish_time
+                        ? new Date(feed.publish_time).toLocaleDateString(
+                            "en-IN",
+                            { timeZone: "Asia/Kolkata" }
+                          )
+                        : ""}
+                    </p>
+                    <p className="text-xs">
+                      Time:{" "}
+                      {feed?.publish_time
+                        ? new Date(feed.publish_time).toLocaleTimeString(
+                            "en-IN",
+                            {
+                              hour12: true,
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              timeZone: "Asia/Kolkata",
+                            }
+                          )
+                        : ""}
+                    </p>
+
+                    <p className="text-xs">{currentTime}</p>
+                  </div>
                 </div>
               </div>
               <div>
