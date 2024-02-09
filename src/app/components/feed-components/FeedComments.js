@@ -11,8 +11,9 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import ReplyCommentsComp from "./ReplyCommentsComp";
+import { GrClose } from "react-icons/gr";
 
-const FeedComments = ({ postId, userId, getFeeds }) => {
+const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -197,6 +198,11 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
 
   return (
     <div className=" w-full mt-5">
+      <div className="flex justify-end m-2">
+        <button onClick={() => setShowComments("")}>
+          <GrClose className="" />
+        </button>
+      </div>
       <textarea
         value={inputComment}
         onChange={(e) => setInputComment(e.target.value)}

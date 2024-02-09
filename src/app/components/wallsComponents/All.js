@@ -334,6 +334,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               {feed._id == showComments && (
                 <FeedComments
                   getFeeds={getFeeds}
+                  setShowComments={setShowComments}
                   userId={userId}
                   postId={feed?._id}
                 />
