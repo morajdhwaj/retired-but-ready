@@ -6,11 +6,13 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { GiHamburgerMenu } from "react-icons/gi";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -36,6 +38,12 @@ const Navbar = () => {
       });
   };
 
+  const handleLogOut = () => {
+    localStorage.removeItem("userId");
+    router.push("login");
+  };
+
+  console.log(userId, "ddd");
   return (
     <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">
@@ -74,20 +82,17 @@ const Navbar = () => {
           <option>HI</option>
         </select>
 
-        {userData ? (
-          <Link
+        {userId ? (
+          <button
+            onClick={handleLogOut}
             className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "
-            href="/login"
           >
-            {userData.user_first_name}
-          </Link>
+            Log out
+          </button>
         ) : (
-          <Link
-            className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "
-            href="/login"
-          >
+          <button className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] ">
             Login
-          </Link>
+          </button>
         )}
       </div>
       {showSidebar && <Sidebar />}

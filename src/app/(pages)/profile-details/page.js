@@ -16,6 +16,7 @@ import WorkExperience from "@/app/components/profile-details-compo/WorkExperienc
 import WorkHistory from "@/app/components/profile-details-compo/WorkHistory";
 import axios from "axios";
 import Link from "next/link";
+import Loader from "@/app/components/Loader";
 
 const page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -51,7 +52,11 @@ const page = () => {
   };
 
   if (userData.length === 0) {
-    return <h1 className="mx-5">Loading...</h1>;
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   return (

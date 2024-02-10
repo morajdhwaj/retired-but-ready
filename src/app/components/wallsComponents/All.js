@@ -28,9 +28,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+
   const handleDropdown = (feed_id) => {
-    setShowDropDown(!showDropDown);
-    setPostId(feed_id);
+    if (!postId) {
+      setShowDropDown(!showDropDown);
+      setPostId(feed_id);
+    } else setPostId("");
   };
   const handleEditInput = (editId) => {
     getPost();
@@ -47,7 +50,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   }, []);
 
   const handleComments = (feedId) => {
-    setShowComments(feedId);
+    if (!showComments) {
+      setShowComments(feedId);
+    } else setShowComments("");
   };
 
   const postReaction = (postId, type) => {
@@ -239,11 +244,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col gap-10">
-      {console.log("feeds", feeds)};
       {feeds.map((feed) => {
-        console.log(
-          dayjs(new Date(feed?.publish_time + "Z")).date() - dayjs().date()
-        );
         return (
           <div key={feed?._id} className="mt-5 bg-white p-2">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
@@ -296,16 +297,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
                 )}
                 {postId == feed?._id && (
-                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
-                    <div className="text-xs flex justify-end">
-                      <button
-                        className="hover:text-[#773fc6]"
-                        onClick={() => setPostId("")}
-                      >
-                        x
-                      </button>
-                    </div>
-
+                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-80 px-2 ">
                     <div className="flex flex-col p-2 items-center justify-center">
                       <button
                         onClick={() => handleEditInput(feed._id)}
@@ -359,7 +351,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
 
                 {feed?.post_media[0].type == "mp4" && (
-                  <video controls style={{ width: "50%", height: "50%" }}>
+                  <video controls muted style={{ width: "50%", height: "50%" }}>
                     <source src={feed?.post_media[0]?.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
