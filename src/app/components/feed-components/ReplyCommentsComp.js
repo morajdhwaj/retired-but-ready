@@ -37,9 +37,11 @@ const ReplyCommentsComp = ({
   }, []);
 
   const handleDropdown = (reply_id, content) => {
-    setShowDropDown(!showDropDown);
-    setReplyId(reply_id);
-    setEditComment(content);
+    if (!replyId) {
+      setShowDropDown(!showDropDown);
+      setReplyId(reply_id);
+      setEditComment(content);
+    } else setReplyId("");
   };
 
   const handleModal = (reply_id) => {
@@ -261,15 +263,6 @@ const ReplyCommentsComp = ({
                   )}
                   {replyId == reply?._id && (
                     <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
-                      <div className="text-xs flex justify-end">
-                        <button
-                          className="hover:text-[#773fc6]"
-                          onClick={() => setReplyId("")}
-                        >
-                          x
-                        </button>
-                      </div>
-
                       <div className="flex flex-col p-2 items-center justify-center">
                         <button
                           onClick={() => setEditReplyId(reply._id)}

@@ -195,8 +195,10 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   };
 
   const handleReply = (comment_id) => {
-    setShowReply(!showReply);
-    setReplyCommentId(comment_id);
+    if (!replyCommentId) {
+      setShowReply(!showReply);
+      setReplyCommentId(comment_id);
+    } else setReplyCommentId("");
   };
 
   return (
