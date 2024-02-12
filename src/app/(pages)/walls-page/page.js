@@ -13,6 +13,7 @@ import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
+import Loader from "@/app/components/Loader";
 
 const page = () => {
   const [feeds, setFeeds] = useState([]);
@@ -69,7 +70,11 @@ const page = () => {
   };
 
   if (userData.length === 0) {
-    return <h1 className="mx-5">Loading...</h1>;
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
   }
 
   console.log(userData, "userId");

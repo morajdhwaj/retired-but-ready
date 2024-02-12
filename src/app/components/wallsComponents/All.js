@@ -13,6 +13,10 @@ import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
+import dayjs from "dayjs";
+
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
@@ -26,8 +30,10 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [reportType, setReportType] = useState("hate_speech");
 
   const handleDropdown = (feed_id) => {
-    setShowDropDown(!showDropDown);
-    setPostId(feed_id);
+    if (!postId) {
+      setShowDropDown(!showDropDown);
+      setPostId(feed_id);
+    } else setPostId("");
   };
   const handleEditInput = (editId) => {
     getPost();
@@ -44,7 +50,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   }, []);
 
   const handleComments = (feedId) => {
-    setShowComments(feedId);
+    if (!showComments) {
+      setShowComments(feedId);
+    } else setShowComments("");
   };
 
   const postReaction = (postId, type) => {
@@ -259,16 +267,23 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </h2>
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
-                  <p className="text-xs">
-                    {new Date(feed?.publish_time)
-                      .toLocaleTimeString("en-US", {
-                        timeZone: "Asia/Kolkata",
-                        hour12: false,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                      .substring(0, 5)}
-                  </p>
+                  <div className="flex gap-10">
+                    {dayjs().date() -
+                      dayjs(new Date(feed?.publish_time + "Z")).date() <
+                    2 ? (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
+                      </p>
+                    ) : (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).format(
+                          "DD-MM-YYYY HH:mm a"
+                        )}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
               <div>
@@ -282,16 +297,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
                 )}
                 {postId == feed?._id && (
-                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
-                    <div className="text-xs flex justify-end">
-                      <button
-                        className="hover:text-[#773fc6]"
-                        onClick={() => setPostId("")}
-                      >
-                        x
-                      </button>
-                    </div>
-
+                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-80 px-2 ">
                     <div className="flex flex-col p-2 items-center justify-center">
                       <button
                         onClick={() => handleEditInput(feed._id)}
@@ -345,7 +351,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
 
                 {feed?.post_media[0].type == "mp4" && (
-                  <video controls style={{ width: "50%", height: "50%" }}>
+                  <video controls muted style={{ width: "50%", height: "50%" }}>
                     <source src={feed?.post_media[0]?.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -407,7 +413,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               {feed._id == showComments && (
                 <FeedComments
                   getFeeds={getFeeds}
-                  setShowComments={setShowComments}
                   userId={userId}
                   postId={feed?._id}
                 />
@@ -428,7 +433,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           setReportType={setReportType}
         />
       )}
-
       {showDeleteModal && (
         <PopUp
           close={handleDeleteModal}
@@ -439,7 +443,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           error="error"
         />
       )}
-
       {/* <div className=" mt-5 ">
         <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">

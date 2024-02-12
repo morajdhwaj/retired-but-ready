@@ -14,7 +14,7 @@ import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 
-const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
+const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
   const [inputComment, setInputComment] = useState("");
   const [editComment, setEditComment] = useState("");
@@ -34,9 +34,11 @@ const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
   }, [postId]);
 
   const handleDropdown = (comment_id, content) => {
-    setShowDropDown(!showDropDown);
-    setCommentId(comment_id);
-    setEditComment(content);
+    if (!commentId) {
+      setShowDropDown(!showDropDown);
+      setCommentId(comment_id);
+      setEditComment(content);
+    } else setCommentId("");
   };
 
   const handleModal = (comment_id) => {
@@ -193,17 +195,14 @@ const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
   };
 
   const handleReply = (comment_id) => {
-    setShowReply(!showReply);
-    setReplyCommentId(comment_id);
+    if (!replyCommentId) {
+      setShowReply(!showReply);
+      setReplyCommentId(comment_id);
+    } else setReplyCommentId("");
   };
 
   return (
     <div className=" w-full mt-5">
-      <div className="flex justify-end m-2">
-        <button onClick={() => setShowComments("")}>
-          <GrClose className="" />
-        </button>
-      </div>
       <textarea
         value={inputComment}
         onChange={(e) => setInputComment(e.target.value)}
@@ -256,16 +255,7 @@ const FeedComments = ({ postId, userId, getFeeds, setShowComments }) => {
                         </button>
                       )}
                       {commentId == comment._id && (
-                        <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
-                          <div className="text-xs flex justify-end">
-                            <button
-                              className="hover:text-[#773fc6]"
-                              onClick={() => setCommentId("")}
-                            >
-                              x
-                            </button>
-                          </div>
-
+                        <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-80 px-2 ">
                           <div className="flex flex-col p-2 items-center justify-center">
                             <button
                               onClick={() => handleEditInput(comment._id)}

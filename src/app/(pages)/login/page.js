@@ -18,7 +18,7 @@ const page = () => {
     setShowModal(true);
     showModal &&
       router.push(
-        userData.english_proficiency ? "/profile-details" : "/profile-setup"
+        userData.english_proficiency ? "walls-page" : "/profile-setup"
       );
   };
 
@@ -43,6 +43,10 @@ const page = () => {
   };
 
   const handleLogin = () => {
+    if (!email || !password) {
+      toast.error("Please enter your email and password");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/login",

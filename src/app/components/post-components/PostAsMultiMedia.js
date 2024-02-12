@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { GrClose } from "react-icons/gr";
+import Loader from "../Loader";
 
 const PostAsMultiMedia = ({
   descriptions,
@@ -114,7 +115,7 @@ const PostAsMultiMedia = ({
     <div className="mx-5  flex flex-col items-center justify-center ">
       {postLoading ? (
         <div className="mt-10 w-full flex items-center justify-center">
-          File posting please wait...
+          <Loader />
         </div>
       ) : (
         <div className="mt-10 w-full">
