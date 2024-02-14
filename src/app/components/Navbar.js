@@ -90,9 +90,12 @@ const Navbar = () => {
             Log out
           </button>
         ) : (
-          <button className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] ">
+          <Link
+            href="/login"
+            className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "
+          >
             Login
-          </button>
+          </Link>
         )}
       </div>
       {showSidebar && <Sidebar />}

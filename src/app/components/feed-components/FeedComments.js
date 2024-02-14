@@ -226,6 +226,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     src={comment?.comment_by?.user_image}
                     height={50}
                     width={50}
+                    className="rounded-full"
                   />
                 ) : (
                   <FaUserCircle size={50} />

@@ -168,78 +168,78 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       });
   };
 
-  // // the list of our video elements
-  // var videos = document.querySelectorAll("video");
-  // // an array to store the top and bottom of each of our elements
-  // var videoPos = [];
-  // // a counter to check our elements position when videos are loaded
-  // var loaded = 0;
+  // the list of our video elements
+  var videos = document.querySelectorAll("video");
+  // an array to store the top and bottom of each of our elements
+  var videoPos = [];
+  // a counter to check our elements position when videos are loaded
+  var loaded = 0;
 
-  // // Here we get the position of every element and store it in an array
-  // function checkPos() {
-  //   // loop through all our videos
-  //   for (var i = 0; i < videos.length; i++) {
-  //     var element = videos[i];
-  //     // get its bounding rect
-  //     var rect = element.getBoundingClientRect();
-  //     // we may already have scrolled in the page
-  //     // so add the current pageYOffset position too
-  //     var top = rect.top + window.pageYOffset;
-  //     var bottom = rect.bottom + window.pageYOffset;
-  //     // it's not the first call, don't create useless objects
-  //     if (videoPos[i]) {
-  //       videoPos[i].el = element;
-  //       videoPos[i].top = top;
-  //       videoPos[i].bottom = bottom;
-  //     } else {
-  //       // first time, add an event listener to our element
-  //       element.addEventListener("loadeddata", function () {
-  //         if (++loaded === videos.length - 1) {
-  //           // all our video have ben loaded, recheck the positions
-  //           // using rAF here just to make sure elements are rendered on the page
-  //           requestAnimationFrame(checkPos);
-  //         }
-  //       });
-  //       // push the object in our array
-  //       videoPos.push({
-  //         el: element,
-  //         top: top,
-  //         bottom: bottom,
-  //       });
-  //     }
-  //   }
-  // }
-  // // an initial check
-  // checkPos();
+  // Here we get the position of every element and store it in an array
+  function checkPos() {
+    // loop through all our videos
+    for (var i = 0; i < videos.length; i++) {
+      var element = videos[i];
+      // get its bounding rect
+      var rect = element.getBoundingClientRect();
+      // we may already have scrolled in the page
+      // so add the current pageYOffset position too
+      var top = rect.top + window.pageYOffset;
+      var bottom = rect.bottom + window.pageYOffset;
+      // it's not the first call, don't create useless objects
+      if (videoPos[i]) {
+        videoPos[i].el = element;
+        videoPos[i].top = top;
+        videoPos[i].bottom = bottom;
+      } else {
+        // first time, add an event listener to our element
+        element.addEventListener("loadeddata", function () {
+          if (++loaded === videos.length - 1) {
+            // all our video have ben loaded, recheck the positions
+            // using rAF here just to make sure elements are rendered on the page
+            requestAnimationFrame(checkPos);
+          }
+        });
+        // push the object in our array
+        videoPos.push({
+          el: element,
+          top: top,
+          bottom: bottom,
+        });
+      }
+    }
+  }
+  // an initial check
+  checkPos();
 
-  // var scrollHandler = function () {
-  //   // our current scroll position
+  var scrollHandler = function () {
+    // our current scroll position
 
-  //   // the top of our page
-  //   var min = window.pageYOffset;
-  //   // the bottom of our page
-  //   var max = min + window.innerHeight;
+    // the top of our page
+    var min = window.pageYOffset;
+    // the bottom of our page
+    var max = min + window.innerHeight;
 
-  //   videoPos.forEach(function (vidObj) {
-  //     // the top of our video is visible
-  //     if (vidObj.top >= min && vidObj.top < max) {
-  //       // play the video
-  //       vidObj.el.play();
-  //     }
+    videoPos.forEach(function (vidObj) {
+      // the top of our video is visible
+      if (vidObj.top >= min && vidObj.top < max) {
+        // play the video
+        vidObj.el.play();
+      }
 
-  //     // the bottom of the video is above the top of our page
-  //     // or the top of the video is below the bottom of our page
-  //     // ( === not visible anyhow )
-  //     if (vidObj.bottom <= min || vidObj.top >= max) {
-  //       // stop the video
-  //       vidObj.el.pause();
-  //     }
-  //   });
-  // };
-  // // add the scrollHandler
-  // window.addEventListener("scroll", scrollHandler, true);
-  // // don't forget to update the positions again if we do resize the page
-  // window.addEventListener("resize", checkPos);
+      // the bottom of the video is above the top of our page
+      // or the top of the video is below the bottom of our page
+      // ( === not visible anyhow )
+      if (vidObj.bottom <= min || vidObj.top >= max) {
+        // stop the video
+        vidObj.el.pause();
+      }
+    });
+  };
+  // add the scrollHandler
+  window.addEventListener("scroll", scrollHandler, true);
+  // don't forget to update the positions again if we do resize the page
+  window.addEventListener("resize", checkPos);
 
   console.log(reportPostId, "reportPost ID");
   return (
@@ -256,6 +256,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       src={feed?.post_user?.user_image}
                       height={50}
                       width={50}
+                      className="rounded-full"
                     />
                   ) : (
                     <FaUserCircle size={50} />
