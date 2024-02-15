@@ -30,7 +30,7 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
             <h2 className="font-semibold text-gray-500">Start a post</h2>
           </button>
         </div>
-        <div className="mx-20 mt-5 flex  justify-between">
+        <div className="mx-20 mt-5 flex  items-center justify-around">
           <button
             onClick={() => setAnyTypePost(true)}
             className=" p-3 rounded  flex  items-center gap-2"
