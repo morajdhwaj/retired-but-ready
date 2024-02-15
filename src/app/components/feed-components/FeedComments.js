@@ -298,10 +298,18 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       </div>
                     </div>
                   ) : (
-                    <div>
+                    <div className="flex flex-col gap-5 ">
                       <p className="text-xs font-medium text-gray-800 mt-4">
                         {comment?.comment_content}
                       </p>
+                      {comment?.comment_image && (
+                        <Image
+                          src={comment?.comment_image}
+                          alt=""
+                          height={100}
+                          width={100}
+                        />
+                      )}
                     </div>
                   )}
                   <p className="text-xs text-gray-400 mt-2">
