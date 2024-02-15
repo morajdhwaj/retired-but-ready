@@ -11,7 +11,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import ReplyCommentsComp from "./ReplyCommentsComp";
-import { GrClose } from "react-icons/gr";
+import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
@@ -202,16 +202,21 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   };
 
   return (
-    <div className=" w-full mt-5">
-      <textarea
-        value={inputComment}
-        onChange={(e) => setInputComment(e.target.value)}
-        className="w-full p-2 text-sm border rounded-xl"
-        placeholder="Leave your thoughts here"
-      />
+    <div className=" w-full mt-5 ">
+      <div className="flex items-center justify-center gap-5 pr-5">
+        <textarea
+          value={inputComment}
+          onChange={(e) => setInputComment(e.target.value)}
+          className="w-full p-2 text-sm border rounded-xl"
+          placeholder="Leave your comments"
+        />
+        <button>
+          <GrGallery size={30} color="gray" />
+        </button>
+      </div>
       <button
         onClick={postComment}
-        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
+        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded m-5"
       >
         Post
       </button>

@@ -12,6 +12,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
+import { GrGallery } from "react-icons/gr";
 
 const ReplyCommentsComp = ({
   userId,
@@ -227,7 +228,7 @@ const ReplyCommentsComp = ({
                     <div>
                       <div>
                         <textarea
-                          className="border  p-2 text-xs "
+                          className="border  p-2 text-xs w-80 "
                           value={editComment}
                           onChange={(e) => setEditComment(e.target.value)}
                         />
@@ -319,13 +320,18 @@ const ReplyCommentsComp = ({
           );
         })}
       </div>
-      <div className="flex items-center gap-5 mt-2">
-        <textarea
-          value={inputReply}
-          onChange={(e) => setInputReply(e.target.value)}
-          className=" p-2 text-sm border rounded-xl"
-          placeholder="Leave your thoughts here"
-        />
+      <div className="flex flex-col  gap-5 mt-2">
+        <div className="flex  items-center justify-center gap-5 pr-5">
+          <textarea
+            value={inputReply}
+            onChange={(e) => setInputReply(e.target.value)}
+            className=" p-2 text-sm border rounded-xl w-full"
+            placeholder="Leave your comments"
+          />
+          <button>
+            <GrGallery size={30} color="gray" />
+          </button>
+        </div>
         <div className="flex gap-2 text-xs">
           <button
             onClick={postReply}

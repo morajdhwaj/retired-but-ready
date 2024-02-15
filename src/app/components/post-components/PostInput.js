@@ -31,14 +31,20 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
           </button>
         </div>
         <div className="mx-20 mt-5 flex  justify-between">
-          <div className=" p-3 rounded  flex  items-center gap-2">
+          <button
+            onClick={() => setAnyTypePost(true)}
+            className=" p-3 rounded  flex  items-center gap-2"
+          >
             <TfiGallery color="#773fc3" size="20" />
             <p>Media</p>
-          </div>
-          <div className=" p-3 rounded  flex  items-center gap-2">
+          </button>
+          <button
+            onClick={() => setAnyTypePost(true)}
+            className=" p-3 rounded  flex  items-center gap-2"
+          >
             <SlNote color="#773fc3" size="20" />
-            <p>Write Article</p>
-          </div>
+            <p>Write text</p>
+          </button>
         </div>
       </div>
 
