@@ -63,6 +63,7 @@ const page = () => {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [mobile, setMobile] = useState();
 
   const router = useRouter();
 
@@ -80,11 +81,12 @@ const page = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response?.data);
+        console.log("this is aman data", response?.data);
         setUserData(response?.data);
         setDisplayName(response?.data?.user_display_name);
         setFirstName(response?.data?.user_first_name);
         setLastName(response?.data?.user_last_name);
+        setMobile(response?.data?.user_mobile);
       })
       .catch(function (error) {
         console.error(error);
@@ -331,10 +333,6 @@ const page = () => {
             </p>
             {step === 1 && (
               <PersonalInfo
-                step={step}
-                userId={userId}
-                setStep={setStep}
-                setShowModal={setShowModal}
                 firstName={firstName}
                 setFirstName={setFirstName}
                 lastName={lastName}
@@ -344,13 +342,18 @@ const page = () => {
                 gender={gender}
                 setGender={setGender}
                 country={country}
-                countryId={countryId}
-                setCompanyId={setCountryId}
                 setCountry={setCountry}
                 state={state}
                 setState={setState}
                 city={city}
                 setCity={setCity}
+                userId={userId}
+                setCompanyId={setCountryId}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
+                countryId={countryId}
+                mobile_no={mobile}
               />
             )}
             {step === 2 && (
