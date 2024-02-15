@@ -203,15 +203,15 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
 
   return (
     <div className=" w-full mt-5 ">
-      <div className="flex items-center justify-center gap-5 pr-5">
+      <div className="relative flex items-center justify-center ">
         <textarea
           value={inputComment}
           onChange={(e) => setInputComment(e.target.value)}
-          className="w-full p-2 text-sm border rounded-xl"
+          className="w-[100%] p-2 text-sm border rounded-xl flex items-center"
           placeholder="Leave your comments"
         />
-        <button>
-          <GrGallery size={30} color="gray" />
+        <button className="absolute right-12 w-0">
+          <GrGallery size={25} color="gray" />
         </button>
       </div>
       <button

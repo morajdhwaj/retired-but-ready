@@ -1,4 +1,4 @@
-"use client";
+          "use client";
 
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";

@@ -11,8 +11,8 @@ const PersonalInfo = ({
   setLastName,
   displayName,
   setDisplayName,
-  age,
-  setAge,
+  // age,
+  // setAge,
   gender,
   setGender,
   country,
@@ -26,6 +26,7 @@ const PersonalInfo = ({
   step,
   setStep,
   setShowModal,
+  mobile_no,
 }) => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -50,7 +51,7 @@ const PersonalInfo = ({
         user_first_name: firstName,
         user_last_name: lastName,
         user_display_name: displayName,
-        user_mobile: 989789798,
+        user_mobile: mobile_no,
         country_id: "11",
         country_name: country,
         user_state: state,
@@ -70,6 +71,7 @@ const PersonalInfo = ({
       });
   };
 
+  console.log("this is mobile data", mobile_no);
   const getCountries = () => {
     const options = {
       method: "GET",
