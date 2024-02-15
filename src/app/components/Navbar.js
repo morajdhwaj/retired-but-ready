@@ -63,10 +63,11 @@ const Navbar = () => {
             <GiHamburgerMenu size={25} />
           </button>
         </div>
-        <div className=" gap-2 hidden lg:flex">
+        <div className="  gap-1 hidden lg:flex  ">
           <Link href="/profile-setup">Profile-setup</Link>
           <Link href="/profile-details">Profile</Link>
-          <Link href="/walls-page">walls</Link>
+          <Link href="/walls-page">Walls</Link>
+          <Link href="/draft-page">Draft</Link>
         </div>
       </div>
       <div className="w-1/2 flex items-center justify-end gap-2 md:gap-16">
