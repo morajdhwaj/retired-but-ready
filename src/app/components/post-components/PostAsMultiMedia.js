@@ -60,7 +60,6 @@ const PostAsMultiMedia = ({
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success(response?.data?.message);
         setPostId(response?.data?.post_id);
         setShowPostButton(true);
         if (is_published == false) {
@@ -73,7 +72,7 @@ const PostAsMultiMedia = ({
       });
   };
 
-  const UploadFile = () => {
+  const UploadFile = (publish) => {
     setPostLoading(true);
     const formData = new FormData();
     Array.from(selectedFiles).forEach((file) => {
@@ -82,7 +81,7 @@ const PostAsMultiMedia = ({
 
     axios
       .post(
-        `https://retpro.catax.me/post/${postId}/upload-files?publish=true`,
+        `https://retpro.catax.me/post/${postId}/upload-files?publish=${publish}`,
         formData,
         {
           headers: {
@@ -159,15 +158,19 @@ const PostAsMultiMedia = ({
           </div>
           {selectedFiles?.length !== 0 && (
             <div className="flex justify-between mx-10 mt-5 gap-5">
-              <button
-                onClick={() => createPost(false)}
-                className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
-              >
-                Draft
-              </button>
               {showPostButton ? (
                 <button
-                  onClick={UploadFile}
+                  onClick={() => UploadFile(false)}
+                  className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+                >
+                  Save as Draft
+                </button>
+              ) : (
+                <div></div>
+              )}
+              {showPostButton ? (
+                <button
+                  onClick={() => UploadFile(true)}
                   className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
                 >
                   Post
