@@ -77,7 +77,7 @@ const page = () => {
     );
   }
 
-  console.log(userData, "userId");
+  console.log(userData, "userData");
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
