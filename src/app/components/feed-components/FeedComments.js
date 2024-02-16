@@ -28,6 +28,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   const [showReply, setShowReply] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     getComments();
@@ -67,7 +68,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       });
   };
 
-  const postComment = () => {
+  const postComment = async () => {
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-comment",
@@ -80,19 +81,23 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       },
     };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success(response?.data?.message);
-        getComments();
-        getFeeds();
-        setInputComment("");
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error(error?.response?.data?.detail);
-      });
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+
+      if (selectedImage) {
+        await postCommentPic(response?.data?.comment_id);
+        console.log("image selected");
+      }
+      console.log("image not selected");
+      toast.success(response?.data?.message);
+      getComments();
+      getFeeds();
+      setInputComment("");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.response?.data?.detail);
+    }
   };
 
   const deleteComment = () => {
@@ -201,18 +206,79 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
     } else setReplyCommentId("");
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
+  };
+
+  const postCommentPic = (comment_id) => {
+    const formData = new FormData();
+    formData.append("file", selectedImage);
+
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/comments/upload-comment-image/${comment_id}`,
+      headers: { "Content-Type": "multipart/form-data" },
+      data: formData,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getComments();
+        setSelectedImage(null);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  console.log(selectedImage, "selected");
   return (
     <div className=" w-full mt-5 ">
-      <div className="relative flex items-center justify-center ">
-        <textarea
-          value={inputComment}
-          onChange={(e) => setInputComment(e.target.value)}
-          className="w-[100%] p-2 text-sm border rounded-xl flex items-center"
-          placeholder="Leave your comments"
-        />
-        <button className="absolute right-12 w-0">
-          <GrGallery size={25} color="gray" />
-        </button>
+      <div className=" flex w-full  justify-center  gap-5 ">
+        <div className="w-full">
+          <textarea
+            value={inputComment}
+            onChange={(e) => setInputComment(e.target.value)}
+            className="w-[100%] p-2 text-sm border rounded-xl flex items-center"
+            placeholder="Leave your comments"
+          />
+          {selectedImage && (
+            <div className="flex mt-5 gap-2">
+              <Image
+                alt=""
+                src={URL.createObjectURL(selectedImage)}
+                height={100}
+                width={100}
+                className=""
+              />
+              <div>
+                {" "}
+                <button onClick={() => setSelectedImage("")}>
+                  {" "}
+                  <GrClose />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+        <label htmlFor="profile-picture" className="cursor-pointer">
+          <div className="flex items-center justify-center mt-5">
+            <GrGallery size={25} color="gray" />
+          </div>
+          <input
+            type="file"
+            id="profile-picture"
+            accept="image/*"
+            className="hidden"
+            multiple
+            onChange={handleImageChange}
+          />
+        </label>
       </div>
       <button
         onClick={postComment}
