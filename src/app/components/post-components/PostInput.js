@@ -11,6 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
   const [anyTypePost, setAnyTypePost] = useState(false);
+  const [type, setType] = useState(null)
 
   return (
     <div>
@@ -24,7 +25,10 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
             )}
           </div>
           <button
-            onClick={() => setAnyTypePost(true)}
+            onClick={() => {
+              setAnyTypePost(true);
+              setType("Text");
+            }}
             className=" w-full border border-gray-300 rounded-full flex items-center px-5"
           >
             <h2 className="font-semibold text-gray-500">Start a post</h2>
@@ -32,14 +36,20 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
         </div>
         <div className="mx-20 mt-5 flex  items-center justify-around">
           <button
-            onClick={() => setAnyTypePost(true)}
+            onClick={() => {
+              setAnyTypePost(true);
+              setType("Multimedia");
+            }}
             className=" p-3 rounded  flex  items-center gap-2"
           >
             <TfiGallery color="#773fc3" size="20" />
             <p>Media</p>
           </button>
           <button
-            onClick={() => setAnyTypePost(true)}
+            onClick={() => {
+              setAnyTypePost(true);
+              setType("Text");
+            }}
             className=" p-3 rounded  flex  items-center gap-2"
           >
             <SlNote color="#773fc3" size="20" />
@@ -54,6 +64,7 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
             getFeeds={getFeeds}
             userId={userId}
             setAnyTypePost={setAnyTypePost}
+            selectedType={type}
           />
         </div>
       )}

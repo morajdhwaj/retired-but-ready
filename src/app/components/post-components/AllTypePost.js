@@ -7,9 +7,9 @@ import PostAsText from "./PostAsText";
 import toast from "react-hot-toast";
 import PostAsMultiMedia from "./PostAsMultiMedia";
 
-const AllTypePost = ({ userId, setAnyTypePost, getFeeds }) => {
+const AllTypePost = ({ userId, setAnyTypePost, getFeeds, selectedType }) => {
   const [descriptions, setDescriptions] = useState("");
-  const [type, setType] = useState("Text");
+  const [type, setType] = useState(selectedType);
 
   const createPost = (is_published) => {
     const options = {
@@ -61,8 +61,8 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds }) => {
               onChange={(e) => setType(e.target.value)}
               className="border border-gray-300 rounded-lg px-2 py-1"
             >
-              <option>Text</option>
               <option>Multimedia</option>
+              <option>Text</option>
             </select>
           </div>
           <div className="mt-5 ">
