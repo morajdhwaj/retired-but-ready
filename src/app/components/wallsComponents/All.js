@@ -14,6 +14,12 @@ import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -55,7 +61,49 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
     } else setShowComments("");
   };
 
-  const postReaction = (postId, type) => {
+  const postReaction = (postId, type, userId) => {
+    const newFeeds = [...feeds];
+    const index = newFeeds.findIndex((feed) => feed._id === postId);
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        like: "reaction_like",
+        love: "reaction_love",
+        thinking: "reaction_thinking",
+        insight: "reaction_insight",
+        appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newFeeds[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newFeeds[index][reactionType].splice(userIndex, 1);
+        } else {
+          newFeeds[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newFeeds[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newFeeds[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setFeeds(newFeeds);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/post/react",
@@ -66,12 +114,29 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        getFeeds();
       })
       .catch(function (error) {
         console.error(error);
       });
   };
+
+  // const postReaction = (userId, postId, type) => {
+  //   const options = {
+  //     method: "POST",
+  //     url: "https://retpro.catax.me/post/react",
+  //     params: { post_id: postId, user_id: userId, reaction_type: type },
+  //   };
+
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       getFeeds();
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // };
 
   const handleDeleteModal = (comment_id) => {
     setShowDeleteModal(!showDeleteModal);
@@ -374,11 +439,37 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
                   </div>
                 )}
+                {feed?.reaction_thinking?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <BiSolidSad />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_thinking?.length}
+                    </p>
+                  </div>
+                )}
+                {feed?.reaction_insight?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <IoBulb />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_insight?.length}
+                    </p>
+                  </div>
+                )}
+                {feed?.reaction_appraise?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <PiNotepadFill />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_appraise?.length}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
-                  <button onClick={() => postReaction(feed._id, "like")}>
-                    {feed?.reaction_like?.some(
+                  <button
+                    onClick={() => postReaction(feed._id, "like", userId)}
+                  >
+                    {feed.reaction_like.some(
                       (user) => user.user_id === userId
                     ) ? (
                       <AiFillLike size={20} />
@@ -386,13 +477,50 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       <AiOutlineLike size={20} />
                     )}
                   </button>
-                  <button onClick={() => postReaction(feed._id, "love")}>
-                    {feed?.reaction_love?.some(
+
+                  <button
+                    onClick={() => postReaction(feed._id, "love", userId)}
+                  >
+                    {feed.reaction_love.some(
                       (user) => user.user_id === userId
                     ) ? (
                       <FaHeart size={20} />
                     ) : (
                       <CiHeart size={20} />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => postReaction(feed._id, "thinking", userId)}
+                  >
+                    {feed.reaction_thinking.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <BiSolidSad size={20} />
+                    ) : (
+                      <BiSad size={20} />
+                    )}
+                  </button>
+
+                  <button
+                    onClick={() => postReaction(feed._id, "insight", userId)}
+                  >
+                    {feed.reaction_insight.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <IoBulb size={20} />
+                    ) : (
+                      <IoBulbOutline size={20} />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => postReaction(feed._id, "appraise", userId)}
+                  >
+                    {feed.reaction_appraise.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <PiNotepadFill size={20} />
+                    ) : (
+                      <PiNotepadLight size={20} />
                     )}
                   </button>
 
