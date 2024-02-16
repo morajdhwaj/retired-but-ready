@@ -210,7 +210,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           className="w-[100%] p-2 text-sm border rounded-xl flex items-center"
           placeholder="Leave your comments"
         />
-        <button className="absolute right-10 w-0">
+        <button className="absolute right-12 w-0">
           <GrGallery size={25} color="gray" />
         </button>
       </div>
