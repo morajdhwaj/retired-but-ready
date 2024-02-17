@@ -229,7 +229,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       .then(function (response) {
         console.log(response.data);
         getComments();
-        setSelectedImage(null);
+        setSelectedImage("");
       })
       .catch(function (error) {
         console.error(error);
