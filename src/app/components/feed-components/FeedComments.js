@@ -13,6 +13,7 @@ import { CiHeart } from "react-icons/ci";
 import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
+import dayjs from "dayjs";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -384,15 +385,11 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       )}
                     </div>
                   )}
+
                   <p className="text-xs text-gray-400 mt-2">
-                    {new Date(comment?.comment_timestamp)
-                      .toLocaleTimeString("en-US", {
-                        timeZone: "Asia/Kolkata",
-                        hour12: false,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                      .substring(0, 5)}
+                    {dayjs(new Date(comment?.comment_timestamp + "Z")).format(
+                      "HH:mm"
+                    )}
                   </p>
 
                   <div className="text-xs mt-4 flex gap-5">
