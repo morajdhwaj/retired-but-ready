@@ -236,19 +236,40 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       });
   };
 
+  const autoResize = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  };
+
   console.log(selectedImage, "selected");
   return (
     <div className=" w-full mt-5 ">
-      <div className=" flex w-full  justify-center  gap-5 ">
+      <div className=" flex  items-center justify-center gap-5  border rounded-xl overflow-hidden ">
         <div className="w-full">
-          <textarea
-            value={inputComment}
-            onChange={(e) => setInputComment(e.target.value)}
-            className="w-[100%] p-2 text-sm border rounded-xl flex items-center"
-            placeholder="Leave your comments"
-          />
+          <div className="flex  px-2 m-2 gap-3 ">
+            <textarea
+              value={inputComment}
+              onChange={(e) => setInputComment(e.target.value)}
+              className="p-1 text-sm  w-full  outline-none "
+              placeholder="Leave your comments"
+              onInput={autoResize}
+            />
+            <label htmlFor="profile-picture" className="cursor-pointer ">
+              <div className="flex items-center justify-center mt-3">
+                <GrGallery size={25} color="gray" />
+              </div>
+              <input
+                type="file"
+                id="profile-picture"
+                accept="image/*"
+                className="hidden"
+                multiple
+                onChange={handleImageChange}
+              />
+            </label>
+          </div>
           {selectedImage && (
-            <div className="flex mt-5 gap-2">
+            <div className="flex  gap-2 bg-[#f7f8f8] p-4">
               <Image
                 alt=""
                 src={URL.createObjectURL(selectedImage)}
@@ -257,28 +278,13 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                 className=""
               />
               <div>
-                {" "}
                 <button onClick={() => setSelectedImage("")}>
-                  {" "}
                   <GrClose />
                 </button>
               </div>
             </div>
           )}
         </div>
-        <label htmlFor="profile-picture" className="cursor-pointer">
-          <div className="flex items-center justify-center mt-5">
-            <GrGallery size={25} color="gray" />
-          </div>
-          <input
-            type="file"
-            id="profile-picture"
-            accept="image/*"
-            className="hidden"
-            multiple
-            onChange={handleImageChange}
-          />
-        </label>
       </div>
       <button
         onClick={postComment}
