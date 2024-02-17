@@ -12,7 +12,7 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
-import { GrGallery } from "react-icons/gr";
+import { GrClose, GrGallery } from "react-icons/gr";
 
 const ReplyCommentsComp = ({
   userId,
@@ -32,6 +32,7 @@ const ReplyCommentsComp = ({
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [selectedReplyImage, setSelectedReplyImage] = useState("");
 
   useEffect(() => {
     getComments();
@@ -68,7 +69,7 @@ const ReplyCommentsComp = ({
       });
   };
 
-  const postReply = () => {
+  const postReply = async () => {
     if (!inputReply) {
       toast.error("Please share your thoughts");
       return;
@@ -85,19 +86,23 @@ const ReplyCommentsComp = ({
       },
     };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success(response?.data?.message);
-        getComments();
-        getFeeds();
-        setInputReply("");
-      })
-      .catch(function (error) {
-        console.error(error);
-        setInputReply("");
-      });
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+
+      if (selectedReplyImage) {
+        await postReplyPic(response?.data?.comment_id);
+        console.log("image selected");
+      }
+      console.log("image not selected");
+      toast.success(response?.data?.message);
+      getComments();
+      setInputReply("");
+    } catch (error) {
+      console.error(error);
+      setInputReply("");
+      toast.error(error?.response?.data?.detail);
+    }
   };
 
   const handleDeleteModal = () => {
@@ -198,9 +203,39 @@ const ReplyCommentsComp = ({
       });
   };
 
-  console.log(comments, "comments");
-  console.log(commentReply, "comment Reply");
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedReplyImage(file);
+    }
+  };
 
+  const postReplyPic = (comment_id) => {
+    const formData = new FormData();
+    formData.append("file", selectedReplyImage);
+
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/comments/upload-comment-image/${comment_id}`,
+      headers: { "Content-Type": "multipart/form-data" },
+      data: formData,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getComments();
+        setSelectedReplyImage("");
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  // console.log(comments, "comments");
+  // console.log(commentReply, "comment Reply");
+  console.log(selectedReplyImage, "selected reply");
   return (
     <div className="border border-gray-300 rounded-md p-2  mt-5 ml-20  ">
       <div className=" flex  flex-col gap-2">
@@ -211,14 +246,15 @@ const ReplyCommentsComp = ({
               className="border p-2 bg-gray-100 flex flex-col  gap-2"
             >
               <div className="flex justify-between">
-                <div className="flex  gap-2 items-center justify-center">
-                  <div>
+                <div className="flex   gap-2  justify-center">
+                  <div className="">
                     {reply?.comment_by?.user_image ? (
                       <Image
                         alt=""
                         src={reply?.comment_by?.user_image}
                         height={20}
                         width={20}
+                        className="rounded-full"
                       />
                     ) : (
                       <FaUserCircle size={50} />
@@ -245,6 +281,14 @@ const ReplyCommentsComp = ({
                       <p className="text-xs font-medium text-gray-800 ">
                         {reply?.comment_content}
                       </p>
+                      {reply?.comment_image && (
+                        <Image
+                          src={reply?.comment_image}
+                          alt=""
+                          height={100}
+                          width={100}
+                        />
+                      )}
                     </div>
                   )}
                 </div>
@@ -322,15 +366,43 @@ const ReplyCommentsComp = ({
       </div>
       <div className="flex flex-col  gap-5 mt-2">
         <div className="flex  items-center justify-center gap-5 pr-5">
-          <textarea
-            value={inputReply}
-            onChange={(e) => setInputReply(e.target.value)}
-            className=" p-2 text-sm border rounded-xl w-full"
-            placeholder="Leave your comments"
-          />
-          <button>
-            <GrGallery size={30} color="gray" />
-          </button>
+          <div className="w-full">
+            <textarea
+              value={inputReply}
+              onChange={(e) => setInputReply(e.target.value)}
+              className=" p-2 text-sm border rounded-xl w-full"
+              placeholder="Leave your comments"
+            />{" "}
+            {selectedReplyImage && (
+              <div className="flex  gap-2 bg-[#f7f8f8] p-4">
+                <Image
+                  alt=""
+                  src={URL.createObjectURL(selectedReplyImage)}
+                  height={100}
+                  width={100}
+                  className=""
+                />
+                <div>
+                  <button onClick={() => setSelectedReplyImage("")}>
+                    <GrClose />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+          <label>
+            <div className="flex items-center justify-center mt-3">
+              <GrGallery size={25} color="gray" />
+            </div>
+            <input
+              type="file"
+              id="profile-picture"
+              accept="image/*"
+              className="hidden"
+              multiple
+              onChange={handleImageChange}
+            />
+          </label>
         </div>
         <div className="flex gap-2 text-xs">
           <button
