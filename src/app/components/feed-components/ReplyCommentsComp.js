@@ -365,16 +365,31 @@ const ReplyCommentsComp = ({
         })}
       </div>
       <div className="flex flex-col  gap-5 mt-2">
-        <div className="flex  items-center justify-center gap-5 pr-5">
-          <div className="w-full">
-            <textarea
-              value={inputReply}
-              onChange={(e) => setInputReply(e.target.value)}
-              className=" p-2 text-sm border rounded-xl w-full"
-              placeholder="Leave your comments"
-            />{" "}
+        <div className=" border rounded-xl flex   justify-center gap-5 ">
+          <div className="w-full ">
+            <div className="flex gap-2 py-1 px-2">
+              <textarea
+                value={inputReply}
+                onChange={(e) => setInputReply(e.target.value)}
+                className=" p- text-sm  w-full"
+                placeholder="Leave your comments"
+              />
+              <label>
+                <div className="flex items-center justify-center mt-2">
+                  <GrGallery size={25} color="gray" />
+                </div>
+                <input
+                  type="file"
+                  id="profile-picture"
+                  accept="image/*"
+                  className="hidden"
+                  multiple
+                  onChange={handleImageChange}
+                />
+              </label>
+            </div>
             {selectedReplyImage && (
-              <div className="flex  gap-2 bg-[#f7f8f8] p-4">
+              <div className=" flex  bg-[#f7f8f8] p-4 w-full">
                 <Image
                   alt=""
                   src={URL.createObjectURL(selectedReplyImage)}
@@ -390,21 +405,8 @@ const ReplyCommentsComp = ({
               </div>
             )}
           </div>
-          <label>
-            <div className="flex items-center justify-center mt-3">
-              <GrGallery size={25} color="gray" />
-            </div>
-            <input
-              type="file"
-              id="profile-picture"
-              accept="image/*"
-              className="hidden"
-              multiple
-              onChange={handleImageChange}
-            />
-          </label>
         </div>
-        <div className="flex gap-2 text-xs">
+        <div className="flex gap-2 text-xs ">
           <button
             onClick={postReply}
             className="border border-[#773fc6] text-[#773fc6] h-10  rounded px-4"
