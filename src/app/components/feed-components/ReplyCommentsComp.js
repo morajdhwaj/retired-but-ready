@@ -98,6 +98,7 @@ const ReplyCommentsComp = ({
       toast.success(response?.data?.message);
       getComments();
       setInputReply("");
+      setSelectedReplyImage("");
     } catch (error) {
       console.error(error);
       setInputReply("");
