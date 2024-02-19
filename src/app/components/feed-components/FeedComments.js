@@ -20,6 +20,7 @@ import { IoBulb } from "react-icons/io5";
 import { IoBulbOutline } from "react-icons/io5";
 import { PiNotepadFill } from "react-icons/pi";
 import { PiNotepadLight } from "react-icons/pi";
+import { BsHeartFill } from "react-icons/bs";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -161,7 +162,9 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
 
   const AddReaction = (comment_id, type, userId) => {
     const newComments = [...comments];
-    const index = newComments.findIndex((comment) => comment._id === postId);
+    const index = newComments.findIndex(
+      (comment) => comment._id === comment_id
+    );
     if (index !== -1) {
       const reactions = [
         "reaction_like",
@@ -450,8 +453,141 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       </p>
                     )}
                   </div>
+                  <div className="mt-5">
+                    <div className="flex gap-2 items-center g   ">
+                      {comment?.reaction_like?.length > 0 && (
+                        <div className="flex items-center gap-1 justify-center">
+                          <AiFillLike />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_like?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_love?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <BsHeartFill />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_love?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_thinking?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <BiSolidSad />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_thinking?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_insight?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <IoBulb />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_insight?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_appraise?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <PiNotepadFill />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_appraise?.length}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() =>
+                            AddReaction(comment?._id, "reaction_like", userId)
+                          }
+                        >
+                          {comment.reaction_like.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <AiFillLike size={20} />
+                          ) : (
+                            <AiOutlineLike size={20} />
+                          )}
+                        </button>
 
-                  <div className="text-xs mt-4 flex gap-5">
+                        <button
+                          onClick={() =>
+                            AddReaction(comment?._id, "reaction_love", userId)
+                          }
+                        >
+                          {comment.reaction_love.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <FaHeart size={20} />
+                          ) : (
+                            <CiHeart size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_thinking",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_thinking.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <BiSolidSad size={20} />
+                          ) : (
+                            <BiSad size={20} />
+                          )}
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_insight",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_insight.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <IoBulb size={20} />
+                          ) : (
+                            <IoBulbOutline size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_appraise",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_appraise.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <PiNotepadFill size={20} />
+                          ) : (
+                            <PiNotepadLight size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() => handleReply(comment?._id)}
+                          className="text-xs ml-5"
+                        >
+                          Reply
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <div className="text-xs mt-4 flex gap-5">
                     <div className="flex  items-center justify-center">
                       {comment?.reaction_like?.length > 0 && (
                         <p> {comment?.reaction_like?.length} </p>
@@ -542,7 +678,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                         Reply
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

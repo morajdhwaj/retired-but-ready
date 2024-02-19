@@ -163,6 +163,50 @@ const ReplyCommentsComp = ({
   };
 
   const addReaction = (comment_id, type, userId) => {
+    const newCommentReply = [...commentReply];
+    const index = newCommentReply.findIndex(
+      (reply) => reply._id === comment_id
+    );
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        reaction_like: "reaction_like",
+        reaction_love: "reaction_love",
+        reaction_thinking: "reaction_thinking",
+        reaction_insight: "reaction_insight",
+        reaction_appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newCommentReply[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newCommentReply[index][reactionType].splice(userIndex, 1);
+        } else {
+          newCommentReply[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newCommentReply[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newCommentReply[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setCommentsReply(newCommentReply);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
@@ -333,10 +377,125 @@ const ReplyCommentsComp = ({
                   )}
                 </div>
               </div>
-
-              <div className="text-xs mt-4 flex gap-5">
-                <div className="flex gap-1 items-center justify-center">
+              <div className="mt-5">
+                <div className="flex gap-2 items-center g   ">
                   {reply?.reaction_like?.length > 0 && (
+                    <div className="flex items-center gap-1 justify-center">
+                      <AiFillLike />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_like?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_love?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <BsHeartFill />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_love?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_thinking?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <BiSolidSad />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_thinking?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_insight?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <IoBulb />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_insight?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_appraise?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <PiNotepadFill />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_appraise?.length}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_like", userId)
+                      }
+                    >
+                      {reply.reaction_like.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <AiFillLike size={20} />
+                      ) : (
+                        <AiOutlineLike size={20} />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_love", userId)
+                      }
+                    >
+                      {reply.reaction_love.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <FaHeart size={20} />
+                      ) : (
+                        <CiHeart size={20} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_thinking", userId)
+                      }
+                    >
+                      {reply.reaction_thinking.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <BiSolidSad size={20} />
+                      ) : (
+                        <BiSad size={20} />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_insight", userId)
+                      }
+                    >
+                      {reply.reaction_insight.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <IoBulb size={20} />
+                      ) : (
+                        <IoBulbOutline size={20} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_appraise", userId)
+                      }
+                    >
+                      {reply.reaction_appraise.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <PiNotepadFill size={20} />
+                      ) : (
+                        <PiNotepadLight size={20} />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* <div className="text-xs mt-4 flex gap-5">
+                <div className="flex gap-1 items-center justify-center">
+                  {reply?.reaction_like?.length !== 0 && (
                     <p> {reply?.reaction_like?.length} </p>
                   )}
                   <button
@@ -352,8 +511,9 @@ const ReplyCommentsComp = ({
                       <AiOutlineLike size={20} />
                     )}
                   </button>
-
-                  {reply?.reaction_love?.length > 0 && (
+                </div>
+                <div className="flex gap-1 items-center justify-center">
+                  {reply?.reaction_love?.length !== 0 && (
                     <p> {reply?.reaction_love?.length} </p>
                   )}
                   <button
@@ -369,56 +529,8 @@ const ReplyCommentsComp = ({
                       <CiHeart size={20} />
                     )}
                   </button>
-                  {reply?.reaction_thinking?.length > 0 && (
-                    <p> {reply?.reaction_thinking?.length} </p>
-                  )}
-                  <button
-                    onClick={() =>
-                      addReaction(reply?._id, "reaction_thinking", userId)
-                    }
-                  >
-                    {reply?.reaction_thinking?.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <BiSolidSad size={20} />
-                    ) : (
-                      <BiSad size={20} />
-                    )}
-                  </button>
-                  {reply?.reaction_insight?.length > 0 && (
-                    <p> {reply?.reaction_insight?.length} </p>
-                  )}
-                  <button
-                    onClick={() =>
-                      addReaction(reply?._id, "reaction_insight", userId)
-                    }
-                  >
-                    {reply?.reaction_insight?.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <IoBulb size={20} />
-                    ) : (
-                      <IoBulbOutline size={20} />
-                    )}
-                  </button>
-                  {reply?.reaction_appraise?.length > 0 && (
-                    <p> {reply?.reaction_appraise?.length} </p>
-                  )}
-                  <button
-                    onClick={() =>
-                      addReaction(reply?._id, "reaction_appraise", userId)
-                    }
-                  >
-                    {reply?.reaction_appraise?.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <PiNotepadFill size={20} />
-                    ) : (
-                      <PiNotepadLight size={20} />
-                    )}
-                  </button>
                 </div>
-              </div>
+              </div> */}
             </div>
           );
         })}
