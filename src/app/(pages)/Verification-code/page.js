@@ -89,8 +89,7 @@ const page = ({ length = 4 }) => {
             </div>
 
             <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
-              {" "}
-              I didn't receive a code!{" "}
+              I did not receive a code!
               <span className="text-[#773FC6] ">Please resend</span>
             </h1>
             <div className="bg-reg-500">
