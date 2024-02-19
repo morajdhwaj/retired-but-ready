@@ -13,7 +13,13 @@ import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
 import { GrClose, GrGallery } from "react-icons/gr";
-import dayjs from "dayjs";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
+import { BsHeartFill } from "react-icons/bs";
 
 const ReplyCommentsComp = ({
   userId,
@@ -61,7 +67,7 @@ const ReplyCommentsComp = ({
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data, "sachin time dekha na ");
+        console.log(response.data);
         setComments(response.data);
         setCommentsReply(response.data.comment_replies);
       })
@@ -99,7 +105,6 @@ const ReplyCommentsComp = ({
       toast.success(response?.data?.message);
       getComments();
       setInputReply("");
-      setSelectedReplyImage("");
     } catch (error) {
       console.error(error);
       setInputReply("");
@@ -157,7 +162,51 @@ const ReplyCommentsComp = ({
       });
   };
 
-  const addReaction = (comment_id, type) => {
+  const addReaction = (comment_id, type, userId) => {
+    const newCommentReply = [...commentReply];
+    const index = newCommentReply.findIndex(
+      (reply) => reply._id === comment_id
+    );
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        reaction_like: "reaction_like",
+        reaction_love: "reaction_love",
+        reaction_thinking: "reaction_thinking",
+        reaction_insight: "reaction_insight",
+        reaction_appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newCommentReply[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newCommentReply[index][reactionType].splice(userIndex, 1);
+        } else {
+          newCommentReply[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newCommentReply[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newCommentReply[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setCommentsReply(newCommentReply);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
@@ -235,132 +284,150 @@ const ReplyCommentsComp = ({
       });
   };
 
-  console.log(commentReply, "comment Reply");
+  // console.log(comments, "comments");
+  // console.log(commentReply, "comment Reply");
   console.log(selectedReplyImage, "selected reply");
   return (
     <div className="border border-gray-300 rounded-md p-2  mt-5 ml-20  ">
       <div className=" flex  flex-col gap-2">
         {commentReply.map((reply) => {
           return (
-            <div key={reply._id} className="flex gap-2 mt-5">
-              <div className="">
-                {reply?.comment_by?.user_image ? (
-                  <Image
-                    alt=""
-                    src={reply?.comment_by?.user_image}
-                    height={20}
-                    width={20}
-                    className="rounded-full"
-                  />
-                ) : (
-                  <FaUserCircle size={50} />
-                )}
-              </div>
-              <div className="border p-2 bg-gray-100 flex flex-col  gap-2 border-gray-300 rounded-b-lg w-full rounded-tr-lg">
-                <div className="flex justify-between">
+            <div
+              key={reply._id}
+              className="border p-2 bg-gray-100 flex flex-col  gap-2"
+            >
+              <div className="flex justify-between">
+                <div className="flex   gap-2  justify-center">
                   <div className="">
-                    <div className="flex gap-2 items-start">
-                      <h4 className="text-sm font-semibold text-[#773fc6]">
-                        {reply.comment_by.user_display_name}
-                      </h4>
-                    </div>
-                    <div className="">
-                      {editReplyId == reply._id ? (
-                        <div>
-                          <div>
-                            <textarea
-                              className="border  p-2 text-xs w-80 "
-                              value={editComment}
-                              onChange={(e) => setEditComment(e.target.value)}
-                            />
-                          </div>
-                          <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
-                            <button onClick={() => editReply(reply._id)}>
-                              Post
-                            </button>
-                            <button onClick={handleDiscard}>Discard</button>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col gap-5 ">
-                          <p className="text-xs font-medium text-gray-800 mt-4">
-                            {reply?.comment_content}
-                          </p>
-                          {reply?.comment_image && (
-                            <Image
-                              src={reply?.comment_image}
-                              alt=""
-                              height={100}
-                              width={100}
-                            />
-                          )}
-                        </div>
-                      )}
-
-                      <div className="">
-                        {dayjs().date() -
-                          dayjs(
-                            new Date(reply?.comment_timestamp + "Z")
-                          ).date() <
-                        2 ? (
-                          <p className="text-xs text-gray-400 mt-2">
-                            {dayjs(
-                              new Date(reply?.comment_timestamp + "Z")
-                            ).fromNow()}
-                          </p>
-                        ) : (
-                          <p className="text-xs text-gray-400 mt-2">
-                            {dayjs(
-                              new Date(reply?.comment_timestamp + "Z")
-                            ).format("DD-MM-YYYY HH:mm a")}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    {userId == reply.comment_by.id ? (
-                      <button
-                        onClick={() =>
-                          handleDropdown(reply?._id, reply.comment_content)
-                        }
-                      >
-                        <BsThreeDotsVertical size={25} color="gray" />
-                      </button>
+                    {reply?.comment_by?.user_image ? (
+                      <Image
+                        alt=""
+                        src={reply?.comment_by?.user_image}
+                        height={20}
+                        width={20}
+                        className="rounded-full"
+                      />
                     ) : (
-                      <button onClick={() => handleModal(reply?._id)}>
-                        <RiSpam2Fill size={25} color="gray" />
-                      </button>
-                    )}
-                    {replyId == reply?._id && (
-                      <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
-                        <div className="flex flex-col p-2 items-center justify-center">
-                          <button
-                            onClick={() => setEditReplyId(reply._id)}
-                            className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={handleDeleteModal}
-                            className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                          >
-                            delete
-                          </button>
-                        </div>
-                      </div>
+                      <FaUserCircle size={50} />
                     )}
                   </div>
+                  {editReplyId == reply._id ? (
+                    <div>
+                      <div>
+                        <textarea
+                          className="border  p-2 text-xs w-80 "
+                          value={editComment}
+                          onChange={(e) => setEditComment(e.target.value)}
+                        />
+                      </div>
+                      <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
+                        <button onClick={() => editReply(reply._id)}>
+                          Post
+                        </button>
+                        <button onClick={handleDiscard}>Discard</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-xs font-medium text-gray-800 ">
+                        {reply?.comment_content}
+                      </p>
+                      {reply?.comment_image && (
+                        <Image
+                          src={reply?.comment_image}
+                          alt=""
+                          height={100}
+                          width={100}
+                        />
+                      )}
+                    </div>
+                  )}
                 </div>
-                <div className="text-xs mt-4 flex gap-5">
-                  <div className="flex gap-1 items-center justify-center">
-                    {reply?.reaction_like?.length !== 0 && (
-                      <p> {reply?.reaction_like?.length} </p>
-                    )}
+                <div>
+                  {userId == reply.comment_by.id ? (
                     <button
-                      onClick={() => addReaction(reply?._id, "reaction_like")}
+                      onClick={() =>
+                        handleDropdown(reply?._id, reply.comment_content)
+                      }
                     >
-                      {reply?.reaction_like?.some(
+                      <BsThreeDotsVertical size={25} color="gray" />
+                    </button>
+                  ) : (
+                    <button onClick={() => handleModal(reply?._id)}>
+                      <RiSpam2Fill size={25} color="gray" />
+                    </button>
+                  )}
+                  {replyId == reply?._id && (
+                    <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-50 px-2 ">
+                      <div className="flex flex-col p-2 items-center justify-center">
+                        <button
+                          onClick={() => setEditReplyId(reply._id)}
+                          className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={handleDeleteModal}
+                          className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        >
+                          delete
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="mt-5">
+                <div className="flex gap-2 items-center g   ">
+                  {reply?.reaction_like?.length > 0 && (
+                    <div className="flex items-center gap-1 justify-center">
+                      <AiFillLike />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_like?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_love?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <BsHeartFill />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_love?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_thinking?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <BiSolidSad />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_thinking?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_insight?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <IoBulb />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_insight?.length}
+                      </p>
+                    </div>
+                  )}
+                  {reply?.reaction_appraise?.length > 0 && (
+                    <div className="flex items-center  gap-1 justify-center">
+                      <PiNotepadFill />
+                      <p className="text-sm w-2">
+                        {reply?.reaction_appraise?.length}
+                      </p>
+                    </div>
+                  )}
+                </div>
+                <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_like", userId)
+                      }
+                    >
+                      {reply.reaction_like.some(
                         (user) => user.user_id === userId
                       ) ? (
                         <AiFillLike size={20} />
@@ -368,15 +435,13 @@ const ReplyCommentsComp = ({
                         <AiOutlineLike size={20} />
                       )}
                     </button>
-                  </div>
-                  <div className="flex gap-1 items-center justify-center">
-                    {reply?.reaction_love?.length !== 0 && (
-                      <p> {reply?.reaction_love?.length} </p>
-                    )}
+
                     <button
-                      onClick={() => addReaction(reply?._id, "reaction_love")}
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_love", userId)
+                      }
                     >
-                      {reply?.reaction_love?.some(
+                      {reply.reaction_love.some(
                         (user) => user.user_id === userId
                       ) ? (
                         <FaHeart size={20} />
@@ -384,9 +449,88 @@ const ReplyCommentsComp = ({
                         <CiHeart size={20} />
                       )}
                     </button>
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_thinking", userId)
+                      }
+                    >
+                      {reply.reaction_thinking.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <BiSolidSad size={20} />
+                      ) : (
+                        <BiSad size={20} />
+                      )}
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_insight", userId)
+                      }
+                    >
+                      {reply.reaction_insight.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <IoBulb size={20} />
+                      ) : (
+                        <IoBulbOutline size={20} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() =>
+                        addReaction(reply._id, "reaction_appraise", userId)
+                      }
+                    >
+                      {reply.reaction_appraise.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <PiNotepadFill size={20} />
+                      ) : (
+                        <PiNotepadLight size={20} />
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
+
+              {/* <div className="text-xs mt-4 flex gap-5">
+                <div className="flex gap-1 items-center justify-center">
+                  {reply?.reaction_like?.length !== 0 && (
+                    <p> {reply?.reaction_like?.length} </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_like", userId)
+                    }
+                  >
+                    {reply?.reaction_like?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <AiFillLike size={20} />
+                    ) : (
+                      <AiOutlineLike size={20} />
+                    )}
+                  </button>
+                </div>
+                <div className="flex gap-1 items-center justify-center">
+                  {reply?.reaction_love?.length !== 0 && (
+                    <p> {reply?.reaction_love?.length} </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_love", userId)
+                    }
+                  >
+                    {reply?.reaction_love?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <FaHeart size={20} />
+                    ) : (
+                      <CiHeart size={20} />
+                    )}
+                  </button>
+                </div>
+              </div> */}
             </div>
           );
         })}
