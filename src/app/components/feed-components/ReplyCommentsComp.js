@@ -13,6 +13,13 @@ import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
 import { GrClose, GrGallery } from "react-icons/gr";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
+import { BsHeartFill } from "react-icons/bs";
 
 const ReplyCommentsComp = ({
   userId,
@@ -155,7 +162,7 @@ const ReplyCommentsComp = ({
       });
   };
 
-  const addReaction = (comment_id, type) => {
+  const addReaction = (comment_id, type, userId) => {
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
@@ -326,13 +333,16 @@ const ReplyCommentsComp = ({
                   )}
                 </div>
               </div>
+
               <div className="text-xs mt-4 flex gap-5">
                 <div className="flex gap-1 items-center justify-center">
-                  {reply?.reaction_like?.length !== 0 && (
+                  {reply?.reaction_like?.length > 0 && (
                     <p> {reply?.reaction_like?.length} </p>
                   )}
                   <button
-                    onClick={() => addReaction(reply?._id, "reaction_like")}
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_like", userId)
+                    }
                   >
                     {reply?.reaction_like?.some(
                       (user) => user.user_id === userId
@@ -342,13 +352,14 @@ const ReplyCommentsComp = ({
                       <AiOutlineLike size={20} />
                     )}
                   </button>
-                </div>
-                <div className="flex gap-1 items-center justify-center">
-                  {reply?.reaction_love?.length !== 0 && (
+
+                  {reply?.reaction_love?.length > 0 && (
                     <p> {reply?.reaction_love?.length} </p>
                   )}
                   <button
-                    onClick={() => addReaction(reply?._id, "reaction_love")}
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_love", userId)
+                    }
                   >
                     {reply?.reaction_love?.some(
                       (user) => user.user_id === userId
@@ -356,6 +367,54 @@ const ReplyCommentsComp = ({
                       <FaHeart size={20} />
                     ) : (
                       <CiHeart size={20} />
+                    )}
+                  </button>
+                  {reply?.reaction_thinking?.length > 0 && (
+                    <p> {reply?.reaction_thinking?.length} </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_thinking", userId)
+                    }
+                  >
+                    {reply?.reaction_thinking?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <BiSolidSad size={20} />
+                    ) : (
+                      <BiSad size={20} />
+                    )}
+                  </button>
+                  {reply?.reaction_insight?.length > 0 && (
+                    <p> {reply?.reaction_insight?.length} </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_insight", userId)
+                    }
+                  >
+                    {reply?.reaction_insight?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <IoBulb size={20} />
+                    ) : (
+                      <IoBulbOutline size={20} />
+                    )}
+                  </button>
+                  {reply?.reaction_appraise?.length > 0 && (
+                    <p> {reply?.reaction_appraise?.length} </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      addReaction(reply?._id, "reaction_appraise", userId)
+                    }
+                  >
+                    {reply?.reaction_appraise?.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <PiNotepadFill size={20} />
+                    ) : (
+                      <PiNotepadLight size={20} />
                     )}
                   </button>
                 </div>

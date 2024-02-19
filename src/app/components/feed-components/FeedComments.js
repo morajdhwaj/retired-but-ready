@@ -14,6 +14,12 @@ import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 import dayjs from "dayjs";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -153,7 +159,49 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       });
   };
 
-  const AddReaction = (comment_id, type) => {
+  const AddReaction = (comment_id, type, userId) => {
+    const newComments = [...comments];
+    const index = newComments.findIndex((comment) => comment._id === postId);
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        reaction_like: "reaction_like",
+        reaction_love: "reaction_love",
+        reaction_thinking: "reaction_thinking",
+        reaction_insight: "reaction_insight",
+        reaction_appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newComments[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newComments[index][reactionType].splice(userIndex, 1);
+        } else {
+          newComments[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newComments[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newComments[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setComments(newComments);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
@@ -393,13 +441,13 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                   </p>
 
                   <div className="text-xs mt-4 flex gap-5">
-                    <div className="flex gap-1 items-center justify-center">
-                      {comment?.reaction_like?.length !== 0 && (
+                    <div className="flex  items-center justify-center">
+                      {comment?.reaction_like?.length > 0 && (
                         <p> {comment?.reaction_like?.length} </p>
                       )}
                       <button
                         onClick={() =>
-                          AddReaction(comment?._id, "reaction_like")
+                          AddReaction(comment?._id, "reaction_like", userId)
                         }
                       >
                         {comment?.reaction_like?.some(
@@ -410,14 +458,13 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                           <AiOutlineLike size={20} />
                         )}
                       </button>
-                    </div>
-                    <div className="flex gap-1 items-center justify-center">
-                      {comment?.reaction_love?.length !== 0 && (
+
+                      {comment?.reaction_love?.length > 0 && (
                         <p> {comment?.reaction_love?.length} </p>
                       )}
                       <button
                         onClick={() =>
-                          AddReaction(comment?._id, "reaction_love")
+                          AddReaction(comment?._id, "reaction_love", userId)
                         }
                       >
                         {comment?.reaction_love?.some(
@@ -428,6 +475,55 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                           <CiHeart size={20} />
                         )}
                       </button>
+                      {comment?.reaction_thinking?.length > 0 && (
+                        <p> {comment?.reaction_thinking?.length} </p>
+                      )}
+                      <button
+                        onClick={() =>
+                          AddReaction(comment?._id, "reaction_thinking", userId)
+                        }
+                      >
+                        {comment?.reaction_thinking?.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <BiSolidSad size={20} />
+                        ) : (
+                          <BiSad size={20} />
+                        )}
+                      </button>
+                      {comment?.reaction_insight?.length > 0 && (
+                        <p> {comment?.reaction_insight?.length} </p>
+                      )}
+                      <button
+                        onClick={() =>
+                          AddReaction(comment?._id, "reaction_insight", userId)
+                        }
+                      >
+                        {comment?.reaction_insight?.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <IoBulb size={20} />
+                        ) : (
+                          <IoBulbOutline size={20} />
+                        )}
+                      </button>
+                      {comment?.reaction_appraise?.length > 0 && (
+                        <p> {comment?.reaction_appraise?.length} </p>
+                      )}
+                      <button
+                        onClick={() =>
+                          AddReaction(comment?._id, "reaction_appraise", userId)
+                        }
+                      >
+                        {comment?.reaction_appraise?.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <PiNotepadFill size={20} />
+                        ) : (
+                          <PiNotepadLight size={20} />
+                        )}
+                      </button>
+
                       <button
                         onClick={() => handleReply(comment?._id)}
                         className="text-xs ml-5"
