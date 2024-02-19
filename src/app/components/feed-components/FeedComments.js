@@ -433,12 +433,23 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       )}
                     </div>
                   )}
-
-                  <p className="text-xs text-gray-400 mt-2">
-                    {dayjs(new Date(comment?.comment_timestamp + "Z")).format(
-                      "HH:mm"
+                  <div className="">
+                    {dayjs().date() -
+                      dayjs(new Date(comment?.comment_timestamp + "Z")).date() <
+                    2 ? (
+                      <p className="text-xs text-gray-400 mt-2">
+                        {dayjs(
+                          new Date(comment?.comment_timestamp + "Z")
+                        ).fromNow()}
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 mt-2">
+                        {dayjs(
+                          new Date(comment?.comment_timestamp + "Z")
+                        ).format("DD-MM-YYYY HH:mm a")}
+                      </p>
                     )}
-                  </p>
+                  </div>
 
                   <div className="text-xs mt-4 flex gap-5">
                     <div className="flex  items-center justify-center">
