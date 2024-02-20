@@ -100,7 +100,7 @@ const page = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password*"
-              className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5  hover:border-blue-500 hover:rounded-none "
+              className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5  hover:border-blue-500"
             />
             <button
               onClick={handleRegister}

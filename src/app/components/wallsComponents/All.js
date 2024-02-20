@@ -4,55 +4,148 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
+import { BsHeartFill, BsThreeDotsVertical } from "react-icons/bs";
+import { FaHeart, FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
-import Comments from "../jaishreeComponent/Comments";
 import toast from "react-hot-toast";
+import FeedComments from "../feed-components/FeedComments";
+import PopUp from "../PopUp";
+import { RiSpam2Fill } from "react-icons/ri";
+import { CiHeart } from "react-icons/ci";
+import dayjs from "dayjs";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
 
-const All = ({ userId }) => {
-  const [feeds, setFeeds] = useState([]);
+var relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
+
+const All = ({ userId, feeds, setFeeds, getFeeds }) => {
+  const [postId, setPostId] = useState("");
+  const [editPostId, setEditPostId] = useState("");
+  const [reportPostId, setReportPostId] = useState("");
+  const [editDescription, setEditDescription] = useState("");
+  const [showDropDown, setShowDropDown] = useState(false);
   const [showComments, setShowComments] = useState("");
-  const [comments, setComments] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [reportType, setReportType] = useState("hate_speech");
+
+  const handleDropdown = (feed_id) => {
+    if (!postId) {
+      setShowDropDown(!showDropDown);
+      setPostId(feed_id);
+    } else setPostId("");
+  };
+  const handleEditInput = (editId) => {
+    getPost();
+    setEditPostId(editId);
+    setPostId("");
+  };
+  const handleDiscard = () => {
+    setEditPostId("");
+    setPostId("");
+  };
 
   useEffect(() => {
     getFeeds();
   }, []);
 
-  const getFeeds = () => {
+  const handleComments = (feedId) => {
+    if (!showComments) {
+      setShowComments(feedId);
+    } else setShowComments("");
+  };
+
+  const postReaction = (postId, type, userId) => {
+    const newFeeds = [...feeds];
+    const index = newFeeds.findIndex((feed) => feed._id === postId);
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        like: "reaction_like",
+        love: "reaction_love",
+        thinking: "reaction_thinking",
+        insight: "reaction_insight",
+        appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newFeeds[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newFeeds[index][reactionType].splice(userIndex, 1);
+        } else {
+          newFeeds[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newFeeds[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newFeeds[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setFeeds(newFeeds);
     const options = {
-      method: "GET",
-      url: "https://retpro.catax.me/my-feed/7B6593af5ef4f7ce4f923051f3",
+      method: "POST",
+      url: "https://retpro.catax.me/post/react",
+      params: { post_id: postId, user_id: userId, reaction_type: type },
     };
 
     axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setFeeds(response?.data);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
 
-  const handleComments = (feedId) => {
-    setComments("");
-    setShowComments(feedId);
+  // const postReaction = (userId, postId, type) => {
+  //   const options = {
+  //     method: "POST",
+  //     url: "https://retpro.catax.me/post/react",
+  //     params: { post_id: postId, user_id: userId, reaction_type: type },
+  //   };
+
+  //   axios
+  //     .request(options)
+  //     .then(function (response) {
+  //       console.log(response.data);
+  //       getFeeds();
+  //     })
+  //     .catch(function (error) {
+  //       console.error(error);
+  //     });
+  // };
+
+  const handleDeleteModal = (comment_id) => {
+    setShowDeleteModal(!showDeleteModal);
   };
 
-  const postComment = (postId, postUser) => {
+  const deletePost = () => {
     const options = {
-      method: "POST",
-      url: "https://retpro.catax.me/comments/add-comment",
-      headers: { "Content-Type": "application/json" },
-      data: {
-        comment_location: "global",
-        parent_id: postId,
-        comment_by: postUser,
-        comment_content: comments,
-      },
+      method: "DELETE",
+      url: `https://retpro.catax.me/post/${postId}/delete`,
     };
 
     axios
@@ -61,24 +154,53 @@ const All = ({ userId }) => {
         console.log(response.data);
         toast.success(response?.data?.message);
         getFeeds();
-        setComments("");
+        setPostId("");
+        setShowDeleteModal(false);
       })
       .catch(function (error) {
         console.error(error);
+
+        setPostId("");
+        setShowDeleteModal(false);
       });
   };
 
-  const postReaction = (postId, postUser) => {
+  if (feeds.length === 0) {
+    return <div className="h-[100vh]">Loading...</div>;
+  }
+
+  const getPost = () => {
     const options = {
-      method: "POST",
-      url: "https://retpro.catax.me/post/react",
-      params: { post_id: postId, user_id: postUser, reaction_type: "like" },
+      method: "GET",
+      url: `https://retpro.catax.me/post/${postId}`,
     };
 
     axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        setEditDescription(response?.data?.post_description);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const updatePost = (Post_id) => {
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/post/${Post_id}/update`,
+      headers: { "Content-Type": "application/json" },
+      data: { post_description: editDescription },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setEditPostId("");
+        setPostId("");
         getFeeds();
       })
       .catch(function (error) {
@@ -86,78 +208,322 @@ const All = ({ userId }) => {
       });
   };
 
-  console.log(feeds, "feed");
+  const handleReportModal = (post_id) => {
+    setShowReportModal(!showReportModal);
+    setReportPostId(post_id);
+  };
+
+  const reportSpam = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/post/report-spam",
+      params: { post_id: reportPostId, user_id: userId, spam_type: reportType },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setShowReportModal(false);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.success(error?.response?.data?.detail);
+      });
+  };
+
+  // the list of our video elements
+  var videos = document.querySelectorAll("video");
+  // an array to store the top and bottom of each of our elements
+  var videoPos = [];
+  // a counter to check our elements position when videos are loaded
+  var loaded = 0;
+
+  // Here we get the position of every element and store it in an array
+  function checkPos() {
+    // loop through all our videos
+    for (var i = 0; i < videos.length; i++) {
+      var element = videos[i];
+      // get its bounding rect
+      var rect = element.getBoundingClientRect();
+      // we may already have scrolled in the page
+      // so add the current pageYOffset position too
+      var top = rect.top + window.pageYOffset;
+      var bottom = rect.bottom + window.pageYOffset;
+      // it's not the first call, don't create useless objects
+      if (videoPos[i]) {
+        videoPos[i].el = element;
+        videoPos[i].top = top;
+        videoPos[i].bottom = bottom;
+      } else {
+        // first time, add an event listener to our element
+        element.addEventListener("loadeddata", function () {
+          if (++loaded === videos.length - 1) {
+            // all our video have ben loaded, recheck the positions
+            // using rAF here just to make sure elements are rendered on the page
+            requestAnimationFrame(checkPos);
+          }
+        });
+        // push the object in our array
+        videoPos.push({
+          el: element,
+          top: top,
+          bottom: bottom,
+        });
+      }
+    }
+  }
+  // an initial check
+  checkPos();
+
+  var scrollHandler = function () {
+    // our current scroll position
+
+    // the top of our page
+    var min = window.pageYOffset;
+    // the bottom of our page
+    var max = min + window.innerHeight;
+
+    videoPos.forEach(function (vidObj) {
+      // the top of our video is visible
+      if (vidObj.top >= min && vidObj.top < max) {
+        // play the video
+        vidObj.el.play();
+      }
+
+      // the bottom of the video is above the top of our page
+      // or the top of the video is below the bottom of our page
+      // ( === not visible anyhow )
+      if (vidObj.bottom <= min || vidObj.top >= max) {
+        // stop the video
+        vidObj.el.pause();
+      }
+    });
+  };
+  // add the scrollHandler
+  window.addEventListener("scroll", scrollHandler, true);
+  // don't forget to update the positions again if we do resize the page
+  window.addEventListener("resize", checkPos);
+
+  console.log(reportPostId, "reportPost ID");
   return (
-    <div>
+    <div className=" flex flex-col gap-10">
       {feeds.map((feed) => {
         return (
-          <div key={feed?._id} className=" mt-5 ">
+          <div key={feed?._id} className="mt-5 bg-white p-2">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
               <div className="flex items-center gap-2 justify-center">
                 <div>
-                  <Image
-                    alt=""
-                    src="/assets/Ellipse-39.png"
-                    height={50}
-                    width={50}
-                  />
+                  {feed?.post_user?.user_image ? (
+                    <Image
+                      alt=""
+                      src={feed?.post_user?.user_image}
+                      height={50}
+                      width={50}
+                      className="rounded-full"
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                    Munwar Raj singh
+                    {feed?.post_user?.user_display_name}
                   </h2>
-                  <p className="text-xs">Chief Executive Officer</p>
-                  <p className="text-xs">17 h</p>
+                  <p className="text-xs">{feed?.post_user?.last_designation}</p>
+
+                  <div className="flex gap-10">
+                    {dayjs().date() -
+                      dayjs(new Date(feed?.publish_time + "Z")).date() <
+                    2 ? (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
+                      </p>
+                    ) : (
+                      <p className="text-xs">
+                        Published at:{" "}
+                        {dayjs(new Date(feed?.publish_time + "Z")).format(
+                          "DD-MM-YYYY HH:mm a"
+                        )}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
               <div>
-                <BsThreeDotsVertical size={25} color="gray" />
+                {userId == feed?.post_user?.id ? (
+                  <button onClick={() => handleDropdown(feed?._id)}>
+                    <BsThreeDotsVertical size={25} color="gray" />
+                  </button>
+                ) : (
+                  <button onClick={() => handleReportModal(feed?._id)}>
+                    <RiSpam2Fill size={25} color="gray" />
+                  </button>
+                )}
+                {postId == feed?._id && (
+                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-80 px-2 ">
+                    <div className="flex flex-col p-2 items-center justify-center">
+                      <button
+                        onClick={() => handleEditInput(feed._id)}
+                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={handleDeleteModal}
+                        className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                      >
+                        delete
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="mt-5">
-              <p className="text-sm">{feed?.post_description}</p>
-              <p className="text-sm text-end text-[#773fc6]">...see more</p>
+              {editPostId == feed._id ? (
+                <div>
+                  <div>
+                    <textarea
+                      className="border p-2 text-xs w-1/2 rounded-lg"
+                      value={editDescription}
+                      onChange={(e) => setEditDescription(e.target.value)}
+                    />
+                  </div>
+                  <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
+                    <button onClick={() => updatePost(feed?._id)}>Post</button>
+                    <button onClick={handleDiscard}>Discard</button>
+                  </div>
+                </div>
+              ) : (
+                <div className="my-5">
+                  <p className="text-sm">{feed?.post_description}</p>
+                </div>
+              )}
+              {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
             </div>
             {feed.post_media && (
-              <div
-                style={{
-                  backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent, transparent, rgba(0, 0, 0, 0.7)), url(${feed?.post_media[0]?.url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "100%", // full screen width
-                  height: "70vh", // full screen height
-                  borderRadius: 10,
-                }}
-                className="p-5 text-white font-medium flex flex-col justify-between "
-              >
-                <h2 className="text-xs md:text-lg">
-                  Weekly news round-up: 2022 Hyundai Venue launched more details
-                  on Mahindra Scropio-N
-                </h2>
-                <p className="text-xs font-normal">{feed.publish_time}</p>
+              <div className="flex items-center justify-center">
+                {["png", "jpeg", "jpg"].includes(feed?.post_media[0].type) && (
+                  <Image
+                    alt=""
+                    src={feed?.post_media[0]?.url}
+                    height={200}
+                    width={300}
+                    className=""
+                  />
+                )}
+
+                {feed?.post_media[0].type == "mp4" && (
+                  <video controls muted style={{ width: "50%", height: "50%" }}>
+                    <source src={feed?.post_media[0]?.url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                )}
               </div>
             )}
+
             <div className="mt-5">
-              <h2 className="font-medium text-[#773fc6]">
-                New Toyota mid-size SUV spotted
-              </h2>
-              <p className="text-xs">
-                www.msn.com/en-in/auto | 6 min | 2 days ago
-              </p>
-            </div>
-            <div>
-              <div className="flex gap-1 items-center  ">
-                <AiFillLike />
-                <p className="text-sm">{feed?.reaction_like?.length}</p>
+              <div className="flex gap-2 items-center g   ">
+                {feed?.reaction_like?.length > 0 && (
+                  <div className="flex items-center gap-1 justify-center">
+                    <AiFillLike />
+                    <p className="text-sm w-2">{feed?.reaction_like?.length}</p>
+                  </div>
+                )}
+                {feed?.reaction_love?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <BsHeartFill />
+                    <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
+                  </div>
+                )}
+                {feed?.reaction_thinking?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <BiSolidSad />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_thinking?.length}
+                    </p>
+                  </div>
+                )}
+                {feed?.reaction_insight?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <IoBulb />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_insight?.length}
+                    </p>
+                  </div>
+                )}
+                {feed?.reaction_appraise?.length > 0 && (
+                  <div className="flex items-center  gap-1 justify-center">
+                    <PiNotepadFill />
+                    <p className="text-sm w-2">
+                      {feed?.reaction_appraise?.length}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => postReaction(feed._id, feed.post_user)}
+                    onClick={() => postReaction(feed._id, "like", userId)}
                   >
-                    <AiOutlineLike />
+                    {feed.reaction_like.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <AiFillLike size={20} />
+                    ) : (
+                      <AiOutlineLike size={20} />
+                    )}
                   </button>
-                  <p className="text-sm">Like</p>
+
+                  <button
+                    onClick={() => postReaction(feed._id, "love", userId)}
+                  >
+                    {feed.reaction_love.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <FaHeart size={20} />
+                    ) : (
+                      <CiHeart size={20} />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => postReaction(feed._id, "thinking", userId)}
+                  >
+                    {feed.reaction_thinking.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <BiSolidSad size={20} />
+                    ) : (
+                      <BiSad size={20} />
+                    )}
+                  </button>
+
+                  <button
+                    onClick={() => postReaction(feed._id, "insight", userId)}
+                  >
+                    {feed.reaction_insight.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <IoBulb size={20} />
+                    ) : (
+                      <IoBulbOutline size={20} />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => postReaction(feed._id, "appraise", userId)}
+                  >
+                    {feed.reaction_appraise.some(
+                      (user) => user.user_id === userId
+                    ) ? (
+                      <PiNotepadFill size={20} />
+                    ) : (
+                      <PiNotepadLight size={20} />
+                    )}
+                  </button>
+
                   <button onClick={() => handleComments(feed?._id)}>
                     <MdComment />
                   </button>
@@ -169,32 +535,43 @@ const All = ({ userId }) => {
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> | {feed?.shares?.length}
-                  <p className="text-sm">Shares</p>
+                  <p className="text-sm">Comments</p> |
+                  <button className="">Shares</button>
                 </div>
               </div>
               {feed._id == showComments && (
-                <div className="m-2">
-                  <textarea
-                    value={comments}
-                    onChange={(e) => setComments(e.target.value)}
-                    className="w-full p-2 text-sm"
-                    placeholder="Leave your thoughts here"
-                  />
-                  <button
-                    onClick={() => postComment(feed._id, feed.post_user)}
-                    className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
-                  >
-                    Post
-                  </button>
-                  <Comments postId={feed?._id} />
-                </div>
+                <FeedComments
+                  getFeeds={getFeeds}
+                  userId={userId}
+                  postId={feed?._id}
+                />
               )}
             </div>
           </div>
         );
       })}
-
+      {showReportModal && (
+        <PopUp
+          close={handleReportModal}
+          onClick={reportSpam}
+          title="Please select the category of spam being reported"
+          action="Report"
+          message=""
+          error="error"
+          reportType={reportType}
+          setReportType={setReportType}
+        />
+      )}
+      {showDeleteModal && (
+        <PopUp
+          close={handleDeleteModal}
+          onClick={deletePost}
+          title="Are you want Delete this post"
+          action="Delete"
+          message=""
+          error="error"
+        />
+      )}
       {/* <div className=" mt-5 ">
         <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
           <div className="flex items-center gap-2 justify-center">

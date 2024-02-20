@@ -63,6 +63,7 @@ const page = () => {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+  const [mobile, setMobile] = useState();
 
   const router = useRouter();
 
@@ -80,11 +81,12 @@ const page = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response?.data);
+        console.log("this is aman data", response?.data);
         setUserData(response?.data);
         setDisplayName(response?.data?.user_display_name);
         setFirstName(response?.data?.user_first_name);
         setLastName(response?.data?.user_last_name);
+        setMobile(response?.data?.user_mobile);
       })
       .catch(function (error) {
         console.error(error);
@@ -180,15 +182,16 @@ const page = () => {
   const uploadImg = () => {
     if (!selectedImage) {
       console.error("No image selected");
+      toast.error("Please select an image to upload.");
       return;
     }
 
     const form = new FormData();
-    form.append("file", selectedImage, selectedImage.name);
-
+    form.append("pic_file", selectedImage, selectedImage.name);
     const options = {
       method: "POST",
-      url: `https://retpro.catax.me/user/upload-profile-pic?user_id=${userId}`,
+      url: `https://retpro.catax.me/user/upload-profile-pic`,
+      params: { user_id: userId },
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -199,9 +202,13 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        toast.success(response.data.message); // Show success message using toast
+        // Update any state or UI as necessary
       })
       .catch(function (error) {
         console.error(error);
+        toast.error("Failed to upload profile picture."); // Show error message using toast
+        // Handle error more specifically if needed
       });
   };
 
@@ -326,10 +333,6 @@ const page = () => {
             </p>
             {step === 1 && (
               <PersonalInfo
-                step={step}
-                userId={userId}
-                setStep={setStep}
-                setShowModal={setShowModal}
                 firstName={firstName}
                 setFirstName={setFirstName}
                 lastName={lastName}
@@ -339,13 +342,18 @@ const page = () => {
                 gender={gender}
                 setGender={setGender}
                 country={country}
-                countryId={countryId}
-                setCompanyId={setCountryId}
                 setCountry={setCountry}
                 state={state}
                 setState={setState}
                 city={city}
                 setCity={setCity}
+                userId={userId}
+                setCompanyId={setCountryId}
+                step={step}
+                setStep={setStep}
+                setShowModal={setShowModal}
+                countryId={countryId}
+                mobile_no={mobile}
               />
             )}
             {step === 2 && (
