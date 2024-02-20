@@ -11,8 +11,16 @@ import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa6";
 import { CiHeart } from "react-icons/ci";
 import ReplyCommentsComp from "./ReplyCommentsComp";
-import { GrClose } from "react-icons/gr";
+import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
+import dayjs from "dayjs";
+import { BiSad } from "react-icons/bi";
+import { BiSolidSad } from "react-icons/bi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
+import { BsHeartFill } from "react-icons/bs";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -28,6 +36,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   const [showReply, setShowReply] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
     getComments();
@@ -67,7 +76,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       });
   };
 
-  const postComment = () => {
+  const postComment = async () => {
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-comment",
@@ -80,19 +89,23 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       },
     };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success(response?.data?.message);
-        getComments();
-        getFeeds();
-        setInputComment("");
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error(error?.response?.data?.detail);
-      });
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+
+      if (selectedImage) {
+        await postCommentPic(response?.data?.comment_id);
+        console.log("image selected");
+      }
+      console.log("image not selected");
+      toast.success(response?.data?.message);
+      getComments();
+      getFeeds();
+      setInputComment("");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.response?.data?.detail);
+    }
   };
 
   const deleteComment = () => {
@@ -147,7 +160,51 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       });
   };
 
-  const AddReaction = (comment_id, type) => {
+  const AddReaction = (comment_id, type, userId) => {
+    const newComments = [...comments];
+    const index = newComments.findIndex(
+      (comment) => comment._id === comment_id
+    );
+    if (index !== -1) {
+      const reactions = [
+        "reaction_like",
+        "reaction_love",
+        "reaction_thinking",
+        "reaction_insight",
+        "reaction_appraise",
+      ];
+      const reactionTypes = {
+        reaction_like: "reaction_like",
+        reaction_love: "reaction_love",
+        reaction_thinking: "reaction_thinking",
+        reaction_insight: "reaction_insight",
+        reaction_appraise: "reaction_appraise",
+      };
+      const reactionType = reactionTypes[type];
+      if (reactionType) {
+        const userIndex = newComments[index][reactionType].findIndex(
+          (user) => user.user_id === userId
+        );
+        if (userIndex !== -1) {
+          newComments[index][reactionType].splice(userIndex, 1);
+        } else {
+          newComments[index][reactionType].push({ user_id: userId });
+        }
+
+        reactions
+          .filter((r) => r !== reactionType)
+          .forEach((r) => {
+            const userIndex = newComments[index][r].findIndex(
+              (user) => user.user_id === userId
+            );
+            if (userIndex !== -1) {
+              newComments[index][r].splice(userIndex, 1);
+            }
+          });
+      }
+    }
+
+    setComments(newComments);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-reaction-to-comment",
@@ -201,17 +258,89 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
     } else setReplyCommentId("");
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
+  };
+
+  const postCommentPic = (comment_id) => {
+    const formData = new FormData();
+    formData.append("file", selectedImage);
+
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/comments/upload-comment-image/${comment_id}`,
+      headers: { "Content-Type": "multipart/form-data" },
+      data: formData,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getComments();
+        setSelectedImage("");
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const autoResize = (e) => {
+    e.target.style.height = "auto";
+    e.target.style.height = e.target.scrollHeight + "px";
+  };
+
+  console.log(selectedImage, "selected");
   return (
-    <div className=" w-full mt-5">
-      <textarea
-        value={inputComment}
-        onChange={(e) => setInputComment(e.target.value)}
-        className="w-full p-2 text-sm border rounded-xl"
-        placeholder="Leave your thoughts here"
-      />
+    <div className=" w-full mt-5 ">
+      <div className=" flex  items-center justify-center gap-5  border rounded-xl overflow-hidden ">
+        <div className="w-full">
+          <div className="flex  px-2 m-2 gap-3 ">
+            <textarea
+              value={inputComment}
+              onChange={(e) => setInputComment(e.target.value)}
+              className="p-1 text-sm  w-full  outline-none "
+              placeholder="Leave your comments"
+              onInput={autoResize}
+            />
+            <label htmlFor="profile-picture" className="cursor-pointer ">
+              <div className="flex items-center justify-center mt-3">
+                <GrGallery size={25} color="gray" />
+              </div>
+              <input
+                type="file"
+                id="profile-picture"
+                accept="image/*"
+                className="hidden"
+                multiple
+                onChange={handleImageChange}
+              />
+            </label>
+          </div>
+          {selectedImage && (
+            <div className="flex  gap-2 bg-[#f7f8f8] p-4">
+              <Image
+                alt=""
+                src={URL.createObjectURL(selectedImage)}
+                height={100}
+                width={100}
+                className=""
+              />
+              <div>
+                <button onClick={() => setSelectedImage("")}>
+                  <GrClose />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <button
         onClick={postComment}
-        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded"
+        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded m-5"
       >
         Post
       </button>
@@ -226,6 +355,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     src={comment?.comment_by?.user_image}
                     height={50}
                     width={50}
+                    className="rounded-full"
                   />
                 ) : (
                   <FaUserCircle size={50} />
@@ -292,65 +422,168 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       </div>
                     </div>
                   ) : (
-                    <div>
+                    <div className="flex flex-col gap-5 ">
                       <p className="text-xs font-medium text-gray-800 mt-4">
                         {comment?.comment_content}
                       </p>
+                      {comment?.comment_image && (
+                        <Image
+                          src={comment?.comment_image}
+                          alt=""
+                          height={100}
+                          width={100}
+                        />
+                      )}
                     </div>
                   )}
-                  <p className="text-xs text-gray-400 mt-2">
-                    {new Date(comment?.comment_timestamp)
-                      .toLocaleTimeString("en-US", {
-                        timeZone: "Asia/Kolkata",
-                        hour12: false,
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                      .substring(0, 5)}
-                  </p>
-
-                  <div className="text-xs mt-4 flex gap-5">
-                    <div className="flex gap-1 items-center justify-center">
-                      {comment?.reaction_like?.length !== 0 && (
-                        <p> {comment?.reaction_like?.length} </p>
+                  <div className="">
+                    {dayjs().date() -
+                      dayjs(new Date(comment?.comment_timestamp + "Z")).date() <
+                    2 ? (
+                      <p className="text-xs text-gray-400 mt-2">
+                        {dayjs(
+                          new Date(comment?.comment_timestamp + "Z")
+                        ).fromNow()}
+                      </p>
+                    ) : (
+                      <p className="text-xs text-gray-400 mt-2">
+                        {dayjs(
+                          new Date(comment?.comment_timestamp + "Z")
+                        ).format("DD-MM-YYYY HH:mm a")}
+                      </p>
+                    )}
+                  </div>
+                  <div className="mt-5">
+                    <div className="flex gap-2 items-center g   ">
+                      {comment?.reaction_like?.length > 0 && (
+                        <div className="flex items-center gap-1 justify-center">
+                          <AiFillLike />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_like?.length}
+                          </p>
+                        </div>
                       )}
-                      <button
-                        onClick={() =>
-                          AddReaction(comment?._id, "reaction_like")
-                        }
-                      >
-                        {comment?.reaction_like?.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <AiFillLike size={20} />
-                        ) : (
-                          <AiOutlineLike size={20} />
-                        )}
-                      </button>
+                      {comment?.reaction_love?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <BsHeartFill />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_love?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_thinking?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <BiSolidSad />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_thinking?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_insight?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <IoBulb />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_insight?.length}
+                          </p>
+                        </div>
+                      )}
+                      {comment?.reaction_appraise?.length > 0 && (
+                        <div className="flex items-center  gap-1 justify-center">
+                          <PiNotepadFill />
+                          <p className="text-sm w-2">
+                            {comment?.reaction_appraise?.length}
+                          </p>
+                        </div>
+                      )}
                     </div>
-                    <div className="flex gap-1 items-center justify-center">
-                      {comment?.reaction_love?.length !== 0 && (
-                        <p> {comment?.reaction_love?.length} </p>
-                      )}
-                      <button
-                        onClick={() =>
-                          AddReaction(comment?._id, "reaction_love")
-                        }
-                      >
-                        {comment?.reaction_love?.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <FaHeart size={20} />
-                        ) : (
-                          <CiHeart size={20} />
-                        )}
-                      </button>
-                      <button
-                        onClick={() => handleReply(comment?._id)}
-                        className="text-xs ml-5"
-                      >
-                        Reply
-                      </button>
+                    <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() =>
+                            AddReaction(comment?._id, "reaction_like", userId)
+                          }
+                        >
+                          {comment.reaction_like.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <AiFillLike size={20} />
+                          ) : (
+                            <AiOutlineLike size={20} />
+                          )}
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            AddReaction(comment?._id, "reaction_love", userId)
+                          }
+                        >
+                          {comment.reaction_love.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <FaHeart size={20} />
+                          ) : (
+                            <CiHeart size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_thinking",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_thinking.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <BiSolidSad size={20} />
+                          ) : (
+                            <BiSad size={20} />
+                          )}
+                        </button>
+
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_insight",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_insight.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <IoBulb size={20} />
+                          ) : (
+                            <IoBulbOutline size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            AddReaction(
+                              comment?._id,
+                              "reaction_appraise",
+                              userId
+                            )
+                          }
+                        >
+                          {comment.reaction_appraise.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <PiNotepadFill size={20} />
+                          ) : (
+                            <PiNotepadLight size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() => handleReply(comment?._id)}
+                          className="text-xs ml-5"
+                        >
+                          Reply
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
