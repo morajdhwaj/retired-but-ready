@@ -338,7 +338,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at:{" "}
+                        Published at:
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
@@ -524,10 +524,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     )}
                   </button>
 
-                  <button onClick={() => handleComments(feed?._id)}>
+                  <button
+                    className="flex items-center justify-center gap-2"
+                    onClick={() => handleComments(feed?._id)}
+                  >
                     <MdComment />
+
+                    <p className="text-sm">Comment</p>
                   </button>
-                  <p className="text-sm">Comment</p>
                   <button>
                     <IoIosShareAlt />
                   </button>
