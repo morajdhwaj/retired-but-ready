@@ -353,8 +353,10 @@ const ReplyCommentsComp = ({
                         )}
                         <div className="">
                           {dayjs().date() -
-                            dayjs(new Date(reply?.comment_timestamp + "Z")).date() <
-                            2 ? (
+                            dayjs(
+                              new Date(reply?.comment_timestamp + "Z")
+                            ).date() <
+                          2 ? (
                             <p className="text-xs text-gray-400 mt-2">
                               {dayjs(
                                 new Date(reply?.comment_timestamp + "Z")
