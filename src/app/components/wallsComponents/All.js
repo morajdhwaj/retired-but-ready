@@ -233,20 +233,20 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       });
   };
   // the list of our video elements
-  var videos = document.querySelectorAll("video");
+  const videos = document.querySelectorAll("video");
 
   // Function to play or pause video based on hover
-  function handleHover(event) {
-    var video = event.target;
+  const handleHover = (event) => {
+    const video = event.target;
     if (event.type === "mouseenter") {
       video.play();
     } else if (event.type === "mouseleave") {
       video.pause();
     }
-  }
+  };
 
   // Add event listeners to each video element
-  videos.forEach(function (video) {
+  videos.forEach((video) => {
     video.addEventListener("mouseenter", handleHover);
     video.addEventListener("mouseleave", handleHover);
   });
