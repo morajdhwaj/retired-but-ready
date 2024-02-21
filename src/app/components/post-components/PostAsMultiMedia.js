@@ -113,8 +113,11 @@ const PostAsMultiMedia = ({
   return (
     <div className="mx-5  flex flex-col items-center justify-center ">
       {postLoading ? (
-        <div className="mt-10 w-full flex items-center justify-center">
-          <Loader />
+        <div className="">
+          <p className="">Uploading Pls Wait...</p>
+          <div className="mt-10 w-full flex items-center justify-center">
+            <Loader />
+          </div>
         </div>
       ) : (
         <div className="mt-10 w-full">
