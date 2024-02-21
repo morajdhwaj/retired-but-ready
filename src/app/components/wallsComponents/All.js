@@ -234,70 +234,22 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   };
   // the list of our video elements
   var videos = document.querySelectorAll("video");
-  // an array to store the top and bottom of each of our elements
-  var videoPos = [];
-  // a counter to check our elements position when videos are loaded
-  var loaded = 0;
 
-  // Here we get the position of every element and store it in an array
-  function checkPos() {
-    // loop through all our videos
-    for (var i = 0; i < videos.length; i++) {
-      var element = videos[i];
-      // get its bounding rect
-      var rect = element.getBoundingClientRect();
-      // we may already have scrolled in the page
-      // so add the current pageYOffset position too
-      var top = rect.top + window.pageYOffset;
-      var bottom = rect.bottom + window.pageYOffset;
-      // it's not the first call, don't create useless objects
-      if (videoPos[i]) {
-        videoPos[i].el = element;
-        videoPos[i].top = top;
-        videoPos[i].bottom = bottom;
-      } else {
-        // first time, add an event listener to our element
-        element.addEventListener("loadeddata", function () {
-          if (++loaded === videos.length - 1) {
-            // all our video have ben loaded, recheck the positions
-            // using rAF here just to make sure elements are rendered on the page
-            requestAnimationFrame(checkPos);
-          }
-        });
-        // push the object in our array
-        videoPos.push({
-          el: element,
-          top: top,
-          bottom: bottom,
-        });
-      }
+  // Function to play or pause video based on hover
+  function handleHover(event) {
+    var video = event.target;
+    if (event.type === "mouseenter") {
+      video.play();
+    } else if (event.type === "mouseleave") {
+      video.pause();
     }
   }
-  // an initial check
-  checkPos();
 
-  // Modify the scrollHandler function
-  var scrollHandler = function () {
-    // Calculate the center of the screen
-    var center = window.pageYOffset + window.innerHeight / 2;
-
-    // Iterate through each video
-    videoPos.forEach(function (vidObj) {
-      // Check if the video is in the center of the screen
-      if (vidObj.top <= center && vidObj.bottom >= center) {
-        // Play the video that is in the center
-        vidObj.el.play();
-      } else {
-        // Pause videos that are not in the center
-        vidObj.el.pause();
-      }
-    });
-  };
-
-  // add the scrollHandler
-  window.addEventListener("scroll", scrollHandler, true);
-  // don't forget to update the positions again if we do resize the page
-  window.addEventListener("resize", checkPos);
+  // Add event listeners to each video element
+  videos.forEach(function (video) {
+    video.addEventListener("mouseenter", handleHover);
+    video.addEventListener("mouseleave", handleHover);
+  });
 
   console.log(reportPostId, "reportPost ID");
   return (
@@ -410,7 +362,11 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
 
                 {feed?.post_media[0].type == "mp4" && (
-                  <video controls muted style={{ width: "50%", height: "50%" }}>
+                  <video
+                    className="cursor-pointer"
+                    controls
+                    style={{ width: "50%", height: "50%" }}
+                  >
                     <source src={feed?.post_media[0]?.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
