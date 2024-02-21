@@ -232,7 +232,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
         toast.success(error?.response?.data?.detail);
       });
   };
-
   // the list of our video elements
   var videos = document.querySelectorAll("video");
   // an array to store the top and bottom of each of our elements
@@ -277,30 +276,24 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   // an initial check
   checkPos();
 
+  // Modify the scrollHandler function
   var scrollHandler = function () {
-    // our current scroll position
+    // Calculate the center of the screen
+    var center = window.pageYOffset + window.innerHeight / 2;
 
-    // the top of our page
-    var min = window.pageYOffset;
-    // the bottom of our page
-    var max = min + window.innerHeight;
-
+    // Iterate through each video
     videoPos.forEach(function (vidObj) {
-      // the top of our video is visible
-      if (vidObj.top >= min && vidObj.top < max) {
-        // play the video
+      // Check if the video is in the center of the screen
+      if (vidObj.top <= center && vidObj.bottom >= center) {
+        // Play the video that is in the center
         vidObj.el.play();
-      }
-
-      // the bottom of the video is above the top of our page
-      // or the top of the video is below the bottom of our page
-      // ( === not visible anyhow )
-      if (vidObj.bottom <= min || vidObj.top >= max) {
-        // stop the video
+      } else {
+        // Pause videos that are not in the center
         vidObj.el.pause();
       }
     });
   };
+
   // add the scrollHandler
   window.addEventListener("scroll", scrollHandler, true);
   // don't forget to update the positions again if we do resize the page
@@ -338,7 +331,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at:{" "}
+                        Published at:
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
@@ -524,10 +517,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     )}
                   </button>
 
-                  <button onClick={() => handleComments(feed?._id)}>
+                  <button
+                    className="flex items-center justify-center gap-2"
+                    onClick={() => handleComments(feed?._id)}
+                  >
                     <MdComment />
+
+                    <p className="text-sm">Comment</p>
                   </button>
-                  <p className="text-sm">Comment</p>
                   <button>
                     <IoIosShareAlt />
                   </button>
