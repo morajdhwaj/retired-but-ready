@@ -464,83 +464,129 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => postReaction(feed._id, "like", userId)}
-                  >
-                    {feed.reaction_like.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <AiFillLike size={20} />
-                    ) : (
-                      <AiOutlineLike size={20} />
-                    )}
-                  </button>
+              <div className="">
+                <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="relative group">
+                      <div className="absolute bottom-full bg-white shadow-md p-2 rounded-md hidden group-hover:block w-[13vh]">
+                        {/* Render all reaction buttons */}
+                        <button
+                          onClick={() => postReaction(feed._id, "like", userId)}
+                        >
+                          {feed.reaction_like.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <AiFillLike size={20} />
+                          ) : (
+                            <AiOutlineLike size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() => postReaction(feed._id, "love", userId)}
+                        >
+                          {feed.reaction_love.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <FaHeart size={20} />
+                          ) : (
+                            <CiHeart size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            postReaction(feed._id, "thinking", userId)
+                          }
+                        >
+                          {feed.reaction_thinking.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <BiSolidSad size={20} />
+                          ) : (
+                            <BiSad size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            postReaction(feed._id, "insight", userId)
+                          }
+                        >
+                          {feed.reaction_insight.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <IoBulb size={20} />
+                          ) : (
+                            <IoBulbOutline size={20} />
+                          )}
+                        </button>
+                        <button
+                          onClick={() =>
+                            postReaction(feed._id, "appraise", userId)
+                          }
+                        >
+                          {feed.reaction_appraise.some(
+                            (user) => user.user_id === userId
+                          ) ? (
+                            <PiNotepadFill size={20} />
+                          ) : (
+                            <PiNotepadLight size={20} />
+                          )}
+                        </button>
+                      </div>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "love", userId)}
-                  >
-                    {feed.reaction_love.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <FaHeart size={20} />
-                    ) : (
-                      <CiHeart size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "thinking", userId)}
-                  >
-                    {feed.reaction_thinking.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <BiSolidSad size={20} />
-                    ) : (
-                      <BiSad size={20} />
-                    )}
-                  </button>
+                      <div className="">
+                        {[
+                          "like",
+                          "love",
+                          "thinking",
+                          "insight",
+                          "appraise",
+                        ].map((reactionType) => {
+                          if (
+                            feed[`reaction_${reactionType}`].some(
+                              (user) => user.user_id === userId
+                            )
+                          ) {
+                            return (
+                              <span key={reactionType}>
+                                {reactionType === "love" ? (
+                                  <FaHeart size={20} />
+                                ) : reactionType === "thinking" ? (
+                                  <BiSolidSad size={20} />
+                                ) : reactionType === "insight" ? (
+                                  <IoBulb size={20} />
+                                ) : reactionType === "appraise" ? (
+                                  <PiNotepadFill size={20} />
+                                ) : reactionType === "like" ? (
+                                  <AiFillLike size={20} />
+                                ) : (
+                                  <AiOutlineLike size={20} />
+                                )}
+                              </span>
+                            );
+                          }
+                          return <AiOutlineLike size={20} />;
+                        })}
+                      </div>
+                    </div>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "insight", userId)}
-                  >
-                    {feed.reaction_insight.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <IoBulb size={20} />
-                    ) : (
-                      <IoBulbOutline size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "appraise", userId)}
-                  >
-                    {feed.reaction_appraise.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <PiNotepadFill size={20} />
-                    ) : (
-                      <PiNotepadLight size={20} />
-                    )}
-                  </button>
+                    <button
+                      className="flex items-center justify-center gap-2"
+                      onClick={() => handleComments(feed?._id)}
+                    >
+                      <MdComment />
 
-                  <button
-                    className="flex items-center justify-center gap-2"
-                    onClick={() => handleComments(feed?._id)}
-                  >
-                    <MdComment />
-
-                    <p className="text-sm">Comment</p>
-                  </button>
-                  <button>
-                    <IoIosShareAlt />
-                  </button>
-                  <p className="text-sm">Share</p>
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                  {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> |
-                  <button className="">Shares</button>
+                      <p className="text-sm">Comment</p>
+                    </button>
+                    <button>
+                      <IoIosShareAlt />
+                    </button>
+                    <p className="text-sm">Share</p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    {feed?.post_comment_id?.length}
+                    <p className="text-sm">Comments</p> |
+                    <button className="">Shares</button>
+                  </div>
                 </div>
               </div>
               {feed._id == showComments && (
