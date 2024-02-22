@@ -105,12 +105,19 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <div className="flex gap-5">
-                  <Link href="/followers-page">
-                    <h1> FOLLOWERS</h1>
-                  </Link>
-                  <Link href="/suggestion-page">
+
+                <div className="flex justify-center sm:flex md:flex lg:flex gap-2 flex-wrap">
+                  <Link
+                    href="/suggestion-page"
+                    className="flex items-center  p-1 bg-white rounded-lg "
+                  >
                     <h1> SUGGESTION</h1>
+                  </Link>
+                  <Link
+                    href="/connections-page"
+                    className="flex items-center p-1  bg-white rounded-lg"
+                  >
+                    <h1> CONNECTION</h1>
                   </Link>
                 </div>
               </div>
@@ -140,23 +147,30 @@ const page = () => {
               {followers.map((curelem, key) => {
                 return (
                   <div>
-                    <div className="mt-2 flex  justify-between" key={key}>
-                      <div className=" flex  ">
+                    <div
+                      className="mt-2  flex flex-col  items-center sm:flex  sm:flex-row md:flex  md:flex-row lg:flex flex-wrap justify-between "
+                      key={key}
+                    >
+                      <div className=" flex flex-col  items-center gap-1 sm:flex  sm:flex-row sm:gap-0 md:flex  md:flex-row md:gap-0 lg:flex lg:flex-row  lg:gap-0">
                         <div>
                           <Image
                             alt=""
                             src="/assets/110.png"
-                            height={50}
-                            width={50}
+                            height={80}
+                            width={80}
                           />
                         </div>
-                        <div className="lg:mx-1 ">
+                        <div className="mx-2  text-center sm:text-start md:text-start lg:text-start mt-2 sm:mt-0 md:mt-0 lg:mt-0">
                           <h1 className="text-[#8942a1b1] font-bold">
                             {curelem.from_user_full_name}
                           </h1>
-                          <p>Post name</p>
+                          <p className="text-sm sm:font-normal md:font-normal lg:font-normal">
+                            Post name
+                          </p>
 
-                          <p>Connected today</p>
+                          <p className="text-sm sm:font-normal md:font-normal lg:font-normal">
+                            Connected today
+                          </p>
                         </div>
                       </div>
 
