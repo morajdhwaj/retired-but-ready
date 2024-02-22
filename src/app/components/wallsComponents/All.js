@@ -375,7 +375,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             )}
 
             <div className="mt-5">
-              <div className="flex gap-2 items-center g   ">
+              <div className="flex  gap-2 items-center g   ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
                     <AiFillLike />
@@ -413,7 +413,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
+              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between ">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => postReaction(feed._id, "like", userId)}
