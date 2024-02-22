@@ -46,10 +46,10 @@ const PostAsText = ({
       <textarea
         value={descriptions}
         onChange={(e) => setDescriptions(e.target.value)}
-        className="border border-gray-200 w-full h-40 p-5 rounded"
+        className="border border-gray-200 w-full h-60 p-5 rounded"
         placeholder="Write something here.."
       />
-      <div className="flex justify-between mx-10 mt-5 gap-5">
+      <div className="flex justify-between mx-5 mt-5 gap-5">
         <button
           onClick={() => createPost(false)}
           className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
