@@ -74,7 +74,7 @@ const Suggestion = () => {
   return (
     <div className=" ">
       <Request />
-      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex flex-wrap items-center justify-center mx-6 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
+      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex flex-wrap items-center justify-center gap-5 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
         <div
           className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(1)}
@@ -175,8 +175,10 @@ const Suggestion = () => {
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
         {card.map((card, index) => (
           <div className="border border-gray-300  rounded-md" key={index}>
-            <div className=" bg-[#B3CEE2] ">
-              <IoMdCloseCircle className="size-8 mx-20" />
+            <div className=" bg-[#B3CEE2]   ">
+              <div className="flex justify-end mt-2 mx-2">
+                <IoMdCloseCircle className="size-8 " />
+              </div>
 
               <div className="flex items-center justify-center pb-4">
                 <Image
