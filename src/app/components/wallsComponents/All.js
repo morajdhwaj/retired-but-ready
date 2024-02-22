@@ -34,6 +34,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleDropdown = (feed_id) => {
     if (!postId) {
@@ -375,7 +376,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             )}
 
             <div className="mt-5">
-              <div className="flex gap-2 items-center g   ">
+              <div className="flex gap-2 items-center    ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
                     <AiFillLike />
@@ -413,66 +414,98 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-                <div className="flex items-center gap-2">
+              <div className="mt-2 flex sm:flex-row  justify-between">
+                <div className="relative flex items-center gap-2">
                   <button
-                    onClick={() => postReaction(feed._id, "like", userId)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    className="hover:text-blue-600"
                   >
-                    {feed.reaction_like.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <AiFillLike size={20} />
-                    ) : (
-                      <AiOutlineLike size={20} />
-                    )}
+                    {}
+                    <AiOutlineLike size={20} />
+                    <AiFillLike size={20} />
                   </button>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "love", userId)}
-                  >
-                    {feed.reaction_love.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <FaHeart size={20} />
-                    ) : (
-                      <CiHeart size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "thinking", userId)}
-                  >
-                    {feed.reaction_thinking.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <BiSolidSad size={20} />
-                    ) : (
-                      <BiSad size={20} />
-                    )}
-                  </button>
+                  {isHovered && (
+                    <div className="absolute  bottom-8  flex bg-white gap-2">
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "like", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_like.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <AiFillLike
+                            size={20}
+                            onMouseLeave={() => setIsHovered(feed._id, false)}
+                          />
+                        ) : (
+                          <AiOutlineLike size={20} />
+                        )}
+                      </button>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "insight", userId)}
-                  >
-                    {feed.reaction_insight.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <IoBulb size={20} />
-                    ) : (
-                      <IoBulbOutline size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "appraise", userId)}
-                  >
-                    {feed.reaction_appraise.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <PiNotepadFill size={20} />
-                    ) : (
-                      <PiNotepadLight size={20} />
-                    )}
-                  </button>
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "love", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_love.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <FaHeart size={20} />
+                        ) : (
+                          <CiHeart size={20} />
+                        )}
+                      </button>
 
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "thinking", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_thinking.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <BiSolidSad size={20} />
+                        ) : (
+                          <BiSad size={20} />
+                        )}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "insight", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_insight.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <IoBulb size={20} />
+                        ) : (
+                          <IoBulbOutline size={20} />
+                        )}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "appraise", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_appraise.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <PiNotepadFill size={20} />
+                        ) : (
+                          <PiNotepadLight size={20} />
+                        )}
+                      </button>
+                    </div>
+                  )}
                   <button
                     className="flex items-center justify-center gap-2"
                     onClick={() => handleComments(feed?._id)}
@@ -486,6 +519,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
                   <p className="text-sm">Share</p>
                 </div>
+
                 <div className="flex items-center gap-2 text-sm">
                   {feed?.post_comment_id?.length}
                   <p className="text-sm">Comments</p> |
