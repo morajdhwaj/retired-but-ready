@@ -496,9 +496,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> |
-                  <button className="">Shares</button>
+                  <button
+                    onClick={() => handleComments(feed?._id)}
+                    className="flex items-center gap-2"
+                  >
+                    {feed?.post_comment_id?.length}
+                    <p className="text-sm">Comments</p>{" "}
+                  </button>
+                  |<button className="">Shares</button>
                 </div>
               </div>
               {feed._id == showComments && (
