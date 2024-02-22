@@ -8,6 +8,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 // import FollowOne from "@/app/components/followers/FollowOne";
 // import FollowTwo from "@/app/components/followers/FollowTwo";
@@ -59,7 +60,6 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         setFollower(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -67,9 +67,24 @@ const page = () => {
   };
   console.log(followers, "Ye followers ka data");
 
-  console.log(userId, "userId");
-  console.log(userData, "userData");
-  console.log(followers, "userData");
+  // remove followers
+  const deleteFollowers = (from_user_id) => {
+    const options = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user_id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        getFollowers();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
@@ -126,7 +141,9 @@ const page = () => {
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             <div>
-              <h1 className="font-semi-bold text-lg">Followers</h1>
+              <h1 className="font-semi-bold text-lg">
+                {followers.length}Followers
+              </h1>
               {followers.map((curelem, key) => {
                 return (
                   <div>
@@ -157,10 +174,14 @@ const page = () => {
                         </div>
                       </div>
 
-                      <div className="flex gap-2 mt-3 sm:mt-0 md:mt-0 lg:mt-0">
-                        <button className="border-2 border-black h-10 p-1 rounded-full ">
+                      <div className="flex gap-2">
+                        <button
+                          className="border-2 border-black h-10 p-1 rounded-full "
+                          onClick={() => deleteFollowers(curelem.from_user_id)}
+                        >
                           Remove
                         </button>
+                        {console.log(curelem.from_user_id, "removeid")}
                         <IoIosSend className="mt-3 font-[20px]" />
                       </div>
                     </div>
