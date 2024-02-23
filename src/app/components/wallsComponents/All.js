@@ -34,6 +34,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleDropdown = (feed_id) => {
     if (!postId) {
@@ -495,6 +496,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <p className="text-sm">Share</p>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-2 text-sm">
                   <button
                     onClick={() => handleComments(feed?._id)}
