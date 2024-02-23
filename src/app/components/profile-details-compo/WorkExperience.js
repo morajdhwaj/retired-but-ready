@@ -24,7 +24,7 @@ const WorkExperience = ({ userId }) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response?.data);
+        console.log("jjdbwkdbk", response?.data);
         setUserData(response?.data);
         setCountry(response?.data?.country_name);
         setExperience(response?.data?.total_experience);
@@ -70,8 +70,7 @@ const WorkExperience = ({ userId }) => {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
-  console.log(userData);
-
+  console.log(professionalField, "professionalField");
   return (
     <div className="flex  m-5 flex-col gap-5  ">
       <div className="flex  gap-5 justify-end ">

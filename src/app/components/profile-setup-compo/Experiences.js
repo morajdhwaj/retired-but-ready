@@ -97,6 +97,8 @@ const Experiences = ({
     setExperiences([...experiences, newExperience]);
     setCompanyName("");
     setTitle("");
+    setCompanyStart("");
+    setCompanyEnd("");
   };
 
   const handleRemoveExperience = (index) => {
@@ -110,7 +112,7 @@ const Experiences = ({
     "lang"
   );
 
-  console.log(experiences, "companyStart");
+  console.log(companyStart, "companyStart");
 
   return (
     <div className="h-full mx-20  ">
@@ -186,11 +188,15 @@ const Experiences = ({
             <div className="mt-5 flex gap-20">
               <div>
                 <h2 className="text-[#808184] font-medium">Start date</h2>
-                <h2 className=" font-medium">{experience?.start_date}</h2>
+                <h2 className=" font-medium">
+                  {experience?.start_date.split("-").reverse().join("-")}
+                </h2>
               </div>
               <div>
                 <h2 className="text-[#808184] font-medium">End date</h2>
-                <h2 className=" font-medium">{experience?.end_date}</h2>
+                <h2 className=" font-medium">
+                  {experience?.end_date.split("-").reverse().join("-")}
+                </h2>
               </div>
             </div>
           </div>
