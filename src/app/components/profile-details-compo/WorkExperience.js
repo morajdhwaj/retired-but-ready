@@ -6,11 +6,9 @@ import { FaEdit } from "react-icons/fa";
 const WorkExperience = ({ userId }) => {
   const [userData, setUserData] = useState([]);
   const [edit, setEdit] = useState(false);
-  const [country, setCountry] = useState("");
   const [experience, setExperience] = useState("");
   const [professionalField, setProfessionalField] = useState("");
   const [professionalExpertise, setProfessionalExpertise] = useState("");
-  const [PersonalSkills, setPersonalSkills] = useState([]);
   const [englishProficiency, setEnglishProficiency] = useState("");
 
   useEffect(() => {
@@ -47,33 +45,10 @@ const WorkExperience = ({ userId }) => {
       params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
-        user_display_name: userData?.user_display_name,
-        user_first_name: userData?.user_first_name,
-        user_last_name: userData?.user_last_name,
-        user_age: userData?.user_age,
-        user_gender: userData?.user_gender,
-        country_id: userData?.country_id,
-        country_name: userData?.country_name,
-        user_state: userData?.user_state,
-        user_city: userData?.user_city,
-        city_coordinates: userData?.city_coordinates,
-        profile_headline: userData?.profile_headline,
-        profile_summary: userData?.profile_summary,
-        last_designation: userData?.last_designation,
         total_experience: experience,
         professional_field: professionalField,
         professional_expertise: professionalExpertise,
-        skills: userData?.skills,
-        languages: userData?.languages,
-        english_proficiency: userData?.english_proficiency,
-        education: userData?.education,
-        work_history: userData?.work_history,
-        certifications: userData?.certifications,
-        is_charged: userData?.is_charged,
-        acceptable_currencies: userData?.acceptable_currencies,
-        interests: userData?.interests,
-        retirement_cause: userData?.retirement_cause,
-        social_links: userData?.social_links,
+        english_proficiency: englishProficiency,
       },
     };
 
@@ -162,7 +137,11 @@ const WorkExperience = ({ userId }) => {
         <h2 className="font-semibold text-gray-500">English Proficiency</h2>
 
         {edit ? (
-          <select className=" h-10 bg-[#f2f1f3] border-gray-300  border rounded  px-2 w-full">
+          <select
+            value={englishProficiency}
+            onChange={(e) => setEnglishProficiency(e.target.value)}
+            className=" h-10 bg-[#f2f1f3] border-gray-300  border rounded  px-2 w-full"
+          >
             <option>Good</option>
             <option>Not Good</option>
             <option>Bad</option>
