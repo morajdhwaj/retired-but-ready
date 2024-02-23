@@ -18,8 +18,12 @@ import { useRouter } from "next/navigation";
 
 const page = () => {
   const [userId, setUserId] = useState("");
+  const [selectId, setSelectId] = useState("");
   const [userData, setUserData] = useState([]);
   const [draftData, setDraftData] = useState([]);
+  const [postData, setPostData] = useState([]);
+  const [editDescription, setEditDescription] = useState("");
+  const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -118,6 +122,49 @@ const page = () => {
     );
   }
 
+  const getPost = (id) => {
+    if (!selectId) {
+      setSelectId(id);
+    } else setSelectId("");
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/post/${id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setShowEdit(!showEdit);
+        setPostData(response?.data);
+        setEditDescription(response?.data?.post_description);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const handleUpdate = () => {
+    const options = {
+      method: "PATCH",
+      url: `https://retpro.catax.me/post/${selectId}/update`,
+      headers: { "Content-Type": "application/json" },
+      data: { post_description: editDescription, comment_condition: "string" },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getAllDraft();
+        setSelectId("");
+        toast.success(response?.data?.message);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   console.log(draftData, "draft");
 
   return (
@@ -168,7 +215,24 @@ const page = () => {
               {draftData.map((post) => {
                 return (
                   <div key={post?._key} className="border p-2 rounded-xl">
-                    <h2>Description - {post.post_description}</h2>
+                    {selectId === post?._id ? (
+                      <div className="flex items-center gap-2">
+                        <h2>Description -</h2>{" "}
+                        <textarea
+                          className="p-2 w-80"
+                          value={editDescription}
+                          onChange={(e) => setEditDescription(e.target.value)}
+                        />
+                        <button
+                          onClick={() => handleUpdate(post?._id)}
+                          className="text-[#773f6c] font-semibold"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    ) : (
+                      <h2>Description - {post.post_description}</h2>
+                    )}
                     <h2>Type -{post.post_type}</h2>
                     <div>
                       {post?.post_media?.map((image) => {
@@ -190,6 +254,13 @@ const page = () => {
                         className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
                       >
                         Remove
+                      </button>
+
+                      <button
+                        onClick={() => getPost(post?._id)}
+                        className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
+                      >
+                        Update
                       </button>
                       <button
                         onClick={() => publishPost(post?._id)}

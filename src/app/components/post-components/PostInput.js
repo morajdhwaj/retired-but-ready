@@ -11,7 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
   const [anyTypePost, setAnyTypePost] = useState(false);
-  const [type, setType] = useState(null)
+  const [type, setType] = useState(null);
 
   return (
     <div>

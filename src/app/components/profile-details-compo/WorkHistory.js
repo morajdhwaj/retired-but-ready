@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
@@ -115,7 +116,7 @@ const WorkHistory = ({ userId }) => {
         {companies.map((company) => {
           return (
             <div
-              className="mt-5 border  self-start gap-5 w-52 p-5 border-[#773fc6] rounded-lg   "
+              className="mt-5 border  self-start gap-5  p-5 border-[#773fc6] rounded-lg   "
               key={company.company_name}
             >
               <div>
@@ -131,9 +132,26 @@ const WorkHistory = ({ userId }) => {
                 )}
               </div>
               <div className="">
-                <h2 className="text-[#808184] font-medium">Title/Role</h2>
+                <h2 className="text-[#808184] font-medium mt-2">Title/Role</h2>
 
                 <h2 className="font-semibold ">{company.title}</h2>
+              </div>
+              <div className="flex gap-5 mt-2">
+                <div>
+                  <h2 className="text-[#808184] font-medium">Start time</h2>
+
+                  <h2 className="font-semibold text-sm  ">
+                    {dayjs(company?.start_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
+                <div>
+                  <h2 className="text-[#808184] font-medium">End time</h2>
+
+                  <h2 className="font-semibold text-sm ">
+                    {" "}
+                    {dayjs(company?.end_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
               </div>
             </div>
           );

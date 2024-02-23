@@ -64,12 +64,20 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <Link
-                  href="/suggestion-page"
-                  className="flex items-center  p-1 bg-white rounded-lg "
-                >
-                  <h1> SUGGESTION</h1>
-                </Link>
+                <div className="flex justify-center sm:flex md:flex   lg:flex flex-wrap gap-2">
+                  <Link
+                    href="/suggestion-page"
+                    className="flex items-center  p-1 bg-white rounded-lg "
+                  >
+                    <h1> SUGGESTION</h1>
+                  </Link>
+                  <Link
+                    href="/followers-page"
+                    className="flex items-center p-1 bg-white rounded-lg"
+                  >
+                    <h1> FOLLOWERS</h1>
+                  </Link>
+                </div>
               </div>
             </div>
             <div
