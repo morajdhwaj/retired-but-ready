@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -26,11 +28,9 @@ const WorkExperience = ({ userId }) => {
       .then(function (response) {
         console.log("jjdbwkdbk", response?.data);
         setUserData(response?.data);
-        setCountry(response?.data?.country_name);
         setExperience(response?.data?.total_experience);
         setProfessionalField(response?.data?.professional_field);
         setProfessionalExpertise(response?.data?.professional_expertise);
-        setPersonalSkills(response?.data?.skills?.personal);
         setEnglishProficiency(response?.data?.english_proficiency);
       })
       .catch(function (error) {
@@ -93,7 +93,7 @@ const WorkExperience = ({ userId }) => {
             className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
           />
         ) : (
-          <h2 className="font-semibold ">{experience} Year</h2>
+          <h2 className="font-semibold ">{experience}</h2>
         )}
       </div>
       <div className="w-full">
