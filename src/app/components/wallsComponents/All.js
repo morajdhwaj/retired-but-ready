@@ -165,10 +165,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       });
   };
 
-  if (feeds.length === 0) {
-    return <div className="h-[100vh]">Loading...</div>;
-  }
-
   const getPost = () => {
     const options = {
       method: "GET",
@@ -232,79 +228,34 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
         toast.success(error?.response?.data?.detail);
       });
   };
-
   // the list of our video elements
-  var videos = document.querySelectorAll("video");
-  // an array to store the top and bottom of each of our elements
-  var videoPos = [];
-  // a counter to check our elements position when videos are loaded
-  var loaded = 0;
+  const videos = document.querySelectorAll("video");
 
-  // Here we get the position of every element and store it in an array
-  function checkPos() {
-    // loop through all our videos
-    for (var i = 0; i < videos.length; i++) {
-      var element = videos[i];
-      // get its bounding rect
-      var rect = element.getBoundingClientRect();
-      // we may already have scrolled in the page
-      // so add the current pageYOffset position too
-      var top = rect.top + window.pageYOffset;
-      var bottom = rect.bottom + window.pageYOffset;
-      // it's not the first call, don't create useless objects
-      if (videoPos[i]) {
-        videoPos[i].el = element;
-        videoPos[i].top = top;
-        videoPos[i].bottom = bottom;
-      } else {
-        // first time, add an event listener to our element
-        element.addEventListener("loadeddata", function () {
-          if (++loaded === videos.length - 1) {
-            // all our video have ben loaded, recheck the positions
-            // using rAF here just to make sure elements are rendered on the page
-            requestAnimationFrame(checkPos);
-          }
-        });
-        // push the object in our array
-        videoPos.push({
-          el: element,
-          top: top,
-          bottom: bottom,
-        });
-      }
+  // Function to play or pause video based on hover
+  const handleHover = (event) => {
+    const video = event.target;
+    if (event.type === "mouseenter") {
+      video.play();
+    } else if (event.type === "mouseleave") {
+      video.pause();
     }
-  }
-  // an initial check
-  checkPos();
-
-  var scrollHandler = function () {
-    // our current scroll position
-
-    // the top of our page
-    var min = window.pageYOffset;
-    // the bottom of our page
-    var max = min + window.innerHeight;
-
-    videoPos.forEach(function (vidObj) {
-      // the top of our video is visible
-      if (vidObj.top >= min && vidObj.top < max) {
-        // play the video
-        vidObj.el.play();
-      }
-
-      // the bottom of the video is above the top of our page
-      // or the top of the video is below the bottom of our page
-      // ( === not visible anyhow )
-      if (vidObj.bottom <= min || vidObj.top >= max) {
-        // stop the video
-        vidObj.el.pause();
-      }
-    });
   };
-  // add the scrollHandler
-  window.addEventListener("scroll", scrollHandler, true);
-  // don't forget to update the positions again if we do resize the page
-  window.addEventListener("resize", checkPos);
+
+  // Add event listeners to each video element
+  videos.forEach((video) => {
+    video.addEventListener("mouseenter", handleHover);
+    video.addEventListener("mouseleave", handleHover);
+  });
+
+  if (feeds.length === 0) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <h1 className=" border-2 border-[#773fc6] text-[#773fc6] px-5 py-2 rounded ">
+          No feeds
+        </h1>
+      </div>
+    );
+  }
 
   console.log(reportPostId, "reportPost ID");
   return (
@@ -338,7 +289,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at:{" "}
+                        Published at:
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
@@ -417,7 +368,11 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
 
                 {feed?.post_media[0].type == "mp4" && (
-                  <video controls muted style={{ width: "50%", height: "50%" }}>
+                  <video
+                    className="cursor-pointer"
+                    controls
+                    style={{ width: "50%", height: "50%" }}
+                  >
                     <source src={feed?.post_media[0]?.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
@@ -426,22 +381,22 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             )}
 
             <div className="mt-5">
-              <div className="flex gap-2 items-center g   ">
+              <div className="flex gap-2 items-center ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
-                    <AiFillLike />
+                    <AiFillLike size={20} />
                     <p className="text-sm w-2">{feed?.reaction_like?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_love?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BsHeartFill />
+                    <BsHeartFill size={20} />
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_thinking?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BiSolidSad />
+                    <BiSolidSad size={20} />
                     <p className="text-sm w-2">
                       {feed?.reaction_thinking?.length}
                     </p>
@@ -449,7 +404,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_insight?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <IoBulb />
+                    <IoBulb size={20} />
                     <p className="text-sm w-2">
                       {feed?.reaction_insight?.length}
                     </p>
@@ -457,86 +412,98 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_appraise?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <PiNotepadFill />
+                    <PiNotepadFill size={20} />
                     <p className="text-sm w-2">
                       {feed?.reaction_appraise?.length}
                     </p>
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => postReaction(feed._id, "like", userId)}
-                  >
-                    {feed.reaction_like.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <AiFillLike size={20} />
-                    ) : (
-                      <AiOutlineLike size={20} />
-                    )}
-                  </button>
+              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between ">
+                <div className="flex items-center gap-5 ">
+                  <div className="flex items-center justify-center gap-2 ">
+                    <button
+                      onClick={() => postReaction(feed._id, "like", userId)}
+                    >
+                      {feed.reaction_like.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <AiFillLike size={20} />
+                      ) : (
+                        <AiOutlineLike size={20} />
+                      )}
+                    </button>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "love", userId)}
-                  >
-                    {feed.reaction_love.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <FaHeart size={20} />
-                    ) : (
-                      <CiHeart size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "thinking", userId)}
-                  >
-                    {feed.reaction_thinking.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <BiSolidSad size={20} />
-                    ) : (
-                      <BiSad size={20} />
-                    )}
-                  </button>
+                    <button
+                      onClick={() => postReaction(feed._id, "love", userId)}
+                    >
+                      {feed.reaction_love.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <FaHeart size={20} />
+                      ) : (
+                        <CiHeart size={20} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => postReaction(feed._id, "thinking", userId)}
+                    >
+                      {feed.reaction_thinking.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <BiSolidSad size={20} />
+                      ) : (
+                        <BiSad size={20} />
+                      )}
+                    </button>
 
-                  <button
-                    onClick={() => postReaction(feed._id, "insight", userId)}
-                  >
-                    {feed.reaction_insight.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <IoBulb size={20} />
-                    ) : (
-                      <IoBulbOutline size={20} />
-                    )}
-                  </button>
-                  <button
-                    onClick={() => postReaction(feed._id, "appraise", userId)}
-                  >
-                    {feed.reaction_appraise.some(
-                      (user) => user.user_id === userId
-                    ) ? (
-                      <PiNotepadFill size={20} />
-                    ) : (
-                      <PiNotepadLight size={20} />
-                    )}
-                  </button>
+                    <button
+                      onClick={() => postReaction(feed._id, "insight", userId)}
+                    >
+                      {feed.reaction_insight.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <IoBulb size={20} />
+                      ) : (
+                        <IoBulbOutline size={20} />
+                      )}
+                    </button>
+                    <button
+                      onClick={() => postReaction(feed._id, "appraise", userId)}
+                    >
+                      {feed.reaction_appraise.some(
+                        (user) => user.user_id === userId
+                      ) ? (
+                        <PiNotepadFill size={20} />
+                      ) : (
+                        <PiNotepadLight size={20} />
+                      )}
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 ">
+                    <button
+                      className="flex items-center justify-center gap-2"
+                      onClick={() => handleComments(feed?._id)}
+                    >
+                      <MdComment />
 
-                  <button onClick={() => handleComments(feed?._id)}>
-                    <MdComment />
-                  </button>
-                  <p className="text-sm">Comment</p>
-                  <button>
-                    <IoIosShareAlt />
-                  </button>
-                  <p className="text-sm">Share</p>
+                      <p className="text-sm">Comment</p>
+                    </button>
+                    <button>
+                      <IoIosShareAlt />
+                    </button>
+                    <p className="text-sm">Share</p>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> |
-                  <button className="">Shares</button>
+                  <button
+                    onClick={() => handleComments(feed?._id)}
+                    className="flex items-center gap-2"
+                  >
+                    {feed?.post_comment_id?.length}
+                    <p className="text-sm">Comments</p>{" "}
+                  </button>
+                  |<button className="">Shares</button>
                 </div>
               </div>
               {feed._id == showComments && (

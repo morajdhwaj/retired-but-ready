@@ -4,23 +4,28 @@ import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox } from "react-icons/fa";
+// import { FaBox } from "react-icons/fa";
+import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import Link from "next/link";
-import FollowOne from "@/app/components/followers/FollowOne";
-import FollowTwo from "@/app/components/followers/FollowTwo";
-import FollowThree from "@/app/components/followers/FollowThree";
-import FollowFour from "@/app/components/followers/FollowFour";
-import FollowFive from "@/app/components/followers/FollowFive";
-import FollowSix from "@/app/components/followers/FollowSix";
+import toast from "react-hot-toast";
+
+// import FollowOne from "@/app/components/followers/FollowOne";
+// import FollowTwo from "@/app/components/followers/FollowTwo";
+// import FollowThree from "@/app/components/followers/FollowThree";
+// import FollowFour from "@/app/components/followers/FollowFour";
+// import FollowFive from "@/app/components/followers/FollowFive";
+// import FollowSix from "@/app/components/followers/FollowSix";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
+  const [followers, setFollower] = useState([]);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getUserData();
+    getFollowers();
   }, [userId]);
 
   const getUserData = () => {
@@ -42,7 +47,44 @@ const page = () => {
       });
   };
 
-  console.log(userData, "userId");
+  // Follower
+
+  const getFollowers = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/my-followers/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setFollower(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+  console.log(followers, "Ye followers ka data");
+
+  // remove followers
+  const deleteFollowers = (from_user_id) => {
+    const options = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user_id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        getFollowers();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
@@ -63,9 +105,21 @@ const page = () => {
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
                 </div>
-                <Link href="/suggestion-page">
-                  <h1> SUGGESTION</h1>
-                </Link>
+
+                <div className="flex justify-center sm:flex md:flex lg:flex gap-2 flex-wrap">
+                  <Link
+                    href="/suggestion-page"
+                    className="flex items-center  p-1 bg-white rounded-lg "
+                  >
+                    <h1> SUGGESTION</h1>
+                  </Link>
+                  <Link
+                    href="/connections-page"
+                    className="flex items-center p-1  bg-white rounded-lg"
+                  >
+                    <h1> CONNECTION</h1>
+                  </Link>
+                </div>
               </div>
             </div>
             <div
@@ -87,12 +141,54 @@ const page = () => {
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             <div>
-              <FollowOne />
-              <FollowTwo />
-              <FollowThree />
-              <FollowFour />
-              <FollowFive />
-              <FollowSix />
+              <h1 className="font-semi-bold text-lg">
+                {followers.length}Followers
+              </h1>
+              {followers.map((curelem, key) => {
+                return (
+                  <div>
+                    <div
+                      className="mt-2  flex flex-col  items-center sm:flex  sm:flex-row md:flex  md:flex-row lg:flex flex-wrap justify-between "
+                      key={key}
+                    >
+                      <div className=" flex flex-col  items-center gap-1 sm:flex  sm:flex-row sm:gap-0 md:flex  md:flex-row md:gap-0 lg:flex lg:flex-row  lg:gap-0">
+                        <div>
+                          <Image
+                            alt=""
+                            src="/assets/110.png"
+                            height={80}
+                            width={80}
+                          />
+                        </div>
+                        <div className="mx-2  text-center sm:text-start md:text-start lg:text-start mt-2 sm:mt-0 md:mt-0 lg:mt-0">
+                          <h1 className="text-[#8942a1b1] font-bold">
+                            {curelem.from_user_full_name}
+                          </h1>
+                          <p className="text-sm sm:font-normal md:font-normal lg:font-normal">
+                            Post name
+                          </p>
+
+                          <p className="text-sm sm:font-normal md:font-normal lg:font-normal">
+                            Connected today
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2">
+                        <button
+                          className="border-2 border-black h-10 p-1 rounded-full "
+                          onClick={() => deleteFollowers(curelem.from_user_id)}
+                        >
+                          Remove
+                        </button>
+                        {console.log(curelem.from_user_id, "removeid")}
+                        <IoIosSend className="mt-3 font-[20px]" />
+                      </div>
+                    </div>
+                    <div className="w-full h-0.5 border border-gray-200 mt-5" />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -69,7 +69,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setComments(response?.data);
+        setComments(response?.data?.reverse());
       })
       .catch(function (error) {
         console.error(error);
@@ -77,6 +77,10 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
   };
 
   const postComment = async () => {
+    if (!inputComment) {
+      toast.error("Please share your thoughts");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/comments/add-comment",
