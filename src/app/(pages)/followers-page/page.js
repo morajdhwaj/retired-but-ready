@@ -9,18 +9,13 @@ import { IoIosSend } from "react-icons/io";
 import axios from "axios";
 import Link from "next/link";
 import toast from "react-hot-toast";
-
-// import FollowOne from "@/app/components/followers/FollowOne";
-// import FollowTwo from "@/app/components/followers/FollowTwo";
-// import FollowThree from "@/app/components/followers/FollowThree";
-// import FollowFour from "@/app/components/followers/FollowFour";
-// import FollowFive from "@/app/components/followers/FollowFive";
-// import FollowSix from "@/app/components/followers/FollowSix";
+import PopUp from "@/app/components/PopUp";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
   const [followers, setFollower] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -67,8 +62,17 @@ const page = () => {
   };
   console.log(followers, "Ye followers ka data");
 
+  const handleDeleteModal = (from_user_id) => {
+    setShowDeleteModal(!showDeleteModal);
+    if (from_user_id) {
+      deleteFollowers(from_user_id);
+    }
+  };
+
   // remove followers
   const deleteFollowers = (from_user_id) => {
+    console.log(userId, "userid");
+
     const options = {
       method: "DELETE",
       url: `https://retpro.catax.me/remove-follower/${userId}/${from_user_id}`,
@@ -80,9 +84,12 @@ const page = () => {
         console.log(response.data);
         toast.success(response?.data?.message);
         getFollowers();
+        console.log("DELETE");
+        setShowDeleteModal(false);
       })
       .catch(function (error) {
         console.error(error);
+        setShowDeleteModal(false);
       });
   };
 
@@ -177,7 +184,11 @@ const page = () => {
                       <div className="flex gap-2">
                         <button
                           className="border-2 border-black h-10 p-1 rounded-full "
-                          onClick={() => deleteFollowers(curelem.from_user_id)}
+                          // onClick={() => deleteFollowers(curelem.from_user_id)}
+                          // onClick={handleDeleteModal}
+                          onClick={() =>
+                            handleDeleteModal(curelem.from_user_id)
+                          }
                         >
                           Remove
                         </button>
@@ -189,6 +200,16 @@ const page = () => {
                   </div>
                 );
               })}
+              {showDeleteModal && (
+                <PopUp
+                  close={handleDeleteModal}
+                  onClick={deleteFollowers}
+                  title="Are you want Delete this follower"
+                  action="Delete"
+                  message=""
+                  error="error"
+                />
+              )}
             </div>
           </div>
         </div>
