@@ -102,7 +102,7 @@ const WorkHistory = ({ userId }) => {
 
   return (
     <div className="m-5">
-      {/* <div className="flex  gap-5 justify-end ">
+      <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
@@ -111,7 +111,7 @@ const WorkHistory = ({ userId }) => {
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div> */}
+      </div>
       <div className="flex flex-wrap gap-7">
         {companies.map((company) => {
           return (
@@ -124,8 +124,9 @@ const WorkHistory = ({ userId }) => {
 
                 {edit ? (
                   <input
-                    value={company.company_name}
-                    className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
                   />
                 ) : (
                   <h2 className="font-semibold ">{company.company_name}</h2>
@@ -133,8 +134,15 @@ const WorkHistory = ({ userId }) => {
               </div>
               <div className="">
                 <h2 className="text-[#808184] font-medium mt-2">Title/Role</h2>
-
-                <h2 className="font-semibold ">{company.title}</h2>
+                {edit ? (
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
+                  />
+                ) : (
+                  <h2 className="font-semibold ">{company.title}</h2>
+                )}
               </div>
               <div className="flex gap-5 mt-2">
                 <div>
