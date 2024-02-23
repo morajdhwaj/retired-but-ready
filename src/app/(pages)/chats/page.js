@@ -216,7 +216,7 @@ const page = () => {
                           chat.sender_id === "65cdeba872b6e0c0b88edbce"
                             ? "float-right"
                             : "float-left"
-                        } bg-[#E4E7EB bg-[#773FC6] text-[#8f4dea text-white rounded-xl px-2 py-1`}
+                        } bg-[#E4E7EB bg-[#773FC6] text-[#8f4dea text-white rounded-xl px-3 py-1`}
                       >
                         {chat.message}
                       </p>
@@ -224,7 +224,7 @@ const page = () => {
                     </div>
                   ))}
                 </div>
-                <div className="p-4 border-b-2 flex">
+                <div className="p-4  flex">
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -232,24 +232,14 @@ const page = () => {
                     className="h-[50px]  w-full rounded-lg p-2 outline-none"
                     placeholder="Write a message"
                   />
-                  <div className="">
-                    <button
-                      className=" p-1 text-3  xl text-white rounded-xl bg-[#773FC6] "
-                      onClick={sendMessage}
-                    >
-                      <VscSend />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex justify-between p-5">
-                  {/* <div className=" flex gap-4">
-                    <button className="">
-                      <GrGallery size={25} />
-                    </button>
-                    <button className="">
-                      <GrAttachment size={25} />
-                    </button>
-                  </div> */}
+                  {/* <div className=""> */}
+                  <button
+                    className=" p-2 text-2xl text-white rounded-xl bg-[#773FC6] h-[40px] w-[40px] "
+                    onClick={sendMessage}
+                  >
+                    <VscSend />
+                  </button>
+                  {/* </div> */}
                 </div>
               </div>
             </div>
