@@ -533,39 +533,56 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         </button>
                       </div>
 
-                      <div className="">
-                        {[
-                          "like",
-                          "love",
-                          "thinking",
-                          "insight",
-                          "appraise",
-                        ].map((reactionType) => {
-                          if (
-                            feed[`reaction_${reactionType}`].some(
+                      <div className=" overflow-hidden h-5 items-center flex flex-col">
+                        <div className="mb-2">
+                          {[
+                            "like",
+                            "love",
+                            "thinking",
+                            "insight",
+                            "appraise",
+                          ].map((reactionType) => {
+                            if (
+                              feed[`reaction_${reactionType}`].some(
+                                (user) => user.user_id === userId
+                              )
+                            ) {
+                              return (
+                                <span key={reactionType}>
+                                  {reactionType === "love" ? (
+                                    <FaHeart size={20} />
+                                  ) : reactionType === "thinking" ? (
+                                    <BiSolidSad size={20} />
+                                  ) : reactionType === "insight" ? (
+                                    <IoBulb size={20} />
+                                  ) : reactionType === "appraise" ? (
+                                    <PiNotepadFill size={20} />
+                                  ) : reactionType === "like" ? (
+                                    <AiFillLike size={20} />
+                                  ) : (
+                                    <AiOutlineLike size={20} />
+                                  )}
+                                </span>
+                              );
+                            }
+                            return null;
+                          })}
+                        </div>
+                        <div className="mt-[-10px]">
+                          <button
+                            onClick={() =>
+                              postReaction(feed._id, "like", userId)
+                            }
+                          >
+                            {feed.reaction_like.some(
                               (user) => user.user_id === userId
-                            )
-                          ) {
-                            return (
-                              <span key={reactionType}>
-                                {reactionType === "love" ? (
-                                  <FaHeart size={20} />
-                                ) : reactionType === "thinking" ? (
-                                  <BiSolidSad size={20} />
-                                ) : reactionType === "insight" ? (
-                                  <IoBulb size={20} />
-                                ) : reactionType === "appraise" ? (
-                                  <PiNotepadFill size={20} />
-                                ) : reactionType === "like" ? (
-                                  <AiFillLike size={20} />
-                                ) : (
-                                  <AiOutlineLike size={20} />
-                                )}
-                              </span>
-                            );
-                          }
-                          return <AiOutlineLike size={20} />;
-                        })}
+                            ) ? (
+                              <AiFillLike size={20} />
+                            ) : (
+                              <AiOutlineLike size={20} />
+                            )}
+                          </button>
+                        </div>
                       </div>
                     </div>
 
