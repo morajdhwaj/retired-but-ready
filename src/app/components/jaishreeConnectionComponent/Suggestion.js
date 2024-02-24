@@ -81,7 +81,9 @@ const Suggestion = () => {
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
-              <p className="text-xs "></p>
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
             </div>
             <Image
               src="/assets/antina.png"
@@ -102,7 +104,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(2)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                14k+
+              </p>
+            </div>
             <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -115,7 +121,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(3)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                16k+
+              </p>
+            </div>
             <FaGlobe className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -128,7 +138,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(4)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
+            </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -141,7 +155,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(5)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
+            </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-orange-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -154,7 +172,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(6)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                20k+
+              </p>
+            </div>
             <IoPeopleSharp className=" mx-8 mt-3 size-8 fill-green-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
