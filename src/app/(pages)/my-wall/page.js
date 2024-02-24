@@ -16,7 +16,7 @@ import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 
 const page = () => {
-  const [feeds, setFeeds] = useState([]);
+  const [myFeeds, setMyFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -25,7 +25,7 @@ const page = () => {
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getUserData();
-    getFeeds();
+    getMyFeeds();
   }, [userId]);
 
   const getUserData = () => {
@@ -47,21 +47,20 @@ const page = () => {
       });
   };
 
-  const getFeeds = () => {
+  const getMyFeeds = () => {
     const options = {
       method: "GET",
-      url: `https://retpro.catax.me/my-feed/${userId}`,
+      url: `https://retpro.catax.me/post/user/${userId}`,
     };
 
     axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setFeeds(response?.data);
+        setMyFeeds(response.data);
       })
       .catch(function (error) {
         console.error(error);
-        // toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -134,10 +133,10 @@ const page = () => {
           {addPost && (
             <div className="mt-44 sm:mt-32 md:mt-20">
               <PostInput
-                feeds={feeds}
+                feeds={myFeeds}
                 userData={userData}
-                setFeeds={setFeeds}
-                getFeeds={getFeeds}
+                setFeeds={setMyFeeds}
+                getFeeds={getMyFeeds}
                 userId={userId}
               />
             </div>
@@ -148,7 +147,12 @@ const page = () => {
               !addPost && "mt-44 sm:mt-32 md:mt-20"
             } mx-5 h-[100vh] `}
           >
-            <h1>My wall page</h1>
+            <All
+              feeds={myFeeds}
+              setFeeds={setMyFeeds}
+              getFeeds={getMyFeeds}
+              userId={userId}
+            />
           </div>
         </div>
       </div>

@@ -103,13 +103,12 @@ const ReplyCommentsComp = ({
         console.log("image selected");
       }
       console.log("image not selected");
-      toast.success(response?.data?.message);
+
       getComments();
       setInputReply("");
     } catch (error) {
       console.error(error);
       setInputReply("");
-      toast.error(error?.response?.data?.detail);
     }
   };
 
@@ -223,11 +222,9 @@ const ReplyCommentsComp = ({
       .then(function (response) {
         console.log(response.data);
         getComments();
-        toast.success(response?.data?.message);
       })
       .catch(function (error) {
         console.error(error);
-        toast.error(error?.response?.data?.detail);
       });
   };
 
