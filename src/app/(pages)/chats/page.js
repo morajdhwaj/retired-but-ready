@@ -3,7 +3,7 @@
 const axios = require("axios");
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { ImSearch } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
@@ -22,15 +22,43 @@ const page = () => {
   const [showOption, setShowOption] = useState("");
   const [showOptionButton, setShowOptionButton] = useState("");
   const [patchMessage, setPatchMessage] = useState("");
-  const [deleteMessage, setDeleteMessage] = useState("");
+  // const [deleteMessage, setDeleteMessage] = useState("");
+  const userIdFromStorage =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+  const userIdRef = useRef(userIdFromStorage);
+  const [userId, setUserId] = useState(userIdRef.current);
+  const chatContainerRef = useRef(null);
+
+  useEffect(() => {
+    // Scroll to bottom of chat container when chats change
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [chats]);
+
+  // useEffect(() => {
+  //   // Update userId state if localStorage changes
+  //   const handleStorageChange = () => {
+  //     setUserId(localStorage.getItem("userId"));
+  //   };
+
+  //   window.addEventListener("storage", handleStorageChange);
+
+  //   return () => {
+  //     window.removeEventListener("storage", handleStorageChange);
+  //   };
+  // }, []);
 
   useEffect(() => {
     userData();
     getData();
   }, []);
 
+  // useEffect(() => {
+  //   deleteMessageApi();
+  // }, [deleteMessage]);
+
   const userData = async () => {
-    const user_id = "65cdeba872b6e0c0b88edbce";
+    // console.log(userId, "this is second user id ");
+    const user_id = userId;
     const option = {
       method: "GET",
       url: `https://retpro.catax.me/user/profile/${user_id}`,
@@ -43,9 +71,28 @@ const page = () => {
       const response = await axios(option);
       setUserAllData(response.data);
 
-      console.log(response, "this is user data");
+      // console.log(response, "this is user data");
     } catch (error) {
       console.log(error, "error on get user data");
+    }
+  };
+
+  // DELETE MESSAGE ------------------------------
+
+  const deleteMessageApi = async (messageId) => {
+    const option = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/delete-message?message_id=${messageId}`,
+      headers: {
+        accept: "application/json",
+      },
+    };
+    try {
+      const response = await axios(option);
+      getData();
+      console.log(response, "this is delete success message");
+    } catch (error) {
+      console.log(error, "this is error from delete api message");
     }
   };
 
@@ -54,18 +101,18 @@ const page = () => {
     const timeOutId = setTimeout(() => {
       const intervalId = setInterval(() => {
         getData();
-        console.log("this is interval");
+        // console.log("this is interval");
       }, 6000);
 
-      console.log("this is timeout");
+      // console.log("this is timeout");
       return () => clearInterval(intervalId);
-    }, 6000);
+    }, 600);
 
     return () => clearTimeout(timeOutId);
   }, [chats]);
 
   const getData = async () => {
-    const user_id_1 = "65cdeba872b6e0c0b88edbce";
+    const user_id_1 = userId;
     const user_id_2 = "65c4944bff9f155e520bc0f0";
     const option = {
       method: "GET",
@@ -78,7 +125,7 @@ const page = () => {
     try {
       const response = await axios(option);
       setChats(response.data);
-      console.log(response, "this is response for get all chats");
+      // console.log(response, "this is response for get all chats");
     } catch (error) {
       console.log(error, "getMessageData Error");
     }
@@ -86,7 +133,7 @@ const page = () => {
 
   // SEND MESSAGE ---------------------------
   const sendMessage = async () => {
-    const senderId = "65cdeba872b6e0c0b88edbce";
+    const senderId = userId;
     const receiverId = "65c4944bff9f155e520bc0f0";
     const option = {
       method: "POST",
@@ -100,9 +147,9 @@ const page = () => {
     try {
       const response = await axios(option);
 
-      setMessage("");
       getData();
-      console.log("Response:", response.data);
+      setMessage("");
+      // console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -115,6 +162,7 @@ const page = () => {
 
   console.log(chats, "this is all chats");
   console.log("this is user all data", userAllData);
+  console.log(userId, "this is user id");
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
@@ -301,6 +349,7 @@ const page = () => {
                           src={userAllData.user_image}
                           height={100}
                           width={50}
+                          alt="profile image"
                         ></Image>
                         {/* <FaUserCircle size={70} /> */}
                       </div>
@@ -319,7 +368,10 @@ const page = () => {
                     </span>
                   </div>
                 </div>
-                <div className="h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[50vh]">
+                <div
+                  className="h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[50vh]"
+                  ref={chatContainerRef}
+                >
                   {chats.map((chat) => (
                     <div className="p-2 " key={chat.message_id}>
                       <p
@@ -328,7 +380,7 @@ const page = () => {
                         }
                         onMouseLeave={() => setShowOptionButton("")}
                         className={`${
-                          chat.sender_id === "65cdeba872b6e0c0b88edbce"
+                          chat.sender_id === userId
                             ? "float-right pl-8"
                             : "float-left pr-8"
                         } bg-[#E4E7EB bg-[#773FC6] text-[#8f4dea text-white rounded-xl px-3 py-1 max-w-[60%] text-wrap relative flex items-center`}
@@ -337,9 +389,7 @@ const page = () => {
                         {showOptionButton === chat.message_id && (
                           <button
                             className={`absolute  ${
-                              chat.sender_id === "65cdeba872b6e0c0b88edbce"
-                                ? "left-1"
-                                : "right-1"
+                              chat.sender_id === userId ? "left-1" : "right-1"
                             }  px-1`}
                             key={chat.message_id}
                             onClick={() => setShowOption(chat.message_id)}
@@ -350,15 +400,20 @@ const page = () => {
                         {showOption === chat.message_id && (
                           <div
                             className={`flex flex-col absolute bg-[#773FC6] p-2 rounded-xl top-1 ${
-                              chat.sender_id === "65cdeba872b6e0c0b88edbce"
+                              chat.sender_id === userId
                                 ? "left-[-100px]"
                                 : "right-[-100px]"
                             }`}
+                            onMouseLeave={() => setShowOptionButton("")}
                             key={chat.message_id}
                           >
                             <button
                               className="flex gap-1"
-                              onClick={() => setDeleteMessage(chat.message_id)}
+                              onClick={
+                                () => deleteMessageApi(chat.message_id)
+
+                                // setShowOption("")
+                              }
                             >
                               <RiDeleteBin6Line />
                               <span className="">Delete</span>
@@ -389,7 +444,7 @@ const page = () => {
                   {/* <div className=""> */}
                   <button
                     className=" p-2 text-2xl text-white rounded-xl bg-[#773FC6] h-[40px] w-[40px] "
-                    onClick={sendMessage}
+                    onClick={() => sendMessage()}
                   >
                     <VscSend />
                   </button>
