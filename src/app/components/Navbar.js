@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="  gap-1 hidden lg:flex  ">
           <Link href="/profile-setup">Profile-setup</Link>
           <Link href="/profile-details">Profile</Link>
-          <Link href="/walls-page">Walls</Link>
+          <Link href="/walls-page">dashboard</Link>
           <Link href="/draft-page">Draft</Link>
         </div>
       </div>

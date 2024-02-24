@@ -33,7 +33,7 @@ const Network = () => {
     <div>
       <div className="mt-56 sm:mt-5 md:mt-5 lg:mt-10">
         <h1 className="text-[#374151] font-semibold text-sm">
-          {connection.length}connections
+          {connection.length} connections
         </h1>
       </div>
       {connection.map((currentElem, key) => (
