@@ -10,15 +10,58 @@ import { FaUserCircle } from "react-icons/fa";
 // import { GrGallery } from "react-icons/gr";
 // import { GrAttachment } from "react-icons/gr";
 import { VscSend } from "react-icons/vsc";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
+// import { BsThreeDots } from "react-icons/bs";
+import Image from "next/image";
 
 const page = () => {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
-
-  // GET MESSAGE-------------------------------
+  const [userAllData, setUserAllData] = useState([]);
+  const [showOption, setShowOption] = useState("");
+  const [showOptionButton, setShowOptionButton] = useState("");
+  const [patchMessage, setPatchMessage] = useState("");
+  const [deleteMessage, setDeleteMessage] = useState("");
 
   useEffect(() => {
+    userData();
     getData();
+  }, []);
+
+  const userData = async () => {
+    const user_id = "65cdeba872b6e0c0b88edbce";
+    const option = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${user_id}`,
+      headers: {
+        accept: "application/json",
+      },
+    };
+
+    try {
+      const response = await axios(option);
+      setUserAllData(response.data);
+
+      console.log(response, "this is user data");
+    } catch (error) {
+      console.log(error, "error on get user data");
+    }
+  };
+
+  // GET MESSAGE-------------------------------
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      const intervalId = setInterval(() => {
+        getData();
+        console.log("this is interval");
+      }, 6000);
+
+      console.log("this is timeout");
+      return () => clearInterval(intervalId);
+    }, 6000);
+
+    return () => clearTimeout(timeOutId);
   }, [chats]);
 
   const getData = async () => {
@@ -71,7 +114,7 @@ const page = () => {
   };
 
   console.log(chats, "this is all chats");
-
+  console.log("this is user all data", userAllData);
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
@@ -80,7 +123,7 @@ const page = () => {
           <Sidebar />
         </div>
         <div className="w-full">
-          <div className="  bg-[#f2f1f3]  p-5 lg:mx-60 pt-24 w-full  lg:w-[80vw] h-[110vh]">
+          <div className="  bg-[#f2f1f3]  p-5 lg:mx-60 pt-24 w-full  lg:w-[80vw] h-[110vh">
             <div className="w-full h-full border-2 rounded-xl flex justify-between  ">
               <div className="bg-blue- w-[30%] h-full border-r-2">
                 <div className="flex justify-between py-4 border-b-2 text-xl">
@@ -109,7 +152,71 @@ const page = () => {
                     Other
                   </button>
                 </div>
-                <div className="overflow-y-scroll h-[57vh]">
+                <div className="overflow-y-scroll h-[62vh]">
+                  <div className="p-3">
+                    <a href="" className="flex h-20 ">
+                      <div className="flex items-center">
+                        <FaUserCircle size={50} />
+                      </div>
+                      <div className="py-2 px-4 w-full border-b-2">
+                        <div className="flex justify-between">
+                          <h2 className="">Aman Patel</h2>
+                          <span className="">Feb 22</span>
+                        </div>
+                        <div className="">
+                          <p className="text-sm">Hello i am aman</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="p-3">
+                    <a href="" className="flex h-20 ">
+                      <div className="flex items-center">
+                        <FaUserCircle size={50} />
+                      </div>
+                      <div className="py-2 px-4 w-full border-b-2">
+                        <div className="flex justify-between">
+                          <h2 className="">Aman Patel</h2>
+                          <span className="">Feb 22</span>
+                        </div>
+                        <div className="">
+                          <p className="text-sm">Hello i am aman</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="p-3">
+                    <a href="" className="flex h-20 ">
+                      <div className="flex items-center">
+                        <FaUserCircle size={50} />
+                      </div>
+                      <div className="py-2 px-4 w-full border-b-2">
+                        <div className="flex justify-between">
+                          <h2 className="">Aman Patel</h2>
+                          <span className="">Feb 22</span>
+                        </div>
+                        <div className="">
+                          <p className="text-sm">Hello i am aman</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="p-3">
+                    <a href="" className="flex h-20 ">
+                      <div className="flex items-center">
+                        <FaUserCircle size={50} />
+                      </div>
+                      <div className="py-2 px-4 w-full border-b-2">
+                        <div className="flex justify-between">
+                          <h2 className="">Aman Patel</h2>
+                          <span className="">Feb 22</span>
+                        </div>
+                        <div className="">
+                          <p className="text-sm">Hello i am aman</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
@@ -178,7 +285,7 @@ const page = () => {
               </div>
               <div className=" w-[70%] h-full  ">
                 <div className="flex justify-between py-4 border-b-2 text-xl">
-                  <h1 className="px-3 ">Aman Patel</h1>
+                  <h1 className="px-3 ">{userAllData.user_display_name}</h1>
                   <div className="">
                     <button className="px-3">
                       <BsThreeDots />
@@ -188,17 +295,21 @@ const page = () => {
                 <div className="">
                   <div className="px-5 py-3 flex">
                     <a href="#" className="">
-                      <div className="">
-                        <FaUserCircle size={70} />
+                      <div className="rounded-full overflow-hidden h-[60px] w-[60px]">
+                        <Image
+                          className="h-[60px] w-[60px]"
+                          src={userAllData.user_image}
+                          height={100}
+                          width={50}
+                        ></Image>
+                        {/* <FaUserCircle size={70} /> */}
                       </div>
                     </a>
                     <div className="ml-5 mt-2">
-                      <h1 className="text-xl">Aman Patel</h1>
-                      <p className="text-sm">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Praesentium totam, quibusdam ipsa at voluptatibus
-                        deleniti.
-                      </p>
+                      <h1 className="text-xl">
+                        {userAllData.user_display_name}
+                      </h1>
+                      <p className="text-sm">{userAllData.last_designation}</p>
                     </div>
                   </div>
                   <div className="relative">
@@ -208,18 +319,61 @@ const page = () => {
                     </span>
                   </div>
                 </div>
-                <div className="h-[200px w-full border-b-2 border-[#773FC6] overflow-y-scroll h-[40vh]">
+                <div className="h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[50vh]">
                   {chats.map((chat) => (
                     <div className="p-2 " key={chat.message_id}>
                       <p
+                        onMouseEnter={() =>
+                          setShowOptionButton(chat.message_id)
+                        }
+                        onMouseLeave={() => setShowOptionButton("")}
                         className={`${
                           chat.sender_id === "65cdeba872b6e0c0b88edbce"
-                            ? "float-right"
-                            : "float-left"
-                        } bg-[#E4E7EB bg-[#773FC6] text-[#8f4dea text-white rounded-xl px-3 py-1`}
+                            ? "float-right pl-8"
+                            : "float-left pr-8"
+                        } bg-[#E4E7EB bg-[#773FC6] text-[#8f4dea text-white rounded-xl px-3 py-1 max-w-[60%] text-wrap relative flex items-center`}
                       >
                         {chat.message}
+                        {showOptionButton === chat.message_id && (
+                          <button
+                            className={`absolute  ${
+                              chat.sender_id === "65cdeba872b6e0c0b88edbce"
+                                ? "left-1"
+                                : "right-1"
+                            }  px-1`}
+                            key={chat.message_id}
+                            onClick={() => setShowOption(chat.message_id)}
+                          >
+                            <BsThreeDots size={20} />
+                          </button>
+                        )}
+                        {showOption === chat.message_id && (
+                          <div
+                            className={`flex flex-col absolute bg-[#773FC6] p-2 rounded-xl top-1 ${
+                              chat.sender_id === "65cdeba872b6e0c0b88edbce"
+                                ? "left-[-100px]"
+                                : "right-[-100px]"
+                            }`}
+                            key={chat.message_id}
+                          >
+                            <button
+                              className="flex gap-1"
+                              onClick={() => setDeleteMessage(chat.message_id)}
+                            >
+                              <RiDeleteBin6Line />
+                              <span className="">Delete</span>
+                            </button>
+                            <button
+                              className="flex gap-1"
+                              onClick={() => setPatchMessage(chat.message_id)}
+                            >
+                              <FiEdit />
+                              <span className="">Edit</span>
+                            </button>
+                          </div>
+                        )}
                       </p>
+
                       <br />
                     </div>
                   ))}
