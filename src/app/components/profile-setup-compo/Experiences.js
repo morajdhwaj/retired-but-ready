@@ -87,7 +87,6 @@ const Experiences = ({
 
   const handleAddExperience = () => {
     const newExperience = {
-      company_id: "657d55d2033cb72b10c630e5",
       company_name: companyName,
       title: title,
       start_date: companyStart,
