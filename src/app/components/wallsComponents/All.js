@@ -281,12 +281,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at:
+                        Published at :{" "}
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
                       <p className="text-xs">
-                        Published at:{" "}
+                        Published at :{" "}
                         {dayjs(new Date(feed?.publish_time + "Z")).format(
                           "DD-MM-YYYY HH:mm a"
                         )}
