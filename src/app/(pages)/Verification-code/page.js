@@ -36,6 +36,7 @@ const page = ({ length = 4 }) => {
       .catch(function (error) {
         console.log(error.data);
         toast.error("Wrong otp");
+        setOtp(Array(length).fill(""));
       });
   };
 
@@ -86,6 +87,7 @@ const page = ({ length = 4 }) => {
                   className=" border border-[##773FC6] w-14 h-14 rounded text-center no-scrollbar"
                   type="text"
                   maxLength="1"
+                  placeholder="-"
                   value={digit}
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}

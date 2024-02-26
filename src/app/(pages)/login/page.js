@@ -59,13 +59,13 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         localStorage.setItem("userId", response?.data?.user_id);
-        getUserData(response?.data?.user_id);
-        toast.success(response?.data?.message);
         if (response.data.redirect === "verification") {
           router.push("verification-code");
         } else {
           router.push("walls-page");
         }
+        getUserData(response?.data?.user_id);
+        toast.success(response?.data?.message);
       })
       .catch(function (error) {
         console.error(error);
