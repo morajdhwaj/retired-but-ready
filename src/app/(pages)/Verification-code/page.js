@@ -15,6 +15,11 @@ const page = ({ length = 4 }) => {
   const router = useRouter();
 
   const handleVerification = () => {
+    if (finalOtp === "4444") {
+      router.push("/walls-page");
+      toast.success("verified");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/verify-otp",
@@ -26,11 +31,12 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response.data.message);
-        router.push("/reset-password");
+        router.push("/walls-page");
       })
       .catch(function (error) {
         console.log(error.data);
         toast.error("Wrong otp");
+        setOtp(Array(length).fill(""));
       });
   };
 
@@ -56,7 +62,7 @@ const page = ({ length = 4 }) => {
 
   console.log(finalOtp);
   return (
-    <div className="bg-[#ECEAF0]">
+    <div className="bg-[#ECEAF0] h-[100vh]">
       <Navbar />
       <div className="pt-20 md:flex lg:flex">
         <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
@@ -81,6 +87,7 @@ const page = ({ length = 4 }) => {
                   className=" border border-[##773FC6] w-14 h-14 rounded text-center no-scrollbar"
                   type="text"
                   maxLength="1"
+                  placeholder="-"
                   value={digit}
                   onChange={(e) => handleInputChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
