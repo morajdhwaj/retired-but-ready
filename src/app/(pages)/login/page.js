@@ -61,7 +61,11 @@ const page = () => {
         localStorage.setItem("userId", response?.data?.user_id);
         getUserData(response?.data?.user_id);
         toast.success(response?.data?.message);
-        handleModal();
+        if (response.data.redirect === "verification") {
+          router.push("verification-code");
+        } else {
+          router.push("walls-page");
+        }
       })
       .catch(function (error) {
         console.error(error);
@@ -191,14 +195,14 @@ const page = () => {
             </Link>
           </div>
         </div>
-        {showModal && (
+        {/* {showModal && (
           <PopUp
             onClick={handleModal}
             title="Logged in , lets build your profile now"
             action="Enter Profile details"
             message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
           />
-        )}
+        )} */}
       </div>
     </div>
   );
