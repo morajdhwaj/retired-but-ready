@@ -87,16 +87,17 @@ const Experiences = ({
 
   const handleAddExperience = () => {
     const newExperience = {
-      company_id: "657d55d2033cb72b10c630e5",
       company_name: companyName,
       title: title,
-      start_date: "2022-10-01T00:00:00.000Z",
-      end_date: "present",
+      start_date: companyStart,
+      end_date: companyEnd,
     };
 
     setExperiences([...experiences, newExperience]);
     setCompanyName("");
     setTitle("");
+    setCompanyStart("");
+    setCompanyEnd("");
   };
 
   const handleRemoveExperience = (index) => {
@@ -109,6 +110,8 @@ const Experiences = ({
     languages.map((item) => item.label),
     "lang"
   );
+
+  console.log(companyStart, "companyStart");
 
   return (
     <div className="h-full mx-20  ">
@@ -170,16 +173,30 @@ const Experiences = ({
           >
             <div>
               <div className="flex justify-between">
-                <h2 className="text-[#808184] font-medium">Company Name*</h2>
+                <h2 className="text-[#808184] font-medium">Company Name</h2>
                 <button onClick={() => handleRemoveExperience(index)}>
                   <IoClose size={30} color="gray" />
                 </button>
               </div>
-              <h2 className=" font-medium ">{experience.company_name}</h2>
+              <h2 className=" font-medium ">{experience?.company_name}</h2>
             </div>
             <div className="mt-5">
-              <h2 className="text-[#808184] font-medium">Title*</h2>
-              <h2 className=" font-medium">{experience.title}</h2>
+              <h2 className="text-[#808184] font-medium">Title</h2>
+              <h2 className=" font-medium">{experience?.title}</h2>
+            </div>
+            <div className="mt-5 flex gap-20">
+              <div>
+                <h2 className="text-[#808184] font-medium">Start date</h2>
+                <h2 className=" font-medium">
+                  {experience?.start_date.split("-").reverse().join("-")}
+                </h2>
+              </div>
+              <div>
+                <h2 className="text-[#808184] font-medium">End date</h2>
+                <h2 className=" font-medium">
+                  {experience?.end_date.split("-").reverse().join("-")}
+                </h2>
+              </div>
             </div>
           </div>
         ))}

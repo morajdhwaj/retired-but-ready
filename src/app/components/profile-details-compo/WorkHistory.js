@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
@@ -101,7 +102,7 @@ const WorkHistory = ({ userId }) => {
 
   return (
     <div className="m-5">
-      {/* <div className="flex  gap-5 justify-end ">
+      <div className="flex  gap-5 justify-end ">
         <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
         </button>
@@ -110,12 +111,12 @@ const WorkHistory = ({ userId }) => {
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div> */}
+      </div>
       <div className="flex flex-wrap gap-7">
         {companies.map((company) => {
           return (
             <div
-              className="mt-5 border  self-start gap-5 w-52 p-5 border-[#773fc6] rounded-lg   "
+              className="mt-5 border  self-start gap-5  p-5 border-[#773fc6] rounded-lg   "
               key={company.company_name}
             >
               <div>
@@ -123,17 +124,42 @@ const WorkHistory = ({ userId }) => {
 
                 {edit ? (
                   <input
-                    value={company.company_name}
-                    className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
                   />
                 ) : (
                   <h2 className="font-semibold ">{company.company_name}</h2>
                 )}
               </div>
               <div className="">
-                <h2 className="text-[#808184] font-medium">Title/Role</h2>
+                <h2 className="text-[#808184] font-medium mt-2">Title/Role</h2>
+                {edit ? (
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
+                  />
+                ) : (
+                  <h2 className="font-semibold ">{company.title}</h2>
+                )}
+              </div>
+              <div className="flex gap-5 mt-2">
+                <div>
+                  <h2 className="text-[#808184] font-medium">Start time</h2>
 
-                <h2 className="font-semibold ">{company.title}</h2>
+                  <h2 className="font-semibold text-sm  ">
+                    {dayjs(company?.start_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
+                <div>
+                  <h2 className="text-[#808184] font-medium">End time</h2>
+
+                  <h2 className="font-semibold text-sm ">
+                    {" "}
+                    {dayjs(company?.end_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
               </div>
             </div>
           );

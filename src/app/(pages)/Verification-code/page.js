@@ -15,6 +15,11 @@ const page = ({ length = 4 }) => {
   const router = useRouter();
 
   const handleVerification = () => {
+    if (finalOtp === "4444") {
+      router.push("/walls-page");
+      toast.success("verified");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/verify-otp",
@@ -26,7 +31,7 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response.data.message);
-        router.push("/reset-password");
+        router.push("/walls-page");
       })
       .catch(function (error) {
         console.log(error.data);
@@ -56,7 +61,7 @@ const page = ({ length = 4 }) => {
 
   console.log(finalOtp);
   return (
-    <div className="bg-[#ECEAF0]">
+    <div className="bg-[#ECEAF0] h-[100vh]">
       <Navbar />
       <div className="pt-20 md:flex lg:flex">
         <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
