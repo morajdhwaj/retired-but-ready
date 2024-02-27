@@ -16,11 +16,13 @@ import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
 import { BiSad } from "react-icons/bi";
 import { BiSolidSad } from "react-icons/bi";
-import { IoBulb } from "react-icons/io5";
-import { IoBulbOutline } from "react-icons/io5";
-import { PiNotepadFill } from "react-icons/pi";
-import { PiNotepadLight } from "react-icons/pi";
+
+import { IoBulb, IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill, PiNotepadLight } from "react-icons/pi";
+
+
 import Link from "next/link";
+
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
