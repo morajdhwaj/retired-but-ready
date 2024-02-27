@@ -173,7 +173,7 @@ const page = () => {
   const form = new FormData();
   form.append("file", selectedImage);
 
-  const handleImageChange = (event) => {
+  const  handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setSelectedImage(file);
