@@ -259,7 +259,7 @@ const Experiences = ({
             onClick={handleStepUp}
             className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
           >
-            Next
+            Submit & Next
           </button>
         </div>
       </div>
