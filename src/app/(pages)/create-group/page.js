@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
@@ -23,6 +23,10 @@ const Page = () => {
   const [Category, setCategory] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
+  const userIdFromStorage =
+    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
+  const userIdRef = useRef(userIdFromStorage);
+  const [userId, setUserId] = useState(userIdRef.current);
 
   const handlePersonalSkill = (selected, selection) => {
     const { action, option } = selection;
@@ -69,7 +73,7 @@ const Page = () => {
 
     axios
       .post(
-        "https://retpro.catax.me/create-group?user_id=65cdeba872b6e0c0b88edbce",
+        `https://retpro.catax.me/create-group?user_id=${userId}`,
         requestData
       )
       .then((response) => {
