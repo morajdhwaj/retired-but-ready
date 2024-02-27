@@ -275,58 +275,67 @@ const page = () => {
               make fo a great profile picture? your smile
             </p>
             <div className="flex items-center  gap-5 md:gap-10 xl:gap-0 flex-wrap justify-center">
-              <h1
-                className={`border-2  self-start px-[18px] py-2 rounded-full text-2xl ${
-                  step === 1
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "text-gray-500"
-                } `}
-              >
-                1
-              </h1>
+              <button onClick={() => setStep(1)}>
+                <h1
+                  className={`border-2  self-start px-[18px] py-2 rounded-full text-2xl ${
+                    step === 1
+                      ? "border-[#773fc6] text-[#773fc6]"
+                      : "text-gray-500"
+                  } `}
+                >
+                  1
+                </h1>
+              </button>
               <p className="text-gray-300 hidden xl:flex ">- - - - - -</p>
-              <h1
-                className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
-                  step === 2
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "text-gray-500"
-                } `}
-              >
-                2
-              </h1>
+              <button onClick={() => setStep(2)}>
+                <h1
+                  className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
+                    step === 2
+                      ? "border-[#773fc6] text-[#773fc6]"
+                      : "text-gray-500"
+                  } `}
+                >
+                  2
+                </h1>
+              </button>
               <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
 
-              <h1
-                className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
-                  step === 3
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "text-gray-500"
-                } `}
-              >
-                3
-              </h1>
+              <button onClick={() => setStep(3)}>
+                <h1
+                  className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
+                    step === 3
+                      ? "border-[#773fc6] text-[#773fc6]"
+                      : "text-gray-500"
+                  } `}
+                >
+                  3
+                </h1>
+              </button>
               <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
 
-              <h1
-                className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
-                  step === 4
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "text-gray-500"
-                } `}
-              >
-                4
-              </h1>
+              <button onClick={() => setStep(4)}>
+                <h1
+                  className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
+                    step === 4
+                      ? "border-[#773fc6] text-[#773fc6]"
+                      : "text-gray-500"
+                  } `}
+                >
+                  4
+                </h1>
+              </button>
               <p className="text-gray-300 hidden xl:flex">- - - - - -</p>
-
-              <h1
-                className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
-                  step === 5
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "text-gray-500"
-                } `}
-              >
-                5
-              </h1>
+              <button onClick={() => setStep(5)}>
+                <h1
+                  className={`border-2  self-start px-4 py-2 rounded-full text-2xl ${
+                    step === 5
+                      ? "border-[#773fc6] text-[#773fc6]"
+                      : "text-gray-500"
+                  } `}
+                >
+                  5
+                </h1>
+              </button>
             </div>
             <p className="text-[#ba0001] text-center">
               All fields marked "*" are mandatory

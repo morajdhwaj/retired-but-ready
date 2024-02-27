@@ -197,7 +197,7 @@ const PersonalInfo = ({
         onClick={handleStepUp}
         className="bg-[#773fc6] p-2 text-white font-medium rounded"
       >
-        Next
+        Submit & Next
       </button>
     </div>
   );
