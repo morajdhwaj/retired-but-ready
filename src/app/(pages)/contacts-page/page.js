@@ -8,16 +8,15 @@ import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 import Network from "@/app/components/jaishreeConnectionComponent/Network";
-import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
-// import GpsConnection from "@/app/components/jaishreeConnectionComponent/GpsConnection";
-// import MyConnection from "@/app/components/jaishreeConnectionComponent/MyConnection";
-// import ProfileConnection from "@/app/components/jaishreeConnectionComponent/ProfileConnection";
-// import Main from "@/app/components/jaishreeConnectionComponent/Main";
-// import WorkConnection from "@/app/components/jaishreeConnectionComponent/WorkConnection";
+
+import ContactPage from "@/app/components/contact-component/ContactPage";
+import FollowingPage from "@/app/components/contact-component/FollowingPage";
+import FollowersPage from "@/app/components/contact-component/FollowersPage";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
+  const [toggle, setToggle] = useState(1);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -46,14 +45,13 @@ const page = () => {
   console.log(userData, "userId");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div>
       <Navbar />
-      <div className="flex">
-        <div className="hidden lg:flex">
-          <Sidebar />
-        </div>
 
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
+      <div className="hidden lg:flex bg-[#B1B0B1] p-10">
+        <Sidebar />
+
+        <div className=" h-full w-full lg:ml-52  bg-white rounded  mt-20 p-10">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -63,20 +61,6 @@ const page = () => {
                     <h2>{userData.user_display_name}</h2>
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
-                </div>
-                <div className="flex justify-center sm:flex md:flex   lg:flex flex-wrap gap-2">
-                  <Link
-                    href="/suggestion-page"
-                    className="flex items-center  p-1 bg-white rounded-lg "
-                  >
-                    <h1> SUGGESTION</h1>
-                  </Link>
-                  <Link
-                    href="/followers-page"
-                    className="flex items-center p-1 bg-white rounded-lg"
-                  >
-                    <h1> FOLLOWERS</h1>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -90,22 +74,46 @@ const page = () => {
                 borderRadius: 10,
               }}
               className="text-white p-5 flex  justify-between"
-            >
-              <span className="text-sm font-normal">
-                profile
-                <br /> Overview
-              </span>
-            </div>
+            ></div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            <div>
-              <Network />
-              {/* <Suggestion /> */}
-              {/*  <GpsConnection /> */}
-              {/* <MyConnection /> */}
-              {/* <ProfileConnection /> */}
-              {/* <WorkConnection />  */}
-              {/* <Main /> */}
+
+          <div className=" mt-44 sm:mt-32 md:mt-20  ">
+            <div className="flex w-3/4 text-black">
+              <div
+                onClick={() => setToggle(1)}
+                className={`border-b-2 w-1/2 text-md font-medium   ${
+                  toggle === 1
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-[#D1C9C9]"
+                } `}
+              >
+                Contact
+              </div>
+              <div
+                onClick={() => setToggle(2)}
+                className={`border-b-2 w-1/2 text-md font-medium  ${
+                  toggle === 2
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200"
+                } `}
+              >
+                Following
+              </div>
+              <div
+                onClick={() => setToggle(3)}
+                className={`border-b-2  w-1/2 text-md font-medium   ${
+                  toggle === 3
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200"
+                } `}
+              >
+                Followers
+              </div>
+            </div>
+            <div className=" p-5">
+              {toggle === 1 && <ContactPage />}
+              {toggle === 2 && <FollowingPage />}
+              {toggle === 3 && <FollowersPage />}
             </div>
           </div>
         </div>

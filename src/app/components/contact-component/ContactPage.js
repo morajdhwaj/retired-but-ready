@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -41,7 +42,6 @@ const ContactPage = () => {
               <div className="flex">
                 <div className="">
                   <Image
-                    // src="/assets/Ellipse-39.png"
                     width={50}
                     height={50}
                     alt="pic"
@@ -50,7 +50,7 @@ const ContactPage = () => {
                         ? item.from_user_image
                         : "/assets/Ellipse-39.png"
                     }
-                    // className="  sm:w-1/5 md:w-1/5 p-1 rounded-full  "
+                    className="   rounded-full  "
                   />
                 </div>
                 <div className="">
