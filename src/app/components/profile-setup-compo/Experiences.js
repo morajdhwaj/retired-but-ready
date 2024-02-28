@@ -87,7 +87,6 @@ const Experiences = ({
 
   const handleAddExperience = () => {
     const newExperience = {
-      company_id: "657d55d2033cb72b10c630e5",
       company_name: companyName,
       title: title,
       start_date: companyStart,
@@ -260,7 +259,7 @@ const Experiences = ({
             onClick={handleStepUp}
             className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
           >
-            Next
+            Submit & Next
           </button>
         </div>
       </div>
