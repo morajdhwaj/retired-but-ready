@@ -1,34 +1,35 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
 import { AiFillPicture } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const data = [
-  { id: 1, value: "first", label: "first" },
-  { id: 2, value: "second", label: "second" },
-  { id: 3, value: "third", label: "third" },
-  { id: 4, value: "fourth", label: "fourth" },
-  { id: 5, value: "sixth", label: "sixth" },
-  { id: 6, value: "seventh", label: "seventh" },
-  { id: 7, value: "eighth", label: "eighth" },
-  { id: 8, value: "ninth", label: "ninth" },
+  { id: 1, value: "Technology", label: "Technology" },
+  { id: 2, value: "Business", label: "Business" },
+  { id: 3, value: "Law", label: "Law" },
+  { id: 4, value: "Sports", label: "Sports" },
 ];
 
 const Page = () => {
   const [Category, setCategory] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
-  const userIdFromStorage =
-    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
-  const userIdRef = useRef(userIdFromStorage);
-  const [userId, setUserId] = useState(userIdRef.current);
+  const [userId, setUserId] = useState("");
 
-  const handlePersonalSkill = (selected, selection) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, [userId]);
+
+  const handleCategory = (selected, selection) => {
     const { action, option } = selection;
 
     if (action === "clear") {
@@ -77,7 +78,9 @@ const Page = () => {
         requestData
       )
       .then((response) => {
-        console.log("Group created successfully:", response.data);
+        console.log(response.data);
+        toast.success(response.data.message);
+        router.push("groups-page  ");
         setCategory([]);
         setGroupName("");
         setGroupDescription("");
@@ -179,7 +182,7 @@ const Page = () => {
                 className="basic-multi-select w-[70%]"
                 classNamePrefix="select"
                 options={data}
-                onChange={handlePersonalSkill}
+                onChange={handleCategory}
               />
             </div>
             {/* Group Type */}
