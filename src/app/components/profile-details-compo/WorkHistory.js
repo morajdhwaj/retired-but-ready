@@ -79,9 +79,9 @@ const WorkHistory = ({ userId }) => {
   return (
     <div className="m-5">
       <div className="flex  gap-5 justify-end ">
-        <button onClick={() => setEdit(!edit)}>
+        {/* <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
-        </button>
+        </button> */}
         {edit && (
           <button onClick={updateUser}>
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>

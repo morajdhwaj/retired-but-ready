@@ -8,7 +8,8 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox, FaUserCircle } from "react-icons/fa";
+import { FaBox } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -77,6 +78,7 @@ const page = () => {
     );
   }
 
+  console.log(userData,"this is for search user id")
   console.log(userData, "userData");
 
   return (
