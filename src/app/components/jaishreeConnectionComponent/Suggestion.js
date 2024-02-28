@@ -16,7 +16,7 @@ import WorkConnection from "./WorkConnection";
 import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
 import BestConnection from "../anushkaConnectionComponent/BestConnection";
 import MyConnection from "./MyConnection";
-import Request from "@/Request";
+import Request from "../connection-page-compo/Request";
 
 const cards = [
   {

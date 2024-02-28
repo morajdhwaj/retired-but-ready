@@ -45,7 +45,7 @@ const Navbar = () => {
 
   console.log(userId, "ddd");
   return (
-    <div className="flex bg-[#EDEBF2] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
+    <div className="flex bg-[#E5E2E5] fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">
         <div className="flex items-center gap-5">
           <Link href="/">
