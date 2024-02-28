@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
@@ -41,41 +42,17 @@ const WorkHistory = ({ userId }) => {
       params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: {
-        user_display_name: userData?.user_display_name,
-        user_first_name: userData?.user_first_name,
-        user_last_name: userData?.user_last_name,
-        user_age: userData?.user_age,
-        user_gender: userData?.user_gender,
-        country_id: userData?.country_id,
-        country_name: userData?.country_name,
-        user_state: userData?.user_state,
-        user_city: userData?.user_city,
-        city_coordinates: userData?.city_coordinates,
-        profile_headline: userData?.profile_headline,
-        profile_summary: userData?.profile_summary,
-        last_designation: userData?.last_designation,
-        total_experience: userData?.total_experience,
-        professional_field: userData?.professional_field,
-        professional_expertise: userData?.professional_expertise,
-        skills: userData?.skills,
-        languages: userData?.languages,
         english_proficiency: userData?.english_proficiency,
         education: userData?.education,
+
         work_history: [
           {
-            company_id: "657d55d2033cb72b10c630e5",
             company_name: companyName,
             title: title,
             start_date: "2022-10-01T00:00:00.000Z",
             end_date: "present",
           },
         ],
-        certifications: userData?.certifications,
-        is_charged: userData?.is_charged,
-        acceptable_currencies: userData?.acceptable_currencies,
-        interests: userData?.interests,
-        retirement_cause: userData?.retirement_cause,
-        social_links: userData?.social_links,
       },
     };
 
@@ -101,39 +78,77 @@ const WorkHistory = ({ userId }) => {
 
   return (
     <div className="m-5">
-      {/* <div className="flex  gap-5 justify-end ">
-        <button onClick={() => setEdit(!edit)}>
+      <div className="flex  gap-5 justify-end ">
+        {/* <button onClick={() => setEdit(!edit)}>
           <FaEdit size={30} />
-        </button>
+        </button> */}
         {edit && (
           <button onClick={updateUser}>
             <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
           </button>
         )}
-      </div> */}
+      </div>
       <div className="flex flex-wrap gap-7">
-        {companies.map((company) => {
+        {companies.map((company, index) => {
           return (
             <div
-              className="mt-5 border  self-start gap-5 w-52 p-5 border-[#773fc6] rounded-lg   "
-              key={company.company_name}
+              className="mt-5 border  self-start gap-5  p-5 border-[#773fc6] rounded-lg   "
+              // key={company.company_name}
+              key={index}
             >
+              <div className="flex  gap-5 justify-end ">
+                <button onClick={() => setEdit(index)}>
+                  <FaEdit size={30} />
+                </button>
+                {edit === index && (
+                  <button onClick={updateUser}>
+                    <h2 className="font-semibold text-[#773fc6]">
+                      Save changes
+                    </h2>
+                  </button>
+                )}
+              </div>
               <div>
                 <h2 className="text-[#808184] font-medium">Company Name</h2>
 
-                {edit ? (
+                {edit === index ? (
                   <input
-                    value={company.company_name}
-                    className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
                   />
                 ) : (
                   <h2 className="font-semibold ">{company.company_name}</h2>
                 )}
               </div>
               <div className="">
-                <h2 className="text-[#808184] font-medium">Title/Role</h2>
+                <h2 className="text-[#808184] font-medium mt-2">Title/Role</h2>
+                {edit === index ? (
+                  <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
+                  />
+                ) : (
+                  <h2 className="font-semibold ">{company.title}</h2>
+                )}
+              </div>
+              <div className="flex gap-5 mt-2">
+                <div>
+                  <h2 className="text-[#808184] font-medium">Start time</h2>
 
-                <h2 className="font-semibold ">{company.title}</h2>
+                  <h2 className="font-semibold text-sm  ">
+                    {dayjs(company?.start_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
+                <div>
+                  <h2 className="text-[#808184] font-medium">End time</h2>
+
+                  <h2 className="font-semibold text-sm ">
+                    {" "}
+                    {dayjs(company?.end_date).format("DD-MM-YYYY")}
+                  </h2>
+                </div>
               </div>
             </div>
           );

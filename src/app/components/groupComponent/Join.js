@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import Recommendation from "../Recommendation";
 import YourGroups from "../Your-Groups";
+import Link from "next/link";
 
 const Join = () => {
   const [tab, setTab] = useState(false);
@@ -37,6 +38,15 @@ const Join = () => {
           <button className="border  bg-[#A8359C] text-white p-2 mb-1 rounded-lg  mt-2 lg:mt-0 text-sm sm:text-sm lg:text-base ">
             Create Group
           </button>
+        </div>
+
+        <div className=" ml-24 pb-3">
+          <Link
+            href="/create-group"
+            className="border  bg-[#A8359C] text-white p-2 mb-1 rounded-lg "
+          >
+            Create Group
+          </Link>
         </div>
       </div>
 

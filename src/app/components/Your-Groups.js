@@ -1,42 +1,78 @@
 "use client";
-import React from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import axios from "axios";
+const information = [
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "240 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "241 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "242 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "243 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "244 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "245 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "246 member",
+  },
+  {
+    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    Member: "247 member",
+  },
+];
+
+const getUserIdFromStorage = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("userId");
+  }
+  return null;
+};
+
 const Page = () => {
-  const information = [
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "240 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "241 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "242 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "243 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "244 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "245 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "246 member",
-    },
-    {
-      Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      Member: "247 member",
-    },
-  ];
+  const [userId, setUserId] = useState(getUserIdFromStorage());
+
+  useEffect(() => {
+    const userIdFromStorage = getUserIdFromStorage();
+    if (userIdFromStorage !== userId) {
+      setUserId(userIdFromStorage);
+    }
+  }, []); // Run only once when component mounts
+
+  const [groupsData, setGroupsData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://retpro.catax.me/my-groups/${userId}`
+        );
+        setGroupsData(response.data);
+        console.log(response, "this is data from get group api");
+      } catch (error) {
+        console.log(error, "this error form get all groups");
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+  console.log(userId, "this is user id  from our group");
 
   return (
     <div>

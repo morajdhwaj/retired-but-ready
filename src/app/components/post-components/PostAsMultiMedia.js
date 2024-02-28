@@ -29,9 +29,9 @@ const PostAsMultiMedia = ({
           return true;
         } else {
           if (!validTypes.includes(fileType)) {
-            alert("Please upload only PNG, JPEG, or MP4 files.");
+            toast.error("Please upload only PNG, JPEG, or MP4 files.");
           } else if (fileSize > 20) {
-            alert("Please upload files smaller than 20MB.");
+            toast.error("Please upload files smaller than 20MB.");
           }
           return false;
         }
@@ -136,7 +136,7 @@ const PostAsMultiMedia = ({
             id="fileInput" // Connect input to button
             ref={fileInputRef}
           />
-          <div className="flex">
+          <div className="flex items-center mt-5">
             <label htmlFor="fileInput">
               <button
                 className="border py-2 px-4  text-xs rounded-full bg-[#773f6c] text-white"
@@ -145,12 +145,15 @@ const PostAsMultiMedia = ({
                 Upload from computer
               </button>
             </label>
-            <div>
+            <div className=" mx-5 p-3">
               {selectedFiles?.length !== 0 && (
                 <div className=" text-xs">
                   <h2 className="text-sm font-bold">Selected Files:</h2>
                   <ul>
-                    <li>{selectedFiles[0]?.name}</li>
+                    <li>Name : {selectedFiles[0]?.name}</li>
+                    <li>
+                      Size: {Math.round(selectedFiles[0]?.size / 1024)} KB
+                    </li>
                   </ul>
                 </div>
               )}

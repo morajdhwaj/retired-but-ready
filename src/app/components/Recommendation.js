@@ -1,7 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import axios from "axios";
+
+const getUserIdFromStorage = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("userId");
+  }
+  return null;
+};
 
 const Recommendation = () => {
   const Data = [

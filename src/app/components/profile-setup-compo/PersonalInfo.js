@@ -11,12 +11,10 @@ const PersonalInfo = ({
   setLastName,
   displayName,
   setDisplayName,
-  // age,
-  // setAge,
   gender,
   setGender,
   country,
-  setCountry,
+  setCountry, // Update the prop name
   state,
   setState,
   city,
@@ -29,7 +27,6 @@ const PersonalInfo = ({
   mobile_no,
 }) => {
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedCountryStates, setSelectedCountryStates] = useState([]);
 
   useEffect(() => {
@@ -89,20 +86,17 @@ const PersonalInfo = ({
       });
   };
   useEffect(() => {
-    if (selectedCountry) {
-      const selectedCountryObject = countries.find(
-        (country) => country.name === selectedCountry
-      );
+    if (country) {
+      const selectedCountryObject = countries.find((c) => c.name === country);
 
       if (selectedCountryObject) {
         setSelectedCountryStates(selectedCountryObject.states);
-        setCountry(selectedCountryObject.name);
         setCompanyId(selectedCountryObject.id); // Set the country id here
       }
     } else {
       setSelectedCountryStates([]);
     }
-  }, [selectedCountry, countries, setCompanyId]);
+  }, [country, countries, setCompanyId]);
 
   return (
     <div className="flex  flex-col gap-5  sm:mx-5 xl:mx-20  ">
@@ -146,49 +140,64 @@ const PersonalInfo = ({
           </select>
         </div>
         <div className="w-1/2">
-          <h2 className="font-semibold text-gray-500">City*</h2>
-          <input
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
-          />
-        </div>
-      </div>{" "}
-      <div className="flex gap-5">
-        <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">Country*</h2>
           <select
-            value={selectedCountry}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10 w-full px-2 rounded"
           >
-            {countries?.map((country) => (
-              <option key={country.id} value={country.name}>
-                {country.name}
-              </option>
-            ))}
+            {countries && (
+              <>
+                <option value="" disabled>
+                  Select country
+                </option>
+                {countries.map((c) => (
+                  <option key={c.id} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+              </>
+            )}
           </select>
         </div>
+      </div>
+      <div className="flex gap-5">
         <div className="w-1/2">
           <h2 className="font-semibold text-gray-500">State*</h2>
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 w-full px-2 rounded"
           >
-            {selectedCountryStates.map((state) => (
-              <option key={state.id} value={state.name}>
-                {state.name}
-              </option>
-            ))}
+            {selectedCountryStates && (
+              <>
+                <option value="" disabled>
+                  Select State
+                </option>
+                {selectedCountryStates.map((s) => (
+                  <option key={s.id} value={s.name}>
+                    {s.name}
+                  </option>
+                ))}
+              </>
+            )}
           </select>
+        </div>
+        <div className="w-1/2">
+          <h2 className="font-semibold text-gray-500">City*</h2>
+          <input
+            value={city}
+            placeholder="Enter city name"
+            onChange={(e) => setCity(e.target.value)}
+            className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
+          />
         </div>
       </div>
       <button
         onClick={handleStepUp}
         className="bg-[#773fc6] p-2 text-white font-medium rounded"
       >
-        Next
+        Submit & Next
       </button>
     </div>
   );

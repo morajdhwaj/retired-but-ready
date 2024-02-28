@@ -16,15 +16,18 @@ import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
 import { BiSad } from "react-icons/bi";
 import { BiSolidSad } from "react-icons/bi";
-import { IoBulb } from "react-icons/io5";
-import { IoBulbOutline } from "react-icons/io5";
-import { PiNotepadFill } from "react-icons/pi";
-import { PiNotepadLight } from "react-icons/pi";
+
+import { IoBulb, IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill, PiNotepadLight } from "react-icons/pi";
+
+
+import Link from "next/link";
+
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
-const All = ({ userId, feeds, setFeeds, getFeeds }) => {
+const All = ({ feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [reportPostId, setReportPostId] = useState("");
@@ -34,6 +37,8 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
+  const [isHovered, setIsHovered] = useState(false);
+  const [userId, setUserId] = useState("");
 
   const handleDropdown = (feed_id) => {
     if (!postId) {
@@ -52,8 +57,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   };
 
   useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
     getFeeds();
-  }, []);
+  }, [userId]);
 
   const handleComments = (feedId) => {
     if (!showComments) {
@@ -266,17 +272,19 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
               <div className="flex items-center gap-2 justify-center">
                 <div>
-                  {feed?.post_user?.user_image ? (
-                    <Image
-                      alt=""
-                      src={feed?.post_user?.user_image}
-                      height={50}
-                      width={50}
-                      className="rounded-full"
-                    />
-                  ) : (
-                    <FaUserCircle size={50} />
-                  )}
+                  <Link href={`/profile/${feed?.post_user?.id}`}>
+                    {feed?.post_user?.user_image ? (
+                      <Image
+                        alt=""
+                        src={feed?.post_user?.user_image}
+                        height={50}
+                        width={50}
+                        className="rounded-full"
+                      />
+                    ) : (
+                      <FaUserCircle size={50} />
+                    )}
+                  </Link>
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-[#773fc6]  ">
@@ -289,12 +297,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at:
+                        Published at :{" "}
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
                       <p className="text-xs">
-                        Published at:{" "}
+                        Published at :{" "}
                         {dayjs(new Date(feed?.publish_time + "Z")).format(
                           "DD-MM-YYYY HH:mm a"
                         )}
@@ -495,6 +503,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <p className="text-sm">Share</p>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-2 text-sm">
                   <button
                     onClick={() => handleComments(feed?._id)}
