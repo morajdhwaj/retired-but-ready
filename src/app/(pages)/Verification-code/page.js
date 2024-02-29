@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
 import toast from "react-hot-toast";
@@ -11,19 +11,39 @@ import Image from "next/image";
 const page = ({ length = 4 }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const finalOtp = otp.join("");
+  const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState([]);
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data, "hello im sachin");
+        setUserData(response?.data);
+        // setCompanyName(response?.data?.work_history[0].company_name);
+        // setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
   const router = useRouter();
 
   const handleVerification = () => {
-    if (finalOtp === "4444") {
-      router.push("/walls-page");
-      toast.success("verified");
-      return;
-    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/verify-otp",
-      params: { user_id: "6593af5ef4f7ce4f923051f3", otp: finalOtp },
+      params: { user_id: userId, otp: +finalOtp },
     };
 
     axios
@@ -31,11 +51,11 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response.data.message);
-        router.push("/walls-page");
+        router.push("/profile-setup");
       })
       .catch(function (error) {
         console.log(error.data);
-        toast.error("Wrong otp");
+        toast.error("Incorrect OTP");
         setOtp(Array(length).fill(""));
       });
   };
@@ -60,7 +80,26 @@ const page = ({ length = 4 }) => {
     }
   };
 
-  console.log(finalOtp);
+  const handleResendOtp = () => {
+    const options = {
+      method: "GET",
+      url: "https://retpro.catax.me/user/resend-email-otp",
+      params: { user_email: userData?.user_email },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
+  console.log(typeof +finalOtp, finalOtp);
   return (
     <div className="bg-[#ECEAF0] h-[100vh]">
       <Navbar />
@@ -74,7 +113,7 @@ const page = ({ length = 4 }) => {
             <p className="mt-5 text-sm font-medium ">
               Please type the verification code sent to{" "}
               <span className="text-[#773FC6] text-sm">
-                johnrahmands@mail.com
+                {userData?.user_email}
               </span>
               <br />
               or OTP sent to your mobile number.
@@ -85,7 +124,6 @@ const page = ({ length = 4 }) => {
                   key={index}
                   id={`otp-input-${index}`}
                   className=" border border-[##773FC6] w-14 h-14 rounded text-center no-scrollbar"
-                  type="text"
                   maxLength="1"
                   placeholder="-"
                   value={digit}
@@ -97,7 +135,9 @@ const page = ({ length = 4 }) => {
 
             <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
               I did not receive a code!
-              <span className="text-[#773FC6] ">Please resend</span>
+              <button onClick={handleResendOtp} className="text-[#773FC6] ">
+                Please resend
+              </button>
             </h1>
             <div className="bg-reg-500">
               <button

@@ -20,7 +20,7 @@ const page = () => {
 
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/profile-setup");
+    showModal && router.push("/verification-code");
   };
 
   const handleRegister = () => {
@@ -82,11 +82,16 @@ const page = () => {
               className="mb-4 bg-gray-200  border-gray-300 border-2  text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500 "
             />
             <input
-              type="Number"
+              type="text"
+              pattern="[0-9]*"
               value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
+              onChange={(e) => {
+                const onlyNum = e.target.value.replace(/[^0-9]/g, "");
+                setMobile(onlyNum);
+              }}
               placeholder="mobile number*"
-              className="mb-4 bg-gray-200 border-gray-300 border-2  text-md rounded-lg block w-full  h-10 p-1.5 hover:border-blue-500"
+              maxLength={10}
+              className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 hover:border-blue-500"
             />
             <input
               type="email"
@@ -173,8 +178,8 @@ const page = () => {
           <PopUp
             onClick={handleModal}
             title="Account created successfully"
-            action="Login"
-            message=" You have just begun your journey to greatness"
+            action="verify"
+            message={`we have send a verification code on ${email} `}
           />
         )}
       </div>
