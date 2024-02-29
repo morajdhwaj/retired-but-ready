@@ -9,17 +9,15 @@ const page = () => {
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
-      <div className="flex">
-        <div className="hidden lg:flex">
-          <Sidebar />
+      <div className="bg-[#A6A7A6] h-[220vh] sm:h-[210vh] pt-10 sm:pt-20 lg:pt-10 lg:mt-0">
+        <div className="hidden lg:flex ">
+          <div className="">
+            <Sidebar />
+          </div>
         </div>
-        <div className="flex mt-[130px]  ml-[260px] ">
-          <div className="">
-            <Join />
-          </div>
-          <div className="">
-            <JoinNewGroup />
-          </div>
+        <div className=" md:flex md:mx-8 mb-10  mt-20 lg:mt-[130px] mx-5 sm:mx-14 lg:ml-[260px]  md:w-[44vw] lg:w-[38vw] ">
+          <Join />
+          <JoinNewGroup />
         </div>
       </div>
     </div>
