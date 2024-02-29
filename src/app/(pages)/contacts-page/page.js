@@ -45,13 +45,13 @@ const page = () => {
   console.log(userData, "userId");
 
   return (
-    <div>
+    <div className="h-[100vh]">
       <Navbar />
-
-      <div className="hidden lg:flex bg-[#B1B0B1] p-10">
-        <Sidebar />
-
-        <div className=" h-full w-full lg:ml-52  bg-white rounded  mt-20 p-10">
+      <div className="bg-[#B0B0B1] p-10 ">
+        <div className="hidden lg:flex  ">
+          <Sidebar />
+        </div>
+        <div className="  lg:ml-52  bg-[#F2F2F2] rounded  mt-20 p-10">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -77,7 +77,7 @@ const page = () => {
             ></div>
           </div>
 
-          <div className=" mt-44 sm:mt-32 md:mt-20  ">
+          <div className=" mt-36 sm:mt-32 md:mt-36 lg:36  ">
             <div className="flex w-3/4 text-black">
               <div
                 onClick={() => setToggle(1)}

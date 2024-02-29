@@ -5,6 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const FollowersPage = () => {
   const [followers, setFollowers] = useState([]);
@@ -69,40 +70,40 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <div className="flex mt-5" key={index}>
-            <div className="w-3/4  flex justify-between items-center">
-              <div className="flex">
+          <div className="flex " key={index}>
+            <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
+              <div className="w-[10%]">
+                <Image
+                  width={50}
+                  height={50}
+                  alt="pic"
+                  src={
+                    follower.from_user_image
+                      ? follower.from_user_image
+                      : "/assets/Ellipse-39.png"
+                  }
+                  className="rounded "
+                />
+              </div>
+              <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
                 <div className="">
-                  <Image
-                    width={50}
-                    height={50}
-                    alt="pic"
-                    src={
-                      follower.from_user_image
-                        ? follower.from_user_image
-                        : "/assets/Ellipse-39.png"
-                    }
-                    className="rounded "
-                  />
-                </div>
-                <div className="">
-                  <h1 className="text-[#2C2C2C] font-medium">
+                  <h1 className="text-[#2C2C2C] text-sm font-medium">
                     {follower.from_user_full_name}
                   </h1>
-                  <p className="text-[#888888] font-medium text-sm">
+                  <p className="text-[#888888]  font-medium text-xs">
                     Human resource executive
                   </p>
-                  <p className="text-[#888888] font-medium text-sm">
+                  <p className="text-[#888888] font-medium text-xs mt-2">
                     6 post this week
                   </p>
                 </div>
-              </div>
 
-              <button className="border-2 border-[#A8359C]  rounded-md p-2">
-                Following
-              </button>
+                <button className="border border-[#A8359C] text-black rounded-md p-2">
+                  Following
+                </button>
+              </div>
             </div>
-            <div className="w-1/4  flex items-center justify-center">
+            <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
               <div>
                 <button className="text-2xl text-gray-500">
                   <BsThreeDotsVertical onClick={() => handleShow(index)} />
@@ -120,7 +121,7 @@ const FollowersPage = () => {
                   </div>
                 )}
                 <button className="text-2xl text-gray-500">
-                  <PiShareFatLight />
+                  <IoChatbubbleEllipsesOutline />
                 </button>
               </div>
             </div>
