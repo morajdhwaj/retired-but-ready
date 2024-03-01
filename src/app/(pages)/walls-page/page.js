@@ -78,11 +78,11 @@ const page = () => {
     );
   }
 
-  console.log(userData,"this is for search user id")
+  console.log(userData, "this is for search user id");
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div className="bg-[#A6A7A6]  px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
