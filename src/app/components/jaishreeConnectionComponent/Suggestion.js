@@ -21,7 +21,7 @@ import axios from "axios";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
-  const [card, setCard] = useState([]);
+  const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -39,16 +39,16 @@ const Suggestion = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setCard(response.data);
+        setSuggestionData(response.data);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
-  console.log(userId, "ye suggetion ka data hai");
-  console.log(card, "suggetion ka data");
+  console.log(userId, "usedId");
+  console.log(suggestionData, "suggestion ka data");
   const handleToggle = (index) => {
-    setCard([]);
+    setSuggestionData([]);
     activePage === index ? setActivePage(0) : setActivePage(index);
   };
 
@@ -176,7 +176,7 @@ const Suggestion = () => {
       {activePage === 6 && <BestConnection />}
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
-        {card.map((cardElem, index) => (
+        {suggestionData.map((cardElem, index) => (
           <div className="border border-gray-300  rounded-md" key={index}>
             <div className=" bg-[#B3CEE2]   ">
               <div className="flex justify-end mt-2 mx-2">
