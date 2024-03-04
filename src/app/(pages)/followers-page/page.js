@@ -16,6 +16,7 @@ const page = () => {
   const [userId, setUserId] = useState("");
   const [followers, setFollower] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [from_user, setUser] = useState("");
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -64,18 +65,17 @@ const page = () => {
 
   const handleDeleteModal = (from_user_id) => {
     setShowDeleteModal(!showDeleteModal);
-    if (from_user_id) {
-      deleteFollowers(from_user_id);
-    }
+    setUser(from_user_id);
   };
 
   // remove followers
-  const deleteFollowers = (from_user_id) => {
-    console.log(userId, "userid");
+  const deleteFollowers = () => {
+
+    console.log(from_user, "from user");
 
     const options = {
       method: "DELETE",
-      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user_id}`,
+      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user}`,
     };
 
     axios
