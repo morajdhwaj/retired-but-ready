@@ -12,38 +12,47 @@ const getUserIdFromStorage = () => {
 };
 
 const Recommendation = () => {
-  const Data = [
-    {
-      information: "Lorem ipsum dolor sit glitch!",
-      member: "201 Members",
-      paragraph: "Lorem ipsum dolor sit glitch!",
-    },
-    {
-      information: "Lorem ipsum dolor sit glitch!",
-      member: "202 Members",
-      paragraph: "Lorem ipsum dolor sit glitch!",
-    },
-    {
-      information: "Lorem ipsum dolor sit glitch!",
-      member: "203 Members",
-      paragraph: "Lorem ipsum dolor sit glitch!",
-    },
-    {
-      information: "Lorem ipsum dolor sit glitch!",
-      member: "204 Members",
-      paragraph: "Lorem ipsum dolor sit glitch!",
-    },
-    {
-      information: "Lorem ipsum dolor sit glitch!",
-      member: "205 Members",
-      paragraph: "Lorem ipsum dolor sit glitch!",
-    },
-  ];
+  const [userId, setUserId] = useState(getUserIdFromStorage());
+  const [recommendedGroupsData, setRecommendedGroupsData] = useState([]);
+
+  useEffect(() => {
+    getRecommendedGroups();
+    const userIdFromStorage = getUserIdFromStorage();
+    if (userIdFromStorage !== userId) {
+      setUserId(userIdFromStorage);
+    }
+  }, []); // Run only once when component mounts
+
+  // RECOMMENDED GROUP API ---------------------------------------------
+
+  const getRecommendedGroups = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/recommended-groups/${userId}`
+      );
+      setRecommendedGroupsData(response.data);
+      console.log(response, "this is response from recommended group");
+    } catch (error) {
+      console.log(error, "this error get from recommended group api");
+    }
+  };
+
+  const joinGroup = async (groupId) => {
+    try {
+      const response = await axios.post(
+        `https://retpro.catax.me/group-join-request/${groupId}?current_user_id=${userId}`
+      );
+      console.log(response, "this is response form join  group");
+    } catch (error) {
+      console.log(error, "this is error from join group");
+    }
+  };
+
   return (
     <div>
-      {Data.map((curelem, key) => (
-        <div>
-          <div className="mt-5 flex justify-between" key={key}>
+      {recommendedGroupsData.map((data) => (
+        <div key={data._id}>
+          <div className="mt-5 flex justify-between">
             <div className="flex">
               <div className="mt-3">
                 <Image
@@ -56,16 +65,28 @@ const Recommendation = () => {
               </div>
               <div className="mx-2 mt-1">
                 <p className="text-base font-medium lg:text-lg lg:font-semibold">
-                  {curelem.information}
+                  {data.group_name}
                 </p>
-                <p className=" text-sm md:text-sm ">{curelem.member}</p>
-                <p className=" text-sm md:text-sm ">{curelem.paragraph}</p>
+                <p className=" text-sm md:text-sm ">{data.group_description}</p>
+                {/* <p className=" text-sm md:text-sm ">{curelem.paragraph}</p> */}
               </div>
             </div>
             <div>
-              <button className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0">
-                Join
-              </button>
+              {data.join_requests &&
+              data.join_requests.some(
+                (item) => item.requested_user === userId
+              ) ? (
+                <button className="border-2 border-[#A8359C] p-1 w- lg:w- text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0">
+                  Requested
+                </button>
+              ) : (
+                <button
+                  className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0"
+                  onClick={() => joinGroup(data._id)}
+                >
+                  Join
+                </button>
+              )}
             </div>
           </div>
           <div className="border border-gray-200 mt-2 mx-2" />

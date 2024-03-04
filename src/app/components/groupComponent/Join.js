@@ -34,12 +34,6 @@ const Join = () => {
           </button>
         </div>
 
-        <div className=" ">
-          <button className="border  bg-[#A8359C] text-white p-2 mb-1 rounded-lg  mt-2 lg:mt-0 text-sm sm:text-sm lg:text-base ">
-            Create Group
-          </button>
-        </div>
-
         <div className=" ml-24 pb-3">
           <Link
             href="/create-group"
