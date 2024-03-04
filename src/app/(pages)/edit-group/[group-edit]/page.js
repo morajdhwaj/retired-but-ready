@@ -34,7 +34,7 @@ const Page = ({ params }) => {
   const [groupsData, setGroupsData] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
-  const [groupType, setGroupType] = useState("public"); // Add groupType state
+  const [groupType, setGroupType] = useState(""); // Add groupType state
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
@@ -60,18 +60,18 @@ const Page = ({ params }) => {
     fetchData();
   }, [userId]);
 
- 
-
   useEffect(() => {
     const filteredItems = groupsData.find((item) => item.group_id === groupId);
     if (filteredItems) {
       setGroupName(filteredItems.group_name || "");
       setGroupDescription(filteredItems.group_description || "");
+      setGroupType(filteredItems.group_category || "");
       // Convert group_interests to the correct format if necessary
       const formattedInterests = filteredItems.group_interests.map(
         (interest) => ({ label: interest, value: interest })
       );
       setCategory(formattedInterests || []);
+
       console.log(filteredItems, "this is filtered item");
     }
   }, [groupsData, groupId]);
@@ -126,7 +126,7 @@ const Page = ({ params }) => {
     }
   };
 
-  console.log(category, "this is category ");
+  console.log(category, groupType, "this is category ");
 
   return (
     <div className="bg-[#EDEBF2] h-[100vh pb-5  px-10 ">
@@ -222,13 +222,14 @@ const Page = ({ params }) => {
               />
             </div>
             {/* Group Type */}
-            <div className="mt-5">
+            {/* <div className="mt-5">
               <h2 className="mb-3">Group Type</h2>
               <div className="mb-5">
                 <div className="">
                   <input
                     type="radio"
                     value="public"
+                    selected={groupType==="public"}
                     onChange={(e) => setGroupType(e.target.value)}
                     name="group"
                     className=""
@@ -248,6 +249,48 @@ const Page = ({ params }) => {
                     type="radio"
                     value="private"
                     name="group"
+                    selected={groupType==="private"}
+                    onChange={(e) => setGroupType(e.target.value)}
+                    className=""
+                  />
+                  <label htmlFor="" className="ml-2">
+                    Private
+                  </label>
+                </div>
+                <p className="text-sm ml-5 text-gray-400">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Dolor, natus! Eveniet sit laborum magnam optio.
+                </p>
+              </div>
+            </div> */}
+            <div className="mt-5">
+              <h2 className="mb-3">Group Type</h2>
+              <div className="mb-5">
+                <div className="">
+                  <input
+                    type="radio"
+                    value="public"
+                    checked={groupType === "public"}
+                    onChange={(e) => setGroupType(e.target.value)}
+                    name="group"
+                    className=""
+                  />
+                  <label htmlFor="" className="ml-2">
+                    Public
+                  </label>
+                </div>
+                <p className="text-sm ml-5 text-gray-400">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                  id inventore iste. Commodi, ab voluptate!
+                </p>
+              </div>
+              <div className="">
+                <div className="">
+                  <input
+                    type="radio"
+                    value="private"
+                    name="group"
+                    checked={groupType === "private"}
                     onChange={(e) => setGroupType(e.target.value)}
                     className=""
                   />

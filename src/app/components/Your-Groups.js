@@ -169,7 +169,7 @@ const Page = () => {
         <PopUp
           close={handleDeleteModal}
           onClick={deleteGroup}
-          title="Are you want Delete this post"
+          title="Are you sure to Delete this post"
           action="Delete"
           message=""
           error="error"

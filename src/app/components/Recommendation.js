@@ -42,6 +42,7 @@ const Recommendation = () => {
       const response = await axios.post(
         `https://retpro.catax.me/group-join-request/${groupId}?current_user_id=${userId}`
       );
+      getRecommendedGroups()
       console.log(response, "this is response form join  group");
     } catch (error) {
       console.log(error, "this is error from join group");
