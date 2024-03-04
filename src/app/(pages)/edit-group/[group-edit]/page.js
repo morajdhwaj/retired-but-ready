@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import Navbar from "@/app/components/Navbar";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
@@ -8,7 +10,7 @@ import { AiFillPicture } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -17,18 +19,62 @@ const data = [
   { id: 4, value: "Sports", label: "Sports" },
 ];
 
-const Page = () => {
-  const [Category, setCategory] = useState([]);
+const getUserIdFromStorage = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("userId");
+  }
+  return null;
+};
+
+const Page = ({ params }) => {
+  const router = useRouter();
+  const groupId = params["group-edit"];
+
+  const [userId, setUserId] = useState(getUserIdFromStorage());
+  const [groupsData, setGroupsData] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
-  const [userId, setUserId] = useState("");
-  const [groupType, setGroupType] = useState("");
-
-  const router = useRouter();
+  const [groupType, setGroupType] = useState("public"); // Add groupType state
+  const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    const userIdFromStorage = getUserIdFromStorage();
+    if (userIdFromStorage !== userId) {
+      setUserId(userIdFromStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://retpro.catax.me/my-groups/${userId}`
+        );
+        setGroupsData(response.data);
+        console.log(response, "this is data from get group api");
+      } catch (error) {
+        console.log(error, "this error form get all groups");
+      }
+    };
+
+    fetchData();
   }, [userId]);
+
+ 
+
+  useEffect(() => {
+    const filteredItems = groupsData.find((item) => item.group_id === groupId);
+    if (filteredItems) {
+      setGroupName(filteredItems.group_name || "");
+      setGroupDescription(filteredItems.group_description || "");
+      // Convert group_interests to the correct format if necessary
+      const formattedInterests = filteredItems.group_interests.map(
+        (interest) => ({ label: interest, value: interest })
+      );
+      setCategory(formattedInterests || []);
+      console.log(filteredItems, "this is filtered item");
+    }
+  }, [groupsData, groupId]);
 
   const handleCategory = (selected, selection) => {
     const { action, option } = selection;
@@ -53,47 +99,34 @@ const Page = () => {
     }
   };
 
-  const createGroup = () => {
-    const requestData = {
+  const updateGroupInfo = async () => {
+    const groupInterests = category.map((item) => item.value);
+
+    const groupData = {
       group_name: groupName,
       group_description: groupDescription,
-      group_image: "string",
-      group_banner: "string",
-      group_category: groupType,
-      group_interests: Category.map((item) => item.value),
-      join_requests: [],
-      approved_requests: [],
-      rejected_requests: [],
-      group_admin: [],
-      created_by: "string",
-      created_on: new Date().toISOString(),
-      is_deleted: false,
-      group_comments: [],
-      is_group_featured: false,
-      group_status: groupType,
+      group_image: "string", // Replace "string" with actual image URL if needed
+      group_banner: "string", // Replace "string" with actual banner image URL if needed
+      group_category: groupType, // Replace "string" with actual category if needed
+      group_interests: groupInterests, // Replace "string" with actual interests if needed
     };
 
-    axios
-      .post(
-        `https://retpro.catax.me/create-group?user_id=${userId}`,
-        requestData
-      )
-      .then((response) => {
-        console.log(response.data);
-        toast.success(response.data.message);
-        router.push("groups-page  ");
-        setCategory([]);
-        setGroupName("");
-        setGroupDescription("");
-        // Perform any further actions, like redirecting or updating state
-      })
-      .catch((error) => {
-        console.error("Error creating group:", error);
-        // Handle error, maybe show a message to the user
-      });
+    try {
+      const response = await axios.put(
+        `https://retpro.catax.me/update-group-info/${groupId}?current_user_id=${userId}`,
+        groupData
+      );
+
+      console.log(response, "this is response form updateGroupData");
+      toast.success(response.data.message);
+      router.push("/groups-page");
+    } catch (error) {
+      console.log(error, "this is error from updateGroupInfo");
+      // toast.error(error);
+    }
   };
 
-  console.log(userId, "this is user id from create group page");
+  console.log(category, "this is category ");
 
   return (
     <div className="bg-[#EDEBF2] h-[100vh pb-5  px-10 ">
@@ -178,7 +211,7 @@ const Page = () => {
               </label>
               <CreatableSelect
                 id="personal"
-                value={Category}
+                value={category}
                 instanceId="selectSkills"
                 isMulti
                 name="colors"
@@ -232,9 +265,9 @@ const Page = () => {
             {/* Create Group Button */}
             <button
               className="py-3 px-8 border-2 border-[#A8359C]  absolute right-14 bottom-10 "
-              onClick={createGroup}
+              onClick={updateGroupInfo}
             >
-              Create Group
+              Save Changes
             </button>
           </div>
         </div>
