@@ -12,100 +12,65 @@ const getUserIdFromStorage = () => {
 };
 
 const Recommendation = () => {
-  const [userId, setUserId] = useState(getUserIdFromStorage());
-
-  useEffect(() => {
-    const userIdFromStorage = getUserIdFromStorage();
-    if (userIdFromStorage !== userId) {
-      setUserId(userIdFromStorage);
-    }
-  }, []); // Run only once when component mounts
-
-  const [groupsData, setGroupsData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://retpro.catax.me/recommended-groups/${userId}`
-        );
-        setGroupsData(response.data);
-        console.log(response, "this is data from get recommendation api");
-      } catch (error) {
-        console.log(error, "this error form get all groups");
-      }
-    };
-
-    fetchData();
-  }, [userId]);
-  console.log(userId, "this is user id  from recommendation component");
-
+  const Data = [
+    {
+      information: "Lorem ipsum dolor sit glitch!",
+      member: "201 Members",
+      paragraph: "Lorem ipsum dolor sit glitch!",
+    },
+    {
+      information: "Lorem ipsum dolor sit glitch!",
+      member: "202 Members",
+      paragraph: "Lorem ipsum dolor sit glitch!",
+    },
+    {
+      information: "Lorem ipsum dolor sit glitch!",
+      member: "203 Members",
+      paragraph: "Lorem ipsum dolor sit glitch!",
+    },
+    {
+      information: "Lorem ipsum dolor sit glitch!",
+      member: "204 Members",
+      paragraph: "Lorem ipsum dolor sit glitch!",
+    },
+    {
+      information: "Lorem ipsum dolor sit glitch!",
+      member: "205 Members",
+      paragraph: "Lorem ipsum dolor sit glitch!",
+    },
+  ];
   return (
     <div>
-      <div className="flex  h-[69vh] overflow-y-scroll ">
-        <div className="  ">
-          <div className="flex justify-between   border-gray-200 w-full">
-            <div className="flex mt-2">
-              <Image
-                src="/assets/Ellipse-39.png"
-                width={40}
-                height={40}
-                alt="pic"
-                className=" w-24  h-24 rounded-full border-2   border-gray-200 "
-              />
-              <div className="mt-5 mx-2">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                <p>245 Member</p>
+      {Data.map((curelem, key) => (
+        <div>
+          <div className="mt-5 flex justify-between" key={key}>
+            <div className="flex">
+              <div className="mt-3">
+                <Image
+                  src="/assets/Ellipse-39.png"
+                  width={50}
+                  height={50}
+                  alt="pic"
+                  className="w-16 h-16 rounded-full border-2 border-gray-200"
+                />
+              </div>
+              <div className="mx-2 mt-1">
+                <p className="text-base font-medium lg:text-lg lg:font-semibold">
+                  {curelem.information}
+                </p>
+                <p className=" text-sm md:text-sm ">{curelem.member}</p>
+                <p className=" text-sm md:text-sm ">{curelem.paragraph}</p>
               </div>
             </div>
-            <div className="flex mx-5 items-center">
-              <button>
-                <BsThreeDotsVertical />
+            <div>
+              <button className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0">
+                Join
               </button>
             </div>
           </div>
-          <div className="flex justify-between  border-b-2 border-gray-200 w-full">
-            <div className="flex mt-2">
-              <Image
-                src="/assets/Ellipse-39.png"
-                width={40}
-                height={40}
-                alt="pic"
-                className=" w-24  h-24 rounded-full border-2   border-gray-200 "
-              />
-              <div className="mt-5 mx-2">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                <p>245 Member</p>
-              </div>
-            </div>
-            <div className="flex mx-5 items-center">
-              <button>
-                <BsThreeDotsVertical />
-              </button>
-            </div>
-          </div>
-          <div className="flex justify-between  border-b-2 border-gray-200 w-full">
-            <div className="flex mt-2">
-              <Image
-                src="/assets/Ellipse-39.png"
-                width={40}
-                height={40}
-                alt="pic"
-                className=" w-24  h-24 rounded-full border-2   border-gray-200 "
-              />
-              <div className="mt-5 mx-2">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                <p>245 Member</p>
-              </div>
-            </div>
-            <div className="flex mx-5 items-center">
-              <button>
-                <BsThreeDotsVertical />
-              </button>
-            </div>
-          </div>
+          <div className="border border-gray-200 mt-2 mx-2" />
         </div>
-      </div>
+      ))}
     </div>
   );
 };

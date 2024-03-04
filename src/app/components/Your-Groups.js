@@ -76,7 +76,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="flex flex-col   border-white bg-white rounded-lg h-[69vh] overflow-y-scroll ">
+      <div className=" flex flex-col   lg:w-[40vh] xl:w-[60vh]  border-white bg-white rounded-lg">
         {information.map((curelem, key) => (
           <div>
             <div className="flex justify-between" key={key}>
@@ -89,13 +89,13 @@ const Page = () => {
                   alt="pic"
                   className="w-14 h-14 rounded-full border-2 border-gray-200 mt-3"
                 />
-                <div className="mt-5 mx-2 text-sm">
+                <div className="mt-5 mx-2 text-base font-medium lg:text-sm">
                   <p>{curelem.Data}</p>
                   <p className="mt-1">{curelem.Member}</p>
                 </div>
               </div>
               <div>
-                <button className="mt-6 mx-2">
+                <button className=" mt-10 md:mt-10 mx-2">
                   <BsThreeDotsVertical />
                 </button>
               </div>
