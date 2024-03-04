@@ -20,7 +20,7 @@ const page = () => {
 
   const handleModal = () => {
     setShowModal(true);
-    showModal && router.push("/verification-code");
+    showModal && router.push("/verification-email");
   };
 
   const handleRegister = () => {
