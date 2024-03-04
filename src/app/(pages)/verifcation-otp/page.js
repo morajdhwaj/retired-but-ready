@@ -11,32 +11,58 @@ import Image from "next/image";
 const page = ({ length = 4 }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+    getUserData();
+  }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data, "hello im sachin");
+        setUserData(response?.data);
+        // setCompanyName(response?.data?.work_history[0].company_name);
+        // setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   const finalOtp = otp.join("");
 
   const router = useRouter();
 
-  //   const handleVerification = () => {
-  //     const options = {
-  //       method: "PATCH",
-  //       url: "https://retpro.catax.me/user/reset-password-otp",
-  //       params: { user_id: "6593af5ef4f7ce4f923051f3" },
-  //       headers: { "Content-Type": "application/json" },
-  //       data: { otp: finalOtp, new_password: password },
-  //     };
+  const handleVerification = () => {
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/user/reset-password-otp",
+      params: { user_id: "6593af5ef4f7ce4f923051f3" },
+      headers: { "Content-Type": "application/json" },
+      data: { otp: finalOtp, new_password: password },
+    };
 
-  //     axios
-  //       .request(options)
-  //       .then(function (response) {
-  //         console.log(response.data);
-  //         toast.success(response?.data?.message);
-  //         router.push("/");
-  //       })
-  //       .catch(function (error) {
-  //         console.error(error);
-  //         toast.error(error.response.data.detail);
-  //       });
-  //   };
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        router.push("/");
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error.response.data.detail);
+      });
+  };
 
   const handleInputChange = (index, value) => {
     // Only update the state if the entered value is a number
@@ -93,7 +119,7 @@ const page = ({ length = 4 }) => {
           <div className="bg-reg-500">
             <button
               className="w-full mt-12 h-10 rounded  text-white bg-[#773FC6]"
-              // onClick={}
+              onClick={handleVerification}
             >
               Confirm
             </button>
