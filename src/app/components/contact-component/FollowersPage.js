@@ -115,7 +115,7 @@ const FollowersPage = () => {
                         onClick={() => handleDeleteModal(follower)}
                         className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                       >
-                        Unfollow
+                        Remove
                       </button>
                     </div>
                   </div>
