@@ -1,5 +1,5 @@
 "use-client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { ImProfile } from "react-icons/im";
@@ -17,55 +17,36 @@ import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
 import BestConnection from "../anushkaConnectionComponent/BestConnection";
 import MyConnection from "./MyConnection";
 import Request from "../connection-page-compo/Request";
-
-const cards = [
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-
-  {
-    name: "Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Raj",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar ",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar ",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-];
+import axios from "axios";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
-  const [card, setCard] = useState(cards);
+  const [card, setCard] = useState([]);
+  const [userId, setUserId] = useState("");
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+    getSuggestions();
+  }, [userId]);
+
+  const getSuggestions = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/network/suggestions?user_id=${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setCard(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+  console.log(userId, "ye suggetion ka data hai");
+  console.log(card, "suggetion ka data");
   const handleToggle = (index) => {
     setCard([]);
     activePage === index ? setActivePage(0) : setActivePage(index);
@@ -195,7 +176,7 @@ const Suggestion = () => {
       {activePage === 6 && <BestConnection />}
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
-        {card.map((card, index) => (
+        {card.map((cardElem, index) => (
           <div className="border border-gray-300  rounded-md" key={index}>
             <div className=" bg-[#B3CEE2]   ">
               <div className="flex justify-end mt-2 mx-2">
@@ -204,7 +185,11 @@ const Suggestion = () => {
 
               <div className="flex items-center justify-center pb-4">
                 <Image
-                  src="/assets/Ellipse-39.png"
+                  src={
+                    cardElem.user_image
+                      ? cardElem.user_image
+                      : "/assets/Ellipse-39.png"
+                  }
                   width={40}
                   height={40}
                   alt="pic"
@@ -213,11 +198,9 @@ const Suggestion = () => {
               </div>
             </div>
             <h1 className="mt-5 flex items-center justify-center font-sans text-xl">
-              {card.name}
+              {cardElem.user_display_name}
             </h1>
-            <p className="  text-center text-xs mt-1 text-gray-500">
-              {card.position}
-            </p>
+            <p className="  text-center text-xs mt-1 text-gray-500">postion</p>
             <p className=" text-center text-sm text-gray-500"> text of the</p>
             <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
               <SiHsbc className="fill-red-600 size-8" />
