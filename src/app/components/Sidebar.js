@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { IoIosHome } from "react-icons/io";
 import { FaFile } from "react-icons/fa6";
 import { AiFillTool } from "react-icons/ai";
-import { FaCartShopping } from "react-icons/fa6";
+import { HiUserGroup } from "react-icons/hi";
 import { PiFilesFill } from "react-icons/pi";
-import { BsFillRocketTakeoffFill } from "react-icons/bs";
+import { MdMessage } from "react-icons/md";
 import { FiOctagon } from "react-icons/fi";
 import {
   MdAnnouncement,
@@ -59,11 +59,11 @@ const Sidebar = () => {
               </div>
             </Link>
             <Link
-              href="/wallet-page"
+              href="/groups-page"
               className="flex gap-5   items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <FaCartShopping color="#344767" />
+                <HiUserGroup color="#344767" />
               </div>
             </Link>
 
@@ -76,11 +76,11 @@ const Sidebar = () => {
               </div>
             </Link>
             <Link
-              href="/basics-page"
+              href="/message-page"
               className="flex gap-5   items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <BsFillRocketTakeoffFill color="#344767" />
+                <MdMessage color="#344767" />
               </div>
             </Link>
             <Link
@@ -132,13 +132,13 @@ const Sidebar = () => {
               <h2 className="text-sm font-medium">My Contacts</h2>
             </Link>
             <Link
-              href="/wallet-page"
+              href="/groups-page"
               className="flex gap-5  w-40 items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <FaCartShopping color="#344767" />
+                <HiUserGroup color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">My Wallet</h2>
+              <h2 className="text-sm font-medium">Groups</h2>
             </Link>
 
             <Link
@@ -151,13 +151,13 @@ const Sidebar = () => {
               <h2 className="text-sm font-medium">Connections</h2>
             </Link>
             <Link
-              href="/basics-page"
+              href="/message-page"
               className="flex gap-5  w-40 items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <BsFillRocketTakeoffFill color="#344767" />
+                <MdMessage color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">Basics</h2>
+              <h2 className="text-sm font-medium">Messages</h2>
             </Link>
             <Link
               href="/setting-page"
