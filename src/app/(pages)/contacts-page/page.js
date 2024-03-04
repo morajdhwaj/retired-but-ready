@@ -78,10 +78,10 @@ const page = () => {
           </div>
 
           <div className=" mt-36 sm:mt-32 md:mt-36 lg:36  ">
-            <div className="flex w-3/4 text-black">
+            <div className="flex  text-black border-b-2 w-[40%] relative">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-2 w-1/2 text-md font-medium   ${
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[10%] ${
                   toggle === 1
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-[#D1C9C9]"
@@ -91,7 +91,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-2 w-1/2 text-md font-medium  ${
+                className={`border-b-2 text-md font-medium absolute bottom-[-2px] left-[90%] ${
                   toggle === 2
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200"
@@ -101,7 +101,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-2  w-1/2 text-md font-medium   ${
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[50%]  ${
                   toggle === 3
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200"
