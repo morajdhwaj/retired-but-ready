@@ -124,7 +124,7 @@ const Certification = ({
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        router.push("/walls-page");
+        router.push("/all-feeds-page");
       })
       .catch(function (error) {
         console.error(error);
