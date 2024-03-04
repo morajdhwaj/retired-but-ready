@@ -8,9 +8,10 @@ import React from "react";
 const page = () => {
   return (
 
-    <div className="bg-[#A6A7A6]  px-10 ">
+  
+    <div className="bg-[#EDEBF2]  px-10 h-full ">
       <Navbar />
-      <div className=" h-[220vh] sm:h-[210vh] pt-10 sm:pt-20 lg:pt-10 lg:mt-0">
+      <div className=" h-[220vh sm:h-[210vh pt-10 sm:pt-20 lg:pt-10 lg:mt-0">
 
         <div className="hidden lg:flex ">
           <div className="">

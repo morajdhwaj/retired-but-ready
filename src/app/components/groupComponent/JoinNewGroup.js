@@ -56,6 +56,18 @@ const JoinNewGroup = () => {
 
   const mapData = recommendedGroupsData.slice(0, 3);
 
+  const joinGroup = async (groupId) => {
+    try {
+      const response = await axios.post(
+        `https://retpro.catax.me/group-join-request/${groupId}?current_user_id=${userId}`
+      );
+      getRecommendedGroups();
+      console.log(response, "this is response form join  group");
+    } catch (error) {
+      console.log(error, "this is error from join group");
+    }
+  };
+
   return (
     <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed   lg:fixed  xl:fixed  top-40 xl:right-72   h-[80vh]">
       <div className="lg:px-10 sm:px-5  w-full  lg:w-[23vw] ">
@@ -85,10 +97,22 @@ const JoinNewGroup = () => {
                     {/* <p className=" mx-2">{data.}</p> */}
                   </div>
                 </div>
-                <div className="flex justify-center items-center">
-                  <button className="border-2 border-[#A8359C]  sm:w-20 p-1 rounded-lg text-sm font-bold">
-                    Join
-                  </button>
+                <div className="flex justify-center">
+                  {data.join_requests &&
+                  data.join_requests.some(
+                    (item) => item.requested_user === userId
+                  ) ? (
+                    <button className="border-2 border-[#A8359C] p-1 w- lg:w- text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0">
+                      Requested
+                    </button>
+                  ) : (
+                    <button
+                      className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0"
+                      onClick={() => joinGroup(data._id)}
+                    >
+                      Join
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="border-2 mt-2 border-gray-200 mx-5" />
@@ -96,7 +120,10 @@ const JoinNewGroup = () => {
           ))}
 
           <div className="flex justify-center items-center mt-2 mb-full">
-            <button className="border-2 border-[#A8359C] w-40 h-10 text-lg font-medium text-center rounded-lg">
+            <button
+              className="border-2 border-[#A8359C] w-40 h-10 text-lg font-medium text-center rounded-lg"
+              onClick={() => joinGroup(data._id)}
+            >
               Show All
             </button>
           </div>

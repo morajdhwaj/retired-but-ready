@@ -22,7 +22,7 @@ const Page = () => {
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
   const [userId, setUserId] = useState("");
-  const [groupType, setGroupType] = useState("");
+  const [groupType, setGroupType] = useState("public");
 
   const router = useRouter();
 
@@ -196,6 +196,7 @@ const Page = () => {
                   <input
                     type="radio"
                     value="public"
+                    checked={groupType === "public"}
                     onChange={(e) => setGroupType(e.target.value)}
                     name="group"
                     className=""
@@ -215,6 +216,7 @@ const Page = () => {
                     type="radio"
                     value="private"
                     name="group"
+                    checked={groupType === "private"}
                     onChange={(e) => setGroupType(e.target.value)}
                     className=""
                   />
