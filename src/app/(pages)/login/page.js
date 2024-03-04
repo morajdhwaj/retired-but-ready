@@ -18,7 +18,7 @@ const page = () => {
     setShowModal(true);
     showModal &&
       router.push(
-        userData.english_proficiency ? "walls-page" : "/profile-setup"
+        userData.english_proficiency ? "all-feeds-page" : "/profile-setup"
       );
   };
 
@@ -62,7 +62,7 @@ const page = () => {
         if (response.data.redirect === "verification") {
           router.push("verification-email");
         } else {
-          router.push("walls-page");
+          router.push("all-feeds-page");
         }
         getUserData(response?.data?.user_id);
         toast.success(response?.data?.message);

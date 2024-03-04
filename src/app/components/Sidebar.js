@@ -42,7 +42,7 @@ const Sidebar = () => {
             </Link>
 
             <Link
-              href="/walls-page"
+              href="/all-feeds-page"
               className="flex gap-5 items-center   bg-white  hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
@@ -103,13 +103,13 @@ const Sidebar = () => {
         ) : (
           <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-2 self-start">
             <Link
-              href="/walls-page"
+              href="/all-feeds-page"
               className="flex gap-5 items-center w-40 bg-white p-2 rounded-xl hover:bg-gray-200"
             >
               <div className="bg-[#773fc6] p-2 rounded-lg">
                 <IoIosHome color="white" />
               </div>
-              <h2 className="text-sm font-medium">Dashboard</h2>
+              <h2 className="text-sm font-medium">All feeds</h2>
             </Link>
 
             <Link
