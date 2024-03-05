@@ -102,14 +102,14 @@ const PostAsMultiMedia = ({
         getFeeds();
         setAnyTypePost(false);
         setPostLoading(false);
-        // Reset upload progress after successful upload
+
         setUploadProgress(0);
       })
       .catch((error) => {
         console.log(error);
         toast.error(error?.response?.data?.detail);
         setPostLoading(false);
-        // Reset upload progress on error
+
         setUploadProgress(0);
       });
   };
