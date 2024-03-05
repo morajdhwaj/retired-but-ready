@@ -60,7 +60,16 @@ const page = ({ params }) => {
       </div>
       <div className="m-20">
         <div className="my-5">
-          <p className="text-sm">{feed?.post_description}</p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html:
+                feed?.post_description &&
+                feed?.post_description.replace(
+                  /(https?:\/\/[^\s]+)/g,
+                  '<a class="text-blue-600" href="$1">$1</a>'
+                ),
+            }}
+          />
         </div>
         {feed.post_media && (
           <div className="">
