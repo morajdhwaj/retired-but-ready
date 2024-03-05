@@ -67,7 +67,7 @@ const Network = () => {
           </div>
           <div className="flex justify-end  w-1/2">
             <IoEllipsisVerticalSharp className="text-[#374151] font-medium size-5" />
-            <Link href="/chat-page">
+            <Link href="/message-page">
               <IoIosSend className="text-[#333333] font-medium size-5" />
             </Link>
           </div>
