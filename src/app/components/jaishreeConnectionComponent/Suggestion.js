@@ -18,6 +18,7 @@ import BestConnection from "../anushkaConnectionComponent/BestConnection";
 import MyConnection from "./MyConnection";
 import Request from "../connection-page-compo/Request";
 import axios from "axios";
+import { MdPersonAddAlt1 } from "react-icons/md";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
@@ -53,35 +54,29 @@ const Suggestion = () => {
   };
 
   return (
-    <div className=" ">
+    <div className="">
       <Request />
-      <div className=" mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex flex-wrap items-center justify-center gap-5 sm:justify-between md:justify-between lg:justify-between bg-scroll ">
+      <div className="  mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex justify-between  bg-scroll ">
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(1)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
+          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <Image
-              src="/assets/antina.png"
-              className=" mx-4 mt-1 "
-              alt="antina"
-              width={40}
-              height={40}
-            />
+            <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my
             <br /> GPS location
           </h1>
         </div>
 
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(2)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
@@ -92,13 +87,13 @@ const Suggestion = () => {
             </div>
             <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my
             <br /> Profile
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(3)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
@@ -109,13 +104,13 @@ const Suggestion = () => {
             </div>
             <FaGlobe className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my <br />
             Connectios
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(4)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
@@ -126,13 +121,13 @@ const Suggestion = () => {
             </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my
             <br /> Hiring
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(5)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
@@ -143,13 +138,14 @@ const Suggestion = () => {
             </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-orange-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my
             <br /> Work experience
           </h1>
         </div>
+
         <div
-          className="hover:border-gray-400 hover:border-b-2"
+          className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(6)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
@@ -160,14 +156,14 @@ const Suggestion = () => {
             </div>
             <IoPeopleSharp className=" mx-8 mt-3 size-8 fill-green-500" />
           </div>
-          <h1 className="text-center text-sm font-medium mt-2">
+          <h1 className="text-center text-xs font-medium mt-2">
             Based on my
             <br /> best matches
           </h1>
         </div>
       </div>
-      <h1 className="mt-5 text-[#773fc6] font-medium text-sm">Suggestion...</h1>
-      <div className=" border border-[#9079af] w-[60%] h-0.5" />
+      <h1 className="mt-5 text-black font-medium text-sm">Suggestion</h1>
+      <div className=" border border-[#D9D9D9] w-[7%] h-0.3 mt-2" />
       {activePage === 1 && <GpsConnection />}
       {activePage === 2 && <ProfileConnection />}
       {activePage === 3 && <MyConnection />}
@@ -175,15 +171,18 @@ const Suggestion = () => {
       {activePage === 5 && <WorkConnection />}
       {activePage === 6 && <BestConnection />}
 
-      <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
+      <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-16 gap-x-16  ">
         {suggestionData.map((cardElem, index) => (
-          <div className="border border-gray-300  rounded-md" key={index}>
-            <div className=" bg-[#B3CEE2]   ">
-              <div className="flex justify-end mt-2 mx-2">
+          <div
+            className="border  border-gray-300 shadow-lg  rounded-md"
+            key={index}
+          >
+            <div className="  bg-[#B3CEE2] h-24 ">
+              <div className="flex justify-end  mx-2">
                 <IoMdCloseCircle className="size-8 " />
               </div>
 
-              <div className="flex items-center justify-center pb-4">
+              <div className="flex items-center justify-center pt-2">
                 <Image
                   src={
                     cardElem.user_image
@@ -197,26 +196,22 @@ const Suggestion = () => {
                 />
               </div>
             </div>
-            <h1 className="mt-5 flex items-center justify-center font-sans text-xl">
+            <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
               {cardElem.user_display_name}
             </h1>
-            <p className="  text-center text-xs mt-1 text-gray-500">postion</p>
+            <p className="  text-center text-xs mt-2 text-gray-500">postion</p>
             <p className=" text-center text-sm text-gray-500"> text of the</p>
-            <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
-              <SiHsbc className="fill-red-600 size-8" />
-              <h1>HSBC</h1>
-            </div>
-            <div className="flex justify-center items-center mt-2 gap-1">
-              <MdOutlineJoinInner className="text-gray-700" />
+
+            <div className="flex justify-center items-center mt-8 gap-1">
               <h1 className="text-gray-500 text-sm font-medium ">
                 19 connections
               </h1>
             </div>
             <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
-              <button className=" p-2  px-2 md:px-6  border-2 rounded-md border-[#773fc6]">
-                <h1 className="text-[#773fc6] font-medium">Message</h1>
+              <button className=" p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]">
+                <MdPersonAddAlt1 className="text-md mt-1" />
+                <h1 className="text-black font-medium">Connect</h1>
               </button>
-              <BsThreeDots className="text-gray-600 size-5" />
             </div>
           </div>
         ))}
