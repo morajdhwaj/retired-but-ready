@@ -114,7 +114,10 @@ const Page = () => {
           <div>
             <div className="flex justify-between relative" key={key}>
               {/* Map over the information array */}
-              <div className="flex mt-2 mx-1 ">
+              <Link
+                className="flex mt-2 mx-1 "
+                href={`/single-group/${groupData.group_id}`}
+              >
                 <Image
                   src="/assets/Ellipse-39.png"
                   width={40}
@@ -126,13 +129,12 @@ const Page = () => {
                   <p>
                     {groupData.group_name}{" "}
                     <span className="text-[#d547c7]">
-                      {" "}
                       {groupData.created_by === userId ? "(owner)" : "(member)"}
                     </span>
                   </p>
                   <p className="mt-1">240 member</p>
                 </div>
-              </div>
+              </Link>
               <div>
                 <button
                   className=" mt-10 md:mt-10 mx-2"
@@ -152,7 +154,9 @@ const Page = () => {
                   </Link>
                   <button
                     className=""
-                    onClick={() => {setShowDeleteModal(groupData.group_id), setShowOption("");}}
+                    onClick={() => {
+                      setShowDeleteModal(groupData.group_id), setShowOption("");
+                    }}
                   >
                     Delete
                   </button>
