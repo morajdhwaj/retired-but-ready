@@ -47,7 +47,7 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-blue-500 p-5 lg:ml-52 pt-24  ">
+        <div className="w-full p-5 lg:ml-52 pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute  w-full   p-5  pt-24 ">
               <div className="   bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -92,8 +92,10 @@ const page = () => {
               </span>
             </div>
           </div>
-          <div className=" bg-[#FFFFFF] mt-44 sm:mt-32 md:mt-20 w-[96%] p-5 rounded-sm">
-            {<Suggestion />}
+          <div className="flex items-center justify-center">
+            <div className=" bg-[#FFFFFF] mt-40 sm:mt-32 md:mt-20 w-[96%]  p-10  rounded-md">
+              {<Suggestion />}
+            </div>
           </div>
         </div>
       </div>

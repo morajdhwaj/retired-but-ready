@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
-import { ImProfile } from "react-icons/im";
+import { FaSatellite } from "react-icons/fa";
 import { FaGlobe } from "react-icons/fa";
 import { FaSearchLocation } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
@@ -19,11 +19,14 @@ import MyConnection from "./MyConnection";
 import Request from "../connection-page-compo/Request";
 import axios from "axios";
 import { MdPersonAddAlt1 } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
+import { FaUserCircle } from "react-icons/fa";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
+  const [connect, setConnect] = useState();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -46,8 +49,44 @@ const Suggestion = () => {
         console.error(error);
       });
   };
-  console.log(userId, "usedId");
+
   console.log(suggestionData, "suggestion ka data");
+
+  const handleConnect = (to_user_id) => {
+    console.log("to_user_id:", to_user_id);
+    setConnect(to_user_id);
+    const options = {
+      method: "POST",
+      url: `https://retpro.catax.me/send-request/${userId}/${to_user_id}`,
+      headers: { "Content-Type": "application/json" },
+      data: {
+        from_user: "string",
+        from_user_image: "string",
+        from_user_full_name: "string",
+        is_premium_user: null,
+        is_verified_user: null,
+        to_user: to_user_id,
+        to_user_image: "string",
+        to_user_full_name: "string",
+        personal_message: null,
+        network_sent_on: null,
+        network_status: "string",
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getSuggestions();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  console.log(userId, "useridddd");
+
   const handleToggle = (index) => {
     setSuggestionData([]);
     activePage === index ? setActivePage(0) : setActivePage(index);
@@ -56,18 +95,19 @@ const Suggestion = () => {
   return (
     <div className="">
       <Request />
-      <div className="  mt-52 sm:mt-5 md:mt-5 lg:mt-10 flex justify-between  bg-scroll ">
+      <div className="  mt-52 sm:mt-5 md:mt-5 lg:mt-8 flex justify-between items-start  bg-scroll ">
         <div
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(1)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
+
+            <FaSatellite className=" mx-6 mt-2 size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my
@@ -79,13 +119,13 @@ const Suggestion = () => {
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(2)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 14k+
               </p>
             </div>
-            <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
+            <ImProfile className=" mx-6 mt-2 size-8 fill-pink-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my
@@ -96,13 +136,13 @@ const Suggestion = () => {
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(3)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 16k+
               </p>
             </div>
-            <FaGlobe className=" mx-8 mt-3 size-8 fill-blue-500" />
+            <FaGlobe className=" mx-6 mt-2 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my <br />
@@ -113,13 +153,13 @@ const Suggestion = () => {
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(4)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <FaSearchLocation className=" mx-8 mt-3 size-8 fill-blue-500" />
+            <FaSearchLocation className=" mx-6 mt-2 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my
@@ -130,13 +170,13 @@ const Suggestion = () => {
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(5)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <FaSearchLocation className=" mx-8 mt-3 size-8 fill-orange-500" />
+            <FaSearchLocation className=" mx-6 mt-2 size-8 fill-orange-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my
@@ -148,13 +188,13 @@ const Suggestion = () => {
           className="hover:border-gray-400 hover:border-b-2 "
           onClick={() => handleToggle(6)}
         >
-          <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+          <div className="bg-gray-300 w-20  h-20 rounded-full border-2  border-gray-400 ">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-14  ">
               <p className="text-xs flex items-center justify-center font-semibold">
                 20k+
               </p>
             </div>
-            <IoPeopleSharp className=" mx-8 mt-3 size-8 fill-green-500" />
+            <IoPeopleSharp className=" mx-6 mt-2 size-8 fill-green-500" />
           </div>
           <h1 className="text-center text-xs font-medium mt-2">
             Based on my
@@ -171,30 +211,40 @@ const Suggestion = () => {
       {activePage === 5 && <WorkConnection />}
       {activePage === 6 && <BestConnection />}
 
-      <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-16 gap-x-16  ">
+      <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16  ">
         {suggestionData.map((cardElem, index) => (
           <div
-            className="border  border-gray-300 shadow-lg  rounded-md"
+            className="border  border-gray-300 shadow-lg  rounded-lg"
             key={index}
           >
-            <div className="  bg-[#B3CEE2] h-24 ">
-              <div className="flex justify-end  mx-2">
-                <IoMdCloseCircle className="size-8 " />
+            <div className="  bg-[#B3CEE2] h-20 ">
+              <div className="flex justify-end ">
+                <IoMdCloseCircle className="size-6 " />
+              </div>
+              <div className="flex items-center justify-center pt-2">
+                {cardElem.user_image ? (
+                  <Image
+                    src={cardElem.user_image}
+                    width={40}
+                    height={40}
+                    alt="pic"
+                    className="w-24 h-24 rounded-full border-2 border-gray-200"
+                  />
+                ) : (
+                  <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
+                )}
               </div>
 
-              <div className="flex items-center justify-center pt-2">
+              {/* <div className="flex items-center justify-center pt-2">
                 <Image
-                  src={
-                    cardElem.user_image
-                      ? cardElem.user_image
-                      : "/assets/Ellipse-39.png"
-                  }
+                  src={cardElem.user_image ? cardElem.user_image : ""}
                   width={40}
                   height={40}
                   alt="pic"
                   className=" w-24  h-24 rounded-full border-2   border-gray-200 "
                 />
-              </div>
+                 <FaUserCircle />
+              </div> */}
             </div>
             <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
               {cardElem.user_display_name}
@@ -202,13 +252,16 @@ const Suggestion = () => {
             <p className="  text-center text-xs mt-2 text-gray-500">postion</p>
             <p className=" text-center text-sm text-gray-500"> text of the</p>
 
-            <div className="flex justify-center items-center mt-8 gap-1">
+            <div className="flex justify-center items-center mt-4 gap-1">
               <h1 className="text-gray-500 text-sm font-medium ">
                 19 connections
               </h1>
             </div>
             <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
-              <button className=" p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]">
+              <button
+                className=" p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]"
+                onClick={() => handleConnect(cardElem._id)}
+              >
                 <MdPersonAddAlt1 className="text-md mt-1" />
                 <h1 className="text-black font-medium">Connect</h1>
               </button>
