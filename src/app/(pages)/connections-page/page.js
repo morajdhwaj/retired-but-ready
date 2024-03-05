@@ -41,16 +41,16 @@ const page = () => {
   console.log(userData, "userId");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div className=" w-full">
       <Navbar />
-      <div className="flex">
+      <div className="flex bg-[#B1B0B1] ">
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
+        <div className="w-full p-5 lg:ml-52 pt-24  ">
           <div className="relative flex  justify-center ">
-            <div className="absolute w-[96%]   pt-24 ">
-              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
+            <div className="absolute  w-full   p-5  pt-24 ">
+              <div className="   bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
                   <Image alt="" src="/assets/110.png" height={50} width={50} />
                   <div className="font-semibold">
@@ -79,7 +79,8 @@ const page = () => {
                 backgroundImage: `url('/assets/Background.png')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                width: "100%", // full screen width
+                width: "96%",
+                // full screen width
                 height: "20vh", // full screen height
                 borderRadius: 10,
               }}
@@ -91,8 +92,10 @@ const page = () => {
               </span>
             </div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            {<Suggestion />}
+          <div className="flex items-center justify-center">
+            <div className=" bg-[#FFFFFF] mt-40 sm:mt-32 md:mt-20 w-[96%]  p-10  rounded-md">
+              {<Suggestion />}
+            </div>
           </div>
         </div>
       </div>
