@@ -15,6 +15,7 @@ import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
+import Link from "next/link";
 
 const page = () => {
   const [feeds, setFeeds] = useState([]);
@@ -92,23 +93,27 @@ const page = () => {
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
-                <div className="flex items-center justify-center gap-2">
-                  {userData?.user_image ? (
-                    <Image
-                      alt=""
-                      src={userData?.user_image}
-                      height={50}
-                      width={50}
-                      className="rounded-lg"
-                    />
-                  ) : (
-                    <FaUserCircle size={50} />
-                  )}
-                  <div className="font-semibold">
-                    <h2>{userData.user_display_name}</h2>
-                    <p className="text-gray-500">{userData.last_designation}</p>
+                <Link href={`/profile/${userId}`}>
+                  <div className="flex items-center justify-center gap-2">
+                    {userData?.user_image ? (
+                      <Image
+                        alt=""
+                        src={userData?.user_image}
+                        height={50}
+                        width={50}
+                        className="rounded-lg"
+                      />
+                    ) : (
+                      <FaUserCircle size={50} />
+                    )}
+                    <div className="font-semibold">
+                      <h2>{userData.user_display_name}</h2>
+                      <p className="text-gray-500">
+                        {userData.last_designation}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button
                     onClick={() => setAddPost(!addPost)}

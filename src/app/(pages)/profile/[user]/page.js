@@ -86,6 +86,7 @@ const page = ({ params }) => {
       console.log(response, "this is response from follow request");
     } catch (error) {
       console.log(error, "this error from follow request");
+      toast.error(error);
     }
   };
 
@@ -145,9 +146,11 @@ const page = ({ params }) => {
         data
       );
       checkRequests();
+      toast.success(response?.data?.message);
       console.log(response, "this is response from send connecting request");
     } catch (error) {
       console.log(error, "this is error from send connect request");
+      toast.error(error);
     }
   };
 
@@ -177,9 +180,11 @@ const page = ({ params }) => {
         `https://retpro.catax.me/remove-request/${request_id}`
       );
       checkRequests();
+      toast.success(response?.data?.message);
       console.log(response, "this is response form remove Request");
     } catch (error) {
       console.log(error, "this is error from remove connection requests");
+      toast.error(error);
     }
   };
 
@@ -227,51 +232,55 @@ const page = ({ params }) => {
                         </p>
                       </div>
                     </div>
-                    <div className=" flex gap-5 ">
-                      {isRequested.length > 0 &&
-                      isRequested[0].to_user === profileId ? (
-                        <>
-                          {isRequested.map((data) => (
-                            <button
-                              key={data.network_request_id}
-                              className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                              onClick={() =>
-                                removeRequest(data.network_request_id)
-                              }
-                            >
-                              <span>Requested</span>
-                            </button>
-                          ))}
-                        </>
-                      ) : (
-                        <button
-                          className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                          onClick={connectionRequest}
-                        >
-                          <IoMdPersonAdd />
-                          <span>Connect</span>
-                        </button>
-                      )}
+                    {profileId === userId ? (
+                      ""
+                    ) : (
+                      <div className=" flex gap-5 ">
+                        {isRequested.length > 0 &&
+                        isRequested[0].to_user === profileId ? (
+                          <>
+                            {isRequested.map((data) => (
+                              <button
+                                key={data.network_request_id}
+                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                onClick={() =>
+                                  removeRequest(data.network_request_id)
+                                }
+                              >
+                                <span>Requested</span>
+                              </button>
+                            ))}
+                          </>
+                        ) : (
+                          <button
+                            className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={connectionRequest}
+                          >
+                            <IoMdPersonAdd />
+                            <span>Connect</span>
+                          </button>
+                        )}
 
-                      {followRequests &&
-                      followRequests.some(
-                        (item) => item.from_user_id === userId
-                      ) ? (
-                        <button
-                          className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                          onClick={UnFollowRequestSend}
-                        >
-                          Following
-                        </button>
-                      ) : (
-                        <button
-                          className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                          onClick={followRequestSend}
-                        >
-                          Follow
-                        </button>
-                      )}
-                    </div>
+                        {followRequests &&
+                        followRequests.some(
+                          (item) => item.from_user_id === userId
+                        ) ? (
+                          <button
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={UnFollowRequestSend}
+                          >
+                            Following
+                          </button>
+                        ) : (
+                          <button
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={followRequestSend}
+                          >
+                            Follow
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div
