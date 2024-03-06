@@ -21,6 +21,7 @@ import axios from "axios";
 import { MdPersonAddAlt1 } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
@@ -50,11 +51,7 @@ const Suggestion = () => {
       });
   };
 
-  console.log(suggestionData, "suggestion ka data");
-
   const handleConnect = (to_user_id) => {
-    console.log("to_user_id:", to_user_id);
-    setConnect(to_user_id);
     const options = {
       method: "POST",
       url: `https://retpro.catax.me/send-request/${userId}/${to_user_id}`,
@@ -65,7 +62,7 @@ const Suggestion = () => {
         from_user_full_name: "string",
         is_premium_user: null,
         is_verified_user: null,
-        to_user: to_user_id,
+        to_user: "string",
         to_user_image: "string",
         to_user_full_name: "string",
         personal_message: null,
@@ -78,14 +75,15 @@ const Suggestion = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        getSuggestions();
+        toast.success(response?.data?.message);
+        console.log("ho gyaaaaaaa");
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
+        console.log("erororr aaa gya ree");
       });
   };
-
-  console.log(userId, "useridddd");
 
   const handleToggle = (index) => {
     setSuggestionData([]);
@@ -260,7 +258,7 @@ const Suggestion = () => {
             <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
               <button
                 className=" p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]"
-                onClick={() => handleConnect(cardElem._id)}
+                onClick={() => handleConnect(cardElem?._id)}
               >
                 <MdPersonAddAlt1 className="text-md mt-1" />
                 <h1 className="text-black font-medium">Connect</h1>
