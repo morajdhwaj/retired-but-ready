@@ -268,33 +268,35 @@ const page = () => {
                     </div>
 
                     <div className=" flex justify-between items-end p-2">
-                      <div className="flex items-center justify-center">
-                        {["png", "jpeg", "jpg"].includes(
-                          post?.post_media[0].type
-                        ) && (
-                          <Image
-                            alt=""
-                            src={post?.post_media[0]?.url}
-                            height={200}
-                            width={200}
-                            className=""
-                          />
-                        )}
-
-                        {post?.post_media[0].type == "mp4" && (
-                          <video
-                            className="cursor-pointer"
-                            controls
-                            style={{ width: 200, height: 200 }}
-                          >
-                            <source
+                      {post?.post_media && (
+                        <div className="flex items-center justify-center">
+                          {["png", "jpeg", "jpg"].includes(
+                            post?.post_media[0].type
+                          ) && (
+                            <Image
+                              alt=""
                               src={post?.post_media[0]?.url}
-                              type="video/mp4"
+                              height={200}
+                              width={200}
+                              className=""
                             />
-                            Your browser does not support the video tag.
-                          </video>
-                        )}
-                      </div>
+                          )}
+
+                          {post?.post_media[0].type == "mp4" && (
+                            <video
+                              className="cursor-pointer"
+                              controls
+                              style={{ width: 200, height: 200 }}
+                            >
+                              <source
+                                src={post?.post_media[0]?.url}
+                                type="video/mp4"
+                              />
+                              Your browser does not support the video tag.
+                            </video>
+                          )}
+                        </div>
+                      )}
                       <div className="">
                         {selectId === post?._id ? (
                           <button
