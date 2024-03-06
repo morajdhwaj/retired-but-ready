@@ -62,6 +62,7 @@ const Experiences = ({
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.data?.response?.detail);
       });
   };
   const handleStepDown = () => {
