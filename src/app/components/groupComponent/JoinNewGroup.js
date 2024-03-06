@@ -69,8 +69,8 @@ const JoinNewGroup = () => {
   };
 
   return (
-    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed   lg:fixed  xl:fixed  top-40 xl:right-72   h-[80vh]">
-      <div className="lg:px-10 sm:px-5  w-full  lg:w-[23vw] ">
+    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed   lg:fixed  xl:fixed  top-40 xl:right-   h-[80vh]">
+      <div className="lg:px-10 sm:px-5  w-ful  lg:w-[28vw] ">
         <div className="rounded-lg flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center sm:p-5 py-5 gap-2  border bg-white">
           <div className="text-center text-lg font-bold">
             <h1 className="text-lg md:text-sm">
