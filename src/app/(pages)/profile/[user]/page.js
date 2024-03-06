@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import JoinGroupRecommendation from "@/app/components/groupComponent/JoinNewGroup";
+import dayjs from "dayjs";
 import { FaUserCircle } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -31,7 +32,8 @@ const page = ({ params }) => {
   const [skill, setSkill] = useState([]);
   const [work, setWork] = useState([]);
   const [followRequests, setFollowRequests] = useState([]);
-  const [isFollow, setIsFollow] = useState("");
+
+  const [isRequested, setIsRequested] = useState([]);
 
   // GET USER ID FROM LOCAL STORAGE --------------------------------
 
@@ -45,6 +47,7 @@ const page = ({ params }) => {
   useEffect(() => {
     getUserData();
     geFollowRequests();
+    checkRequests();
   }, [profileId]);
 
   // GET PROFILE DATA ---------------------------------------------
@@ -83,8 +86,12 @@ const page = ({ params }) => {
       console.log(response, "this is response from follow request");
     } catch (error) {
       console.log(error, "this error from follow request");
+      toast.error(error);
     }
   };
+
+  // DO  UNFOLLOW -----------------------------------------------------------
+
   const UnFollowRequestSend = async () => {
     try {
       const response = await axios.post(
@@ -116,9 +123,80 @@ const page = ({ params }) => {
     }
   };
 
-  // CHECK USER IS REQUESTED TO THIS PRORFILE OR NOT ------------------------------
+  // SEND CONNECTING REQUEST --------------------------------------------------
 
-  console.log(profileId, isFollow, userId, "this is profile id ");
+  const connectionRequest = async () => {
+    const data = {
+      from_user: "string",
+      from_user_image: "string",
+      from_user_full_name: "string",
+      is_premium_user: true,
+      is_verified_user: true,
+      to_user: "string",
+      to_user_image: "string",
+      to_user_full_name: "string",
+      personal_message: "",
+      network_sent_on: "2024-03-06T06:41:13.930Z",
+      network_status: "string",
+    };
+
+    try {
+      const response = await axios.post(
+        `https://retpro.catax.me/send-request/${userId}/${profileId}`,
+        data
+      );
+      checkRequests();
+      toast.success(response?.data?.message);
+      console.log(response, "this is response from send connecting request");
+    } catch (error) {
+      console.log(error, "this is error from send connect request");
+      toast.error(error);
+    }
+  };
+
+  // CHECK CONNECTING REQUESTS -----------------------------------------------------
+
+  const checkRequests = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/my-network-request/${userId}`
+      );
+
+      filterConnection(response.data.outgoing_requests);
+      console.log(
+        response.data.outgoing_requests,
+        "this is response from check requests "
+      );
+    } catch (error) {
+      console.log(error, "this  is error from check requests");
+    }
+  };
+
+  // REMOVE CONNECTION REQUEST -------------------------------------------------------------
+
+  const removeRequest = async (request_id) => {
+    try {
+      const response = await axios.delete(
+        `https://retpro.catax.me/remove-request/${request_id}`
+      );
+      checkRequests();
+      toast.success(response?.data?.message);
+      console.log(response, "this is response form remove Request");
+    } catch (error) {
+      console.log(error, "this is error from remove connection requests");
+      toast.error(error);
+    }
+  };
+
+  // CHECK PROFILE ID IS AVAILABLE RO NOT ----------------------------------------------------
+
+  const filterConnection = (data) => {
+    const isRequestedData = data.filter((item) => item.to_user === profileId);
+    setIsRequested(isRequestedData);
+    console.log(isRequestedData, "this is requested data find");
+  };
+
+  console.log(profileId, userId, isRequested, "this is profile id ");
 
   return (
     <>
@@ -154,30 +232,55 @@ const page = ({ params }) => {
                         </p>
                       </div>
                     </div>
-                    <div className=" flex gap-5 ">
-                      <button className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center">
-                        <IoMdPersonAdd />
-                        <span className="">Connect</span>
-                      </button>
-                      {followRequests &&
-                      followRequests.some(
-                        (item) => item.from_user_id === userId
-                      ) ? (
-                        <button
-                          className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                          onClick={UnFollowRequestSend}
-                        >
-                          Following
-                        </button>
-                      ) : (
-                        <button
-                          className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                          onClick={followRequestSend}
-                        >
-                          Follow
-                        </button>
-                      )}
-                    </div>
+                    {profileId === userId ? (
+                      ""
+                    ) : (
+                      <div className=" flex gap-5 ">
+                        {isRequested.length > 0 &&
+                        isRequested[0].to_user === profileId ? (
+                          <>
+                            {isRequested.map((data) => (
+                              <button
+                                key={data.network_request_id}
+                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                onClick={() =>
+                                  removeRequest(data.network_request_id)
+                                }
+                              >
+                                <span>Requested</span>
+                              </button>
+                            ))}
+                          </>
+                        ) : (
+                          <button
+                            className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={connectionRequest}
+                          >
+                            <IoMdPersonAdd />
+                            <span>Connect</span>
+                          </button>
+                        )}
+
+                        {followRequests &&
+                        followRequests.some(
+                          (item) => item.from_user_id === userId
+                        ) ? (
+                          <button
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={UnFollowRequestSend}
+                          >
+                            Following
+                          </button>
+                        ) : (
+                          <button
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            onClick={followRequestSend}
+                          >
+                            Follow
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div
@@ -281,7 +384,8 @@ const page = ({ params }) => {
                             {data.company_name}
                           </h3>
                           <p className="text-sm font-medium">
-                            {data.start_date}
+                            {/* {data.start_date} */}
+                            {dayjs(data.start_date).format("MM/DD/YYYY")}
                           </p>
 
                           {/* <p className="text-sm mt-1">
@@ -343,9 +447,7 @@ const page = ({ params }) => {
                 </div>
               </div>
             </div>
-            <div className="w-[29%] ">
-              <JoinGroupRecommendation />
-            </div>
+            <JoinGroupRecommendation />
           </div>
         </div>
       </div>
