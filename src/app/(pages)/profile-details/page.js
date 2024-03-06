@@ -41,8 +41,6 @@ const Page = () => {
       .then(function (response) {
         console.log(response?.data, "hello im sachin");
         setUserData(response?.data);
-        // setCompanyName(response?.data?.work_history[0].company_name);
-        // setTitle(response?.data?.work_history[0].title);
       })
       .catch(function (error) {
         console.error(error);
@@ -52,10 +50,7 @@ const Page = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // setSelectedImage(file);
-      uploadImg(file); // Pass the file to uploadImg function
-      console.log("file", file);
-      // console.log("hello im sachin");
+      uploadImg(file);
     }
   };
 
