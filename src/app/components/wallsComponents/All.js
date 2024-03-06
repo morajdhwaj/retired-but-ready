@@ -518,10 +518,10 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
 
                       <p className="text-sm">Comment</p>
                     </button>
-                    <button className="flex items-center justify-center gap-2">
+                    {/* <button className="flex items-center justify-center gap-2">
                       <BiRepost />
                       <p className="text-sm">Repost</p>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 

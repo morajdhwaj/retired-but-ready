@@ -27,7 +27,6 @@ const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
-  const [connect, setConnect] = useState();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
