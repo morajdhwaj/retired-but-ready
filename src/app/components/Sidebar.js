@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <div className="mx-5 fixed py-10 pt-20 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
+      <div className="mx-5 fixed py-10 pt-16 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
         <div className={`flex justify-end my-2`}>
           <button onClick={() => setClose(!close)}>
             {close ? (

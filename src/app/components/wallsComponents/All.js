@@ -14,11 +14,10 @@ import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
-import { BiSad } from "react-icons/bi";
+import { BiRepost, BiSad } from "react-icons/bi";
 import { BiSolidSad } from "react-icons/bi";
 import { IoBulb, IoBulbOutline } from "react-icons/io5";
 import { PiNotepadFill, PiNotepadLight } from "react-icons/pi";
-
 import Link from "next/link";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
@@ -36,6 +35,7 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
   const [reportType, setReportType] = useState("hate_speech");
   const [isHovered, setIsHovered] = useState(false);
   const [userId, setUserId] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const handleDropdown = (feed_id) => {
     if (!postId) {
@@ -120,6 +120,21 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
       })
       .catch(function (error) {
         console.error(error);
+      });
+  };
+
+  const copyUrlToClipboard = (id) => {
+    const currentUrl = `${window.location.href}/${id}`;
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+        toast.success(" Post URL copied to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Error copying to clipboard: ", error);
+        toast.error("Failed to copy URL to clipboard");
       });
   };
 
@@ -262,10 +277,10 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
 
   console.log(reportPostId, "reportPost ID");
   return (
-    <div className=" flex flex-col gap-10">
+    <div className=" flex flex-col mt-5">
       {feeds.map((feed) => {
         return (
-          <div key={feed?._id} className="mt-5 bg-white p-2">
+          <div key={feed?._id} className="mt-10 bg-white p-2 border rounded-xl">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
               <div className="flex items-center gap-2 justify-center">
                 <div>
@@ -355,7 +370,16 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                 </div>
               ) : (
                 <div className="my-5">
-                  <p className="text-sm">{feed?.post_description}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        feed?.post_description &&
+                        feed?.post_description.replace(
+                          /(https?:\/\/[^\s]+)/g,
+                          '<a class="text-blue-600" href="$1">$1</a>'
+                        ),
+                    }}
+                  />
                 </div>
               )}
               {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
@@ -366,8 +390,8 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                   <Image
                     alt=""
                     src={feed?.post_media[0]?.url}
-                    height={200}
-                    width={300}
+                    height={500}
+                    width={650}
                     className=""
                   />
                 )}
@@ -376,7 +400,7 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                   <video
                     className="cursor-pointer"
                     controls
-                    style={{ width: "50%", height: "50%" }}
+                    style={{ width: 650, height: 500 }}
                   >
                     <source src={feed?.post_media[0]?.url} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -494,10 +518,10 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
 
                       <p className="text-sm">Comment</p>
                     </button>
-                    <button>
-                      <IoIosShareAlt />
-                    </button>
-                    <p className="text-sm">Share</p>
+                    {/* <button className="flex items-center justify-center gap-2">
+                      <BiRepost />
+                      <p className="text-sm">Repost</p>
+                    </button> */}
                   </div>
                 </div>
 
@@ -509,7 +533,13 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                     {feed?.post_comment_id?.length}
                     <p className="text-sm">Comments</p>{" "}
                   </button>
-                  |<button className="">Shares</button>
+                  |
+                  <button
+                    onClick={() => copyUrlToClipboard(feed?._id)}
+                    className=""
+                  >
+                    Shares
+                  </button>
                 </div>
               </div>
               {feed._id == showComments && (

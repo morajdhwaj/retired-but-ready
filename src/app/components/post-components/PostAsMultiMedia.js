@@ -15,6 +15,7 @@ const PostAsMultiMedia = ({
   const [showPostButton, setShowPostButton] = useState(false);
   const [postId, setPostId] = useState("");
   const [postLoading, setPostLoading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const fileInputRef = useRef(null);
 
@@ -87,6 +88,12 @@ const PostAsMultiMedia = ({
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          onUploadProgress: (progressEvent) => {
+            const progress = Math.round(
+              (progressEvent.loaded / progressEvent.total) * 100
+            );
+            setUploadProgress(progress);
+          },
         }
       )
       .then((response) => {
@@ -95,11 +102,15 @@ const PostAsMultiMedia = ({
         getFeeds();
         setAnyTypePost(false);
         setPostLoading(false);
+
+        setUploadProgress(0);
       })
       .catch((error) => {
         console.log(error);
         toast.error(error?.response?.data?.detail);
         setPostLoading(false);
+
+        setUploadProgress(0);
       });
   };
 
@@ -113,8 +124,9 @@ const PostAsMultiMedia = ({
   return (
     <div className="mx-5  flex flex-col items-center justify-center ">
       {postLoading ? (
-        <div className="mt-10 w-full flex items-center justify-center">
+        <div className="mt-10 w-full flex flex-col gap-2 items-center justify-center text-black">
           <Loader />
+          <div>Uploading: {uploadProgress}%</div>
         </div>
       ) : (
         <div className="mt-10 w-full">

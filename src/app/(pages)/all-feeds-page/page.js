@@ -99,6 +99,7 @@ const page = () => {
                       src={userData?.user_image}
                       height={50}
                       width={50}
+                      className="rounded-lg"
                     />
                   ) : (
                     <FaUserCircle size={50} />
@@ -145,7 +146,11 @@ const page = () => {
             </div>
           )}
 
-          <div className={`${!addPost && "mt-44 sm:mt-32 md:mt-20"} mx-5 `}>
+          <div
+            className={`${
+              !addPost && "mt-44 sm:mt-32 md:mt-20"
+            } mx-20 xl:mx-28 `}
+          >
             <div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}

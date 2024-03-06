@@ -5,8 +5,7 @@ import toast from "react-hot-toast";
 
 const Request = () => {
   const [invitation, setInvitation] = useState([]);
-  const [accept, setAccept] = useState();
-  const [ignore, setIgnore] = useState();
+
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -24,57 +23,50 @@ const Request = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setInvitation(response.data.pending_network_requests);
+        setInvitation(response.data.incoming_requests);
       })
       .catch(function (error) {
         console.error(error);
       });
   };
-  console.log("data of invitation", invitation.from_user_full_name);
-  console.log("sachin", invitation);
-  console.log(userId, "userid");
 
-  const options = {
-    method: "PUT",
-    url: `https://retpro.catax.me/accept-request/${accept}`,
+  const handleAccept = (id) => {
+    const options = {
+      method: "PUT",
+      url: `https://retpro.catax.me/accept-request/${id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getInvitation();
+        toast.success(response.data.message);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log(response.data);
-      toast.success(response?.data?.message);
-      getInvitation();
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  const handleAccept = (networkRequestId) => {
-    setAccept(networkRequestId);
-    console.log("Accepting request with ID:", networkRequestId);
-    // Add logic to handle accept action
+  const handleIgnore = (id) => {
+    const options = {
+      method: "PUT",
+      url: `https://retpro.catax.me/reject-request/${id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        getInvitation();
+        toast.success(response.data.message);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
-  const options1 = {
-    method: "PUT",
-    url: `https://retpro.catax.me/reject-request/${ignore}`,
-  };
-
-  axios
-    .request(options1)
-    .then(function (response) {
-      console.log(response.data);
-      toast.success(response?.data?.message);
-      getInvitation();
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  const handleIgnore = (networkRequestId) => {
-    setIgnore(networkRequestId);
-    console.log("Ignoring request with ID:", networkRequestId);
-    // Add logic to handle ignore action
-  };
+  console.log(invitation);
 
   return (
     <div>
