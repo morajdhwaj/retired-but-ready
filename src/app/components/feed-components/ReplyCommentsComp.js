@@ -335,9 +335,17 @@ const ReplyCommentsComp = ({
                           </div>
                         ) : (
                           <div className="flex flex-col gap-5">
-                            <p className="text-xs font-medium text-gray-800 mt-4">
-                              {reply?.comment_content}
-                            </p>
+                            <p
+                              className="text-xs font-medium text-gray-800 mt-4"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  reply?.comment_content &&
+                                  reply?.comment_content.replace(
+                                    /(https?:\/\/[^\s]+)/g,
+                                    '<a class="text-blue-600" href="$1">$1</a>'
+                                  ),
+                              }}
+                            />
                             {reply?.comment_image && (
                               <Image
                                 src={reply?.comment_image}
