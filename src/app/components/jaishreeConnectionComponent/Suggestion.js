@@ -22,6 +22,7 @@ import { MdPersonAddAlt1 } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
@@ -29,7 +30,6 @@ const Suggestion = () => {
   const [userId, setUserId] = useState("");
   const [request, setRequest] = useState([]);
   const [remove, setRemove] = useState([]);
-
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -265,58 +265,60 @@ const Suggestion = () => {
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16  ">
         {suggestionData.map((cardElem) => (
-          <div
-            className="border  border-gray-300 shadow-lg  rounded-lg"
-            key={cardElem._id}
-          >
-            <div className="  bg-[#B3CEE2] h-20 ">
-              <div className="flex justify-end ">
-                <IoMdCloseCircle className="size-6 " />
+          <Link key={cardElem._id} href={`/profile/${cardElem._id}`}>
+            <div className="border  border-gray-300 shadow-lg  rounded-lg">
+              <div className="  bg-[#B3CEE2] h-20 ">
+                <div className="flex justify-end ">
+                  <IoMdCloseCircle className="size-6 " />
+                </div>
+
+                <div className="flex items-center justify-center pt-2">
+                  {cardElem.user_image ? (
+                    <Image
+                      src={cardElem.user_image}
+                      width={40}
+                      height={40}
+                      alt="pic"
+                      className="w-24 h-24 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
+                  )}
+                </div>
               </div>
-              <div className="flex items-center justify-center pt-2">
-                {cardElem.user_image ? (
-                  <Image
-                    src={cardElem.user_image}
-                    width={40}
-                    height={40}
-                    alt="pic"
-                    className="w-24 h-24 rounded-full border-2 border-gray-200"
-                  />
+              <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
+                {cardElem.user_display_name}
+              </h1>
+              <p className="  text-center text-xs mt-2 text-gray-500">
+                postion
+              </p>
+              <p className=" text-center text-sm text-gray-500"> text of the</p>
+
+              <div className="flex justify-center items-center mt-4 gap-1">
+                <h1 className="text-gray-500 text-sm font-medium ">
+                  19 connections
+                </h1>
+              </div>
+              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4">
+                {request.some((item) => item.to_user === cardElem._id) ? (
+                  <button
+                    className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
+                    onClick={() => deleteRequest(cardElem._id)}
+                  >
+                    <span className="text-black font-medium">Requested</span>
+                  </button>
                 ) : (
-                  <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
+                  <button
+                    className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]`}
+                    onClick={() => handleConnect(cardElem._id)}
+                  >
+                    <MdPersonAddAlt1 className="text-md mt-1" />
+                    <span className="text-black font-medium">Connect</span>
+                  </button>
                 )}
               </div>
             </div>
-            <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
-              {cardElem.user_display_name}
-            </h1>
-            <p className="  text-center text-xs mt-2 text-gray-500">postion</p>
-            <p className=" text-center text-sm text-gray-500"> text of the</p>
-
-            <div className="flex justify-center items-center mt-4 gap-1">
-              <h1 className="text-gray-500 text-sm font-medium ">
-                19 connections
-              </h1>
-            </div>
-            <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4">
-              {request.some((item) => item.to_user === cardElem._id) ? (
-                <button
-                  className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
-                  onClick={() => deleteRequest(cardElem._id)}
-                >
-                  <span className="text-black font-medium">Requested</span>
-                </button>
-              ) : (
-                <button
-                  className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]`}
-                  onClick={() => handleConnect(cardElem._id)}
-                >
-                  <MdPersonAddAlt1 className="text-md mt-1" />
-                  <span className="text-black font-medium">Connect</span>
-                </button>
-              )}
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
 
