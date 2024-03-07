@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { FaUserCircle } from "react-icons/fa";
 
 const Request = () => {
   const [invitation, setInvitation] = useState([]);
@@ -86,7 +87,7 @@ const Request = () => {
                       src={curEle.from_user_image}
                       width={30}
                       height={30}
-                      alt="pic"
+                      alt="user profile"
                       className="w-20 h-20 rounded-full border-2 border-gray-200"
                     />
                   ) : (
