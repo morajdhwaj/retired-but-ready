@@ -27,10 +27,14 @@ const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
+  const [request, setRequest] = useState([]);
+  const [remove, setRemove] = useState([]);
+
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getSuggestions();
+    getRequest();
   }, [userId]);
 
   const getSuggestions = () => {
@@ -75,12 +79,64 @@ const Suggestion = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        console.log("ho gyaaaaaaa");
+
+        getSuggestions();
+        getRequest();
       })
       .catch(function (error) {
         console.error(error);
         toast.error(error?.response?.data?.detail);
-        console.log("erororr aaa gya ree");
+      });
+  };
+
+  const getRequest = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/my-network-request/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setRequest(response.data.outgoing_requests);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const deleteRequest = (id) => {
+    console.log(request, "request...");
+    const filterItem = request.filter((item) => item.to_user === id);
+
+    if (filterItem.length > 0) {
+      const data = filterItem[0].network_request_id;
+      removeRequest(data);
+
+      console.log(data, "this is data id");
+    } else {
+      console.log("No item found for the given id.");
+    }
+  };
+
+  const removeRequest = (request_id) => {
+    console.log("request_id", request_id);
+    const options = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/remove-request/${request_id}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data, "response data");
+        toast.success(response?.data?.message);
+        getSuggestions();
+        getRequest();
+      })
+      .catch(function (error) {
+        console.error(error);
       });
   };
 
@@ -209,10 +265,10 @@ const Suggestion = () => {
       {activePage === 6 && <BestConnection />}
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16  ">
-        {suggestionData.map((cardElem, index) => (
+        {suggestionData.map((cardElem) => (
           <div
             className="border  border-gray-300 shadow-lg  rounded-lg"
-            key={index}
+            key={cardElem._id}
           >
             <div className="  bg-[#B3CEE2] h-20 ">
               <div className="flex justify-end ">
@@ -231,17 +287,6 @@ const Suggestion = () => {
                   <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
                 )}
               </div>
-
-              {/* <div className="flex items-center justify-center pt-2">
-                <Image
-                  src={cardElem.user_image ? cardElem.user_image : ""}
-                  width={40}
-                  height={40}
-                  alt="pic"
-                  className=" w-24  h-24 rounded-full border-2   border-gray-200 "
-                />
-                 <FaUserCircle />
-              </div> */}
             </div>
             <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
               {cardElem.user_display_name}
@@ -254,14 +299,27 @@ const Suggestion = () => {
                 19 connections
               </h1>
             </div>
-            <div className="flex flex-wrap sm:flex md:flex  justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4 ">
-              <button
-                className=" p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]"
-                onClick={() => handleConnect(cardElem?._id)}
-              >
-                <MdPersonAddAlt1 className="text-md mt-1" />
-                <h1 className="text-black font-medium">Connect</h1>
-              </button>
+            <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4">
+              {console.log(
+                request.some((item) => item.to_user === cardElem._id),
+                " requestSome"
+              )}
+              {request.some((item) => item.to_user === cardElem._id) ? (
+                <button
+                  className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
+                  onClick={() => deleteRequest(cardElem._id)}
+                >
+                  <span className="text-black font-medium">Requested</span>
+                </button>
+              ) : (
+                <button
+                  className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6]`}
+                  onClick={() => handleConnect(cardElem._id)}
+                >
+                  <MdPersonAddAlt1 className="text-md mt-1" />
+                  <span className="text-black font-medium">Connect</span>
+                </button>
+              )}
             </div>
           </div>
         ))}
