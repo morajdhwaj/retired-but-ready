@@ -173,7 +173,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   };
 
   if (feeds.length === 0) {
-    return <div className="h-[100vh]">Loading...</div>;
+    return <div className="h-[100vh]">No feed</div>;
   }
 
   const getPost = () => {
