@@ -50,6 +50,10 @@ const FollowersPage = () => {
     setShowDeleteModal(true);
   };
 
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+  };
+
   const deleteFollowers = () => {
     const options = {
       method: "DELETE",
@@ -137,7 +141,7 @@ const FollowersPage = () => {
 
       {showDeleteModal && (
         <PopUp
-          close={handleDeleteModal}
+          close={handleCloseDeleteModal}
           onClick={deleteFollowers}
           title="Are you want Remove this follower"
           action="Delete"
