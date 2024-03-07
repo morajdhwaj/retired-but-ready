@@ -39,10 +39,10 @@ const ContactPage = () => {
     <div>
       {contact.length > 0 &&
         contact.map((item) => (
-          <Link key={item.from_user} href={`/profile/${item.from_user}`}>
-            <div className="flex ">
-              <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
-                <div className="sm:w-[20%] lg:w-[10%] ">
+          <div className="flex ">
+            <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
+              <div className="sm:w-[20%] lg:w-[10%] ">
+                <Link key={item.from_user} href={`/profile/${item.from_user}`}>
                   {item.from_user_image ? (
                     <Image
                       src={item.from_user_image}
@@ -54,37 +54,37 @@ const ContactPage = () => {
                   ) : (
                     <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
                   )}
-                </div>
-                <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-                  <div className="">
-                    <h1 className="text-[#2C2C2C] text-sm font-medium">
-                      {item.from_user_full_name}
-                    </h1>
-                    <p className="text-[#888888] font-medium text-xs">
-                      Oppo Company
-                    </p>
-
-                    <p className="text-[#888888] font-medium text-xs mt-2">
-                      2 days ago
-                    </p>
-                  </div>
-
-                  <button className="border border-[#A8359C] text-black rounded-md p-2">
-                    Following
-                  </button>
-                </div>
+                </Link>
               </div>
+              <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
+                <div className="">
+                  <h1 className="text-[#2C2C2C] text-sm font-medium">
+                    {item.from_user_full_name}
+                  </h1>
+                  <p className="text-[#888888] font-medium text-xs">
+                    Oppo Company
+                  </p>
 
-              <div className="w-1/4 gap-4  flex sm:flex-row lg:flex items-center justify-center  p-5">
-                <button className="text-2xl text-gray-500">
-                  <BsThreeDotsVertical />
-                </button>
-                <button className="text-2xl text-gray-500">
-                  <IoChatbubbleEllipsesOutline />
+                  <p className="text-[#888888] font-medium text-xs mt-2">
+                    2 days ago
+                  </p>
+                </div>
+
+                <button className="border border-[#A8359C] text-black rounded-md p-2">
+                  Following
                 </button>
               </div>
             </div>
-          </Link>
+
+            <div className="w-1/4 gap-4  flex sm:flex-row lg:flex items-center justify-center  p-5">
+              <button className="text-2xl text-gray-500">
+                <BsThreeDotsVertical />
+              </button>
+              <button className="text-2xl text-gray-500">
+                <IoChatbubbleEllipsesOutline />
+              </button>
+            </div>
+          </div>
         ))}
     </div>
   );

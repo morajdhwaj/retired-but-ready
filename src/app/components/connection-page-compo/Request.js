@@ -81,9 +81,9 @@ const Request = () => {
             <h1> Invitation</h1>
             <div className=" border border-gray-300 font-thin w-full h-full rounded-lg"></div>
             {invitation.map((curEle, key) => (
-              <Link key={key} href={`/profile/${curEle.from_user}`}>
-                <div className="flex justify-between  w-fullbg-white ">
-                  <div className="flex mt-2">
+              <div className="flex justify-between  w-fullbg-white ">
+                <div className="flex mt-2">
+                  <Link key={key} href={`/profile/${curEle.from_user}`}>
                     {curEle.from_user_image ? (
                       <Image
                         src={curEle.from_user_image}
@@ -95,27 +95,27 @@ const Request = () => {
                     ) : (
                       <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 " />
                     )}
-                    <div className="mt-5 mx-2">
-                      <h1>{curEle.from_user_full_name}</h1>
-                      <p>hello</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <button
-                      className="w-20 h-10 rounded-md border-2 border-gray-300 "
-                      onClick={() => handleIgnore(curEle.network_request_id)}
-                    >
-                      Ignore
-                    </button>
-                    <button
-                      className="w-20 h-10 rounded-md border-[#D096CA] border-2"
-                      onClick={() => handleAccept(curEle.network_request_id)}
-                    >
-                      Accept
-                    </button>
+                  </Link>
+                  <div className="mt-5 mx-2">
+                    <h1>{curEle.from_user_full_name}</h1>
+                    <p>hello</p>
                   </div>
                 </div>
-              </Link>
+                <div className="flex gap-2 items-center">
+                  <button
+                    className="w-20 h-10 rounded-md border-2 border-gray-300 "
+                    onClick={() => handleIgnore(curEle.network_request_id)}
+                  >
+                    Ignore
+                  </button>
+                  <button
+                    className="w-20 h-10 rounded-md border-[#D096CA] border-2"
+                    onClick={() => handleAccept(curEle.network_request_id)}
+                  >
+                    Accept
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
