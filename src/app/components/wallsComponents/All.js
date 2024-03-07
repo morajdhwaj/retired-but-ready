@@ -517,7 +517,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div className="relative flex items-center gap-2">
                   {isHovered == feed?._id && (
                     <div
-                      className="absolute  bottom-7 py-1  flex bg-white gap-2"
+                      className="absolute  bottom-7 py-  flex bg-white gap-2 h-10 w-60"
                       onMouseLeave={() => setIsHovered(false)}
                     >
                       <button
