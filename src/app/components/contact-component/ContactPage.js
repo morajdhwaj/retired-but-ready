@@ -6,10 +6,12 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
+import PopUp from "@/app/components/PopUp";
 
 const ContactPage = () => {
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
+  const [selectedFollower, setSelectedFollower] = useState(null);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -34,6 +36,17 @@ const ContactPage = () => {
   };
   console.log(contact, "ye contact ka data hai");
   console.log(userId, "userid");
+
+  const handleDeleteModal = (follower) => {
+    setSelectedFollower(follower);
+  };
+
+  const removeContact = () => {
+    // Implement your logic to remove the selected follower
+    console.log("Removing contact:", selectedFollower);
+    // Close the modal after removing the contact
+    setSelectedFollower(null);
+  };
 
   return (
     <div>
@@ -70,8 +83,11 @@ const ContactPage = () => {
                   </p>
                 </div>
 
-                <button className="border border-[#A8359C] text-black rounded-md p-2">
-                  Following
+                <button
+                  className="border border-[#A8359C] text-black rounded-md p-2"
+                  onClick={() => handleDeleteModal(item)}
+                >
+                  Remove
                 </button>
               </div>
             </div>
@@ -86,6 +102,16 @@ const ContactPage = () => {
             </div>
           </div>
         ))}
+      {selectedFollower && (
+        <PopUp
+          close={() => setSelectedFollower(null)}
+          onClick={removeContact}
+          title="Are you sure you want to remove this contact?"
+          action="Delete"
+          message=""
+          error="error"
+        />
+      )}
     </div>
   );
 };
