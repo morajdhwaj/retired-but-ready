@@ -3,23 +3,17 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { BsHeartFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaHeart, FaUserCircle } from "react-icons/fa";
+import { AiOutlineLike } from "react-icons/ai";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 import toast from "react-hot-toast";
 import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
-import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
-import { BiSad } from "react-icons/bi";
-import { BiSolidSad } from "react-icons/bi";
-import { IoBulb } from "react-icons/io5";
-import { IoBulbOutline } from "react-icons/io5";
-import { PiNotepadFill } from "react-icons/pi";
-import { PiNotepadLight } from "react-icons/pi";
+
 import Link from "next/link";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
@@ -36,7 +30,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
   const [isHovered, setIsHovered] = useState("");
-  // const [showIcon, setShowIcon] = useState(AiOutlineLike)
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     console.log(isHovered, "this is my value");
@@ -124,6 +118,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       })
       .catch(function (error) {
         console.error(error);
+      });
+  };
+
+  const copyUrlToClipboard = (postId) => {
+    const currentUrl = `${window.location.href}/${postId}`;
+    navigator.clipboard
+      .writeText(currentUrl)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+        toast.success("URL copied to clipboard!");
+      })
+      .catch((error) => {
+        console.error("Error copying to clipboard: ", error);
+        toast.error("Failed to copy URL to clipboard");
       });
   };
 
@@ -626,16 +635,21 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
                     <p className="text-sm">Comment</p>
                   </button>
-                  <button className="flex items-center justify-center gap-2">
+                  {/* <button className="flex items-center justify-center gap-2">
                     <IoIosShareAlt />
-                    <p className="text-sm">Share</p>
-                  </button>
+                    <p className="text-sm">Repost</p>
+                  </button> */}
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
                   {feed?.post_comment_id?.length}
                   <p className="text-sm">Comments</p> |
-                  <button className="">Shares</button>
+                  <button
+                    onClick={() => copyUrlToClipboard(feed?._id)}
+                    className=""
+                  >
+                    Shares
+                  </button>
                 </div>
               </div>
               {feed._id == showComments && (
