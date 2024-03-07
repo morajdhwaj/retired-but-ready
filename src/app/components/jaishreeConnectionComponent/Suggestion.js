@@ -30,6 +30,7 @@ const Suggestion = () => {
   const [request, setRequest] = useState([]);
   const [remove, setRemove] = useState([]);
 
+
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getSuggestions();

@@ -130,7 +130,7 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
-        toast.success(" post URL copied to clipboard!");
+        toast.success(" Post URL copied to clipboard!");
       })
       .catch((error) => {
         console.error("Error copying to clipboard: ", error);
@@ -518,10 +518,10 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
 
                       <p className="text-sm">Comment</p>
                     </button>
-                    <button className="flex items-center justify-center gap-2">
+                    {/* <button className="flex items-center justify-center gap-2">
                       <BiRepost />
                       <p className="text-sm">Repost</p>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
