@@ -6,6 +6,8 @@ import { PiShareFatLight } from "react-icons/pi";
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import Link from "next/link";
 
 const FollowersPage = () => {
   const [followers, setFollowers] = useState([]);
@@ -70,62 +72,67 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <div className="flex " key={index}>
-            <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
-              <div className="w-[10%]">
-                <Image
-                  width={50}
-                  height={50}
-                  alt="pic"
-                  src={
-                    follower.from_user_image
-                      ? follower.from_user_image
-                      : "/assets/Ellipse-39.png"
-                  }
-                  className="rounded "
-                />
-              </div>
-              <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-                <div className="">
-                  <h1 className="text-[#2C2C2C] text-sm font-medium">
-                    {follower.from_user_full_name}
-                  </h1>
-                  <p className="text-[#888888]  font-medium text-xs">
-                    Human resource executive
-                  </p>
-                  <p className="text-[#888888] font-medium text-xs mt-2">
-                    6 post this week
-                  </p>
+          <Link
+            key={follower.from_user_id}
+            href={`/profile/${follower.from_user_id}`}
+          >
+            <div className="flex ">
+              <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
+                <div className="w-[10%]">
+                  {follower.from_user_image ? (
+                    <Image
+                      src={follower.from_user_image}
+                      width={30}
+                      height={30}
+                      alt="pic"
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
+                  )}
                 </div>
-
-                <button className="border border-[#A8359C] text-black rounded-md p-2">
-                  Following
-                </button>
-              </div>
-            </div>
-            <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
-              <div>
-                <button className="text-2xl text-gray-500">
-                  <BsThreeDotsVertical onClick={() => handleShow(index)} />
-                </button>
-                {show[index] && (
-                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
-                    <div className="flex flex-col p-2 items-center justify-center">
-                      <button
-                        onClick={() => handleDeleteModal(follower)}
-                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                      >
-                        Remove
-                      </button>
-                    </div>
+                <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
+                  <div className="">
+                    <h1 className="text-[#2C2C2C] text-sm font-medium">
+                      {follower.from_user_full_name}
+                    </h1>
+                    <p className="text-[#888888]  font-medium text-xs">
+                      Human resource executive
+                    </p>
+                    <p className="text-[#888888] font-medium text-xs mt-2">
+                      6 post this week
+                    </p>
                   </div>
-                )}
-                <button className="text-2xl text-gray-500">
-                  <IoChatbubbleEllipsesOutline />
-                </button>
+
+                  <button className="border border-[#A8359C] text-black rounded-md p-2">
+                    Following
+                  </button>
+                </div>
+              </div>
+              <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
+                <div>
+                  <button className="text-2xl text-gray-500">
+                    <BsThreeDotsVertical onClick={() => handleShow(index)} />
+                  </button>
+                  {show[index] && (
+                    <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
+                      <div className="flex flex-col p-2 items-center justify-center">
+                        <button
+                          onClick={() => handleDeleteModal(follower)}
+                          className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <button className="text-2xl text-gray-500">
+                    <IoChatbubbleEllipsesOutline />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
 
       {showDeleteModal && (

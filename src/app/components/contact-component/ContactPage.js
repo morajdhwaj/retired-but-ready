@@ -4,6 +4,8 @@ import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import axios from "axios";
+import { FaUserCircle } from "react-icons/fa";
+import Link from "next/link";
 
 const ContactPage = () => {
   const [contact, setContact] = useState([]);
@@ -36,51 +38,53 @@ const ContactPage = () => {
   return (
     <div>
       {contact.length > 0 &&
-        contact.map((item, index) => (
-          <div className="flex " key={index}>
-            <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
-              <div className="sm:w-[20%] lg:w-[10%] ">
-                <Image
-                  width={60}
-                  height={60}
-                  alt="pic"
-                  src={
-                    item.from_user_image
-                      ? item.from_user_image
-                      : "/assets/Ellipse-39.png"
-                  }
-                  className="  rounded-full  "
-                />
-              </div>
-              <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-                <div className="">
-                  <h1 className="text-[#2C2C2C] text-sm font-medium">
-                    {item.from_user_full_name}
-                  </h1>
-                  <p className="text-[#888888] font-medium text-xs">
-                    Oppo Company
-                  </p>
-
-                  <p className="text-[#888888] font-medium text-xs mt-2">
-                    2 days ago
-                  </p>
+        contact.map((item) => (
+          <Link key={item.from_user} href={`/profile/${item.from_user}`}>
+            <div className="flex ">
+              <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
+                <div className="sm:w-[20%] lg:w-[10%] ">
+                  {item.from_user_image ? (
+                    <Image
+                      src={item.from_user_image}
+                      width={30}
+                      height={30}
+                      alt="pic"
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
+                  )}
                 </div>
+                <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
+                  <div className="">
+                    <h1 className="text-[#2C2C2C] text-sm font-medium">
+                      {item.from_user_full_name}
+                    </h1>
+                    <p className="text-[#888888] font-medium text-xs">
+                      Oppo Company
+                    </p>
 
-                <button className="border border-[#A8359C] text-black rounded-md p-2">
-                  Following
+                    <p className="text-[#888888] font-medium text-xs mt-2">
+                      2 days ago
+                    </p>
+                  </div>
+
+                  <button className="border border-[#A8359C] text-black rounded-md p-2">
+                    Following
+                  </button>
+                </div>
+              </div>
+
+              <div className="w-1/4 gap-4  flex sm:flex-row lg:flex items-center justify-center  p-5">
+                <button className="text-2xl text-gray-500">
+                  <BsThreeDotsVertical />
+                </button>
+                <button className="text-2xl text-gray-500">
+                  <IoChatbubbleEllipsesOutline />
                 </button>
               </div>
             </div>
-
-            <div className="w-1/4 gap-4  flex sm:flex-row lg:flex items-center justify-center  p-5">
-              <button className="text-2xl text-gray-500">
-                <BsThreeDotsVertical />
-              </button>
-              <button className="text-2xl text-gray-500">
-                <IoChatbubbleEllipsesOutline />
-              </button>
-            </div>
-          </div>
+          </Link>
         ))}
     </div>
   );
