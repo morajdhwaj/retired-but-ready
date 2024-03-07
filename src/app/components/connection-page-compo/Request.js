@@ -3,6 +3,7 @@ import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
+import Link from "next/link";
 
 const Request = () => {
   const [invitation, setInvitation] = useState([]);
@@ -80,39 +81,41 @@ const Request = () => {
             <h1> Invitation</h1>
             <div className=" border border-gray-300 font-thin w-full h-full rounded-lg"></div>
             {invitation.map((curEle, key) => (
-              <div className="flex justify-between  w-fullbg-white " key={key}>
-                <div className="flex mt-2">
-                  {curEle.from_user_image ? (
-                    <Image
-                      src={curEle.from_user_image}
-                      width={30}
-                      height={30}
-                      alt="pic"
-                      className="w-20 h-20 rounded-full border-2 border-gray-200"
-                    />
-                  ) : (
-                    <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
-                  )}
-                  <div className="mt-5 mx-2">
-                    <h1>{curEle.from_user_full_name}</h1>
-                    <p>hello</p>
+              <Link key={key} href={`/profile/${curEle.from_user}`}>
+                <div className="flex justify-between  w-fullbg-white ">
+                  <div className="flex mt-2">
+                    {curEle.from_user_image ? (
+                      <Image
+                        src={curEle.from_user_image}
+                        width={30}
+                        height={30}
+                        alt="pic"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      />
+                    ) : (
+                      <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 " />
+                    )}
+                    <div className="mt-5 mx-2">
+                      <h1>{curEle.from_user_full_name}</h1>
+                      <p>hello</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <button
+                      className="w-20 h-10 rounded-md border-2 border-gray-300 "
+                      onClick={() => handleIgnore(curEle.network_request_id)}
+                    >
+                      Ignore
+                    </button>
+                    <button
+                      className="w-20 h-10 rounded-md border-[#D096CA] border-2"
+                      onClick={() => handleAccept(curEle.network_request_id)}
+                    >
+                      Accept
+                    </button>
                   </div>
                 </div>
-                <div className="flex gap-2 items-center">
-                  <button
-                    className="w-20 h-10 rounded-md border-2 border-gray-300 "
-                    onClick={() => handleIgnore(curEle.network_request_id)}
-                  >
-                    Ignore
-                  </button>
-                  <button
-                    className="w-20 h-10 rounded-md border-[#D096CA] border-2"
-                    onClick={() => handleAccept(curEle.network_request_id)}
-                  >
-                    Accept
-                  </button>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

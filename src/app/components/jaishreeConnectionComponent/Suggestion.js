@@ -282,7 +282,7 @@ const Suggestion = () => {
                       className="w-24 h-24 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
+                    <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 " />
                   )}
                 </div>
               </div>
