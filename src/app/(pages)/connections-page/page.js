@@ -3,12 +3,14 @@ import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
 import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
-import Link from "next/link";
+
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
+import Link from "next/link";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
@@ -51,13 +53,27 @@ const page = () => {
           <div className="relative flex  justify-center ">
             <div className="absolute  w-full   p-5  pt-24 ">
               <div className="   bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
-                <div className="flex items-center justify-center gap-2">
-                  <Image alt="" src="/assets/110.png" height={50} width={50} />
-                  <div className="font-semibold">
-                    <h2>{userData.user_display_name}</h2>
-                    <p className="text-gray-500">{userData.last_designation}</p>
+                <Link href={`/profile/${userId}`}>
+                  <div className="flex items-center justify-center gap-2">
+                    {userData.user_image ? (
+                      <Image
+                        src={userData.user_image}
+                        width={40}
+                        height={40}
+                        alt="pic"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      />
+                    ) : (
+                      <FaUserCircle className="w-20 h-20 rounded-full border-2 border-gray-200 " />
+                    )}
+                    <div className="font-semibold">
+                      <h2>{userData.user_display_name}</h2>
+                      <p className="text-gray-500">
+                        {userData.last_designation}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="flex gap-5">
                   <Link
                     href="/contacts-page"

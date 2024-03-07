@@ -4,10 +4,14 @@ import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import axios from "axios";
+import { FaUserCircle } from "react-icons/fa";
+import Link from "next/link";
+import PopUp from "@/app/components/PopUp";
 
 const ContactPage = () => {
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
+  const [selectedFollower, setSelectedFollower] = useState(null);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -33,24 +37,37 @@ const ContactPage = () => {
   console.log(contact, "ye contact ka data hai");
   console.log(userId, "userid");
 
+  const handleDeleteModal = (follower) => {
+    setSelectedFollower(follower);
+  };
+
+  const removeContact = () => {
+    // Implement your logic to remove the selected follower
+    console.log("Removing contact:", selectedFollower);
+    // Close the modal after removing the contact
+    setSelectedFollower(null);
+  };
+
   return (
     <div>
       {contact.length > 0 &&
-        contact.map((item, index) => (
-          <div className="flex " key={index}>
+        contact.map((item) => (
+          <div className="flex ">
             <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
               <div className="sm:w-[20%] lg:w-[10%] ">
-                <Image
-                  width={60}
-                  height={60}
-                  alt="pic"
-                  src={
-                    item.from_user_image
-                      ? item.from_user_image
-                      : "/assets/Ellipse-39.png"
-                  }
-                  className="  rounded-full  "
-                />
+                <Link key={item.from_user} href={`/profile/${item.from_user}`}>
+                  {item.from_user_image ? (
+                    <Image
+                      src={item.from_user_image}
+                      width={30}
+                      height={30}
+                      alt="pic"
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
+                  )}
+                </Link>
               </div>
               <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
                 <div className="">
@@ -66,8 +83,11 @@ const ContactPage = () => {
                   </p>
                 </div>
 
-                <button className="border border-[#A8359C] text-black rounded-md p-2">
-                  Following
+                <button
+                  className="border border-[#A8359C] text-black rounded-md p-2"
+                  onClick={() => handleDeleteModal(item)}
+                >
+                  Remove
                 </button>
               </div>
             </div>
@@ -82,6 +102,16 @@ const ContactPage = () => {
             </div>
           </div>
         ))}
+      {selectedFollower && (
+        <PopUp
+          close={() => setSelectedFollower(null)}
+          onClick={removeContact}
+          title="Are you sure you want to remove this contact?"
+          action="Delete"
+          message=""
+          error="error"
+        />
+      )}
     </div>
   );
 };

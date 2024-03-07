@@ -216,11 +216,11 @@ const page = ({ params }) => {
                     <div className="flex items-center justify-center gap-2  ">
                       {userData?.user_image ? (
                         <Image
-                          className="rounded-full"
                           alt=""
                           src={userData?.user_image}
                           height={70}
                           width={70}
+                          className="w-20 h-20 rounded-full border-2 border-gray-200"
                         />
                       ) : (
                         <FaUserCircle size={70} />

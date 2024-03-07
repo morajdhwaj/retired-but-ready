@@ -6,6 +6,8 @@ import { PiShareFatLight } from "react-icons/pi";
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import Link from "next/link";
 
 const FollowersPage = () => {
   const [followers, setFollowers] = useState([]);
@@ -48,6 +50,10 @@ const FollowersPage = () => {
     setShowDeleteModal(true);
   };
 
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false);
+  };
+
   const deleteFollowers = () => {
     const options = {
       method: "DELETE",
@@ -70,20 +76,25 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <div className="flex " key={index}>
+          <div className="flex ">
             <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
               <div className="w-[10%]">
-                <Image
-                  width={50}
-                  height={50}
-                  alt="pic"
-                  src={
-                    follower.from_user_image
-                      ? follower.from_user_image
-                      : "/assets/Ellipse-39.png"
-                  }
-                  className="rounded "
-                />
+                <Link
+                  key={follower.from_user_id}
+                  href={`/profile/${follower.from_user_id}`}
+                >
+                  {follower.from_user_image ? (
+                    <Image
+                      src={follower.from_user_image}
+                      width={30}
+                      height={30}
+                      alt="pic"
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
+                  )}
+                </Link>
               </div>
               <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
                 <div className="">
@@ -130,7 +141,7 @@ const FollowersPage = () => {
 
       {showDeleteModal && (
         <PopUp
-          close={handleDeleteModal}
+          close={handleCloseDeleteModal}
           onClick={deleteFollowers}
           title="Are you want Remove this follower"
           action="Delete"

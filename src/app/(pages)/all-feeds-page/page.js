@@ -101,7 +101,7 @@ const page = () => {
                         src={userData?.user_image}
                         height={50}
                         width={50}
-                        className="rounded-lg"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
                       <FaUserCircle size={50} />
@@ -136,11 +136,11 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">My Walls</h2>
+              <h2 className="font-semibold text-2xl">All Feeds</h2>
             </div>
           </div>
           {addPost && (
-            <div className="mt-44 sm:mt-32 md:mt-20">
+            <div className="mt-44 sm:mt-32 md:mt-20 mx-20   ">
               <PostInput
                 feeds={feeds}
                 userData={userData}

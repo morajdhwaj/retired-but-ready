@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/app/components/Loader";
 import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -32,6 +33,14 @@ const page = ({ params }) => {
         console.error(error);
       });
   };
+
+  if (feed.length === 0) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div>

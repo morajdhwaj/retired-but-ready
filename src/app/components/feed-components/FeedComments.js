@@ -359,7 +359,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     src={comment?.comment_by?.user_image}
                     height={50}
                     width={50}
-                    className="rounded-full"
+                    className="w-14 h-12 rounded-full border-2 border-gray-200"
                   />
                 ) : (
                   <FaUserCircle size={50} />
@@ -427,9 +427,17 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-5 ">
-                      <p className="text-xs font-medium text-gray-800 mt-4">
-                        {comment?.comment_content}
-                      </p>
+                      <p
+                        className="text-xs font-medium text-gray-800 mt-4"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            comment?.comment_content &&
+                            comment?.comment_content.replace(
+                              /(https?:\/\/[^\s]+)/g,
+                              '<a class="text-blue-600" href="$1">$1</a>'
+                            ),
+                        }}
+                      />
                       {comment?.comment_image && (
                         <Image
                           src={comment?.comment_image}
