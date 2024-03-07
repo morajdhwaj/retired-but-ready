@@ -338,7 +338,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         src={feed?.post_user?.user_image}
                         height={50}
                         width={50}
-                        className="rounded-full"
+                        className="w-16 h-16 rounded-full border-2 border-gray-200"
                       />
                     ) : (
                       <FaUserCircle size={50} />
