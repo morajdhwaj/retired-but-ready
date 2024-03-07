@@ -264,7 +264,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       {feeds.map((feed) => {
         console.log(feed, "this is for testing");
 
-        let showIcon = <AiOutlineLike size={20} />; // Default icon
+        let showIcon = <AiOutlineLike size={25} />; // Default icon
 
         const likes = feed.reaction_like.filter(
           (likeId) => likeId.user_id === userId
@@ -283,15 +283,31 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
         );
 
         if (likes.length > 0) {
-          showIcon = <AiFillLike size={20} />;
+          showIcon = (
+            <Image src="/emoji/like2.png" height={25} width={20}></Image>
+          );
+
+          // <AiFillLike  size={20} />;
         } else if (loves.length > 0) {
-          showIcon = <FaHeart size={20} />;
+          showIcon = (
+            <Image src="/emoji/love.png" height={25} width={20}></Image>
+          );
+          //  <FaHeart size={20} />;
         } else if (appraises.length > 0) {
-          showIcon = <PiNotepadFill size={20} />;
+          showIcon = (
+            <Image src="/emoji/clap.png" height={25} width={20}></Image>
+          );
+          //  <PiNotepadFill size={20} />;
         } else if (insights.length > 0) {
-          showIcon = <IoBulb size={20} />;
+          showIcon = (
+            <Image src="/emoji/bulb.png" height={20} width={15}></Image>
+          );
+          //  <IoBulb size={20} />;
         } else if (thinkings.length > 0) {
-          showIcon = <BiSolidSad size={20} />;
+          showIcon = (
+            <Image src="/emoji/thinking.png" height={25} width={20}></Image>
+          );
+          //  <BiSolidSad size={20} />;
         }
 
         console.log(likes, "MMMMMMMMMMMMMMMMMMMMMMMMM");
@@ -392,17 +408,17 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 </div>
               ) : (
                 <div className="my-5">
-                   <p
-                     dangerouslySetInnerHTML={{
-                       __html:
-                         feed?.post_description &&
-                         feed?.post_description.replace(
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        feed?.post_description &&
+                        feed?.post_description.replace(
                           /(https?:\/\/[^\s]+)/g,
-                           '<a class="text-blue-600" href="$1">$1</a>'
-                         ),
-                     }}
-                   />
-                 </div>
+                          '<a class="text-blue-600" href="$1">$1</a>'
+                        ),
+                    }}
+                  />
+                </div>
               )}
               {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
             </div>
@@ -431,23 +447,37 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               </div>
             )}
 
-            <div className="mt-5">
+            <div className="mt-5" onMouseLeave={() => setIsHovered(false)}>
               <div className="flex gap-2 items-center    ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
-                    <AiFillLike />
+                    <Image
+                      src="/emoji/like2.png"
+                      height={25}
+                      width={20}
+                    ></Image>
+
+                    {/* <AiFillLike /> */}
                     <p className="text-sm w-2">{feed?.reaction_like?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_love?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BsHeartFill />
+                    <Image src="/emoji/love.png" height={25} width={20}></Image>
+
+                    {/* <BsHeartFill /> */}
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_thinking?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BiSolidSad />
+                    <Image
+                      src="/emoji/thinking.png"
+                      height={25}
+                      width={20}
+                    ></Image>
+
+                    {/* <BiSolidSad /> */}
                     <p className="text-sm w-2">
                       {feed?.reaction_thinking?.length}
                     </p>
@@ -455,7 +485,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_insight?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <IoBulb />
+                    <Image src="/emoji/bulb.png" height={25} width={15}></Image>
+
+                    {/* <IoBulb /> */}
                     <p className="text-sm w-2">
                       {feed?.reaction_insight?.length}
                     </p>
@@ -463,7 +495,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_appraise?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <PiNotepadFill />
+                    <Image src="/emoji/clap.png" height={25} width={20}></Image>
+
+                    {/* <PiNotepadFill /> */}
                     <p className="text-sm w-2">
                       {feed?.reaction_appraise?.length}
                     </p>
@@ -472,6 +506,107 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               </div>
               <div className="mt-2 flex sm:flex-row  justify-between">
                 <div className="relative flex items-center gap-2">
+                  {isHovered == feed?._id && (
+                    <div
+                      className="absolute  bottom-7 py-1  flex bg-white gap-2"
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "like", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {/* {feed.reaction_like.some(
+                          (user) => user.user_id === userId
+                        ) ? ( */}
+                        <Image
+                          src="/emoji/like2.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                        {/* ) : (
+                          <AiOutlineLike size={20} />
+                        )} */}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "love", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {/* {feed.reaction_love.some(
+                          (user) => user.user_id === userId
+                        ) ? ( */}
+                        <Image
+                          src="/emoji/love.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                        {/* ) : (
+                          <CiHeart size={20} />
+                        )} */}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "thinking", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {/* {feed.reaction_thinking.some(
+                          (user) => user.user_id === userId
+                        ) ? ( */}
+                        <Image
+                          src="/emoji/thinking.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                        {/* ) : (
+                          <BiSad size={20} />
+                        )} */}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "insight", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {/* {feed.reaction_insight.some(
+                          (user) => user.user_id === userId
+                        ) ? ( */}
+                        <Image
+                          src="/emoji/bulb.png"
+                          height={25}
+                          width={15}
+                        ></Image>
+                        {/* // ) : (
+                        //   <IoBulbOutline size={20} />
+                        // )} */}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "appraise", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {/* {feed.reaction_appraise.some(
+                          (user) => user.user_id === userId
+                        ) ? ( */}
+                        <Image
+                          src="/emoji/clap.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                        {/* // ) : (
+                        //   <PiNotepadLight size={20} />
+                        // )} */}
+                      </button>
+                    </div>
+                  )}
                   <button
                     onMouseEnter={() => setIsHovered(feed?._id)}
                     // onMouseLeave={() => setIsHovered(false)}
@@ -483,103 +618,18 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
 
-                  {isHovered == feed?._id && (
-                    <div
-                      className="absolute  bottom-8  flex bg-white gap-2"
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      <button
-                        onClick={() => {
-                          postReaction(feed._id, "like", userId);
-                          setIsHovered(false);
-                        }}
-                      >
-                        {feed.reaction_like.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <AiFillLike
-                            size={20}
-                            onMouseLeave={() => setIsHovered(feed._id, false)}
-                          />
-                        ) : (
-                          <AiOutlineLike size={20} />
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          postReaction(feed._id, "love", userId);
-                          setIsHovered(false);
-                        }}
-                      >
-                        {feed.reaction_love.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <FaHeart size={20} />
-                        ) : (
-                          <CiHeart size={20} />
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          postReaction(feed._id, "thinking", userId);
-                          setIsHovered(false);
-                        }}
-                      >
-                        {feed.reaction_thinking.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <BiSolidSad size={20} />
-                        ) : (
-                          <BiSad size={20} />
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          postReaction(feed._id, "insight", userId);
-                          setIsHovered(false);
-                        }}
-                      >
-                        {feed.reaction_insight.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <IoBulb size={20} />
-                        ) : (
-                          <IoBulbOutline size={20} />
-                        )}
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          postReaction(feed._id, "appraise", userId);
-                          setIsHovered(false);
-                        }}
-                      >
-                        {feed.reaction_appraise.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <PiNotepadFill size={20} />
-                        ) : (
-                          <PiNotepadLight size={20} />
-                        )}
-                      </button>
-                    </div>
-                  )}
-
                   <button
-                    className="flex items-center justify-center gap-2"
+                    className="flex items-center justify-center gap-2 "
                     onClick={() => handleComments(feed?._id)}
                   >
-                    <MdComment />
+                    <MdComment className="mt-1" />
 
                     <p className="text-sm">Comment</p>
                   </button>
-                  <button>
+                  <button className="flex items-center justify-center gap-2">
                     <IoIosShareAlt />
+                    <p className="text-sm">Share</p>
                   </button>
-                  <p className="text-sm">Share</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
