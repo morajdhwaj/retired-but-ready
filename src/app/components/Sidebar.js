@@ -160,13 +160,13 @@ const Sidebar = () => {
               <h2 className="text-sm font-medium">Messages</h2>
             </Link>
             <Link
-              href="/setting-page"
+              href="/draft-page"
               className="flex gap-5  w-40 items-center bg-white p-2 hover:bg-gray-200 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
                 <FiOctagon color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">Setting </h2>
+              <h2 className="text-sm font-medium">Drafts </h2>
             </Link>
             <Link
               href="/about-us-page"
