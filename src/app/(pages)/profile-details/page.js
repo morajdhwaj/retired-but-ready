@@ -114,13 +114,13 @@ const Page = () => {
                         src={userData?.user_image}
                         height={50}
                         width={50}
-                        className="rounded-full"
+                        className="rounded-full h-20 w-20"
                       />
                     ) : (
-                      <FaUserCircle size={60} />
+                      <FaUserCircle size={65} />
                     )}
 
-                    <button className="right-[-10px] top-8 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+                    <button className="right-[-10px] top-10 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                       <label
                         htmlFor="profile-picture"
                         className="cursor-pointer"
