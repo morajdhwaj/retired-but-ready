@@ -66,8 +66,6 @@ const Request = () => {
       });
   };
 
-  console.log(invitation);
-
   return (
     <div>
       <div className="bg-white p-2 rounded-md font-medium text-gray-400 border border-gray-300">
@@ -83,13 +81,17 @@ const Request = () => {
             {invitation.map((curEle, key) => (
               <div className="flex justify-between  w-fullbg-white " key={key}>
                 <div className="flex mt-2">
-                  <Image
-                    src="/assets/Ellipse-39.png"
-                    width={50}
-                    height={50}
-                    alt="pic"
-                    className="w-24 h-24 rounded-full  "
-                  />
+                  {curEle.from_user_image ? (
+                    <Image
+                      src={curEle.from_user_image}
+                      width={30}
+                      height={30}
+                      alt="pic"
+                      className="w-20 h-20 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-24 h-24 rounded-full border-2 border-gray-200 fill-gray-400" />
+                  )}
                   <div className="mt-5 mx-2">
                     <h1>{curEle.from_user_full_name}</h1>
                     <p>hello</p>
