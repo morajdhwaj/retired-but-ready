@@ -72,13 +72,13 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <Link
-            key={follower.from_user_id}
-            href={`/profile/${follower.from_user_id}`}
-          >
-            <div className="flex ">
-              <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
-                <div className="w-[10%]">
+          <div className="flex ">
+            <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
+              <div className="w-[10%]">
+                <Link
+                  key={follower.from_user_id}
+                  href={`/profile/${follower.from_user_id}`}
+                >
                   {follower.from_user_image ? (
                     <Image
                       src={follower.from_user_image}
@@ -90,49 +90,49 @@ const FollowersPage = () => {
                   ) : (
                     <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
                   )}
-                </div>
-                <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-                  <div className="">
-                    <h1 className="text-[#2C2C2C] text-sm font-medium">
-                      {follower.from_user_full_name}
-                    </h1>
-                    <p className="text-[#888888]  font-medium text-xs">
-                      Human resource executive
-                    </p>
-                    <p className="text-[#888888] font-medium text-xs mt-2">
-                      6 post this week
-                    </p>
-                  </div>
-
-                  <button className="border border-[#A8359C] text-black rounded-md p-2">
-                    Following
-                  </button>
-                </div>
+                </Link>
               </div>
-              <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
-                <div>
-                  <button className="text-2xl text-gray-500">
-                    <BsThreeDotsVertical onClick={() => handleShow(index)} />
-                  </button>
-                  {show[index] && (
-                    <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
-                      <div className="flex flex-col p-2 items-center justify-center">
-                        <button
-                          onClick={() => handleDeleteModal(follower)}
-                          className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  <button className="text-2xl text-gray-500">
-                    <IoChatbubbleEllipsesOutline />
-                  </button>
+              <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
+                <div className="">
+                  <h1 className="text-[#2C2C2C] text-sm font-medium">
+                    {follower.from_user_full_name}
+                  </h1>
+                  <p className="text-[#888888]  font-medium text-xs">
+                    Human resource executive
+                  </p>
+                  <p className="text-[#888888] font-medium text-xs mt-2">
+                    6 post this week
+                  </p>
                 </div>
+
+                <button className="border border-[#A8359C] text-black rounded-md p-2">
+                  Following
+                </button>
               </div>
             </div>
-          </Link>
+            <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
+              <div>
+                <button className="text-2xl text-gray-500">
+                  <BsThreeDotsVertical onClick={() => handleShow(index)} />
+                </button>
+                {show[index] && (
+                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
+                    <div className="flex flex-col p-2 items-center justify-center">
+                      <button
+                        onClick={() => handleDeleteModal(follower)}
+                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                )}
+                <button className="text-2xl text-gray-500">
+                  <IoChatbubbleEllipsesOutline />
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
 
       {showDeleteModal && (
