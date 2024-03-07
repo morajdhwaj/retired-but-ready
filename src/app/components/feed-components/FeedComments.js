@@ -427,9 +427,17 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     </div>
                   ) : (
                     <div className="flex flex-col gap-5 ">
-                      <p className="text-xs font-medium text-gray-800 mt-4">
-                        {comment?.comment_content}
-                      </p>
+                      <p
+                        className="text-xs font-medium text-gray-800 mt-4"
+                        dangerouslySetInnerHTML={{
+                          __html:
+                            comment?.comment_content &&
+                            comment?.comment_content.replace(
+                              /(https?:\/\/[^\s]+)/g,
+                              '<a class="text-blue-600" href="$1">$1</a>'
+                            ),
+                        }}
+                      />
                       {comment?.comment_image && (
                         <Image
                           src={comment?.comment_image}
