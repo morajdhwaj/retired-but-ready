@@ -233,7 +233,12 @@ const page = ({ params }) => {
                       </div>
                     </div>
                     {profileId === userId ? (
-                      ""
+                      <Link
+                        href="/profile-details"
+                        className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                      >
+                        <span>Edit</span>
+                      </Link>
                     ) : (
                       <div className=" flex gap-5 ">
                         {isRequested.length > 0 &&
