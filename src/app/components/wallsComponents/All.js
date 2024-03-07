@@ -14,16 +14,18 @@ import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
 import dayjs from "dayjs";
-import { BiRepost, BiSad } from "react-icons/bi";
+import { BiSad } from "react-icons/bi";
 import { BiSolidSad } from "react-icons/bi";
-import { IoBulb, IoBulbOutline } from "react-icons/io5";
-import { PiNotepadFill, PiNotepadLight } from "react-icons/pi";
+import { IoBulb } from "react-icons/io5";
+import { IoBulbOutline } from "react-icons/io5";
+import { PiNotepadFill } from "react-icons/pi";
+import { PiNotepadLight } from "react-icons/pi";
 import Link from "next/link";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
-const All = ({ feeds, setFeeds, getFeeds }) => {
+const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [reportPostId, setReportPostId] = useState("");
@@ -33,9 +35,12 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
-  const [isHovered, setIsHovered] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [isHovered, setIsHovered] = useState("");
+  // const [showIcon, setShowIcon] = useState(AiOutlineLike)
+
+  useEffect(() => {
+    console.log(isHovered, "this is my value");
+  }, [isHovered]);
 
   const handleDropdown = (feed_id) => {
     if (!postId) {
@@ -54,9 +59,8 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
   };
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
     getFeeds();
-  }, [userId]);
+  }, []);
 
   const handleComments = (feedId) => {
     if (!showComments) {
@@ -123,21 +127,6 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
       });
   };
 
-  const copyUrlToClipboard = (id) => {
-    const currentUrl = `${window.location.href}/${id}`;
-    navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
-        toast.success(" Post URL copied to clipboard!");
-      })
-      .catch((error) => {
-        console.error("Error copying to clipboard: ", error);
-        toast.error("Failed to copy URL to clipboard");
-      });
-  };
-
   // const postReaction = (userId, postId, type) => {
   //   const options = {
   //     method: "POST",
@@ -182,6 +171,10 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
         setShowDeleteModal(false);
       });
   };
+
+  if (feeds.length === 0) {
+    return <div className="h-[100vh]">Loading...</div>;
+  }
 
   const getPost = () => {
     const options = {
@@ -265,20 +258,49 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
     video.addEventListener("mouseleave", handleHover);
   });
 
-  if (feeds.length === 0) {
-    return (
-      <div className="h-[100vh] flex items-center justify-center">
-        <h1 className=" border-2 border-[#773fc6] text-[#773fc6] px-5 py-2 rounded ">
-          No feeds
-        </h1>
-      </div>
-    );
-  }
-
   console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col mt-5">
       {feeds.map((feed) => {
+        console.log(feed, "this is for testing");
+
+        let showIcon = <AiOutlineLike size={20} />; // Default icon
+
+        const likes = feed.reaction_like.filter(
+          (likeId) => likeId.user_id === userId
+        );
+        const loves = feed.reaction_love.filter(
+          (likeId) => likeId.user_id === userId
+        );
+        const appraises = feed.reaction_appraise.filter(
+          (likeId) => likeId.user_id === userId
+        );
+        const insights = feed.reaction_insight.filter(
+          (likeId) => likeId.user_id === userId
+        );
+        const thinkings = feed.reaction_thinking.filter(
+          (likeId) => likeId.user_id === userId
+        );
+
+        if (likes.length > 0) {
+          showIcon = <AiFillLike size={20} />;
+        } else if (loves.length > 0) {
+          showIcon = <FaHeart size={20} />;
+        } else if (appraises.length > 0) {
+          showIcon = <PiNotepadFill size={20} />;
+        } else if (insights.length > 0) {
+          showIcon = <IoBulb size={20} />;
+        } else if (thinkings.length > 0) {
+          showIcon = <BiSolidSad size={20} />;
+        }
+
+        console.log(likes, "MMMMMMMMMMMMMMMMMMMMMMMMM");
+        if (likes.length > 0) {
+          console.log(`User ID '${userId}' found in reactions.`);
+        } else {
+          console.log(`User ID '${userId}' not found in reactions.`);
+        }
+
         return (
           <div key={feed?._id} className="mt-10 bg-white p-2 border rounded-xl">
             <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
@@ -309,12 +331,12 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                       dayjs(new Date(feed?.publish_time + "Z")).date() <
                     2 ? (
                       <p className="text-xs">
-                        Published at :{" "}
+                        Published at:
                         {dayjs(new Date(feed?.publish_time + "Z")).fromNow()}
                       </p>
                     ) : (
                       <p className="text-xs">
-                        Published at :{" "}
+                        Published at:{" "}
                         {dayjs(new Date(feed?.publish_time + "Z")).format(
                           "DD-MM-YYYY HH:mm a"
                         )}
@@ -370,17 +392,17 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                 </div>
               ) : (
                 <div className="my-5">
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        feed?.post_description &&
-                        feed?.post_description.replace(
+                   <p
+                     dangerouslySetInnerHTML={{
+                       __html:
+                         feed?.post_description &&
+                         feed?.post_description.replace(
                           /(https?:\/\/[^\s]+)/g,
-                          '<a class="text-blue-600" href="$1">$1</a>'
-                        ),
-                    }}
-                  />
-                </div>
+                           '<a class="text-blue-600" href="$1">$1</a>'
+                         ),
+                     }}
+                   />
+                 </div>
               )}
               {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
             </div>
@@ -410,22 +432,22 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
             )}
 
             <div className="mt-5">
-              <div className="flex gap-2 items-center ">
+              <div className="flex gap-2 items-center    ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">
-                    <AiFillLike size={20} />
+                    <AiFillLike />
                     <p className="text-sm w-2">{feed?.reaction_like?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_love?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BsHeartFill size={20} />
+                    <BsHeartFill />
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
                   </div>
                 )}
                 {feed?.reaction_thinking?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <BiSolidSad size={20} />
+                    <BiSolidSad />
                     <p className="text-sm w-2">
                       {feed?.reaction_thinking?.length}
                     </p>
@@ -433,7 +455,7 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_insight?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <IoBulb size={20} />
+                    <IoBulb />
                     <p className="text-sm w-2">
                       {feed?.reaction_insight?.length}
                     </p>
@@ -441,105 +463,129 @@ const All = ({ feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_appraise?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <PiNotepadFill size={20} />
+                    <PiNotepadFill />
                     <p className="text-sm w-2">
                       {feed?.reaction_appraise?.length}
                     </p>
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between ">
-                <div className="flex items-center gap-5 ">
-                  <div className="flex items-center justify-center gap-2 ">
-                    <button
-                      onClick={() => postReaction(feed._id, "like", userId)}
-                    >
-                      {feed.reaction_like.some(
-                        (user) => user.user_id === userId
-                      ) ? (
-                        <AiFillLike size={20} />
-                      ) : (
-                        <AiOutlineLike size={20} />
-                      )}
-                    </button>
+              <div className="mt-2 flex sm:flex-row  justify-between">
+                <div className="relative flex items-center gap-2">
+                  <button
+                    onMouseEnter={() => setIsHovered(feed?._id)}
+                    // onMouseLeave={() => setIsHovered(false)}
+                    className="hover:text-blue-
+                    "
+                  >
+                    {showIcon}
+                    {/* <showIcon size={20} /> */}
+                    {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
+                  </button>
 
-                    <button
-                      onClick={() => postReaction(feed._id, "love", userId)}
+                  {isHovered == feed?._id && (
+                    <div
+                      className="absolute  bottom-8  flex bg-white gap-2"
+                      onMouseLeave={() => setIsHovered(false)}
                     >
-                      {feed.reaction_love.some(
-                        (user) => user.user_id === userId
-                      ) ? (
-                        <FaHeart size={20} />
-                      ) : (
-                        <CiHeart size={20} />
-                      )}
-                    </button>
-                    <button
-                      onClick={() => postReaction(feed._id, "thinking", userId)}
-                    >
-                      {feed.reaction_thinking.some(
-                        (user) => user.user_id === userId
-                      ) ? (
-                        <BiSolidSad size={20} />
-                      ) : (
-                        <BiSad size={20} />
-                      )}
-                    </button>
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "like", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_like.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <AiFillLike
+                            size={20}
+                            onMouseLeave={() => setIsHovered(feed._id, false)}
+                          />
+                        ) : (
+                          <AiOutlineLike size={20} />
+                        )}
+                      </button>
 
-                    <button
-                      onClick={() => postReaction(feed._id, "insight", userId)}
-                    >
-                      {feed.reaction_insight.some(
-                        (user) => user.user_id === userId
-                      ) ? (
-                        <IoBulb size={20} />
-                      ) : (
-                        <IoBulbOutline size={20} />
-                      )}
-                    </button>
-                    <button
-                      onClick={() => postReaction(feed._id, "appraise", userId)}
-                    >
-                      {feed.reaction_appraise.some(
-                        (user) => user.user_id === userId
-                      ) ? (
-                        <PiNotepadFill size={20} />
-                      ) : (
-                        <PiNotepadLight size={20} />
-                      )}
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-center gap-2 ">
-                    <button
-                      className="flex items-center justify-center gap-2"
-                      onClick={() => handleComments(feed?._id)}
-                    >
-                      <MdComment />
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "love", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_love.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <FaHeart size={20} />
+                        ) : (
+                          <CiHeart size={20} />
+                        )}
+                      </button>
 
-                      <p className="text-sm">Comment</p>
-                    </button>
-                    {/* <button className="flex items-center justify-center gap-2">
-                      <BiRepost />
-                      <p className="text-sm">Repost</p>
-                    </button> */}
-                  </div>
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "thinking", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_thinking.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <BiSolidSad size={20} />
+                        ) : (
+                          <BiSad size={20} />
+                        )}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "insight", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_insight.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <IoBulb size={20} />
+                        ) : (
+                          <IoBulbOutline size={20} />
+                        )}
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          postReaction(feed._id, "appraise", userId);
+                          setIsHovered(false);
+                        }}
+                      >
+                        {feed.reaction_appraise.some(
+                          (user) => user.user_id === userId
+                        ) ? (
+                          <PiNotepadFill size={20} />
+                        ) : (
+                          <PiNotepadLight size={20} />
+                        )}
+                      </button>
+                    </div>
+                  )}
+
+                  <button
+                    className="flex items-center justify-center gap-2"
+                    onClick={() => handleComments(feed?._id)}
+                  >
+                    <MdComment />
+
+                    <p className="text-sm">Comment</p>
+                  </button>
+                  <button>
+                    <IoIosShareAlt />
+                  </button>
+                  <p className="text-sm">Share</p>
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
-                  <button
-                    onClick={() => handleComments(feed?._id)}
-                    className="flex items-center gap-2"
-                  >
-                    {feed?.post_comment_id?.length}
-                    <p className="text-sm">Comments</p>{" "}
-                  </button>
-                  |
-                  <button
-                    onClick={() => copyUrlToClipboard(feed?._id)}
-                    className=""
-                  >
-                    Shares
-                  </button>
+                  {feed?.post_comment_id?.length}
+                  <p className="text-sm">Comments</p> |
+                  <button className="">Shares</button>
                 </div>
               </div>
               {feed._id == showComments && (
