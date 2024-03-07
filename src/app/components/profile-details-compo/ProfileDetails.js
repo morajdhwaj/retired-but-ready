@@ -98,7 +98,7 @@ const ProfileDetails = ({ userId }) => {
       });
   };
 
-  if (userData.length === 0) {
+  if (userData?.length === 0) {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
@@ -127,7 +127,7 @@ const ProfileDetails = ({ userId }) => {
               className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full"
             />
           ) : (
-            <h2 className="font-semibold ">{userData.user_display_name}</h2>
+            <h2 className="font-semibold ">{userData?.user_display_name}</h2>
           )}
         </div>
         <div className="flex gap-5">
@@ -140,7 +140,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10  px-2  rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold ">{userData.user_first_name}</h2>
+              <h2 className="font-semibold ">{userData?.user_first_name}</h2>
             )}
           </div>
           <div className="w-1/2">
@@ -152,7 +152,7 @@ const ProfileDetails = ({ userId }) => {
                 className="bg-[#f2f1f3] border border-gray-300 h-10   px-2 rounded w-full"
               />
             ) : (
-              <h2 className="font-semibold ">{userData.user_last_name}</h2>
+              <h2 className="font-semibold ">{userData?.user_last_name}</h2>
             )}
           </div>
         </div>
