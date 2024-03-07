@@ -106,7 +106,6 @@ const Suggestion = () => {
   };
 
   const deleteRequest = (id) => {
-    console.log(request, "request...");
     const filterItem = request.filter((item) => item.to_user === id);
 
     if (filterItem.length > 0) {
@@ -299,10 +298,6 @@ const Suggestion = () => {
               </h1>
             </div>
             <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4">
-              {console.log(
-                request.some((item) => item.to_user === cardElem._id),
-                " requestSome"
-              )}
               {request.some((item) => item.to_user === cardElem._id) ? (
                 <button
                   className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
