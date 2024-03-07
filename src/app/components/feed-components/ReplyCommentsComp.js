@@ -301,9 +301,9 @@ const ReplyCommentsComp = ({
                   <Image
                     alt=""
                     src={reply?.comment_by?.user_image}
-                    height={20}
-                    width={20}
-                    className="rounded-full"
+                    height={30}
+                    width={30}
+                    className="w-10 h-10 rounded-full border-2 border-gray-200"
                   />
                 ) : (
                   <FaUserCircle size={50} />
