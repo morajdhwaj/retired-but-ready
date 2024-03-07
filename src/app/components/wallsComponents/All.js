@@ -392,17 +392,17 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 </div>
               ) : (
                 <div className="my-5">
-                   <p
-                     dangerouslySetInnerHTML={{
-                       __html:
-                         feed?.post_description &&
-                         feed?.post_description.replace(
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        feed?.post_description &&
+                        feed?.post_description.replace(
                           /(https?:\/\/[^\s]+)/g,
-                           '<a class="text-blue-600" href="$1">$1</a>'
-                         ),
-                     }}
-                   />
-                 </div>
+                          '<a class="text-blue-600" href="$1">$1</a>'
+                        ),
+                    }}
+                  />
+                </div>
               )}
               {/* <p className="text-sm text-end text-[#773fc6]">...see more</p> */}
             </div>
