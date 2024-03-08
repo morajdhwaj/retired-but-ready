@@ -117,10 +117,10 @@ const Page = () => {
                         className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle size={60} />
+                      <FaUserCircle size={65} />
                     )}
 
-                    <button className="right-[-10px] top-8 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+                    <button className="right-[-10px] top-10 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                       <label
                         htmlFor="profile-picture"
                         className="cursor-pointer"

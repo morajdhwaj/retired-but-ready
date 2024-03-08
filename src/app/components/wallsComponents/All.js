@@ -31,6 +31,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [reportType, setReportType] = useState("hate_speech");
   const [isHovered, setIsHovered] = useState("");
   const [copied, setCopied] = useState(false);
+  const [reactionName, setReactionName] = useState();
 
   useEffect(() => {
     console.log(isHovered, "this is my value");
@@ -270,8 +271,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col mt-5">
-      {feeds.map((feed) => {
-        console.log(feed, "this is for testing");
+      {feeds.map((feed) => 
+      {
+        console.log(feed, "this is for feed testing");
 
         let showIcon = <AiOutlineLike size={25} />; // Default icon
 
@@ -525,7 +527,16 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                           postReaction(feed._id, "like", userId);
                           setIsHovered(false);
                         }}
+                        className="relative"
+                        onMouseEnter={() => setReactionName("like")}
+                        onMouseLeave={() => setReactionName("")}
                       >
+                        {reactionName === "like" && (
+                          <p className="absolute top-[-20px]  bg-[#773FC6] text-white px-1 rounded-lg left-[-10px]">
+                            Like
+                          </p>
+                        )}
+
                         {/* {feed.reaction_like.some(
                           (user) => user.user_id === userId
                         ) ? ( */}
@@ -544,7 +555,15 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                           postReaction(feed._id, "love", userId);
                           setIsHovered(false);
                         }}
+                        className="relative"
+                        onMouseEnter={() => setReactionName("love")}
+                        onMouseLeave={() => setReactionName("")}
                       >
+                        {reactionName === "love" && (
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-12px]">
+                            Love
+                          </p>
+                        )}
                         {/* {feed.reaction_love.some(
                           (user) => user.user_id === userId
                         ) ? ( */}
@@ -563,7 +582,15 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                           postReaction(feed._id, "thinking", userId);
                           setIsHovered(false);
                         }}
+                        className="relative"
+                        onMouseEnter={() => setReactionName("Think")}
+                        onMouseLeave={() => setReactionName("")}
                       >
+                        {reactionName === "Think" && (
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-15px]">
+                            Think
+                          </p>
+                        )}
                         {/* {feed.reaction_thinking.some(
                           (user) => user.user_id === userId
                         ) ? ( */}
@@ -582,7 +609,15 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                           postReaction(feed._id, "insight", userId);
                           setIsHovered(false);
                         }}
+                        className="relative"
+                        onMouseEnter={() => setReactionName("insight")}
+                        onMouseLeave={() => setReactionName("")}
                       >
+                        {reactionName === "insight" && (
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-20px]">
+                            Insight
+                          </p>
+                        )}
                         {/* {feed.reaction_insight.some(
                           (user) => user.user_id === userId
                         ) ? ( */}
@@ -601,7 +636,15 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                           postReaction(feed._id, "appraise", userId);
                           setIsHovered(false);
                         }}
+                        className={`relative `}
+                        onMouseEnter={() => setReactionName("Appreciate")}
+                        onMouseLeave={() => setReactionName("")}
                       >
+                        {reactionName === "Appreciate" && (
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-30px]">
+                            Appreciate
+                          </p>
+                        )}
                         {/* {feed.reaction_appraise.some(
                           (user) => user.user_id === userId
                         ) ? ( */}
