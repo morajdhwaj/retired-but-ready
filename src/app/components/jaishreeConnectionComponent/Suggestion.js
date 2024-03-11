@@ -10,7 +10,6 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { SiHsbc } from "react-icons/si";
 import { MdOutlineJoinInner } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
-import GpsConnection from "./GpsConnection";
 import ProfileConnection from "./ProfileConnection";
 import WorkConnection from "./WorkConnection";
 import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
@@ -23,9 +22,9 @@ import { ImProfile } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import GpsConnection from "./GpsConnection";
 
 const Suggestion = () => {
-  const [activePage, setActivePage] = useState([null]);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
   const [request, setRequest] = useState([]);
@@ -139,10 +138,10 @@ const Suggestion = () => {
       });
   };
 
-  const handleToggle = (index) => {
-    setSuggestionData([]);
-    activePage === index ? setActivePage(0) : setActivePage(index);
-  };
+  // const handleToggle = (index) => {
+  //   setSuggestionData([]);
+  //   activePage === index ? setActivePage(0) : setActivePage(index);
+  // };
 
   return (
     <div className="">
@@ -256,12 +255,6 @@ const Suggestion = () => {
       </div>
       <h1 className="mt-5 text-black font-medium text-sm">Suggestion</h1>
       <div className=" border border-[#D9D9D9] w-[7%] h-0.3 mt-2" />
-      {activePage === 1 && <GpsConnection />}
-      {activePage === 2 && <ProfileConnection />}
-      {activePage === 3 && <MyConnection />}
-      {activePage === 4 && <HiringConnection />}
-      {activePage === 5 && <WorkConnection />}
-      {activePage === 6 && <BestConnection />}
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16  ">
         {suggestionData.map((cardElem) => (
@@ -321,6 +314,9 @@ const Suggestion = () => {
           </div>
         ))}
       </div>
+
+      <GpsConnection />
+      <ProfileConnection />
 
       <div className="mt-2 ">
         <h1 className="flex justify-center items-center text-[#773fc6] font-medium">
