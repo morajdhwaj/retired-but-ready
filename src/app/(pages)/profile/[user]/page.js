@@ -161,7 +161,7 @@ const page = ({ params }) => {
   const checkRequests = async () => {
     try {
       const response = await axios.get(
-        `https://retpro.catax.me/my-network-request/${profileId}`
+        `https://retpro.catax.me/my-network-request/${userId}`
       );
 
       filterConnection(response.data.outgoing_requests);
