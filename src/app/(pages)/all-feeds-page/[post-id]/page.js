@@ -44,9 +44,9 @@ const page = ({ params }) => {
 
   return (
     <div>
-      <div className="flex m-20 gap-2">
-        <div className="">
-          <Link href={`/profile/${feed?.post_user?.id}`}>
+      <Link href={`/profile/${feed?.post_user?.id}`}>
+        <div className="flex m-20  gap-2">
+          <div className="">
             {feed?.post_user?.user_image ? (
               <Image
                 alt=""
@@ -58,15 +58,15 @@ const page = ({ params }) => {
             ) : (
               <FaUserCircle size={50} />
             )}
-          </Link>
+          </div>
+          <div>
+            <h2 className="text-sm font-semibold text-[#773fc6]  ">
+              {feed?.post_user?.user_display_name}
+            </h2>
+            <p className="text-xs">{feed?.post_user?.last_designation}</p>
+          </div>
         </div>
-        <div>
-          <h2 className="text-sm font-semibold text-[#773fc6]  ">
-            {feed?.post_user?.user_display_name}
-          </h2>
-          <p className="text-xs">{feed?.post_user?.last_designation}</p>
-        </div>
-      </div>
+      </Link>
       <div className="m-20">
         <div className="my-5">
           <p

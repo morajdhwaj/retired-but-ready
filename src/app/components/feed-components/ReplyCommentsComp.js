@@ -21,6 +21,7 @@ import { PiNotepadFill } from "react-icons/pi";
 import { PiNotepadLight } from "react-icons/pi";
 import { BsHeartFill } from "react-icons/bs";
 import dayjs from "dayjs";
+import Link from "next/link";
 
 const ReplyCommentsComp = ({
   userId,
@@ -296,26 +297,30 @@ const ReplyCommentsComp = ({
         {commentReply.map((reply) => {
           return (
             <div key={reply._id} className="flex gap-2 mt-5">
-              <div className="">
-                {reply?.comment_by?.user_image ? (
-                  <Image
-                    alt=""
-                    src={reply?.comment_by?.user_image}
-                    height={30}
-                    width={30}
-                    className="w-10 h-10 rounded-full border-2 border-gray-200"
-                  />
-                ) : (
-                  <FaUserCircle size={50} />
-                )}
-              </div>
+              <Link href={`/profile/${reply?.comment_by?.id}`}>
+                <div className="">
+                  {reply?.comment_by?.user_image ? (
+                    <Image
+                      alt=""
+                      src={reply?.comment_by?.user_image}
+                      height={30}
+                      width={30}
+                      className="w-10 h-10 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
+                </div>
+              </Link>
               <div className="border p-2 bg-gray-100 flex flex-col  gap-2 border-gray-300  rounded-b-lg w-full rounded-tr-lg">
                 <div className="flex justify-between">
                   <div className="flex   gap-2  justify-center">
                     <div className="">
-                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                        {reply?.comment_by?.user_display_name}
-                      </h2>
+                      <Link href={`/profile/${reply?.comment_by.id}`}>
+                        <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                          {reply?.comment_by?.user_display_name}
+                        </h2>
+                      </Link>
                       <div className="">
                         {editReplyId == reply._id ? (
                           <div>

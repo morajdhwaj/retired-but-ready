@@ -21,6 +21,7 @@ import { IoBulbOutline } from "react-icons/io5";
 import { PiNotepadFill } from "react-icons/pi";
 import { PiNotepadLight } from "react-icons/pi";
 import { BsHeartFill } from "react-icons/bs";
+import Link from "next/link";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -352,25 +353,29 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
         {comments?.map((comment) => (
           <div key={comment?._id}>
             <div className="flex gap-2 mt-5">
-              <div>
-                {comment?.comment_by?.user_image ? (
-                  <Image
-                    alt=""
-                    src={comment?.comment_by?.user_image}
-                    height={50}
-                    width={50}
-                    className="w-14 h-12 rounded-full border-2 border-gray-200"
-                  />
-                ) : (
-                  <FaUserCircle size={50} />
-                )}
-              </div>
+              <Link href={`/profile/${comment?.comment_by?.id}`}>
+                <div>
+                  {comment?.comment_by?.user_image ? (
+                    <Image
+                      alt=""
+                      src={comment?.comment_by?.user_image}
+                      height={50}
+                      width={50}
+                      className="w-14 h-12 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
+                </div>
+              </Link>
               <div className="flex border-gray-300 bg-white border rounded-b-lg w-full rounded-tr-lg p-2">
                 <div className="w-full ">
                   <div className="justify-between flex ">
-                    <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                      {comment?.comment_by?.user_display_name}
-                    </h2>
+                    <Link href={`/profile/${comment?.comment_by?.id}`}>
+                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                        {comment?.comment_by?.user_display_name}
+                      </h2>
+                    </Link>
                     <div>
                       {userId == comment.comment_by.id ? (
                         <button
