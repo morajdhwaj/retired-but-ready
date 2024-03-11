@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
 import toast from "react-hot-toast";
@@ -11,16 +11,21 @@ import Image from "next/image";
 const page = ({ length = 4 }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("");
 
   const finalOtp = otp.join("");
 
   const router = useRouter();
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+  }, [userId]);
+
   const handleVerification = () => {
     const options = {
       method: "PATCH",
       url: "https://retpro.catax.me/user/reset-password-otp",
-      params: { user_id: "6593af5ef4f7ce4f923051f3" },
+      params: { user_id: userId },
       headers: { "Content-Type": "application/json" },
       data: { otp: finalOtp, new_password: password },
     };
@@ -60,10 +65,12 @@ const page = ({ length = 4 }) => {
 
   console.log(finalOtp);
   console.log(password);
+  console.log(userId, "dksbdlsb");
+  console.log("dskhdk");
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
-      <div className="pt-20 md:flex lg:flex">
+      <div className="pt-20 md:flex  h-[100vh] lg:flex">
         <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
           <Image src="/assets/Group-26113.png" width={450} height={450} />
         </div>
