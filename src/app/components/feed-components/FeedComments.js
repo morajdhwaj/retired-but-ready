@@ -656,107 +656,111 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               width={20}
                             ></Image>
                           </button>
-                          <button
-                            onClick={() => handleReply(comment?._id)}
-                            className="text-xs ml-5"
-                          >
-                            Reply
-                          </button>
                         </div>
                       </div>
                     )}
-                    {comment.reaction_like.filter(
-                      (item) => item.user_id === userId
-                    ).length > 0 && (
-                      <p
-                        className="w-[30px] mt-1"
-                        onMouseEnter={() => setShowReaction(comment._id)}
+                    <div className="flex">
+                      <div className="">
+                        {comment.reaction_like.filter(
+                          (item) => item.user_id === userId
+                        ).length > 0 && (
+                          <p
+                            className="w-[30px] mt-1"
+                            onMouseEnter={() => setShowReaction(comment._id)}
+                          >
+                            <Image
+                              src="/emoji/like2.png"
+                              height={25}
+                              width={20}
+                            ></Image>
+                          </p>
+                        )}
+                        {comment.reaction_love.filter(
+                          (item) => item.user_id === userId
+                        ).length > 0 && (
+                          <p
+                            className="w-[30px] mt-1"
+                            onMouseEnter={() => setShowReaction(comment._id)}
+                          >
+                            <Image
+                              src="/emoji/love.png"
+                              height={25}
+                              width={20}
+                            ></Image>
+                          </p>
+                        )}
+                        {comment.reaction_thinking.filter(
+                          (item) => item.user_id === userId
+                        ).length > 0 && (
+                          <p
+                            className="w-[30px] mt-1"
+                            onMouseEnter={() => setShowReaction(comment._id)}
+                          >
+                            <Image
+                              src="/emoji/thinking.png"
+                              height={25}
+                              width={20}
+                            ></Image>
+                          </p>
+                        )}
+                        {comment.reaction_insight.filter(
+                          (item) => item.user_id === userId
+                        ).length > 0 && (
+                          <p
+                            className="w-[30px] mt-1"
+                            onMouseEnter={() => setShowReaction(comment._id)}
+                          >
+                            <Image
+                              src="/emoji/bulb.png"
+                              height={25}
+                              width={15}
+                            ></Image>
+                          </p>
+                        )}
+                        {comment.reaction_appraise.filter(
+                          (item) => item.user_id === userId
+                        ).length > 0 && (
+                          <p
+                            className="w-[30px] mt-1"
+                            onMouseEnter={() => setShowReaction(comment._id)}
+                          >
+                            <Image
+                              src="/emoji/clap.png"
+                              height={25}
+                              width={20}
+                            ></Image>
+                          </p>
+                        )}
+                        {comment.reaction_love.filter(
+                          (item) => item.user_id === userId
+                        ).length <= 0 &&
+                          comment.reaction_appraise.filter(
+                            (item) => item.user_id === userId
+                          ).length <= 0 &&
+                          comment.reaction_insight.filter(
+                            (item) => item.user_id === userId
+                          ).length <= 0 &&
+                          comment.reaction_thinking.filter(
+                            (item) => item.user_id === userId
+                          ).length <= 0 &&
+                          comment.reaction_like.filter(
+                            (item) => item.user_id === userId
+                          ).length <= 0 && (
+                            <p
+                              className="w-[30px] mt-1"
+                              onMouseEnter={() => setShowReaction(comment._id)}
+                            >
+                              <AiOutlineLike size={20} />
+                            </p>
+                          )}
+                      </div>
+                      <button
+                        onClick={() => handleReply(comment?._id)}
+                        className="text-xs ml-2 pt-1"
                       >
-                        <Image
-                          src="/emoji/like2.png"
-                          height={25}
-                          width={20}
-                        ></Image>
-                      </p>
-                    )}
-                    {comment.reaction_love.filter(
-                      (item) => item.user_id === userId
-                    ).length > 0 && (
-                      <p
-                        className="w-[30px] mt-1"
-                        onMouseEnter={() => setShowReaction(comment._id)}
-                      >
-                        <Image
-                          src="/emoji/love.png"
-                          height={25}
-                          width={20}
-                        ></Image>
-                      </p>
-                    )}
-                    {comment.reaction_thinking.filter(
-                      (item) => item.user_id === userId
-                    ).length > 0 && (
-                      <p
-                        className="w-[30px] mt-1"
-                        onMouseEnter={() => setShowReaction(comment._id)}
-                      >
-                        <Image
-                          src="/emoji/thinking.png"
-                          height={25}
-                          width={20}
-                        ></Image>
-                      </p>
-                    )}
-                    {comment.reaction_insight.filter(
-                      (item) => item.user_id === userId
-                    ).length > 0 && (
-                      <p
-                        className="w-[30px] mt-1"
-                        onMouseEnter={() => setShowReaction(comment._id)}
-                      >
-                        <Image
-                          src="/emoji/bulb.png"
-                          height={25}
-                          width={15}
-                        ></Image>
-                      </p>
-                    )}
-                    {comment.reaction_appraise.filter(
-                      (item) => item.user_id === userId
-                    ).length > 0 && (
-                      <p
-                        className="w-[30px] mt-1"
-                        onMouseEnter={() => setShowReaction(comment._id)}
-                      >
-                        <Image
-                          src="/emoji/clap.png"
-                          height={25}
-                          width={20}
-                        ></Image>
-                      </p>
-                    )}
-                    {comment.reaction_love.filter(
-                      (item) => item.user_id === userId
-                    ).length <= 0 &&
-                      comment.reaction_appraise.filter(
-                        (item) => item.user_id === userId
-                      ).length <= 0 &&
-                      comment.reaction_insight.filter(
-                        (item) => item.user_id === userId
-                      ).length <= 0 &&
-                      comment.reaction_thinking.filter(
-                        (item) => item.user_id === userId
-                      ).length <= 0 &&
-                      comment.reaction_like.filter(
-                        (item) => item.user_id === userId
-                      ).length <= 0 && (
-                        <p
-                          className="w-[30px] mt-1"
-                          onMouseEnter={() => setShowReaction(comment._id)}
-                        >
-                          <AiOutlineLike size={20} />
-                        </p>
-                      )}
+                        Reply
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
