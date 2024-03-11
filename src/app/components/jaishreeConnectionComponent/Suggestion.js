@@ -287,9 +287,11 @@ const Suggestion = () => {
                 </Link>
               </div>
             </div>
-            <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
-              {cardElem.user_display_name}
-            </h1>
+            <Link href={`/profile/${cardElem?._id}`}>
+              <h1 className="mt-10 flex items-center justify-center font-sans text-xl">
+                {cardElem.user_display_name}
+              </h1>
+            </Link>
             <p className="  text-center text-xs mt-2 text-gray-500">postion</p>
             <p className=" text-center text-sm text-gray-500"> text of the</p>
 

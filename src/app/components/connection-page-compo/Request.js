@@ -97,7 +97,9 @@ const Request = () => {
                     )}
                   </Link>
                   <div className="mt-5 mx-2">
-                    <h1>{curEle.from_user_full_name}</h1>
+                    <Link href={`/profile/${curEle?.from_user}`}>
+                      <h1>{curEle.from_user_full_name}</h1>
+                    </Link>
                     <p>hello</p>
                   </div>
                 </div>
