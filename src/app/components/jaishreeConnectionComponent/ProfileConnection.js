@@ -44,7 +44,7 @@ const ProfileConnection = () => {
       <h1 className="mt-5 text-black font-medium text-sm">
         Based on my Profile
       </h1>
-      <div className=" border border-[#D9D9D9] w-[7%] h-0.3 mt-2" />
+      <div className=" border border-[#D9D9D9] w-[15%] h-0.3 mt-2" />
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16">
         {gpsData.map((cardElem, index) => (
           <div
