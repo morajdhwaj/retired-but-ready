@@ -35,7 +35,7 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        router.push("/");
+        router.push("/all-feeds-page");
       })
       .catch(function (error) {
         console.error(error);

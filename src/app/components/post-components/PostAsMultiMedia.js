@@ -92,7 +92,7 @@ const PostAsMultiMedia = ({
             const progress = Math.round(
               (progressEvent.loaded / progressEvent.total) * 100
             );
-            setUploadProgress(progress);
+            setUploadProgress(progress - 1);
           },
         }
       )
