@@ -25,6 +25,7 @@ const getUserIdFromStorage = () => {
 };
 
 const page = ({ params }) => {
+  const [connections, setConnections] = useState([]);
   const [userId, setUserId] = useState(getUserIdFromStorage());
   const profileId = params["user"];
   const [userData, setUserData] = useState([]);
@@ -48,6 +49,7 @@ const page = ({ params }) => {
     getUserData();
     geFollowRequests();
     checkRequests();
+    getAllConnection();
   }, [profileId]);
 
   // GET PROFILE DATA ---------------------------------------------
@@ -196,7 +198,21 @@ const page = ({ params }) => {
     console.log(isRequestedData, "this is requested data find");
   };
 
-  console.log(profileId, userId, isRequested, "this is profile id ");
+  // GET ALL CONNECTION API ------------------------------------------------------------------------
+
+  const getAllConnection = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/my-network/${profileId}`
+      );
+      setConnections(response.data);
+      console.log(response.data, "this is response from get all connection");
+    } catch (error) {
+      console.log(error, "this is error from get all connection");
+    }
+  };
+
+  console.log(profileId, userId, connections, "this is profile id ");
 
   return (
     <>
@@ -309,9 +325,12 @@ const page = ({ params }) => {
                       {userData.user_city},{userData.user_state},
                       {userData.country_name}
                     </h2>
-                    <p className="text-sm">
-                      <span className="">500+</span>Connection
-                    </p>
+                    <Link
+                      href={`/my-connections/${profileId}`}
+                      className="text-sm"
+                    >
+                      <span className="">{connections.length} </span>Connection
+                    </Link>
                   </div>
                   <div className="flex gap-2 items-center ">
                     <div className="border p-1 rounded-sm border-black">
@@ -342,7 +361,7 @@ const page = ({ params }) => {
                     <div className="">
                       <div className="flex gap-3 my-4">
                         <Link
-                          href={`/single-group/${profileId}`}
+                          href={`/feed/${profileId}`}
                           className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
                         >
                           Post
