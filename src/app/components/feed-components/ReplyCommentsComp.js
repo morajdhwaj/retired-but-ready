@@ -347,7 +347,7 @@ const ReplyCommentsComp = ({
                                   reply?.comment_content &&
                                   reply?.comment_content.replace(
                                     /(https?:\/\/[^\s]+)/g,
-                                    '<a class="text-blue-600" href="$1">$1</a>'
+                                    '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
                                   ),
                               }}
                             />

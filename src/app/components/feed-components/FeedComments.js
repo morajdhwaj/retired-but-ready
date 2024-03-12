@@ -435,7 +435,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             comment?.comment_content &&
                             comment?.comment_content.replace(
                               /(https?:\/\/[^\s]+)/g,
-                              '<a class="text-blue-600" href="$1">$1</a>'
+                              '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
                             ),
                         }}
                       />
@@ -553,7 +553,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "like" && (
-                              <p className="absolute top-[-28px]  bg-[#773FC6] text-white px-1 rounded-lg left-[-10px]">
+                              <p className="absolute top-[-28px]  bg-[#773FC6] text-white px-2 rounded-lg left-[-10px]">
                                 Like
                               </p>
                             )}
@@ -578,7 +578,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "love" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-12px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-12px]">
                                 Love
                               </p>
                             )}
@@ -602,7 +602,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "Think" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-15px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-15px]">
                                 Think
                               </p>
                             )}
@@ -627,7 +627,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "insight" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-20px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-20px]">
                                 Insight
                               </p>
                             )}
@@ -651,7 +651,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "Appreciate" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-30px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-30px]">
                                 Appreciate
                               </p>
                             )}

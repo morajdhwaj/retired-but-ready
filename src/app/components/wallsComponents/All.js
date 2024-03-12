@@ -271,8 +271,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col mt-5">
-      {feeds.map((feed) => 
-      {
+      {feeds.map((feed) => {
         console.log(feed, "this is for feed testing");
 
         let showIcon = <AiOutlineLike size={25} />; // Default icon
@@ -425,7 +424,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         feed?.post_description &&
                         feed?.post_description.replace(
                           /(https?:\/\/[^\s]+)/g,
-                          '<a class="text-blue-600" href="$1">$1</a>'
+                          '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
                         ),
                     }}
                   />
@@ -532,7 +531,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onMouseLeave={() => setReactionName("")}
                       >
                         {reactionName === "like" && (
-                          <p className="absolute top-[-20px]  bg-[#773FC6] text-white px-1 rounded-lg left-[-10px]">
+                          <p className="absolute top-[-20px]  bg-[#773FC6] text-white px-2 rounded-lg left-[-10px]">
                             Like
                           </p>
                         )}
@@ -560,7 +559,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onMouseLeave={() => setReactionName("")}
                       >
                         {reactionName === "love" && (
-                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-12px]">
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-2 rounded-lg left-[-12px]">
                             Love
                           </p>
                         )}
@@ -587,7 +586,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onMouseLeave={() => setReactionName("")}
                       >
                         {reactionName === "Think" && (
-                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-15px]">
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-2 rounded-lg left-[-15px]">
                             Think
                           </p>
                         )}
@@ -614,7 +613,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onMouseLeave={() => setReactionName("")}
                       >
                         {reactionName === "insight" && (
-                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-20px]">
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-2 rounded-lg left-[-20px]">
                             Insight
                           </p>
                         )}
@@ -641,7 +640,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onMouseLeave={() => setReactionName("")}
                       >
                         {reactionName === "Appreciate" && (
-                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-1 rounded-lg left-[-30px]">
+                          <p className="absolute top-[-20px] bg-[#773FC6] text-white px-2 rounded-lg left-[-30px]">
                             Appreciate
                           </p>
                         )}
