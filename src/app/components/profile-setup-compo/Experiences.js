@@ -129,11 +129,23 @@ const Experiences = ({
           onChange={(e) => setEnglishProficiency(e.target.value)}
           className=" mt-5 h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
         >
-          <option>Basic</option>
-          <option>Conversational</option>
-          <option>Competent</option>
-          <option>Proficient</option>
-          <option>Fluent</option>
+          <option value="" disabled>
+            Select English Proficiency
+          </option>
+          <option>
+            Basic - Only able to communicate in this language through written
+            communication
+          </option>
+          <option>
+            Conversational - Conversational - Comfortable in verbal discussion
+          </option>
+          <option>
+            Fluent - Complete command of this language with perfect grammar
+          </option>
+          <option>
+            Native - Complete command of this language with no discernible
+            accent
+          </option>
         </select>
       </div>
       <div className="mt-5">
@@ -243,9 +255,9 @@ const Experiences = ({
         <div className="flex justify-center items-center">
           <button
             onClick={handleAddExperience}
-            className="text-xl text-[#773fc6] font-medium mt-10"
+            className="text-xl text-[#773fc6]  border p-2 rounded-lg border-[#773fc6] font-medium mt-10"
           >
-            + ADD positions
+            Add positions
           </button>
         </div>
 
