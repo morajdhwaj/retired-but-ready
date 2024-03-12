@@ -10,7 +10,7 @@ import Link from "next/link";
 import {UserIdContext} from "@/context/UserIdContext";
 
 const page = () => {
-  const { setIdFromUseContext } = useContext(UserIdContext);
+  const { setUserId } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState("");
@@ -48,7 +48,7 @@ const page = () => {
   // SET USER ID USING  CONTEXT API ----------------------------------------------------------------
 
   const setIdContext = (id) => {
-    setIdFromUseContext(id);
+    setUserId(id);
   };
 
   const handleLogin = () => {

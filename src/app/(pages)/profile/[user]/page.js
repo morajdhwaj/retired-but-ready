@@ -28,7 +28,7 @@ const getUserIdFromStorage = () => {
 
 const page = ({ params }) => {
   const profileId = params["user"];
- const { idFromUseContext } = useContext(UserIdContext);
+ const { userIdFromContext } = useContext(UserIdContext);
 
   const [connections, setConnections] = useState([]);
   const [userId, setUserId] = useState(getUserIdFromStorage());
@@ -284,15 +284,13 @@ const page = ({ params }) => {
                       </Link>
                     ) : (
                       <div className=" flex gap-5 ">
-                        {myConnections.length>0 ? (
+                        {myConnections.length > 0 ? (
                           <>
                             {myConnections.map((data) => (
                               <button
                                 key={data?._id}
                                 className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                                onClick={() =>
-                                  removeRequest(data?._id)
-                                }
+                                onClick={() => removeRequest(data?._id)}
                               >
                                 <span>Connected</span>
                               </button>
@@ -343,7 +341,6 @@ const page = ({ params }) => {
                             onClick={followRequestSend}
                           >
                             Follow
-                          
                           </button>
                         )}
                       </div>
@@ -375,7 +372,8 @@ const page = ({ params }) => {
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
-                      <span className="">{connections.length} </span>Connection   {idFromUseContext}
+                      <span className="">{connections.length} </span>Connection{" "}
+                      {userIdFromContext}
                     </Link>
                   </div>
                   <div className="flex gap-2 items-center ">
