@@ -327,7 +327,7 @@ const page = ({ params }) => {
                     </h2>
                     <Link
                       href={`/my-connections/${profileId}`}
-                      className="text-sm"
+                      className="text-sm text-[#773FC6] font-semibold"
                     >
                       <span className="">{connections.length} </span>Connection
                     </Link>
