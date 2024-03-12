@@ -257,7 +257,7 @@ const Experiences = ({
             onClick={handleAddExperience}
             className="text-xl text-[#773fc6]  border p-2 rounded-lg border-[#773fc6] font-medium mt-10"
           >
-            Add positions
+            Add position
           </button>
         </div>
 
