@@ -2,13 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { GiHamburgerMenu } from "react-icons/gi";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Navbar = () => {
+  const { userIdFromContext,removeUserId } = useContext(UserIdContext);
   const [showSidebar, setShowSidebar] = useState(false);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -39,8 +41,11 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-    localStorage.removeItem("userId");
-    router.push("login");
+
+    removeUserId();
+    // localStorage.removeItem("userId");
+    router.push("/");
+
   };
 
   console.log(userId, "ddd");
@@ -81,7 +86,7 @@ const Navbar = () => {
           <option>HI</option>
         </select>
 
-        {userId ? (
+        {userIdFromContext ? (
           <button
             onClick={handleLogOut}
             className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "

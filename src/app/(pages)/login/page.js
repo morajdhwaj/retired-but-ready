@@ -3,11 +3,14 @@ import Navbar from "@/app/components/Navbar";
 import PopUp from "@/app/components/PopUp";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Link from "next/link";
+import {UserIdContext} from "@/context/UserIdContext";
+
 const page = () => {
+  const { setUserId } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState("");
@@ -42,6 +45,12 @@ const page = () => {
       });
   };
 
+  // SET USER ID USING  CONTEXT API ----------------------------------------------------------------
+
+  const setIdContext = (id) => {
+    setUserId(id);
+  };
+
   const handleLogin = () => {
     if (!email || !password) {
       toast.error("Please enter your email and password");
@@ -59,6 +68,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         localStorage.setItem("userId", response?.data?.user_id);
+        setIdContext(response?.data?.user_id);
         if (response.data.redirect === "verification") {
           router.push("verification-email");
         } else {
