@@ -24,6 +24,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
+        localStorage.setItem("userId", response?.data?.user_id);
         router.push("/forgot-password-otp");
       })
       .catch(function (error) {

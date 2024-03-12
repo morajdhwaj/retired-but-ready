@@ -39,6 +39,7 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
+    // localStorage.removeItem("userId");
     router.push("login");
   };
 

@@ -13,6 +13,7 @@ import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
 import dayjs from "dayjs";
+import Link from "next/link";
 
 const FeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -348,25 +349,29 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
         {comments?.map((comment) => (
           <div key={comment?._id}>
             <div className="flex gap-2 mt-5">
-              <div>
-                {comment?.comment_by?.user_image ? (
-                  <Image
-                    alt=""
-                    src={comment?.comment_by?.user_image}
-                    height={50}
-                    width={50}
-                    className="w-14 h-12 rounded-full border-2 border-gray-200"
-                  />
-                ) : (
-                  <FaUserCircle size={50} />
-                )}
-              </div>
+              <Link href={`/profile/${comment?.comment_by?.id}`}>
+                <div>
+                  {comment?.comment_by?.user_image ? (
+                    <Image
+                      alt=""
+                      src={comment?.comment_by?.user_image}
+                      height={50}
+                      width={50}
+                      className="w-14 h-12 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
+                </div>
+              </Link>
               <div className="flex border-gray-300 bg-white border rounded-b-lg w-full rounded-tr-lg p-2">
                 <div className="w-full ">
                   <div className="justify-between flex ">
-                    <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                      {comment?.comment_by?.user_display_name}
-                    </h2>
+                    <Link href={`/profile/${comment?.comment_by?.id}`}>
+                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                        {comment?.comment_by?.user_display_name}
+                      </h2>
+                    </Link>
                     <div>
                       {userId == comment.comment_by.id ? (
                         <button
@@ -430,7 +435,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             comment?.comment_content &&
                             comment?.comment_content.replace(
                               /(https?:\/\/[^\s]+)/g,
-                              '<a class="text-blue-600" href="$1">$1</a>'
+                              '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
                             ),
                         }}
                       />
@@ -548,7 +553,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "like" && (
-                              <p className="absolute top-[-28px]  bg-[#773FC6] text-white px-1 rounded-lg left-[-10px]">
+                              <p className="absolute top-[-28px]  bg-[#773FC6] text-white px-2 rounded-lg left-[-10px]">
                                 Like
                               </p>
                             )}
@@ -573,7 +578,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "love" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-12px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-12px]">
                                 Love
                               </p>
                             )}
@@ -597,7 +602,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "Think" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-15px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-15px]">
                                 Think
                               </p>
                             )}
@@ -622,7 +627,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "insight" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-20px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-20px]">
                                 Insight
                               </p>
                             )}
@@ -646,7 +651,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             onMouseLeave={() => setReactionName("")}
                           >
                             {reactionName === "Appreciate" && (
-                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-1 rounded-lg left-[-30px]">
+                              <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-30px]">
                                 Appreciate
                               </p>
                             )}
