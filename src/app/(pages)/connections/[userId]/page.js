@@ -30,7 +30,7 @@ const page = ({ params }) => {
     }
   };
 
-  console.log(connections, "this is get my all connections ");
+  console.log(connections,profileId, "this is get my all connections ");
 
   return (
     <>
@@ -71,26 +71,56 @@ const page = ({ params }) => {
                     className="py-2 px-2 sm:flex justify-between items-center border-b "
                     key={data?._id}
                   >
-                    <Link href={`/profile/${data?.from_user}`} className="flex items-center gap-3">
-                      {data?.from_user_image ? (
-                        <Image
-                          alt=""
-                          src={data?.from_user_image}
-                          height={70}
-                          width={70}
-                          className="w-20 h-20 rounded-full border-2 border-gray-200"
-                        />
-                      ) : (
-                        <FaUserCircle size={70} />
-                      )}
-                      <div className="">
-                        <h2 className="text-md font-semibold">
-                          {data?.from_user_full_name}
-                        </h2>
-                        <h3 className="font-medium">Developer</h3>
-                        <p className="text-sm">Connected 3 hours ago</p>
-                      </div>
-                    </Link>
+                    {data?.from_user === profileId ? (
+                      <Link
+                        href={`/profile/${data?.to_user}`}
+                        className="flex items-center gap-3"
+                      >
+                        {data?.to_user_image ? (
+                          <Image
+                            alt=""
+                            src={data?.to_user_image}
+                            height={70}
+                            width={70}
+                            className="w-20 h-20 rounded-full border-2 border-gray-200"
+                          />
+                        ) : (
+                          <FaUserCircle size={70} />
+                        )}
+                        <div className="">
+                          <h2 className="text-md font-semibold">
+                            {data?.to_user_full_name}
+                          </h2>
+                          <h3 className="font-medium">Developer</h3>
+                          <p className="text-sm">Connected 3 hours ago</p>
+                        </div>
+                      </Link>
+                    ) : (
+                      <Link
+                        href={`/profile/${data?.from_user}`}
+                        className="flex items-center gap-3"
+                      >
+                        {data?.from_user_image ? (
+                          <Image
+                            alt=""
+                            src={data?.from_user_image}
+                            height={70}
+                            width={70}
+                            className="w-20 h-20 rounded-full border-2 border-gray-200"
+                          />
+                        ) : (
+                          <FaUserCircle size={70} />
+                        )}
+                        <div className="">
+                          <h2 className="text-md font-semibold">
+                            {data?.from_user_full_name}
+                          </h2>
+                          <h3 className="font-medium">Developer</h3>
+                          <p className="text-sm">Connected 3 hours ago</p>
+                        </div>
+                      </Link>
+                    )}
+
                     {/* <div className="flex gap-3 mt-3 sm:mt-0 justify-center pl-5">
                       <button className=" py-1 px-7 border-2 rounded-lg border-[#773FC6] h-10">
                         Message

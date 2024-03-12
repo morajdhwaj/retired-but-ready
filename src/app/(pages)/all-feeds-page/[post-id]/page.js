@@ -75,7 +75,7 @@ const page = ({ params }) => {
                 feed?.post_description &&
                 feed?.post_description.replace(
                   /(https?:\/\/[^\s]+)/g,
-                  '<a class="text-blue-600" href="$1">$1</a>'
+                  '<a class="text-red-600" href="$1">$1</a>'
                 ),
             }}
           />

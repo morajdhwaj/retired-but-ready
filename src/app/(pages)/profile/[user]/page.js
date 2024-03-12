@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import JoinGroupRecommendation from "@/app/components/groupComponent/JoinNewGroup";
@@ -16,6 +16,8 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 
+import { UserIdContext } from "@/context/UserIdContext";
+
 // GET USER ID FROM LOCAL STORAGE --------------------------------
 const getUserIdFromStorage = () => {
   if (typeof window !== "undefined") {
@@ -25,16 +27,18 @@ const getUserIdFromStorage = () => {
 };
 
 const page = ({ params }) => {
+  const profileId = params["user"];
+ const { idFromUseContext } = useContext(UserIdContext);
+
   const [connections, setConnections] = useState([]);
   const [userId, setUserId] = useState(getUserIdFromStorage());
-  const profileId = params["user"];
   const [userData, setUserData] = useState([]);
   const [education, setEducation] = useState([]);
   const [skill, setSkill] = useState([]);
   const [work, setWork] = useState([]);
   const [followRequests, setFollowRequests] = useState([]);
-
   const [isRequested, setIsRequested] = useState([]);
+  const [myConnections, setMyConnections] = useState([]);
 
   // GET USER ID FROM LOCAL STORAGE --------------------------------
 
@@ -50,6 +54,7 @@ const page = ({ params }) => {
     geFollowRequests();
     checkRequests();
     getAllConnection();
+    getMyAllConnection();
   }, [profileId]);
 
   // GET PROFILE DATA ---------------------------------------------
@@ -211,8 +216,30 @@ const page = ({ params }) => {
       console.log(error, "this is error from get all connection");
     }
   };
+  // GET ALL CONNECTION API ------------------------------------------------------------------------
 
-  console.log(profileId, userId, connections, "this is profile id ");
+  const getMyAllConnection = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/my-network/${userId}`
+      );
+      const isConnected = response.data.filter(
+        (items) => items.to_user === profileId || items.from_user === profileId
+      );
+      setMyConnections(isConnected);
+      console.log(response.data, "this is response from get all connection");
+    } catch (error) {
+      console.log(error, "this is error from get all connection");
+    }
+  };
+
+  console.log(
+    profileId,
+    userId,
+    connections,
+    myConnections,
+    "this is profile id "
+  );
 
   return (
     <>
@@ -257,29 +284,47 @@ const page = ({ params }) => {
                       </Link>
                     ) : (
                       <div className=" flex gap-5 ">
-                        {isRequested.length > 0 &&
-                        isRequested[0].to_user === profileId ? (
+                        {myConnections.length>0 ? (
                           <>
-                            {isRequested.map((data) => (
+                            {myConnections.map((data) => (
                               <button
-                                key={data.network_request_id}
+                                key={data?._id}
                                 className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
                                 onClick={() =>
-                                  removeRequest(data.network_request_id)
+                                  removeRequest(data?._id)
                                 }
                               >
-                                <span>Requested</span>
+                                <span>Connected</span>
                               </button>
                             ))}
                           </>
                         ) : (
-                          <button
-                            className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
-                            onClick={connectionRequest}
-                          >
-                            <IoMdPersonAdd />
-                            <span>Connect</span>
-                          </button>
+                          <>
+                            {isRequested.length > 0 &&
+                            isRequested[0].to_user === profileId ? (
+                              <>
+                                {isRequested.map((data) => (
+                                  <button
+                                    key={data.network_request_id}
+                                    className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                    onClick={() =>
+                                      removeRequest(data.network_request_id)
+                                    }
+                                  >
+                                    <span>Requested</span>
+                                  </button>
+                                ))}
+                              </>
+                            ) : (
+                              <button
+                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                onClick={connectionRequest}
+                              >
+                                <IoMdPersonAdd />
+                                <span>Connect</span>
+                              </button>
+                            )}
+                          </>
                         )}
 
                         {followRequests &&
@@ -298,6 +343,7 @@ const page = ({ params }) => {
                             onClick={followRequestSend}
                           >
                             Follow
+                          
                           </button>
                         )}
                       </div>
@@ -329,7 +375,7 @@ const page = ({ params }) => {
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
-                      <span className="">{connections.length} </span>Connection
+                      <span className="">{connections.length} </span>Connection   {idFromUseContext}
                     </Link>
                   </div>
                   <div className="flex gap-2 items-center ">
