@@ -71,9 +71,11 @@ const ContactPage = () => {
               </div>
               <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
                 <div className="">
-                  <h1 className="text-[#2C2C2C] text-sm font-medium">
-                    {item.from_user_full_name}
-                  </h1>
+                  <Link href={`/profile/${item.from_user}`}>
+                    <h1 className="text-[#2C2C2C] text-sm font-medium">
+                      {item.from_user_full_name}
+                    </h1>
+                  </Link>
                   <p className="text-[#888888] font-medium text-xs">
                     Oppo Company
                   </p>

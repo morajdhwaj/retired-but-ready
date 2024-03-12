@@ -98,9 +98,11 @@ const FollowersPage = () => {
               </div>
               <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
                 <div className="">
-                  <h1 className="text-[#2C2C2C] text-sm font-medium">
-                    {follower.from_user_full_name}
-                  </h1>
+                  <Link href={`/profile/${follower.from_user_id}`}>
+                    <h1 className="text-[#2C2C2C] text-sm font-medium">
+                      {follower.from_user_full_name}
+                    </h1>
+                  </Link>
                   <p className="text-[#888888]  font-medium text-xs">
                     Human resource executive
                   </p>
