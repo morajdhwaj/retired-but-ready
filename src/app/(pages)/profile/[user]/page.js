@@ -326,7 +326,7 @@ const page = ({ params }) => {
                       {userData.country_name}
                     </h2>
                     <Link
-                      href={`/my-connections/${profileId}`}
+                      href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
                       <span className="">{connections.length} </span>Connection
