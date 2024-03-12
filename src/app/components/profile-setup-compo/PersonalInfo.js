@@ -104,7 +104,11 @@ const PersonalInfo = ({
         <h2 className="font-semibold text-gray-500">Profile display name</h2>
         <input
           value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
+          onChange={(e) =>
+            setDisplayName(
+              e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+            )
+          }
           className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
@@ -113,7 +117,11 @@ const PersonalInfo = ({
           <h2 className="font-semibold text-gray-500">First Name</h2>
           <input
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) =>
+              setFirstName(
+                e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+              )
+            }
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
@@ -121,7 +129,11 @@ const PersonalInfo = ({
           <h2 className="font-semibold text-gray-500">Last Name</h2>
           <input
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) =>
+              setLastName(
+                e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+              )
+            }
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>
@@ -134,6 +146,9 @@ const PersonalInfo = ({
             onChange={(e) => setGender(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           >
+            <option value="" disabled>
+              Select gender
+            </option>
             <option>Male</option>
             <option>Female</option>
             <option>Other</option>
@@ -187,8 +202,10 @@ const PersonalInfo = ({
           <h2 className="font-semibold text-gray-500">City*</h2>
           <input
             value={city}
+            onChange={(e) =>
+              setCity(e.target.value.replace(/\b\w/g, (c) => c.toUpperCase()))
+            }
             placeholder="Enter city name"
-            onChange={(e) => setCity(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
           />
         </div>

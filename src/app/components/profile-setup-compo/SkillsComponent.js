@@ -180,7 +180,7 @@ const SkillsComponent = ({
               {" "}
               Most recent Designation*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
@@ -189,9 +189,18 @@ const SkillsComponent = ({
             onChange={(e) => setLastDesignation(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>Software Developer</option>
-            <option>Testing</option>
-            <option>Human Resource</option>
+            <option value="" disabled>
+              Select Last Designation
+            </option>
+            <option>Senior Management</option>
+            <option>Top-Level Manager</option>
+            <option>Middle-Level Manager</option>
+            <option>First level Manager/ Employee</option>
+            <option>Chief Executive Officer (CEO)</option>
+            <option>Chief Operating Officer (COO)</option>
+            <option>President</option>
+            <option>Director</option>
+            <option>Other</option>
           </select>
         </div>
 
@@ -201,7 +210,7 @@ const SkillsComponent = ({
               {" "}
               Total Work Experience*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
@@ -210,11 +219,14 @@ const SkillsComponent = ({
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>0-5 Years</option>
-            <option>5-10 Years</option>
-            <option>10-15Years</option>
-            <option>15-20 Years</option>
-            <option>20+ Years</option>
+            <option value="" disabled>
+              Select Total Work Experience
+            </option>
+            <option>30 to above Years</option>
+            <option>20 to 30 Years </option>
+            <option>10 to 20 Years</option>
+            <option>5 to 10 Years</option>
+            <option>5 and less Years</option>
           </select>
         </div>
 
@@ -223,15 +235,18 @@ const SkillsComponent = ({
             <h2 className=" text-gray-500 font-medium text-xl">
               Professional field*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
           <select
             value={professionalField}
             onChange={(e) => setProfessionalField(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
+            <option value="" disabled>
+              Select Professional Field
+            </option>
             <option>Healthcare</option>
             <option>Information Technology</option>
             <option>Finance</option>
@@ -247,15 +262,18 @@ const SkillsComponent = ({
             <h2 className=" text-gray-500 font-medium text-xl">
               Professional expertise*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
           <select
             value={professionalExpertise}
             onChange={(e) => setProfessionalExpertise(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-full rounded"
           >
+            <option value="" disabled>
+              Select Professional Expertise
+            </option>
             <option>Data Analysis</option>
             <option>Software Development</option>
             <option>Project Management </option>
