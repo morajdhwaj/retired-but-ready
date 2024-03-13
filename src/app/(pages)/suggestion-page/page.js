@@ -3,19 +3,21 @@ import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
 
+
 const Navbar = () => {
   const { userIdFromContext,removeUserId } = useContext(UserIdContext);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -17,7 +18,7 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 
@@ -86,7 +87,7 @@ const Navbar = () => {
           <option>HI</option>
         </select>
 
-        {userIdFromContext ? (
+        {userId ? (
           <button
             onClick={handleLogOut}
             className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "

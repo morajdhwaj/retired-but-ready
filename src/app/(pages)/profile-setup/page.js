@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { FaCircleUser } from "react-icons/fa6";
@@ -13,8 +13,10 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/PopUp";
 import Image from "next/image";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [step, setStep] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
@@ -67,7 +69,7 @@ const page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

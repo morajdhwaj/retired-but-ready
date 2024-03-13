@@ -1,21 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = ({ length = 4 }) => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [otp, setOtp] = useState(Array(length).fill(""));
   const finalOtp = otp.join("");
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

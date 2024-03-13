@@ -2,7 +2,7 @@
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 // import { FaBox } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
@@ -10,8 +10,10 @@ import axios from "axios";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import PopUp from "@/app/components/PopUp";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
   const [followers, setFollower] = useState([]);
@@ -19,7 +21,7 @@ const page = () => {
   const [formUserId, setFromUserId] = useState("");
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
     getFollowers();
   }, [userId]);
