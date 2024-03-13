@@ -92,11 +92,11 @@ const page = () => {
             ></div>
           </div>
 
-          <div className=" mt-36 sm:mt-32 md:mt-36 lg:36  ">
-            <div className="flex  text-black border-b-2 w-[40%] relative">
+          <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">
+            <div className="flex  text-black border-b-2 w-[75%] sm:w-[40%] relative">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[10%] ${
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px]  ${
                   toggle === 1
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-[#D1C9C9]"
@@ -105,18 +105,8 @@ const page = () => {
                 Contact
               </div>
               <div
-                onClick={() => setToggle(2)}
-                className={`border-b-2 text-md font-medium absolute bottom-[-2px] left-[90%] ${
-                  toggle === 2
-                    ? "border-[#A8359C] text-[#A8359C]"
-                    : "border-gray-200"
-                } `}
-              >
-                Following
-              </div>
-              <div
                 onClick={() => setToggle(3)}
-                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[50%]  ${
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px]   left-[40%]  ${
                   toggle === 3
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200"
@@ -124,8 +114,18 @@ const page = () => {
               >
                 Followers
               </div>
+              <div
+                onClick={() => setToggle(2)}
+                className={`border-b-2 text-md font-medium absolute bottom-[-2px]   left-[80%]  ${
+                  toggle === 2
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200" - []
+                } `}
+              >
+                Following
+              </div>
             </div>
-            <div className=" p-5">
+            <div className="">
               {toggle === 1 && <ContactPage />}
               {toggle === 2 && <FollowingPage />}
               {toggle === 3 && <FollowersPage />}
