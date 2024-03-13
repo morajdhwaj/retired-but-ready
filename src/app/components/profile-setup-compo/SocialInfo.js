@@ -197,7 +197,7 @@ const SocialInfo = ({
           <option>60+ Years</option>
           <option>45-60 Years</option>
           <option>30-45 Years</option>
-          <option>Bellow 30 Years</option>
+          <option>Below 30 Years</option>
         </select>
       </div>
       <div className="">

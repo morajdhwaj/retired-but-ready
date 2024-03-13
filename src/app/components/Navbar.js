@@ -43,7 +43,7 @@ const Navbar = () => {
   const handleLogOut = () => {
     removeUserId();
     // localStorage.removeItem("userId");
-    router.push("/");
+    router.push("/login");
   };
 
   console.log(userId, "userId");
