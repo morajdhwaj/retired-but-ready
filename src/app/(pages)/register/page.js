@@ -3,7 +3,7 @@ import Navbar from "@/app/components/Navbar";
 import PopUp from "@/app/components/PopUp";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
