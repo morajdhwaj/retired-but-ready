@@ -13,13 +13,35 @@ const page = ({ length = 4 }) => {
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
 
+  const [userData, setUserData] = useState([]);
+
   const finalOtp = otp.join("");
 
   const router = useRouter();
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
+    getUserData();
   }, [userId]);
+
+  const getUserData = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/user/profile/${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response?.data, "hello im sachin");
+        setUserData(response?.data);
+        // setCompanyName(response?.data?.work_history[0].company_name);
+        // setTitle(response?.data?.work_history[0].title);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   const handleVerification = () => {
     const options = {
@@ -35,7 +57,7 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        router.push("/");
+        router.push("/all-feeds-page");
       })
       .catch(function (error) {
         console.error(error);
@@ -63,6 +85,25 @@ const page = ({ length = 4 }) => {
     }
   };
 
+  const handleResendOtp = () => {
+    const options = {
+      method: "GET",
+      url: "https://retpro.catax.me/user/resend-email-otp",
+      params: { user_email: userData?.user_email },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
   console.log(finalOtp);
   console.log(password);
   console.log(userId, "dksbdlsb");
@@ -80,7 +121,7 @@ const page = ({ length = 4 }) => {
             <p className="mt-5 text-sm font-medium ">
               Please type the verification code sent to{" "}
               <span className="text-[#773FC6] text-sm">
-                johnrahmands@mail.com
+                {userData?.user_email}
               </span>
             </p>
 
@@ -101,18 +142,23 @@ const page = ({ length = 4 }) => {
                 />
               ))}
             </div>
-            <h1 className="mt-4 text-gray-500">New Password</h1>
-            <input
-              type="text"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="h-14 rounded w-full border border-gray-200"
-            />
-
+            {finalOtp.length > 3 && (
+              <div>
+                <h1 className="mt-4 text-gray-500">New Password</h1>
+                <input
+                  type="text"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="h-14 rounded w-full border border-gray-200"
+                />
+              </div>
+            )}
             <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
               {" "}
               I didn't receive a code!{" "}
-              <span className="text-[#773FC6] ">Please resend</span>
+              <button onClick={handleResendOtp} className="text-[#773FC6] ">
+                Please resend
+              </button>
             </h1>
             <div className="bg-reg-500">
               <button

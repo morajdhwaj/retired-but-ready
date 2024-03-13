@@ -3,21 +3,50 @@ import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 const RetireCause = [
-  { value: "Medical issues", label: "Medical issues" },
-  { value: "Family issues", label: "Family issues" },
-  { value: "Retired from service", label: "Retired from service" },
+  {
+    value: "Retired from service/business",
+    label: "Retired from service/business",
+  },
+  {
+    value: "Early Retired from service/business",
+    label: "Early Retired from service/business",
+  },
+  { value: "Working from home", label: "working from home" },
+  {
+    value: "Physically challenged/Disable",
+    label: "Physically challenged/Disable",
+  },
+  { value: "Medical issue", label: "Medical issue" },
+  { value: "Family issue", label: "Family issue" },
+  { value: "Others", label: "Others" },
 ];
 
 const wants = [
-  { value: "Work as consultant", label: "Work as consultant" },
-  { value: "Build connection", label: "Build connection" },
-  { value: "Match-making", label: "Match-making" },
+  { value: "Freelance work", label: "Freelance work" },
+  { value: "Full-time work", label: "	Full-time work" },
+  { value: "Part-time work", label: "Part-time work" },
+  { value: "Offer Consultancy", label: "Offer Consultancy" },
   { value: "Mentoring", label: "Mentoring" },
-  { value: "Work as freelancer", label: "Work as freelancer" },
-  { value: "Work full-time", label: "Work full-time" },
-  { value: "Work sort term", label: "Work sort term" },
+  {
+    value: "Connect with other Retirees",
+    label: "Connect with other Retirees",
+  },
+  {
+    value: "Connect with peer professionals",
+    label: "Connect with peer professionals",
+  },
+  {
+    value: "Connect with same Industry Professionals",
+    label: "Connect with same Industry Professionals",
+  },
+  { value: "Get & Give Advise", label: "Get & Give Advise" },
+  { value: "Networking", label: "Networking" },
+  { value: "Matchmaking / Dating", label: "Matchmaking / Dating" },
+  { value: "Not-sure", label: "Not-sure" },
+  { value: "Other", label: "Other" },
 ];
 
 const SocialInfo = ({
@@ -72,6 +101,7 @@ const SocialInfo = ({
         console.error(error);
       });
   };
+
   const handleStepDown = () => {
     setStep(step - 1);
   };
@@ -118,13 +148,15 @@ const SocialInfo = ({
     wantFrom.map((item) => item.label),
     "want"
   );
+
   return (
     <div className="flex  flex-col gap-5 mx-5 xl:mx-20 ">
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">
           What is the cause of your retirement
         </h2>
-        <Select
+
+        <CreatableSelect
           id="selectCause"
           value={retirementCause}
           instanceId="selectCause"
@@ -140,7 +172,7 @@ const SocialInfo = ({
         <h2 className="font-semibold text-gray-500">
           What do you want to do on this platform
         </h2>
-        <Select
+        <CreatableSelect
           id="selectWant"
           instanceId="selectWant"
           isMulti
@@ -159,11 +191,13 @@ const SocialInfo = ({
           onChange={(e) => setAge(e.target.value)}
           className="bg-[#f2f1f3] border border-gray-300 h-10   rounded w-full"
         >
-          <option>18-25 Years</option>
-          <option>25-40 Years</option>
-          <option>40-50 Years</option>
-          <option>50-60 Years</option>
+          <option value="" disabled>
+            Select Age Category
+          </option>
           <option>60+ Years</option>
+          <option>45-60 Years</option>
+          <option>30-45 Years</option>
+          <option>Bellow 30 Years</option>
         </select>
       </div>
       <div className="">
@@ -210,10 +244,7 @@ const SocialInfo = ({
           className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
-      <div className="w-full">
-        <h2 className="font-semibold text-gray-500">Behance</h2>
-        <input className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full" />
-      </div>
+
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Others</h2>
         <input className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  rounded w-full" />
