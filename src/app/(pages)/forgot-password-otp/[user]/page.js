@@ -120,12 +120,12 @@ const page = ({ params }) => {
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
-      <div className="pt-20 md:flex  h-[100vh] lg:flex">
+      <div className="pt-8 md:flex  h-[100vh] lg:flex">
         <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
           <Image src="/assets/Group-26113.png" width={450} height={450} />
         </div>
-        <div className="md:w-[100%] lg:w-1/2 p-5 ">
-          <div className="bg-white m-6 p-10 ">
+        <div className="md:w-[100%] lg:w-1/2 p-5 mt-28 ">
+          <div className="bg-white m-6 p-10 rounded ">
             <h1 className="text-2xl font-bold">Verification Code</h1>
             <p className="mt-5 text-sm font-medium ">
               Please type the verification code sent to{" "}
@@ -136,12 +136,12 @@ const page = ({ params }) => {
 
             <h1 className="mt-4 text-gray-500"> OTP</h1>
 
-            <div className="flex justify-around ">
+            <div className="flex gap-10  ">
               {otp.map((digit, index) => (
                 <input
                   key={index}
                   id={`otp-input-${index}`}
-                  className=" border border-[##773FC6] w-14 h-14 rounded text-center no-scrollbar"
+                  className=" border border-[##773FC6] w-20 h-16 rounded text-center no-scrollbar"
                   type="text"
                   maxLength="1"
                   value={digit}
@@ -162,13 +162,16 @@ const page = ({ params }) => {
                 />
               </div>
             )}
-            <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
+            <div className=" flex ">
               {" "}
-              I didn't receive a code!{" "}
-              <button onClick={handleResendOtp} className="text-[#773FC6] ">
-                Please resend
-              </button>
-            </h1>
+              <h1 className="mt-12 flex justify-center text-sm font-medium gap-2">
+                {" "}
+                I didn't receive a code!{" "}
+                <button onClick={handleResendOtp} className="text-[#773FC6] ">
+                  Please resend
+                </button>
+              </h1>
+            </div>
             <div className="bg-reg-500">
               <button
                 className="w-full mt-12 h-10 rounded  text-white bg-[#773FC6]"

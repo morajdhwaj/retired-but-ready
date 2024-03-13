@@ -246,21 +246,21 @@ const Experiences = ({
           </div>
           <div className="flex gap-6 mt-5">
             <div className="w-1/2">
-              <h2 className="text-[#808184] font-medium">Start date</h2>
+              <h2 className="text-[#808184] font-medium">Start date*</h2>
               <input
                 value={companyStart}
                 onChange={(e) => setCompanyStart(e.target.value)}
-                className="h-10 bg-[#f2f1f3] border-gray-300 border rounded w-full"
+                className="h-10 bg-[#f2f1f3] border-gray-300 border text-gray-600 pl-2  rounded w-full"
                 type="date"
                 max={currentDate}
               />
             </div>
             <div className="w-1/2">
-              <h2 className="text-[#808184] font-medium">End date</h2>
+              <h2 className="text-[#808184] font-medium">End date*</h2>
               <input
                 value={companyEnd}
                 onChange={(e) => setCompanyEnd(e.target.value)}
-                className="  h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+                className="  h-10 bg-[#f2f1f3] border-gray-300 text-gray-600 pl-2  border rounded  w-full"
                 type="date"
                 max={currentDate}
               />
