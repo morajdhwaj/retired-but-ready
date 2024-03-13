@@ -65,7 +65,7 @@ const country_codes = [
 ];
 
 const page = () => {
-const {  setUserIdContext } = useContext(UserIdContext);
+  const {  setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState(null);
   const [displayName, setDisplayName] = useState(null);
@@ -86,7 +86,7 @@ const {  setUserIdContext } = useContext(UserIdContext);
       navigator.geolocation.getCurrentPosition(
         (position) => {
           fetch(
-            https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en
+           ` https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`
           )
             .then((response) => response.json())
             .then((data) => {
@@ -122,7 +122,7 @@ const {  setUserIdContext } = useContext(UserIdContext);
     );
 
     if (emptyField) {
-      toast.error(Please fill the ${requiredFields[emptyField]} field);
+      toast.error(`Please fill the ${requiredFields[emptyField]} field`);
       return;
     }
 
@@ -156,7 +156,7 @@ const {  setUserIdContext } = useContext(UserIdContext);
       .request(options)
       .then(function (response) {
         console.log(response.data);
-      setUserIdContext( response?.data?.user_id);
+        setUserIdContext(response?.data?.user_id);
         toast.success(response.data.message);
         handleModal();
       })
