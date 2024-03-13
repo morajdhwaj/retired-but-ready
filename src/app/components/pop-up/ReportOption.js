@@ -13,17 +13,19 @@ const ReportOption = ({ setReportType, reportType }) => {
   return (
     <div className="">
       {options.map((option, index) => (
-        <div className="flex flex-col" key={index}>
+        <div className="flex flex-co  " key={index}>
           <label className="mt-2">
             <input
-              type="radio"
+              type="checkbox"
               value={option}
               checked={reportType === option}
               onChange={handleOptionChange}
               name="options"
               className="ml-2"
             />
-            {option.charAt(0).toUpperCase() + option.slice(1)}
+            <span className="ml-2">
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </span>
           </label>
         </div>
       ))}

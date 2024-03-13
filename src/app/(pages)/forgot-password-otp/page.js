@@ -7,10 +7,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = ({ length = 4 }) => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [otp, setOtp] = useState(Array(length).fill(""));
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
@@ -23,7 +23,7 @@ const page = ({ length = 4 }) => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-    getUserData()
+    getUserData();
   }, [userId]);
 
   const getUserData = () => {
@@ -64,6 +64,8 @@ const page = ({ length = 4 }) => {
       .catch(function (error) {
         console.error(error);
         toast.error(error.response.data.detail);
+        setOtp(Array(length).fill(""));
+        setPassword("");
       });
   };
 

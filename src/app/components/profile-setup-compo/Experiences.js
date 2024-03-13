@@ -218,7 +218,11 @@ const Experiences = ({
             <h2 className="text-[#808184] font-medium">Company Name*</h2>
             <input
               value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
+              onChange={(e) =>
+                setCompanyName(
+                  e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+                )
+              }
               className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
@@ -226,7 +230,11 @@ const Experiences = ({
             <h2 className="text-[#808184] font-medium">Title*</h2>
             <input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) =>
+                setTitle(
+                  e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+                )
+              }
               className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
