@@ -7,6 +7,8 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
+ import { UserIdContext } from "@/context/UserIdContext";
+
 
 const page = () => {
   const { setUserIdContext } = useContext(UserIdContext);
