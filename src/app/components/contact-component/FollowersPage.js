@@ -76,9 +76,9 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <div className="flex ">
-            <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
-              <div className="w-[10%]">
+          <div className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5">
+            <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
+              <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
                 <Link
                   key={follower.from_user_id}
                   href={`/profile/${follower.from_user_id}`}
@@ -89,54 +89,44 @@ const FollowersPage = () => {
                       width={30}
                       height={30}
                       alt="pic"
-                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                      className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle className="w-16 h-16 rounded-full border-2 border-gray-200 " />
+                    <FaUserCircle className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200 " />
                   )}
                 </Link>
               </div>
-              <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-                <div className="">
-                  <Link href={`/profile/${follower.from_user_id}`}>
-                    <h1 className="text-[#2C2C2C] text-sm font-medium">
-                      {follower.from_user_full_name}
-                    </h1>
-                  </Link>
-                  <p className="text-[#888888]  font-medium text-xs">
-                    Human resource executive
-                  </p>
-                  <p className="text-[#888888] font-medium text-xs mt-2">
-                    6 post this week
-                  </p>
-                </div>
-
-                <button className="border border-[#A8359C] text-black rounded-md p-2">
-                  Following
-                </button>
+              <div className="w-1/2 sm:w-[85%]  ">
+                <Link href={`/profile/${follower.from_user_id}`}>
+                  <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
+                    {follower.from_user_full_name}
+                  </h1>
+                </Link>
               </div>
             </div>
-            <div className="w-1/4 gap-4 flex items-center justify-center  p-5">
-              <div>
-                <button className="text-2xl text-gray-500">
-                  <BsThreeDotsVertical onClick={() => handleShow(index)} />
-                </button>
-                {show[index] && (
-                  <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
-                    <div className="flex flex-col p-2 items-center justify-center">
-                      <button
-                        onClick={() => handleDeleteModal(follower)}
-                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                      >
-                        Remove
-                      </button>
-                    </div>
+
+            <div className="relative w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+              <button
+                className="border border-[#A8359C] text-black rounded-md p-2"
+                onClick={() => handleShow(index)}
+              >
+                Following
+              </button>
+              {show[index] && (
+                <div className="absolute top-full  border bg-white border-gray-300 shadow-md rounded-md flex flex-col px-1 ">
+                  <div className="flex p-1 items-center justify-center">
+                    <button
+                      onClick={() => handleDeleteModal(follower)}
+                      className="hover:bg-[#773fc6]  rounded-md hover:text-white text-black p-2"
+                    >
+                      Remove
+                    </button>
                   </div>
-                )}
-                <button className="text-2xl text-gray-500">
-                  <IoChatbubbleEllipsesOutline />
-                </button>
-              </div>
+                </div>
+              )}
+              <button className="text-3xl sm:text-4xl text-gray-400">
+                <IoChatbubbleEllipsesOutline />
+              </button>
             </div>
           </div>
         ))}
@@ -145,8 +135,8 @@ const FollowersPage = () => {
         <PopUp
           close={handleCloseDeleteModal}
           onClick={deleteFollowers}
-          title="Are you want Remove this follower"
-          action="Delete"
+          title="Are you want Unfollow this follower"
+          action="Unfollow"
           message=""
           error="error"
         />
