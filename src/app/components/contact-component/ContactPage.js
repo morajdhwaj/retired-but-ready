@@ -38,23 +38,37 @@ const ContactPage = () => {
   console.log(userId, "userid");
 
   const handleDeleteModal = (follower) => {
-    setSelectedFollower(follower);
+    setSelectedFollower(follower._id);
   };
 
   const removeContact = () => {
     // Implement your logic to remove the selected follower
     console.log("Removing contact:", selectedFollower);
     // Close the modal after removing the contact
-    setSelectedFollower(null);
+    const options = {
+      method: "DELETE",
+      url: `https://retpro.catax.me/remove-request/${selectedFollower}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setSelectedFollower(null);
+        getContact();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   return (
     <div>
       {contact.length > 0 &&
         contact.map((item) => (
-          <div className="flex ">
-            <div className="w-3/4   flex-wrap md:flex lg:flex justify-between items-center  pb-5">
-              <div className="sm:w-[20%] lg:w-[10%] ">
+          <div className="w-full p-2 flex flex-col sm:flex-row lg:flex-row ">
+            <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
+              <div className="w-1/2  sm:w-[20%] lg:w-[10%]  flex items-center justify-center">
                 <Link key={item.from_user} href={`/profile/${item.from_user}`}>
                   {item.from_user_image ? (
                     <Image
@@ -69,36 +83,30 @@ const ContactPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="   flex-wrap sm:flex md:flex lg:flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
+              <div className="w-1/2 sm:w-[80%] lg:w-[90%] border-b border-[#E3CCE1]">
                 <div className="">
                   <Link href={`/profile/${item.from_user}`}>
-                    <h1 className="text-[#2C2C2C] text-sm font-medium">
+                    <h1 className="text-[#2C2C2C] text-sm text-start font-medium">
                       {item.from_user_full_name}
                     </h1>
                   </Link>
-                  <p className="text-[#888888] font-medium text-xs">
+                  <p className="text-[#888888] font-medium text-start text-xs">
                     Oppo Company
                   </p>
-
-                  <p className="text-[#888888] font-medium text-xs mt-2">
+                  <p className="text-[#888888] font-medium text-start text-xs mt-2">
                     2 days ago
                   </p>
                 </div>
-
-                <button
-                  className="border border-[#A8359C] text-black rounded-md p-2"
-                  onClick={() => handleDeleteModal(item)}
-                >
-                  Remove
-                </button>
               </div>
             </div>
-
-            <div className="w-1/4 gap-4  flex sm:flex-row lg:flex items-center justify-center  p-5">
-              <button className="text-2xl text-gray-500">
-                <BsThreeDotsVertical />
+            <div className="w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+              <button
+                className="border border-[#A8359C] text-black rounded-md p-1"
+                onClick={() => handleDeleteModal(item)}
+              >
+                Remove
               </button>
-              <button className="text-2xl text-gray-500">
+              <button className="text-4xl text-gray-400">
                 <IoChatbubbleEllipsesOutline />
               </button>
             </div>
