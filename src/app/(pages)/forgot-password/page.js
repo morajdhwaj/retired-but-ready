@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-  const { setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -26,9 +25,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        setUserIdContext(response?.data?.user_id);
-        // localStorage.setItem("userId", response?.data?.user_id);
-        router.push("/forgot-password-otp");
+        router.push(`/forgot-password-otp/${response?.data?.user_id}`);
       })
       .catch(function (error) {
         console.error(error);

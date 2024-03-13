@@ -9,11 +9,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { UserIdContext } from "@/context/UserIdContext";
 
-const page = ({ length = 4 }) => {
-  const { userIdFromContext } = useContext(UserIdContext);
+const page = ({ params }) => {
+  const length = 4;
+  const userId = params["user"];
+  const { setUserIdContext } = useContext(UserIdContext);
+
   const [otp, setOtp] = useState(Array(length).fill(""));
   const [password, setPassword] = useState("");
-  const [userId, setUserId] = useState("");
 
   const [userData, setUserData] = useState([]);
 
@@ -22,9 +24,8 @@ const page = ({ length = 4 }) => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(userIdFromContext);
     getUserData();
-  }, [userId]);
+  }, []);
 
   const getUserData = () => {
     const options = {
@@ -46,6 +47,11 @@ const page = ({ length = 4 }) => {
   };
 
   const handleVerification = () => {
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
     const options = {
       method: "PATCH",
       url: "https://retpro.catax.me/user/reset-password-otp",
@@ -59,6 +65,7 @@ const page = ({ length = 4 }) => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
+        setUserIdContext(userId);
         router.push("/all-feeds-page");
       })
       .catch(function (error) {
@@ -108,10 +115,8 @@ const page = ({ length = 4 }) => {
       });
   };
 
-  console.log(finalOtp);
-  console.log(password);
-  console.log(userId, "dksbdlsb");
-  console.log("dskhdk");
+  console.log(userId, "dsdsds");
+
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
@@ -131,7 +136,7 @@ const page = ({ length = 4 }) => {
 
             <h1 className="mt-4 text-gray-500"> OTP</h1>
 
-            <div className="flex justify-between ">
+            <div className="flex justify-around ">
               {otp.map((digit, index) => (
                 <input
                   key={index}
@@ -150,7 +155,7 @@ const page = ({ length = 4 }) => {
               <div>
                 <h1 className="mt-4 text-gray-500">New Password</h1>
                 <input
-                  type="text"
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="h-14 rounded w-full border border-gray-200"
