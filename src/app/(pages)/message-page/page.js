@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import dayjs from "dayjs";
 import { BsThreeDots } from "react-icons/bs";
@@ -15,8 +15,10 @@ import Image from "next/image";
 import { debounce } from "lodash";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const Page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [userAllData, setUserAllData] = useState([]);
@@ -27,12 +29,11 @@ const Page = () => {
   const [editButton, setEditButton] = useState("");
   const [receiverId, setReceiverId] = useState("65c4944bff9f155e520bc0f0");
   const chatContainerRef = useRef(null);
-  const userIdFromStorage =
-    typeof window !== "undefined" ? localStorage.getItem("userId") : null;
-  const userIdRef = useRef(userIdFromStorage);
-  const [userId, setUserId] = useState(userIdRef.current);
+
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
+    setUserId(userIdFromContext);
     userData();
     getChats();
   }, []);

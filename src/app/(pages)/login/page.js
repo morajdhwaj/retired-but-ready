@@ -7,10 +7,10 @@ import React, { useState, useContext } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Link from "next/link";
-import {UserIdContext} from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-  const { setUserId } = useContext(UserIdContext);
+  const { setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState("");
@@ -45,12 +45,6 @@ const page = () => {
       });
   };
 
-  // SET USER ID USING  CONTEXT API ----------------------------------------------------------------
-
-  const setIdContext = (id) => {
-    setUserId(id);
-  };
-
   const handleLogin = () => {
     if (!email || !password) {
       toast.error("Please enter your email and password");
@@ -67,8 +61,9 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        localStorage.setItem("userId", response?.data?.user_id);
-        setIdContext(response?.data?.user_id);
+        // localStorage.setItem("userId", response?.data?.user_id);
+        setUserIdContext(response?.data?.user_id);
+
         if (response.data.redirect === "verification") {
           router.push("verification-email");
         } else {

@@ -3,12 +3,14 @@ import Navbar from "@/app/components/Navbar";
 import PopUp from "@/app/components/PopUp";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+  const { setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState(null);
   const [displayName, setDisplayName] = useState(null);
@@ -45,7 +47,8 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        localStorage.setItem("userId", response?.data?.user_id);
+        setUserIdContext(response?.data?.user_id);
+        // localStorage.setItem("userId", response?.data?.user_id);
         toast.success(response.data.message);
         handleModal();
       })

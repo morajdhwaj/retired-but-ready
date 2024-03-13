@@ -16,22 +16,17 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 
-import { UserIdContext } from "@/context/UserIdContext";
+ import { UserIdContext } from "@/context/UserIdContext";
 
-// GET USER ID FROM LOCAL STORAGE --------------------------------
-const getUserIdFromStorage = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("userId");
-  }
-  return null;
-};
+
 
 const page = ({ params }) => {
+
   const profileId = params["user"];
- const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
 
   const [connections, setConnections] = useState([]);
-  const [userId, setUserId] = useState(getUserIdFromStorage());
+  const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const [education, setEducation] = useState([]);
   const [skill, setSkill] = useState([]);
@@ -43,10 +38,9 @@ const page = ({ params }) => {
   // GET USER ID FROM LOCAL STORAGE --------------------------------
 
   useEffect(() => {
-    const userIdFromStorage = getUserIdFromStorage();
-    if (userIdFromStorage !== userId) {
-      setUserId(userIdFromStorage);
-    }
+   
+      setUserId(userIdFromContext);
+
   }, []); // Run only once when component mounts
 
   useEffect(() => {

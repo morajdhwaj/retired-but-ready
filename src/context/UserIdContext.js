@@ -17,7 +17,7 @@ export const UserIdProvider = ({ children }) => {
     }
   }, []);
 
-  const setUserId = (userId) => {
+  const setUserIdContext = (userId) => {
     setUserIdFromContext(userId);
     // Store the user ID in cookies
     Cookies.set("userId", userId, { expires: 365 }); // Set expiry to 1 year
@@ -30,7 +30,7 @@ export const UserIdProvider = ({ children }) => {
 
   return (
     <UserIdContext.Provider
-      value={{ userIdFromContext, setUserId, removeUserId }}
+      value={{ userIdFromContext, setUserIdContext, removeUserId }}
     >
       {children}
     </UserIdContext.Provider>

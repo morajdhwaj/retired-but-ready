@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Navbar from "@/app/components/Navbar";
@@ -11,6 +11,7 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
 // import { useRouter } from "next/navigation";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -19,18 +20,12 @@ const data = [
   { id: 4, value: "Sports", label: "Sports" },
 ];
 
-const getUserIdFromStorage = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("userId");
-  }
-  return null;
-};
-
 const Page = ({ params }) => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const router = useRouter();
   const groupId = params["group-edit"];
 
-  const [userId, setUserId] = useState(getUserIdFromStorage());
+  const [userId, setUserId] = useState("");
   const [groupsData, setGroupsData] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
@@ -38,10 +33,7 @@ const Page = ({ params }) => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    const userIdFromStorage = getUserIdFromStorage();
-    if (userIdFromStorage !== userId) {
-      setUserId(userIdFromStorage);
-    }
+    setUserId(userIdFromContext);
   }, []);
 
   useEffect(() => {

@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import PopUp from "../components/PopUp";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const information = [
   {
@@ -42,15 +43,11 @@ const information = [
   },
 ];
 
-const getUserIdFromStorage = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("userId");
-  }
-  return null;
-};
+
 
 const Page = () => {
-  const [userId, setUserId] = useState(getUserIdFromStorage());
+   const { userIdFromContext } = useContext(UserIdContext);
+  const [userId, setUserId] = useState("");
   const [groupsData, setGroupsData] = useState([]);
   const [showOption, setShowOption] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState("");
@@ -58,10 +55,9 @@ const Page = () => {
   // GET USER ID FROM LOCALSTORAGE --------------------------------------
 
   useEffect(() => {
-    const userIdFromStorage = getUserIdFromStorage();
-    if (userIdFromStorage !== userId) {
-      setUserId(userIdFromStorage);
-    }
+ 
+      setUserId(userIdFromContext);
+
   }, []); // Run only once when component mounts
 
   // GET GROUP DATA FROM API --------------------------------------------------

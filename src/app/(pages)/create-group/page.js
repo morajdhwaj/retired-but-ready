@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
@@ -8,7 +8,8 @@ import { AiFillPicture } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
+import { UserIdContext } from "@/context/UserIdContext";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -18,6 +19,7 @@ const data = [
 ];
 
 const Page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [Category, setCategory] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
@@ -27,7 +29,7 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
   }, [userId]);
 
   const handleCategory = (selected, selection) => {

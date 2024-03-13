@@ -5,7 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox, FaUserCircle } from "react-icons/fa";
@@ -15,8 +15,10 @@ import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 import Link from "next/link";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [myFeeds, setMyFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
@@ -24,7 +26,7 @@ const page = () => {
   const [addPost, setAddPost] = useState(false);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
     getMyFeeds();
   }, [userId]);
