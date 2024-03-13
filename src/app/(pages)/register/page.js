@@ -7,8 +7,7 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
- import { UserIdContext } from "@/context/UserIdContext";
-
+import { UserIdContext } from "@/context/UserIdContext";
 
 const country_codes = [
   { country: "Argentina", std_code: "+54" },
@@ -65,7 +64,7 @@ const country_codes = [
 ];
 
 const page = () => {
-  const {  setUserIdContext } = useContext(UserIdContext);
+  const { setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState(null);
   const [displayName, setDisplayName] = useState(null);
@@ -73,32 +72,30 @@ const page = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [countryCode, setCountryCode] = useState("+91");
+  const [countryName, setCountryName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    getLocation();
+    getUserCountry();
   }, []);
 
-  const getLocation = () => {
+  const getUserCountry = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          fetch(
-           ` https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              setCountryInfo({
-                countryName: data.countryName,
-                countryCode: data.countryCode,
-              });
-            })
-            .catch((error) => console.error("Error fetching location:", error));
-        },
-        (error) => console.error("Error getting geolocation:", error)
-      );
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { latitude, longitude } = position.coords;
+        fetch(
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setCountryName(data.countryName);
+          })
+          .catch((error) => {
+            console.error("Error fetching user country:", error);
+          });
+      });
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
@@ -175,7 +172,7 @@ const page = () => {
     <div>
       <Navbar />
 
-      <div className="bg-gray-200 md:flex lg:flex pt-16 md:h-[100vh] lg:h-[100vh]  ">
+      <div className="bg-gray-200 md:flex lg:flex pt-28 md:h-[100vh] lg:h-[100vh]  ">
         <div className=" md:w-[100%] lg:w-[54%] flex flex-col   items-center ">
           <h1 className="text-2xl font-bold hover:border-b-2  mt-5">
             Create an account
@@ -225,12 +222,12 @@ const page = () => {
               <div className="flex   mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg  w-full h-10 p-1.5">
                 <div className="h-20">
                   <select
-                    value={countryCode}
-                    onChange={(e) => setCountryCode(e.target.value)}
+                    value={countryName}
+                    onChange={(e) => setCountryName(e.target.value)}
                     className="bg-gray-200 focus:outline-none"
                   >
                     {country_codes.map((country, index) => (
-                      <option key={index}>
+                      <option key={index} value={country?.country}>
                         {country.country} ({country.std_code})
                       </option>
                     ))}
@@ -289,12 +286,12 @@ const page = () => {
           </div>
         </div>
 
-        <div className=" md:w-[100%] lg:w-[46%]  flex flex-col  ">
+        <div className=" md:w-[100%] lg:w-[60%]  flex flex-col  ">
           <div className="mt-10 flex justify-center items-center ">
             <Image
               alt="register"
               src="/assets/Group-626217.png"
-              width={400}
+              width={500}
               height={300}
             />
           </div>
@@ -309,7 +306,7 @@ const page = () => {
                 onClick={() => {
                   toast.error("Google login not working");
                 }}
-                className="w-28 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10"
+                className="w-32 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10"
               >
                 <Image
                   src="/assets/GOOGLE.png"
@@ -323,7 +320,7 @@ const page = () => {
                 onClick={() => {
                   toast.error("Mobile login not working");
                 }}
-                className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+                className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
               >
                 <Image
                   src="/assets/mobile-phone-svgrepo-com-1.png"
@@ -339,7 +336,7 @@ const page = () => {
                 onClick={() => {
                   toast.error("Facebook login not working");
                 }}
-                className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+                className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
               >
                 <Image
                   src="/assets/facebook.png"
@@ -354,7 +351,7 @@ const page = () => {
                 onClick={() => {
                   router.push("/login");
                 }}
-                className="w-28 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 "
+                className="w-32 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 "
               >
                 <Image
                   src="/assets/EMAIL.png"
@@ -382,9 +379,6 @@ const page = () => {
 
 export default page;
 
-
-
-
 // "use client";
 // import Navbar from "@/app/components/Navbar";
 // import PopUp from "@/app/components/PopUp";
@@ -395,7 +389,6 @@ export default page;
 // import toast from "react-hot-toast";
 // import Image from "next/image";
 //  import { UserIdContext } from "@/context/UserIdContext";
-
 
 // const page = () => {
 //   const { setUserIdContext } = useContext(UserIdContext);
@@ -643,7 +636,7 @@ export default page;
 //                 onClick={() => {
 //                   toast.error("Google login not working");
 //                 }}
-//                 className="w-28 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10"
+//                 className="w-32 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10"
 //               >
 //                 <Image
 //                   src="/assets/GOOGLE.png"
@@ -657,7 +650,7 @@ export default page;
 //                 onClick={() => {
 //                   toast.error("Mobile login not working");
 //                 }}
-//                 className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+//                 className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
 //               >
 //                 <Image
 //                   src="/assets/mobile-phone-svgrepo-com-1.png"
@@ -673,7 +666,7 @@ export default page;
 //                 onClick={() => {
 //                   toast.error("Facebook login not working");
 //                 }}
-//                 className="w-28 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+//                 className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
 //               >
 //                 <Image
 //                   src="/assets/facebook.png"
@@ -688,7 +681,7 @@ export default page;
 //                 onClick={() => {
 //                   router.push("/login");
 //                 }}
-//                 className="w-28 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 "
+//                 className="w-32 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 "
 //               >
 //                 <Image
 //                   src="/assets/EMAIL.png"

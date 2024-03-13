@@ -13,10 +13,10 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/PopUp";
 import Image from "next/image";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [step, setStep] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
@@ -238,15 +238,16 @@ const page = () => {
                   <Image
                     src={URL.createObjectURL(selectedImage)}
                     alt="Selected Profile"
-                    className="mt-2 rounded-full"
+                    className="mt-2 rounded-full h-40 w-40"
                     height={150}
                     width={150}
                   />
+
                   <button
                     onClick={uploadImg}
                     className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 "
                   >
-                    Add a profile picture
+                    Click again for upload
                   </button>
                 </div>
               ) : (
@@ -263,7 +264,7 @@ const page = () => {
                       onChange={handleImageChange}
                     />
                     <h1 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 ">
-                      Click here for upload profile
+                      Click here for select profile
                     </h1>
                   </label>
                 </div>

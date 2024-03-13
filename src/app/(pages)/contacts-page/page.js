@@ -95,10 +95,10 @@ const page = () => {
           </div>
 
           <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">
-            <div className="flex  text-black border-b-2 w-[75%] sm:w-[40%] relative">
+            <div className="flex  text-black border-b-2 w-full sm:w-[40%] relative">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-2  text-md font-medium absolute bottom-[-2px]  ${
+                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px]  ${
                   toggle === 1
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-[#D1C9C9]"
@@ -108,7 +108,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-2  text-md font-medium absolute bottom-[-2px]   left-[40%]  ${
+                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px] left-[35%]  sm:left-[30%]  ${
                   toggle === 3
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200"
@@ -118,7 +118,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-2 text-md font-medium absolute bottom-[-2px]   left-[80%]  ${
+                className={`border-b-2 text-xs sm:text-sm font-medium absolute bottom-[-2px]  left-[70%] sm:left-[60%]  ${
                   toggle === 2
                     ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200" - []
