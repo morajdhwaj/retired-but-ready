@@ -81,7 +81,7 @@ const page = () => {
   console.log(userData);
 
   return (
-    <div className="  bg-gray-200 h-[100vh]  ">
+    <div className="  bg-gray-200 h-[120vh] lg:h-[100vh]  ">
       <Navbar />
       {/* Image */}
 
@@ -159,39 +159,40 @@ const page = () => {
         </div>
         {/* Login form */}
 
-        <div className=" w-full lg:w-1/2 text-center flex flex-col  items-center  ">
+        <div className=" w-full lg:w-1/2 text-center  flex flex-col  items-center  ">
           <h1 className=" text-3xl font-bold text-center  lg:mt-24">Login</h1>
 
-          <div className="    rounded-md  p-5  border-2 border-gray-300 flex flex-col mt-5 sm:mt-10 gap-5  hover:border-2 ">
+          <div className="    rounded-md  py-4 w-[80%] flex items-center  border-2 border-gray-300  flex-col mt-5 sm:mt-10 gap-5  hover:border-2 ">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               autoComplete="email"
-              className="mt-5  w-60 sm:w-80  border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2  hover:border-b-2"
+              className="mt-5  w-60 sm:w-[80%] border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2  hover:border-b-2"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="w-60 sm:w-80  border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2  hover:border-b-2 "
+              className="w-60 sm:w-[80%]  border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2  hover:border-b-2 "
             />
-            <div className="text-start">
-              <Link
-                href="/forgot-password"
-                className="mb-0 hover:border-b-2   hover:w-40"
-              >
-                Forget password ?
-              </Link>
-            </div>
+
             <button
               onClick={handleLogin}
               className="border-2 bg-[#773FC6] rounded-lg p-2 w-60 sm:w-80  text-xl text-center  text-white flex justify-center items-center"
             >
               Login
             </button>
+            <div className="text-start flex w-full mr-10 justify-end items-end">
+              <Link
+                href="/forgot-password"
+                className="mb-0 hover:border-b-2 text-sm  hover:w-40"
+              >
+                Forget password ?
+              </Link>
+            </div>
           </div>
           <div className="   mt-5 text-center flex justify-center ">
             <h3>Don't have an account ? &nbsp; </h3>

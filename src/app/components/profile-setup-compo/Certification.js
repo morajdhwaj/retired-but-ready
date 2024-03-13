@@ -132,10 +132,7 @@ const Certification = ({
       });
   };
 
-  console.log(
-    acceptableCurrencies.map((item) => item.label),
-    "sddd"
-  );
+  console.log(transformedCertificates);
 
   return (
     <div>
@@ -206,7 +203,13 @@ const Certification = ({
         </div>
         <textarea
           value={aboutYou}
-          onChange={(e) => setAboutYou(e.target.value)}
+          onChange={(e) =>
+            setAboutYou(
+              e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                match.toUpperCase()
+              )
+            )
+          }
           placeholder="(this will be visible to others along with your photo, so make it crisp and classy)"
           className="bg-gray-100 border rounded-lg mt-3 px-2 border-gray-300 h-[200px] resize-none p-5"
         />

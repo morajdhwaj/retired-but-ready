@@ -7,8 +7,7 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
- import { UserIdContext } from "@/context/UserIdContext";
-
+import { UserIdContext } from "@/context/UserIdContext";
 
 const country_codes = [
   { country: "Argentina", std_code: "+54" },
@@ -65,7 +64,7 @@ const country_codes = [
 ];
 
 const page = () => {
-  const {  setUserIdContext } = useContext(UserIdContext);
+  const { setUserIdContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState(null);
   const [displayName, setDisplayName] = useState(null);
@@ -86,7 +85,7 @@ const page = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           fetch(
-           ` https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`
+            ` https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`
           )
             .then((response) => response.json())
             .then((data) => {
@@ -382,9 +381,6 @@ const page = () => {
 
 export default page;
 
-
-
-
 // "use client";
 // import Navbar from "@/app/components/Navbar";
 // import PopUp from "@/app/components/PopUp";
@@ -395,7 +391,6 @@ export default page;
 // import toast from "react-hot-toast";
 // import Image from "next/image";
 //  import { UserIdContext } from "@/context/UserIdContext";
-
 
 // const page = () => {
 //   const { setUserIdContext } = useContext(UserIdContext);
