@@ -87,73 +87,80 @@ const page = () => {
 
       <div className="  lg:flex pt-20 ">
         <div className="  lg:flex flex-col gap-3 mx-3 lg:w-1/2 ">
-          <div className=" h-auto mt-5 rounded-md lg:p-5 border-transparent flex justify-center border-2  hover:w-auto hover:border-2   ">
+          <div className="mt-14 flex justify-center items-center ">
             <Image
+              alt="register"
               src="/assets/Group-626217.png"
-              alt="login"
-              width={300}
+              width={500}
               height={300}
             />
           </div>
-
-          {/* Logo Image */}
-          <div className="  h-auto sm:mt-5 rounded-md p-5 border-transparent flex flex-col justify-center gap-5 border-2 hover:w-auto hover:border-2  mb-2 sm:mb-3 md:mb-0 lg:mb-36">
-            <div className="flex items-center justify-center gap-2">
-              <div className=" w-[70px] sm:w-[100px] h-[1px] bg-gray-500" />
-
-              <h1 className="font-normal"> or login through</h1>
-              <div className=" w-[70px] sm:w-[100px] h-[1px] bg-gray-500" />
+          <div className="flex items-center justify-center">
+            <div className="h-[1px] w-[100px] bg-gray-400 " />
+            <h3 className="ml-2 mr-2">or login through</h3>
+            <div className="h-[1px] w-[100px] bg-gray-400" />
+          </div>
+          <div className=" w-75% flex justify-center items-center mb-5 mt-5 ">
+            <div className="flex flex-col gap-5  ">
+              <button
+                onClick={() => {
+                  toast.error("Google login not working");
+                }}
+                className="w-32 flex justify-evenly text-xs font-semibold items-center border rounded-lg border-[#773FC6] h-10"
+              >
+                <Image
+                  src="/assets/GOOGLE.png"
+                  alt="google"
+                  width={20}
+                  height={20}
+                />
+                GOOGLE
+              </button>
+              <button
+                onClick={() => {
+                  toast.error("Mobile login not working");
+                }}
+                className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+              >
+                <Image
+                  src="/assets/mobile-phone-svgrepo-com-1.png"
+                  alt="mobile"
+                  width={20}
+                  height={20}
+                />
+                MOBILE
+              </button>
             </div>
-            <div className="flex  gap-3 items-center justify-center ">
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
-                <button>
-                  <Image
-                    src="/assets/GOOGLE.png"
-                    alt="Google"
-                    width={30}
-                    height={30}
-                    className=" bg-gray-200"
-                  />
-                </button>
-                <h3 className="font-bold text-sm sm:text-xl">Google</h3>
-              </div>
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
-                <button className="">
-                  <Image
-                    src="/assets/facebook.png"
-                    alt="Facebook"
-                    width={30}
-                    height={30}
-                    className=" bg-gray-200"
-                  />
-                </button>
-                <h3 className="font-bold text-sm sm:text-xl">Facebook</h3>
-              </div>
-            </div>
-            <div className="flex  justify-center gap-3 ">
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
-                <button className="">
-                  <Image
-                    src="/assets/mobile-phone-svgrepo-com-1.png"
-                    alt="Mobile"
-                    width={20}
-                    height={20}
-                    className="w-[30px] "
-                  />
-                </button>
-                <h3 className="font-bold text-sm sm:text-xl">Mobile</h3>
-              </div>
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] py-1">
-                <button>
-                  <Image
-                    src="/assets/EMAIL.png"
-                    alt="Email"
-                    width={30}
-                    height={30}
-                  />
-                </button>
-                <h3 className="font-bold text-sm sm:text-xl">Email</h3>
-              </div>
+            <div className="flex flex-col gap-5 mx-4">
+              <button
+                onClick={() => {
+                  toast.error("Facebook login not working");
+                }}
+                className="w-32 font-semibold text-xs flex justify-evenly items-center border rounded-lg border-[#773FC6]  h-10"
+              >
+                <Image
+                  src="/assets/facebook.png"
+                  alt="facebook"
+                  width={20}
+                  height={20}
+                />
+                FACEBOOK
+              </button>
+
+              <button
+                onClick={() => {
+                  router.push("/login");
+                }}
+                className="w-32 flex font-semibold text-xs justify-evenly items-center border rounded-lg border-[#773FC6]  h-10 "
+              >
+                <Image
+                  src="/assets/EMAIL.png"
+                  alt="email"
+                  width={20}
+                  height={20}
+                />
+                EMAIL
+              </button>
             </div>
           </div>
         </div>

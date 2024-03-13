@@ -36,6 +36,7 @@ const Experiences = ({
   const [title, setTitle] = useState("");
   const [companyStart, setCompanyStart] = useState("");
   const [companyEnd, setCompanyEnd] = useState("");
+  const currentDate = new Date().toISOString().split("T")[0];
 
   const handleStepUp = () => {
     if (experiences?.length === 0) {
@@ -87,6 +88,11 @@ const Experiences = ({
   };
 
   const handleAddExperience = () => {
+    if (!companyName || !title || !companyStart || !companyEnd) {
+      toast.error("Please fill the input fields");
+      return;
+    }
+
     const newExperience = {
       company_name: companyName,
       title: title,
@@ -244,9 +250,10 @@ const Experiences = ({
               <input
                 value={companyStart}
                 onChange={(e) => setCompanyStart(e.target.value)}
-                className="  h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+                className="h-10 bg-[#f2f1f3] border-gray-300 border rounded w-full"
                 type="date"
-              ></input>
+                max={currentDate}
+              />
             </div>
             <div className="w-1/2">
               <h2 className="text-[#808184] font-medium">End date</h2>
@@ -255,7 +262,8 @@ const Experiences = ({
                 onChange={(e) => setCompanyEnd(e.target.value)}
                 className="  h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
                 type="date"
-              ></input>
+                max={currentDate}
+              />
             </div>
           </div>
         </div>

@@ -9,9 +9,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
 
-
 const Navbar = () => {
-  const { userIdFromContext,removeUserId } = useContext(UserIdContext);
+  const { userIdFromContext, removeUserId } = useContext(UserIdContext);
   const [showSidebar, setShowSidebar] = useState(false);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -42,14 +41,12 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-
     removeUserId();
     // localStorage.removeItem("userId");
     router.push("/");
-
   };
 
-  console.log(userId, "ddd");
+  console.log(userId, "userId");
   return (
     <div className="flex bg-[#E5E2E5]  fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">
