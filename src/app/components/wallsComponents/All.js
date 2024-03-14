@@ -15,7 +15,7 @@ import { RiSpam2Fill } from "react-icons/ri";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { BiRepost } from "react-icons/bi";
-import RePostPopUp from "../../components/repost-Pop-Up/RepostPopUp";
+import RePostPopUp from "../RePostPopUp";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
