@@ -529,7 +529,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   />
                 </div>
                 {feed?.post_location?.post_media && (
-                  <div className="flex items-center justify-center">
+                  <div className="flex px-10 pb-2 items-center justify-center">
                     {["png", "jpeg", "jpg"].includes(
                       feed?.post_location?.post_media[0].type
                     ) && (
@@ -783,10 +783,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   {feed?.post_location?._id ? (
                     <button
                       className="flex items-center justify-center gap-2"
-                    
-
                       onClick={() => setShowRepost(feed?.post_location)}
-                   
                     >
                       <BiRepost size={25} />
                       <p className="text-sm">Repost</p>
@@ -794,10 +791,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   ) : (
                     <button
                       className="flex items-center justify-center gap-2"
-                    
-
                       onClick={() => setShowRepost(feed)}
-                    
                     >
                       <BiRepost size={25} />
                       <p className="text-sm">Repost</p>
