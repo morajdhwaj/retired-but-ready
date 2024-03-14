@@ -670,13 +670,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
 
                   <button
-                    className="flex items-center justify-center gap-2 "
+                    className="flex items-center justify-center gap-2  "
                     onClick={() => handleComments(feed?._id)}
                   >
                     <MdComment className="mt-1" />
 
                     <p className="text-sm">Comment</p>
                   </button>
+
                   {/* <button className="flex items-center justify-center gap-2">
                     <IoIosShareAlt />
                     <p className="text-sm">Repost</p>

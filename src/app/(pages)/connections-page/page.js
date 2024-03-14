@@ -79,13 +79,13 @@ const page = () => {
                 <div className="flex gap-5">
                   <Link
                     href="/contacts-page"
-                    className="flex items-center  px-4 py-2 bg-white rounded-lg "
+                    className="flex items-center justify-center w-20 h-8 bg-white rounded-lg "
                   >
                     <p>Contacts</p>
                   </Link>
                   <Link
                     href="/followers-page"
-                    className="flex items-center  px-4 py-2 bg-white rounded-lg "
+                    className="flex items-center justify-center w-20 h-8 bg-white rounded-lg "
                   >
                     <p>Followers</p>
                   </Link>
