@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 
-const page = ({ close, feed, userId }) => {
+const page = ({ close, feed, userId, getFeeds }) => {
   const [userData, setUserData] = useState();
   const [description, setDescription] = useState("");
 
@@ -49,6 +49,7 @@ const page = ({ close, feed, userId }) => {
         }
       );
       close();
+      getFeeds()
       console.log(
         "Post created: WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
         response.data
@@ -70,7 +71,7 @@ const page = ({ close, feed, userId }) => {
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  min-h-[55vh] h-auto w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-3 py-5`}
+        className={`bg-white rounded-md z-50  h-[82vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-3 py-5`}
       >
         <div className="mb-10">
           <div className="">
@@ -108,7 +109,7 @@ const page = ({ close, feed, userId }) => {
               ></textarea>
             </div>
           </div>
-          <div className=" border-2 p-2">
+          <div className=" border-2 p-2 max-h-[290px] overflow-y-scroll">
             <div className="flex items-center gap-2 ">
               <div>
                 <Link href={`/profile/${feed?.post_user?.id}`}>
@@ -172,8 +173,8 @@ const page = ({ close, feed, userId }) => {
                     <Image
                       alt=""
                       src={feed?.post_media[0]?.url}
-                      height={300}
-                      width={300}
+                      height={200}
+                      width={200}
                       className=""
                     />
                   )}
@@ -182,7 +183,7 @@ const page = ({ close, feed, userId }) => {
                     <video
                       className="cursor-pointer"
                       controls
-                      style={{ width: 150, height: 150 }}
+                      style={{ width: "18%", height: "20%" }}
                     >
                       <source src={feed?.post_media[0]?.url} type="video/mp4" />
                       Your browser does not support the video tag.
