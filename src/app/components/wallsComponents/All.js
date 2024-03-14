@@ -823,7 +823,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       <p className="text-sm">Comment</p>
                     </button>
 
-
                     {feed?.post_location?._id ? (
                       <button
                         className="flex items-center justify-center gap-2"
@@ -842,10 +841,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       </button>
                     )}
                   </div>
-
-                  )}
-                  
-
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
@@ -884,12 +879,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       )}
 
       {showRepost && (
-        <Repost
-          close={closeRepostModal}
-          getFeeds={getFeeds}
-          feed={showRepost}
-          userId={userId}
-        />
+        <Repost close={closeRepostModal} feed={showRepost} userId={userId} />
       )}
 
       {showDeleteModal && (
