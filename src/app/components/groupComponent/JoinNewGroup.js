@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const data = [
   {
@@ -18,22 +19,17 @@ const data = [
     member: "243 member",
   },
 ];
-const getUserIdFromStorage = () => {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("userId");
-  }
-  return null;
-};
+
 const JoinNewGroup = () => {
-  const [userId, setUserId] = useState(getUserIdFromStorage());
+   const { userIdFromContext } = useContext(UserIdContext);
+  const [userId, setUserId] = useState("");
   const [recommendedGroupsData, setRecommendedGroupsData] = useState([]);
 
   useEffect(() => {
     getRecommendedGroups();
-    const userIdFromStorage = getUserIdFromStorage();
-    if (userIdFromStorage !== userId) {
-      setUserId(userIdFromStorage);
-    }
+   
+      setUserId(userIdFromContext);
+  
   }, []); // Run only once when component mounts
 
   // RECOMMENDED GROUP API ---------------------------------------------

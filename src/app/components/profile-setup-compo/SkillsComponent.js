@@ -2,8 +2,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { profession } from "../array-data/profession";
 
 const SkillsComponent = ({
   userId,
@@ -82,12 +82,19 @@ const SkillsComponent = ({
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
-        setAllSkills(response.data);
+        const capitalizedSkills = response.data.map((skill) => ({
+          ...skill,
+          skill_name: capitalizeFirstLetter(skill.skill_name),
+        }));
+        setAllSkills(capitalizedSkills);
       })
       .catch(function (error) {
         console.error(error);
       });
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const displayPersonalSkills = allSkills.filter(
@@ -169,7 +176,18 @@ const SkillsComponent = ({
     // }
   };
 
-  console.log(professionalExpertise, "pssddddsss");
+  const handleCategoryChange = (event) => {
+    setProfessionalField(event.target.value);
+    setProfessionalExpertise("");
+  };
+
+  const handleSubcategoryChange = (event) => {
+    setProfessionalExpertise(event.target.value);
+  };
+
+  const selectedProfessionalField = profession.find(
+    (item) => item.category === professionalField
+  );
 
   return (
     <div className="mx-20 mb-40 ">
@@ -241,19 +259,19 @@ const SkillsComponent = ({
           </div>
           <select
             value={professionalField}
-            onChange={(e) => setProfessionalField(e.target.value)}
+            onChange={handleCategoryChange}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option value="" disabled>
-              Select Professional Field
-            </option>
-            <option>Healthcare</option>
-            <option>Information Technology</option>
-            <option>Finance</option>
-            <option>Education</option>
-            <option>Engineering</option>
-            <option>Sales</option>
-            <option>Agriculture</option>
+            <>
+              <option value="" disabled>
+                Select professional field
+              </option>
+              {profession.map((item, index) => (
+                <option key={index} value={item.category}>
+                  {item.category}
+                </option>
+              ))}
+            </>
           </select>
         </div>
 
@@ -268,18 +286,20 @@ const SkillsComponent = ({
           </div>
           <select
             value={professionalExpertise}
-            onChange={(e) => setProfessionalExpertise(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-full rounded"
+            onChange={handleSubcategoryChange}
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
             <option value="" disabled>
-              Select Professional Expertise
+              Select professional expertise
             </option>
-            <option>Data Analysis</option>
-            <option>Software Development</option>
-            <option>Project Management </option>
-            <option>Content Creation </option>
-            <option>Social Media Marketing </option>
-            <option>Network Security </option>
+            {selectedProfessionalField &&
+              selectedProfessionalField.subcategories.map(
+                (subcategory, index) => (
+                  <option key={index} value={subcategory}>
+                    {subcategory}
+                  </option>
+                )
+              )}
           </select>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
@@ -18,15 +18,17 @@ import Link from "next/link";
 import Loader from "@/app/components/Loader";
 import toast from "react-hot-toast";
 import { MdEdit } from "react-icons/md";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const Page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   // const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

@@ -401,7 +401,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
               </div>
             </div>
-            <div className="mt-5">
+            <div className="mt-5 ">
               {editPostId == feed._id ? (
                 <div>
                   <div>
@@ -457,7 +457,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               </div>
             )}
 
-            <div className="mt-5" onMouseLeave={() => setIsHovered(false)}>
+            <div className="mt-5 p-2" onMouseLeave={() => setIsHovered(false)}>
               <div className="flex gap-2 items-center    ">
                 {feed?.reaction_like?.length > 0 && (
                   <div className="flex items-center gap-1 justify-center">

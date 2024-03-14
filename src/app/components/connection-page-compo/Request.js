@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const Request = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [invitation, setInvitation] = useState([]);
-
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getInvitation();
   }, [userId]);
 

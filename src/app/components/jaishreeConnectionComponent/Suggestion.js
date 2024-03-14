@@ -1,5 +1,5 @@
 "use-client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Image from "next/image";
 import { FaSatellite } from "react-icons/fa";
@@ -23,8 +23,10 @@ import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import GpsConnection from "./GpsConnection";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const Suggestion = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
   const [request, setRequest] = useState([]);
@@ -32,7 +34,7 @@ const Suggestion = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getSuggestions();
     getRequest();
   }, [userId]);

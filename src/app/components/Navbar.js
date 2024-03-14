@@ -10,14 +10,14 @@ import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
 
 const Navbar = () => {
-  const { userIdFromContext,removeUserId } = useContext(UserIdContext);
+  const { userIdFromContext, removeUserId } = useContext(UserIdContext);
   const [showSidebar, setShowSidebar] = useState(false);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 
@@ -41,14 +41,12 @@ const Navbar = () => {
   };
 
   const handleLogOut = () => {
-
     removeUserId();
     // localStorage.removeItem("userId");
-    router.push("/");
-
+    router.push("/login");
   };
 
-  console.log(userId, "ddd");
+  console.log(userId, "userId");
   return (
     <div className="flex bg-[#E5E2E5]  fixed top-0 left-0 bottom-0 w-full h-20 z-50 items-center px-5 md:px-10 ">
       <div className="w-1/2 flex text-xs justify-between ">
@@ -86,7 +84,7 @@ const Navbar = () => {
           <option>HI</option>
         </select>
 
-        {userIdFromContext ? (
+        {userId ? (
           <button
             onClick={handleLogOut}
             className="bg-purple-200 px-2  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "

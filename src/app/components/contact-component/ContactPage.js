@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
@@ -7,14 +7,16 @@ import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import PopUp from "@/app/components/PopUp";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const ContactPage = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
   const [selectedFollower, setSelectedFollower] = useState(null);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getContact();
   }, [userId]);
 

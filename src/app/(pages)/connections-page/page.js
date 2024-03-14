@@ -4,20 +4,22 @@ import Sidebar from "@/app/components/Sidebar";
 
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
 
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 import Link from "next/link";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

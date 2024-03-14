@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { PiShareFatLight } from "react-icons/pi";
@@ -8,8 +8,10 @@ import PopUp from "@/app/components/PopUp";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const FollowersPage = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [followers, setFollowers] = useState([]);
   const [userId, setUserId] = useState("");
   const [show, setShow] = useState({});
@@ -17,7 +19,7 @@ const FollowersPage = () => {
   const [selectedFollower, setSelectedFollower] = useState(null);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getFollowers();
   }, [userId]);
 
