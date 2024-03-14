@@ -78,7 +78,7 @@ const PostForm = ({ params }) => {
                     <div className="flex gap-5">
                       <div>
                         {/* {userData?.user_image ? (
-              <Image alt="" src={userData?.user_image} height={50} width={50} />
+              <Image alt="rtr-pic" src={userData?.user_image} height={50} width={50} />
             ) : ( */}
                         <FaUserCircle size={50} />
                         {/* )} */}

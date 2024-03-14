@@ -203,7 +203,7 @@ const Comments = ({ postId, userId }) => {
           <div className="flex gap-2 mt-5" key={comment?._id}>
             <div>
               <Image
-                alt=""
+                alt="rtr-pic"
                 src="/assets/Ellipse-39.png"
                 height={50}
                 width={50}

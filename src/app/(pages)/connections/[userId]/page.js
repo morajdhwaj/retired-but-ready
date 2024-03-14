@@ -30,7 +30,7 @@ const page = ({ params }) => {
     }
   };
 
-  console.log(connections,profileId, "this is get my all connections ");
+  console.log(connections, profileId, "this is get my all connections ");
 
   return (
     <>
@@ -78,7 +78,7 @@ const page = ({ params }) => {
                       >
                         {data?.to_user_image ? (
                           <Image
-                            alt=""
+                            alt="rtr-pic"
                             src={data?.to_user_image}
                             height={70}
                             width={70}
@@ -102,7 +102,7 @@ const page = ({ params }) => {
                       >
                         {data?.from_user_image ? (
                           <Image
-                            alt=""
+                            alt="rtr-pic"
                             src={data?.from_user_image}
                             height={70}
                             width={70}

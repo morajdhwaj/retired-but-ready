@@ -303,7 +303,7 @@ const ReplyCommentsComp = ({
                 <div className="">
                   {reply?.comment_by?.user_image ? (
                     <Image
-                      alt=""
+                      alt="rtr-pic"
                       src={reply?.comment_by?.user_image}
                       height={30}
                       width={30}
@@ -356,7 +356,7 @@ const ReplyCommentsComp = ({
                             {reply?.comment_image && (
                               <Image
                                 src={reply?.comment_image}
-                                alt=""
+                                alt="rtr-pic"
                                 height={100}
                                 width={100}
                               />
@@ -733,7 +733,7 @@ const ReplyCommentsComp = ({
             {selectedReplyImage && (
               <div className="flex  gap-2 bg-[#f7f8f8] p-4">
                 <Image
-                  alt=""
+                  alt="rtr-pic"
                   src={URL.createObjectURL(selectedReplyImage)}
                   height={100}
                   width={100}

@@ -19,7 +19,12 @@ const Post = () => {
       <div className="w-full  lg:h-[100px] bg-white mt-10">
         <div className=" flex m-2 items-center gap-2 justify-between">
           <div className=" md:flex lg:flex gap-2 mt-5">
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
             <div className="">
               <p className="  text-[#773fc6] font-semibold text-xs sm:text-sm lg:text-lg ">
                 Munawar Raj Singh
@@ -118,7 +123,12 @@ const Post = () => {
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
       <div className="mt-5 flex items-center gap-2">
-        <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+        <Image
+          alt="rtr-pic"
+          src="/assets/Ellipse-39.png"
+          height={50}
+          width={50}
+        />
         <p className="text-gray-400 text-xs sm:text-base">
           Leave your thoughts here..
         </p>

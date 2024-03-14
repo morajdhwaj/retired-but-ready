@@ -134,8 +134,14 @@ const PostAsMultiMedia = ({
             <div>
               <textarea
                 value={descriptions}
-                onChange={(e) => setDescriptions(e.target.value)}
-                className="border border-gray-200 text-xs w-full h-10  p-2 rounded"
+                onChange={(e) =>
+                  setDescriptions(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
+                className="border border-gray-200 text-sm w-full h-20  p-5 rounded"
                 placeholder="Write something about post.."
               />
             </div>
@@ -148,10 +154,10 @@ const PostAsMultiMedia = ({
             id="fileInput" // Connect input to button
             ref={fileInputRef}
           />
-          <div className="flex items-center mt-5">
+          <div className="flex items-center justify-center mt-10 ">
             <label htmlFor="fileInput">
               <button
-                className="border py-2 px-4  text-xs rounded-full bg-[#773f6c] text-white"
+                className="border-2 py-4 px-8 w-60  text-sm rounded-full font-semibold  border-[#773fc6] "
                 onClick={openFileInput}
               >
                 Upload from computer
@@ -172,11 +178,11 @@ const PostAsMultiMedia = ({
             </div>
           </div>
           {selectedFiles?.length !== 0 && (
-            <div className="flex justify-between mx-10 mt-5 gap-5">
+            <div className="flex justify-end mx-10 mt-5 gap-5">
               {showPostButton ? (
                 <button
                   onClick={() => UploadFile(false)}
-                  className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+                  className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
                 >
                   Save as Draft
                 </button>
@@ -186,14 +192,14 @@ const PostAsMultiMedia = ({
               {showPostButton ? (
                 <button
                   onClick={() => UploadFile(true)}
-                  className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+                  className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
                 >
                   Post
                 </button>
               ) : (
                 <button
                   onClick={() => createPost(true)}
-                  className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+                  className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
                 >
                   Next
                 </button>

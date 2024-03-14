@@ -30,7 +30,12 @@ const page = () => {
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
-                  <Image alt="" src="/assets/110.png" height={50} width={50} />
+                  <Image
+                    alt="rtr-pic"
+                    src="/assets/110.png"
+                    height={50}
+                    width={50}
+                  />
                   <div className="font-semibold">
                     <h2>Steve Jacob</h2>
                     <p className="text-gray-500">CEO & Co-founder</p>

@@ -150,7 +150,7 @@ const Reaction = () => {
           >
             <div>
               <Image
-                alt=""
+                alt="rtr-pic"
                 src="/assets/Ellipse-39.png"
                 height={75}
                 width={75}

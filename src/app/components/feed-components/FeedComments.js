@@ -328,7 +328,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           {selectedImage && (
             <div className="flex  gap-2 bg-[#f7f8f8] p-4">
               <Image
-                alt=""
+                alt="rtr-pic"
                 src={URL.createObjectURL(selectedImage)}
                 height={100}
                 width={100}
@@ -358,7 +358,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                 <div>
                   {comment?.comment_by?.user_image ? (
                     <Image
-                      alt=""
+                      alt="rtr-pic"
                       src={comment?.comment_by?.user_image}
                       height={50}
                       width={50}
@@ -447,7 +447,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       {comment?.comment_image && (
                         <Image
                           src={comment?.comment_image}
-                          alt=""
+                          alt="rtr-pic"
                           height={100}
                           width={100}
                         />
@@ -566,6 +566,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/like2.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </button>
 
@@ -591,6 +592,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/love.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </button>
                           <button
@@ -615,6 +617,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/thinking.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </button>
 
@@ -664,6 +667,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/clap.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </button>
                         </div>
@@ -682,6 +686,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/like2.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </p>
                         )}
@@ -696,6 +701,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/love.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </p>
                         )}
@@ -710,6 +716,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/thinking.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </p>
                         )}
@@ -738,6 +745,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/clap.png"
                               height={25}
                               width={20}
+                              alt="reactions"
                             ></Image>
                           </p>
                         )}

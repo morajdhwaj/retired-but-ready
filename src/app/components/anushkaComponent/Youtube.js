@@ -123,7 +123,12 @@ const Youtube = () => {
       <div className="mt-10 flex">
         <div className="md:flex lg:flex  gap-2 justify-center">
           <div>
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
           </div>
           <div className=" md:flex lg:flex justify-between border-gray-300 p-2 border-2 rounded-b-xl">
             <div>
@@ -169,7 +174,12 @@ const Youtube = () => {
       <div className=" flex">
         <div className=" md:flex lg:flex  gap-2 justify-center">
           <div>
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
           </div>
           <div className="flex justify-between border-gray-300 p-2 border-2 rounded-b-xl">
             <div>
@@ -215,7 +225,12 @@ const Youtube = () => {
       <div className="flex">
         <div className=" md:flex lg:flex  gap-2 justify-center">
           <div>
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
           </div>
           <div className="flex justify-between border-gray-300 p-2 border-2 rounded-b-xl">
             <div>
@@ -261,7 +276,12 @@ const Youtube = () => {
       <div className=" flex">
         <div className="md:flex lg:flex  gap-2 justify-center">
           <div>
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
           </div>
           <div className="flex justify-between border-gray-300 p-2 border-2 rounded-b-xl">
             <div>

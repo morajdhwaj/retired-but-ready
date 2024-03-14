@@ -6,17 +6,15 @@ import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-import { AiFillTool } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
+
 import { FaBox } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
-import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
-import toast from "react-hot-toast";
+
 import Loader from "@/app/components/Loader";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -99,7 +97,7 @@ const page = () => {
                   <div className="flex items-center justify-center gap-2">
                     {userData?.user_image ? (
                       <Image
-                        alt=""
+                        alt="rtr-pic"
                         src={userData?.user_image}
                         height={50}
                         width={50}
