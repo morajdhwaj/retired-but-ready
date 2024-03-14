@@ -8,18 +8,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { RiSpam2Fill } from "react-icons/ri";
 import PopUp from "../PopUp";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
-import { FaHeart } from "react-icons/fa6";
-import { CiHeart } from "react-icons/ci";
+import { AiOutlineLike } from "react-icons/ai";
+
 import { FaUserCircle } from "react-icons/fa";
 import { GrClose, GrGallery } from "react-icons/gr";
-import { BiSad } from "react-icons/bi";
-import { BiSolidSad } from "react-icons/bi";
-import { IoBulb } from "react-icons/io5";
-import { IoBulbOutline } from "react-icons/io5";
-import { PiNotepadFill } from "react-icons/pi";
-import { PiNotepadLight } from "react-icons/pi";
-import { BsHeartFill } from "react-icons/bs";
 import dayjs from "dayjs";
 import Link from "next/link";
 
@@ -43,7 +35,7 @@ const ReplyCommentsComp = ({
   const [reportType, setReportType] = useState("hate_speech");
   const [selectedReplyImage, setSelectedReplyImage] = useState("");
   const [showReaction, setShowReaction] = useState(false);
-  const [reactionName, setReactionName] = useState("")
+  const [reactionName, setReactionName] = useState("");
 
   useEffect(() => {
     getComments();
@@ -330,7 +322,14 @@ const ReplyCommentsComp = ({
                               <textarea
                                 className="border  p-2 text-xs w-80 "
                                 value={editComment}
-                                onChange={(e) => setEditComment(e.target.value)}
+                                onChange={(e) =>
+                                  setEditComment(
+                                    e.target.value.replace(
+                                      /(^[a-zA-Z])|(\.\s*\w)/gm,
+                                      (match) => match.toUpperCase()
+                                    )
+                                  )
+                                }
                               />
                             </div>
                             <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
@@ -396,7 +395,7 @@ const ReplyCommentsComp = ({
                       </button>
                     ) : (
                       <button onClick={() => handleModal(reply?._id)}>
-                        <RiSpam2Fill size={25} color="gray" />
+                        <RiSpam2Fill size={25} color="#f4c6c6" />
                       </button>
                     )}
                     {replyId == reply?._id && (
@@ -711,7 +710,13 @@ const ReplyCommentsComp = ({
             <div className="flex  px-2 m-2 gap-3">
               <textarea
                 value={inputReply}
-                onChange={(e) => setInputReply(e.target.value)}
+                onChange={(e) =>
+                  setInputReply(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
                 className="p-1 text-sm  w-full  outline-none "
                 placeholder="Leave your comments"
                 onInput={autoResize}

@@ -306,7 +306,13 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           <div className="flex  px-2 m-2 gap-3 ">
             <textarea
               value={inputComment}
-              onChange={(e) => setInputComment(e.target.value)}
+              onChange={(e) =>
+                setInputComment(
+                  e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                    match.toUpperCase()
+                  )
+                )
+              }
               className="p-1 text-sm  w-full  outline-none "
               placeholder="Leave your comments"
               onInput={autoResize}
@@ -369,7 +375,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                   )}
                 </div>
               </Link>
-              <div className="flex border-gray-300 bg-white border rounded-b-lg w-full rounded-tr-lg p-2">
+              <div className="flex border-gray-300 bg-gray-50 border rounded w-full  p-3">
                 <div className="w-full ">
                   <div className="justify-between flex ">
                     <Link href={`/profile/${comment?.comment_by?.id}`}>
@@ -391,7 +397,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                         </button>
                       ) : (
                         <button onClick={() => handleModal(comment?._id)}>
-                          <RiSpam2Fill size={25} color="gray" />
+                          <RiSpam2Fill size={25} color="#f4c6c6" />
                         </button>
                       )}
                       {commentId == comment._id && (
@@ -421,7 +427,14 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                         <textarea
                           className="border  p-2 text-xs w-1/2"
                           value={editComment}
-                          onChange={(e) => setEditComment(e.target.value)}
+                          onChange={(e) =>
+                            setEditComment(
+                              e.target.value.replace(
+                                /(^[a-zA-Z])|(\.\s*\w)/gm,
+                                (match) => match.toUpperCase()
+                              )
+                            )
+                          }
                         />
                       </div>
                       <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
@@ -793,12 +806,14 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           </div>
         ))}
         {comments.length > numCommentsToShow && (
-          <button
-            onClick={handleLoadMore}
-            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Load More Comments
-          </button>
+          <div className=" flex items-center justify-center">
+            <button
+              onClick={handleLoadMore}
+              className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#773FC6] hover:bg-[#601fba] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Load More Comments
+            </button>
+          </div>
         )}
       </div>
       {showModal && (

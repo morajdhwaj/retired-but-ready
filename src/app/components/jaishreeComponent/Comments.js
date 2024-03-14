@@ -188,7 +188,13 @@ const Comments = ({ postId, userId }) => {
     <div className=" w-full mt-5">
       <textarea
         value={inputComment}
-        onChange={(e) => setInputComment(e.target.value)}
+        onChange={(e) =>
+          setInputComment(
+            e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+              match.toUpperCase()
+            )
+          )
+        }
         className="w-full p-2 text-sm"
         placeholder="Leave your thoughts here"
       />
@@ -271,7 +277,14 @@ const Comments = ({ postId, userId }) => {
                       <textarea
                         className="border p-2 text-xs"
                         value={editComment}
-                        onChange={(e) => setEditComment(e.target.value)}
+                        onChange={(e) =>
+                          setEditComment(
+                            e.target.value.replace(
+                              /(^[a-zA-Z])|(\.\s*\w)/gm,
+                              (match) => match.toUpperCase()
+                            )
+                          )
+                        }
                       />
                     </div>
                     <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">

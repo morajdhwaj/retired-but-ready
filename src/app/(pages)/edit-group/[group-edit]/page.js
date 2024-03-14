@@ -194,7 +194,13 @@ const Page = ({ params }) => {
                 className="w-[70%] p-1 border border-gray-200"
                 placeholder="Write description hear"
                 value={groupDescription}
-                onChange={(e) => setGroupDescription(e.target.value)}
+                onChange={(e) =>
+                  setGroupDescription(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
               ></textarea>
             </div>
             <div className="flex flex-col mt-5">
