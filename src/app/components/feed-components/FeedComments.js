@@ -393,11 +393,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             )
                           }
                         >
-                          <BsThreeDotsVertical
-                            color="252f3f"
-                            size={25}
-                            color="gray"
-                          />
+                          <BsThreeDotsVertical color="252f3f" size={25} />
                         </button>
                       ) : (
                         <button onClick={() => handleModal(comment?._id)}>

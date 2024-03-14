@@ -13,9 +13,9 @@ import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import dayjs from "dayjs";
-import Repost from "@/app/components/repost-Pop-Up/page";
 import Link from "next/link";
 import { BiRepost } from "react-icons/bi";
+import RePostPopUp from "../RePostPopUp";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -879,7 +879,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       )}
 
       {showRepost && (
-        <Repost close={closeRepostModal} feed={showRepost} userId={userId} />
+        <RePostPopUp
+          close={closeRepostModal}
+          feed={showRepost}
+          userId={userId}
+          getFeeds={getFeeds}
+        />
       )}
 
       {showDeleteModal && (
