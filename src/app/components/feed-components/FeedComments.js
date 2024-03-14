@@ -342,7 +342,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
               />
               <div>
                 <button onClick={() => setSelectedImage("")}>
-                  <GrClose />
+                  <GrClose color="#f96363" />
                 </button>
               </div>
             </div>
@@ -393,7 +393,11 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             )
                           }
                         >
-                          <BsThreeDotsVertical size={25} color="gray" />
+                          <BsThreeDotsVertical
+                            color="252f3f"
+                            size={25}
+                            color="gray"
+                          />
                         </button>
                       ) : (
                         <button onClick={() => handleModal(comment?._id)}>

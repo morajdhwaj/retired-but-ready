@@ -137,7 +137,11 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical size={25} color="black" />
+                  <BsThreeDotsVertical
+                    color="#252f3f"
+                    size={25}
+                    color="black"
+                  />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -188,7 +192,11 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical size={25} color="black" />
+                  <BsThreeDotsVertical
+                    color="#252f3f"
+                    size={25}
+                    color="black"
+                  />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -239,7 +247,11 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical size={25} color="black" />
+                  <BsThreeDotsVertical
+                    color="#252f3f"
+                    size={25}
+                    color="black"
+                  />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -290,7 +302,11 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical size={25} color="black" />
+                  <BsThreeDotsVertical
+                    color="#252f3f"
+                    size={25}
+                    color="black"
+                  />
                 </button>
               </div>
               <p className=" sm:text-xs lg:text-sm text-black mt-2 ">

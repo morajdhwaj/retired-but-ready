@@ -24,7 +24,7 @@ const PopUp = ({
           <div className="mt-2 mr-2 flex  justify-end">
             <button onClick={close}>
               {" "}
-              <GrClose />
+              <GrClose color="#f96363" />
             </button>
           </div>
         )}

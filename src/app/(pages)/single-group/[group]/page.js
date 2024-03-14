@@ -66,7 +66,7 @@ const PostForm = ({ params }) => {
                       <MdModeEdit size={25} />
                     </button>
                     <button className="ml-1">
-                      <BsThreeDotsVertical size={25} />
+                      <BsThreeDotsVertical color="#252f3f" size={25} />
                     </button>
                   </div>
                 </div>

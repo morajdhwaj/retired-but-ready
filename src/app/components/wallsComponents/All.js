@@ -400,7 +400,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               <div>
                 {userId == feed?.post_user?.id ? (
                   <button onClick={() => handleDropdown(feed?._id)}>
-                    <BsThreeDotsVertical size={25} color="gray" />
+                    <BsThreeDotsVertical color="#252f3f" size={25} />
                   </button>
                 ) : (
                   <button onClick={() => handleReportModal(feed?._id)}>
@@ -813,33 +813,34 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
 
-                  <button
-                    className="flex items-center justify-center gap-2 ml-3  "
-                    onClick={() => handleComments(feed?._id)}
-                  >
-                    <MdComment color="#4ed36f" className="mt-1" size={20} />
-
-                    <p className="text-sm">Comment</p>
-                  </button>
-
-                  {feed?.post_location?._id ? (
+                  <div className="flex gap-5 ml-20">
                     <button
-                      className="flex items-center justify-center gap-2"
-                      onClick={() => setShowRepost(feed?.post_location)}
+                      className="flex items-center justify-center gap-2   "
+                      onClick={() => handleComments(feed?._id)}
                     >
-                      <BiRepost size={25} />
-                      <p className="text-sm">Repost</p>
+                      <MdComment color="#c27803" className="mt-1" size={25} />
+
+                      <p className="text-sm">Comment</p>
                     </button>
-                  ) : (
-                    <button
-                      className="flex items-center justify-center gap-2"
-                      onClick={() => setShowRepost(feed)}
-                    >
-                      <BiRepost size={25} />
-                      <p className="text-sm">Repost</p>
-                    </button>
-                  )}
-                  
+
+                    {feed?.post_location?._id ? (
+                      <button
+                        className="flex items-center justify-center gap-2"
+                        onClick={() => setShowRepost(feed?.post_location)}
+                      >
+                        <BiRepost color="#4d7c0f" size={30} />
+                        <p className="text-sm">Repost</p>
+                      </button>
+                    ) : (
+                      <button
+                        className="flex items-center justify-center gap-2"
+                        onClick={() => setShowRepost(feed)}
+                      >
+                        <BiRepost color="#4d7c0f" size={30} />
+                        <p className="text-sm">Repost</p>
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
@@ -878,12 +879,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       )}
 
       {showRepost && (
-        <Repost
-          close={closeRepostModal}
-          getFeeds={getFeeds}
-          feed={showRepost}
-          userId={userId}
-        />
+        <Repost close={closeRepostModal} feed={showRepost} userId={userId} />
       )}
 
       {showDeleteModal && (
@@ -916,7 +912,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             </div>
           </div>
           <div>
-            <BsThreeDotsVertical size={25} color="gray" />
+           <BsThreeDotsVertical color="#252f3f" size={25} color="gray" />
           </div>
         </div>
         <div className="mt-5">

@@ -126,7 +126,7 @@ const page = ({ params }) => {
                         Message
                       </button>
                       <button className="">
-                        <BsThreeDotsVertical size={20} />
+                       <BsThreeDotsVertical color="#252f3f" size={20} />
                       </button>
                     </div> */}
                   </div>
