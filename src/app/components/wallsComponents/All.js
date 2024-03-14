@@ -832,7 +832,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       <p className="text-sm">Repost</p>
                     </button>
                   )}
-
+                  
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
@@ -871,7 +871,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       )}
 
       {showRepost && (
-        <Repost close={closeRepostModal} feed={showRepost} userId={userId} />
+        <Repost
+          close={closeRepostModal}
+          getFeeds={getFeeds}
+          feed={showRepost}
+          userId={userId}
+        />
       )}
 
       {showDeleteModal && (
