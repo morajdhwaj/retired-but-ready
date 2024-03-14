@@ -1,16 +1,18 @@
 "use client";
 
 import Loader from "@/app/components/Loader";
+import { UserIdContext } from "@/context/UserIdContext";
 import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
 const page = ({ params }) => {
   const postId = params["post-id"];
   const [feed, setFeed] = useState([]);
+  const { userIdFromContext } = useContext(UserIdContext);
 
   console.log(postId);
   useEffect(() => {
@@ -41,7 +43,7 @@ const page = ({ params }) => {
       </div>
     );
   }
-
+  console.log(userIdFromContext, "userId");
   return (
     <div>
       <Link href={`/profile/${feed?.post_user?.id}`}>

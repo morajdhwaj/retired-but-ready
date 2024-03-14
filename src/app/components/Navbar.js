@@ -72,17 +72,17 @@ const Navbar = () => {
         </div>
       </div>
       <div className="w-1/2 flex items-center justify-end gap-2 md:gap-16">
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <input
             placeholder="Looking for..."
             className="bg-gray-200 border border-purple-300 text-xs md:text-sm rounded-lg px-2 py-2 w-20 md:w-60  "
           />
           <button className="  font-semibold">Search</button>
-        </div>
-        <select className="bg-[#EDEBF2] font-semibold ">
+        </div> */}
+        {/* <select className="bg-[#EDEBF2] font-semibold ">
           <option>EN</option>
           <option>HI</option>
-        </select>
+        </select> */}
 
         {userId ? (
           <button
