@@ -13,8 +13,9 @@ import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import dayjs from "dayjs";
-
+import Repost from "@/app/components/repost-Pop-Up/page";
 import Link from "next/link";
+import { BiRepost } from "react-icons/bi";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -32,6 +33,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [isHovered, setIsHovered] = useState("");
   const [copied, setCopied] = useState(false);
   const [reactionName, setReactionName] = useState();
+  const [showRepost, setShowRepost] = useState(null);
 
   useEffect(() => {
     console.log(isHovered, "this is my value");
@@ -56,6 +58,10 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   useEffect(() => {
     getFeeds();
   }, []);
+
+  const closeRepostModal = () => {
+    setShowRepost("");
+  };
 
   const handleComments = (feedId) => {
     if (!showComments) {
@@ -477,6 +483,103 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               </div>
             )}
 
+            {/* ------------------------------------------------------------------------------------ */}
+
+            {feed?.post_location?._id && (
+              <div className="border-2 p-2 mx-4 rounded-lg ">
+                <div className="border-b-[1px] pb-2">
+                  <div className="flex items-center gap-2 ">
+                    <div>
+                      {/* <Link href={`/profile/${feed?.post_user?.id}`}> */}
+                      {feed?.post_location?.post_user?.user_image ? (
+                        <Image
+                          alt=""
+                          src={feed?.post_location?.post_user?.user_image}
+                          height={50}
+                          width={50}
+                          className="w-16 h-16 rounded-full border-2 border-gray-200"
+                        />
+                      ) : (
+                        <FaUserCircle size={50} />
+                      )}
+                      {/* </Link> */}
+                    </div>
+                    <div>
+                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                        {feed?.post_location?.post_user?.user_display_name}
+                      </h2>
+                      <p className="text-xs">
+                        {feed?.post_location?.post_user?.last_designation}
+                      </p>
+
+                      <div className="flex gap-10">
+                        {dayjs().date() -
+                          dayjs(
+                            new Date(feed?.post_location?.publish_time + "Z")
+                          ).date() <
+                        2 ? (
+                          <p className="text-xs">
+                            Published at:
+                            {dayjs(
+                              new Date(feed?.post_location?.publish_time + "Z")
+                            ).fromNow()}
+                          </p>
+                        ) : (
+                          <p className="text-xs">
+                            Published at:{" "}
+                            {dayjs(
+                              new Date(feed?.post_location?.publish_time + "Z")
+                            ).format("DD-MM-YYYY HH:mm a")}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="my-5">
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        feed?.post_location?.post_description &&
+                        feed?.post_location?.post_description.replace(
+                          /(https?:\/\/[^\s]+)/g,
+                          '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
+                        ),
+                    }}
+                  />
+                </div>
+                {feed?.post_location?.post_media && (
+                  <div className="flex px-10 pb-2 items-center justify-center">
+                    {["png", "jpeg", "jpg"].includes(
+                      feed?.post_location?.post_media[0].type
+                    ) && (
+                      <Image
+                        alt=""
+                        src={feed?.post_location?.post_media[0]?.url}
+                        height={500}
+                        width={650}
+                        className=""
+                      />
+                    )}
+
+                    {feed?.post_location?.post_media[0].type == "mp4" && (
+                      <video
+                        className="cursor-pointer"
+                        controls
+                        style={{ width: 650, height: 500 }}
+                      >
+                        <source
+                          src={feed?.post_location?.post_media[0]?.url}
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="mt-5 p-2" onMouseLeave={() => setIsHovered(false)}>
               <div className="flex gap-2 items-center    ">
                 {feed?.reaction_like?.length > 0 && (
@@ -712,10 +815,24 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <p className="text-sm">Comment</p>
                   </button>
 
-                  {/* <button className="flex items-center justify-center gap-2">
-                    <IoIosShareAlt />
-                    <p className="text-sm">Repost</p>
-                  </button> */}
+                  {feed?.post_location?._id ? (
+                    <button
+                      className="flex items-center justify-center gap-2"
+                      onClick={() => setShowRepost(feed?.post_location)}
+                    >
+                      <BiRepost size={25} />
+                      <p className="text-sm">Repost</p>
+                    </button>
+                  ) : (
+                    <button
+                      className="flex items-center justify-center gap-2"
+                      onClick={() => setShowRepost(feed)}
+                    >
+                      <BiRepost size={25} />
+                      <p className="text-sm">Repost</p>
+                    </button>
+                  )}
+
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
@@ -752,6 +869,11 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           setReportType={setReportType}
         />
       )}
+
+      {showRepost && (
+        <Repost close={closeRepostModal} feed={showRepost} userId={userId} />
+      )}
+
       {showDeleteModal && (
         <PopUp
           close={handleDeleteModal}
