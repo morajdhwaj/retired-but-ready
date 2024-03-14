@@ -24,7 +24,12 @@ const Launch = () => {
       <div className="flex md:flex lg:flex justify-between bg-white p-2 border-b-2 border-gray-300 mt-10 ">
         <div className=" lg:flex items-center gap-2 justify-center">
           <div>
-            <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+            <Image
+              alt="rtr-pic"
+              src="/assets/Ellipse-39.png"
+              height={50}
+              width={50}
+            />
           </div>
           <div>
             <h2 className="text-sm font-semibold text-[#773fc6]  ">
@@ -52,12 +57,15 @@ const Launch = () => {
       <div className="mt-5">
         <div className="text-xs">
           <p>
-          In the week gone by, We had covered the launch of one of the most
-          awaited compact SUVs in the country. Additionally, We also covered a
-          series of...</p>
-          <p>In the week gone by, We had covered the launch of one of
-          the most awaited compact SUVs in the country. Additionally, We also
-          covered a series of...</p>
+            In the week gone by, We had covered the launch of one of the most
+            awaited compact SUVs in the country. Additionally, We also covered a
+            series of...
+          </p>
+          <p>
+            In the week gone by, We had covered the launch of one of the most
+            awaited compact SUVs in the country. Additionally, We also covered a
+            series of...
+          </p>
         </div>
         <div className="text-[#773FC6] text-end">...see more</div>
       </div>

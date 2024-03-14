@@ -280,7 +280,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       {feeds.map((feed) => {
         console.log(feed, "this is for feed testing");
 
-        let showIcon = <AiOutlineLike size={25} />; // Default icon
+        let showIcon = <AiOutlineLike color="gray" size={25} />; // Default icon
 
         const likes = feed.reaction_like.filter(
           (likeId) => likeId.user_id === userId
@@ -300,18 +300,33 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
         if (likes.length > 0) {
           showIcon = (
-            <Image src="/emoji/like2.png" height={25} width={20}></Image>
+            <Image
+              src="/emoji/like2.png"
+              alt="reactions"
+              height={25}
+              width={20}
+            ></Image>
           );
 
           // <AiFillLike  size={20} />;
         } else if (loves.length > 0) {
           showIcon = (
-            <Image src="/emoji/love.png" height={25} width={20}></Image>
+            <Image
+              src="/emoji/love.png"
+              alt="reactions"
+              height={25}
+              width={20}
+            ></Image>
           );
           //  <FaHeart size={20} />;
         } else if (appraises.length > 0) {
           showIcon = (
-            <Image src="/emoji/clap.png" height={25} width={20}></Image>
+            <Image
+              src="/emoji/clap.png"
+              alt="reactions"
+              height={25}
+              width={20}
+            ></Image>
           );
           //  <PiNotepadFill size={20} />;
         } else if (insights.length > 0) {
@@ -321,7 +336,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           //  <IoBulb size={20} />;
         } else if (thinkings.length > 0) {
           showIcon = (
-            <Image src="/emoji/thinking.png" height={25} width={20}></Image>
+            <Image
+              src="/emoji/thinking.png"
+              alt="reactions"
+              height={25}
+              width={20}
+            ></Image>
           );
           //  <BiSolidSad size={20} />;
         }
@@ -341,14 +361,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   <Link href={`/profile/${feed?.post_user?.id}`}>
                     {feed?.post_user?.user_image ? (
                       <Image
-                        alt=""
+                        alt="rtr-pic"
                         src={feed?.post_user?.user_image}
                         height={50}
                         width={50}
                         className="w-16 h-16 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle size={50} />
+                      <FaUserCircle size={60} />
                     )}
                   </Link>
                 </div>
@@ -442,7 +462,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
               <div className="flex items-center justify-center">
                 {["png", "jpeg", "jpg"].includes(feed?.post_media[0].type) && (
                   <Image
-                    alt=""
+                    alt="rtr-pic"
                     src={feed?.post_media[0]?.url}
                     height={500}
                     width={650}
@@ -576,7 +596,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_love?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <Image src="/emoji/love.png" height={25} width={20}></Image>
+                    <Image
+                      src="/emoji/love.png"
+                      alt="reactions"
+                      height={25}
+                      width={20}
+                    ></Image>
 
                     {/* <BsHeartFill /> */}
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
@@ -608,7 +633,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
                 {feed?.reaction_appraise?.length > 0 && (
                   <div className="flex items-center  gap-1 justify-center">
-                    <Image src="/emoji/clap.png" height={25} width={20}></Image>
+                    <Image
+                      src="/emoji/clap.png"
+                      alt="reactions"
+                      height={25}
+                      width={20}
+                    ></Image>
 
                     {/* <PiNotepadFill /> */}
                     <p className="text-sm w-2">
@@ -644,6 +674,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         ) ? ( */}
                         <Image
                           src="/emoji/like2.png"
+                          alt="reactions"
                           height={25}
                           width={20}
                         ></Image>
@@ -671,6 +702,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         ) ? ( */}
                         <Image
                           src="/emoji/love.png"
+                          alt="reactions"
                           height={25}
                           width={20}
                         ></Image>
@@ -698,6 +730,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         ) ? ( */}
                         <Image
                           src="/emoji/thinking.png"
+                          alt="reactions"
                           height={25}
                           width={20}
                         ></Image>
@@ -752,6 +785,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         ) ? ( */}
                         <Image
                           src="/emoji/clap.png"
+                          alt="reactions"
                           height={25}
                           width={20}
                         ></Image>
@@ -773,13 +807,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
 
                   <button
-                    className="flex items-center justify-center gap-2 "
+                    className="flex items-center justify-center gap-2  "
                     onClick={() => handleComments(feed?._id)}
                   >
-                    <MdComment className="mt-1" />
+                    <MdComment color="gray" className="mt-1" size={20} />
 
                     <p className="text-sm">Comment</p>
                   </button>
+
                   {feed?.post_location?._id ? (
                     <button
                       className="flex items-center justify-center gap-2"
@@ -797,6 +832,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       <p className="text-sm">Repost</p>
                     </button>
                   )}
+
                 </div>
 
                 <div className="flex items-center gap-2 text-sm">
@@ -853,7 +889,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
           <div className="flex items-center gap-2 justify-center">
             <div>
               <Image
-                alt=""
+                alt="rtr-pic"
                 src="/assets/Ellipse-39.png"
                 height={50}
                 width={50}

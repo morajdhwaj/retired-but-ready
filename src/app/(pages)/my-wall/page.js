@@ -15,10 +15,10 @@ import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [myFeeds, setMyFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
@@ -96,7 +96,7 @@ const page = () => {
                   <div className="flex items-center justify-center gap-2">
                     {userData?.user_image ? (
                       <Image
-                        alt=""
+                        alt="rtr-pic"
                         src={userData?.user_image}
                         height={50}
                         width={50}

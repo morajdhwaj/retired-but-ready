@@ -18,10 +18,10 @@ import Link from "next/link";
 import Loader from "@/app/components/Loader";
 import toast from "react-hot-toast";
 import { MdEdit } from "react-icons/md";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);

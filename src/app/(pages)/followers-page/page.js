@@ -10,10 +10,10 @@ import axios from "axios";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import PopUp from "@/app/components/PopUp";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
   const [followers, setFollower] = useState([]);
@@ -108,7 +108,12 @@ const page = () => {
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
-                  <Image alt="" src="/assets/110.png" height={50} width={50} />
+                  <Image
+                    alt="rtr-pic"
+                    src="/assets/110.png"
+                    height={50}
+                    width={50}
+                  />
                   <div className="font-semibold">
                     <h2>{userData.user_display_name}</h2>
                     <p className="text-gray-500">{userData.last_designation}</p>
@@ -163,7 +168,7 @@ const page = () => {
                       <div className=" flex flex-col  items-center gap-1 sm:flex  sm:flex-row sm:gap-0 md:flex  md:flex-row md:gap-0 lg:flex lg:flex-row  lg:gap-0">
                         <div>
                           <Image
-                            alt=""
+                            alt="rtr-pic"
                             src="/assets/110.png"
                             height={80}
                             width={80}

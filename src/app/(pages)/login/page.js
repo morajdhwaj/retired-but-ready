@@ -11,19 +11,12 @@ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
   const { setUserIdContext } = useContext(UserIdContext);
-  const [showModal, setShowModal] = useState(false);
+
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  const handleModal = () => {
-    setShowModal(true);
-    showModal &&
-      router.push(
-        userData.english_proficiency ? "all-feeds-page" : "/profile-setup"
-      );
-  };
 
   const getUserData = (userId) => {
     const options = {
@@ -36,9 +29,6 @@ const page = () => {
       .then(function (response) {
         console.log(response?.data);
         setUserData(response?.data);
-        setDisplayName(response?.data?.user_display_name);
-        setFirstName(response?.data?.user_first_name);
-        setLastName(response?.data?.user_last_name);
       })
       .catch(function (error) {
         console.error(error);
@@ -50,6 +40,7 @@ const page = () => {
       toast.error("Please enter your email and password");
       return;
     }
+    setLoading(true);
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/login",
@@ -61,7 +52,7 @@ const page = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        // localStorage.setItem("userId", response?.data?.user_id);
+
         setUserIdContext(response?.data?.user_id);
 
         if (response.data.redirect === "verification") {
@@ -76,6 +67,7 @@ const page = () => {
         console.error(error);
         toast.error(error?.response?.data?.detail || "Something wrong");
       });
+    setLoading(false);
   };
 
   console.log(userData);
@@ -167,35 +159,41 @@ const page = () => {
         {/* Login form */}
 
         <div className=" w-full lg:w-1/2 text-center  flex flex-col  items-center  ">
-          <h1 className=" text-3xl font-bold text-center  lg:mt-24">Login</h1>
+          <h1 className=" text-3xl font-bold text-center  lg:mt-16">Login</h1>
 
-          <div className="    rounded-md  py-4 w-[80%] flex items-center  border-2 border-gray-300  flex-col mt-5 sm:mt-10 gap-5  hover:border-2 ">
+          <div className="    rounded-md  py-10 w-[80%] flex items-center  border-2 border-gray-300  flex-col mt-5 sm:mt-10 gap-10  hover:border-2 ">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder="Enter your register email"
               autoComplete="email"
-              className="mt-5  w-60 sm:w-[80%] border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2  hover:border-b-2"
+              className="mt-5 pl-2  h-14 w-60 sm:w-[80%] border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2  hover:border-b-2"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-60 sm:w-[80%]  border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2  hover:border-b-2 "
+              placeholder="Enter your password"
+              className="w-60 pl-2 h-14 sm:w-[80%]  border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2  hover:border-b-2 "
             />
 
-            <button
-              onClick={handleLogin}
-              className="border-2 bg-[#773FC6] rounded-lg p-2 w-60 sm:w-80  text-xl text-center  text-white flex justify-center items-center"
-            >
-              Login
-            </button>
+            {loading ? (
+              <button className="border-2 bg-[#773FC6] rounded-lg p-2 w-60 sm:w-80  text-xl text-center  text-white flex justify-center items-center">
+                Loading...
+              </button>
+            ) : (
+              <button
+                onClick={handleLogin}
+                className="border-2 bg-[#773FC6] rounded-lg p-2 w-60 sm:w-80  text-xl text-center  text-white flex justify-center items-center"
+              >
+                Login
+              </button>
+            )}
             <div className="text-start flex w-full mr-10 justify-end items-end">
               <Link
                 href="/forgot-password"
-                className="mb-0 hover:border-b-2 text-sm  hover:w-40"
+                className=" text-sm hover:text-[#773FC6] "
               >
                 Forget password ?
               </Link>

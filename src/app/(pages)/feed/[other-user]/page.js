@@ -77,7 +77,7 @@ const page = ({ params }) => {
                 <div className="flex items-center justify-center gap-2">
                   {profileData?.user_image ? (
                     <Image
-                      alt=""
+                      alt="rtr-pic"
                       src={profileData?.user_image}
                       height={50}
                       width={50}

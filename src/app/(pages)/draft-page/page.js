@@ -14,11 +14,11 @@ import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userId, setUserId] = useState("");
   const [selectId, setSelectId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -31,7 +31,7 @@ const page = () => {
   const [showDropDown, setShowDropDown] = useState(false);
 
   useEffect(() => {
-    setUserId(userIdFromContext)
+    setUserId(userIdFromContext);
     getUserData();
     getAllDraft();
   }, [userId]);
@@ -193,7 +193,7 @@ const page = () => {
                 <div className="flex items-center justify-center gap-2">
                   {userData?.user_image ? (
                     <Image
-                      alt=""
+                      alt="rtr-pic"
                       src={userData?.user_image}
                       height={50}
                       width={50}
@@ -276,7 +276,7 @@ const page = () => {
                             post?.post_media[0].type
                           ) && (
                             <Image
-                              alt=""
+                              alt="rtr-pic"
                               src={post?.post_media[0]?.url}
                               height={200}
                               width={200}

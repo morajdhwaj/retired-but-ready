@@ -16,12 +16,9 @@ import { IoSchoolSharp } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 
- import { UserIdContext } from "@/context/UserIdContext";
-
-
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = ({ params }) => {
-
   const profileId = params["user"];
   const { userIdFromContext } = useContext(UserIdContext);
 
@@ -38,9 +35,7 @@ const page = ({ params }) => {
   // GET USER ID FROM LOCAL STORAGE --------------------------------
 
   useEffect(() => {
-   
-      setUserId(userIdFromContext);
-
+    setUserId(userIdFromContext);
   }, []); // Run only once when component mounts
 
   useEffect(() => {
@@ -253,7 +248,7 @@ const page = ({ params }) => {
                     <div className="flex items-center justify-center gap-2  ">
                       {userData?.user_image ? (
                         <Image
-                          alt=""
+                          alt="rtr-pic"
                           src={userData?.user_image}
                           height={70}
                           width={70}

@@ -21,7 +21,12 @@ const Message = () => {
       {/* ------------------- */}
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-2">
         <div>
-          <Image alt="" src="/assets/Ellipse-38.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-38.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#773FC6] font-bold">Munawar Raj Singh</h1>
@@ -31,7 +36,12 @@ const Message = () => {
       </div>
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-39.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-39.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#70b94b] font-bold">Munawar Raj Singh</h1>
@@ -42,7 +52,12 @@ const Message = () => {
 
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-38.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-38.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#773FC6] font-bold">Munawar Raj Singh</h1>
@@ -53,7 +68,12 @@ const Message = () => {
 
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-39.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-39.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#70b94b] font-bold">Munawar Raj Singh</h1>
@@ -64,7 +84,12 @@ const Message = () => {
 
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-38.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-38.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#773FC6] font-bold">Munawar Raj Singh</h1>
@@ -74,7 +99,12 @@ const Message = () => {
       </div>
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-39.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-39.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#70b94b] font-bold">Munawar Raj Singh</h1>
@@ -84,7 +114,12 @@ const Message = () => {
       </div>
       <div className="bg-[#FFFFFF] shadow-md flex gap-2 p-6 mt-0.5">
         <div>
-          <Image alt="" src="/assets/Ellipse-38.png" height={75} width={75} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-38.png"
+            height={75}
+            width={75}
+          />
         </div>
         <div>
           <h1 className="text-[#773FC6] font-bold">Munawar Raj Singh</h1>
