@@ -398,7 +398,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
                 ) : (
                   <button onClick={() => handleReportModal(feed?._id)}>
-                    <RiSpam2Fill size={25} color="gray" />
+                    <RiSpam2Fill size={25} color="#f4c6c6" />
                   </button>
                 )}
                 {postId == feed?._id && (
@@ -711,10 +711,10 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </button>
 
                   <button
-                    className="flex items-center justify-center gap-2  "
+                    className="flex items-center justify-center gap-2 ml-3  "
                     onClick={() => handleComments(feed?._id)}
                   >
-                    <MdComment color="gray" className="mt-1" size={20} />
+                    <MdComment color="#4ed36f" className="mt-1" size={20} />
 
                     <p className="text-sm">Comment</p>
                   </button>
