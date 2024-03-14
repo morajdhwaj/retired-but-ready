@@ -179,7 +179,7 @@ const page = () => {
           </h1>
 
           <br />
-          <div className="border-2 border-gray-300 w-[80%] rounded-md   hover:shadow-sm p-4 ">
+          <div className="border-2 border-gray-300 w-[80%] rounded-md   hover:shadow-sm p-5 ">
             <div>
               <h2 className="ml-2">
                 {" "}
