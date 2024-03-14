@@ -391,11 +391,7 @@ const ReplyCommentsComp = ({
                           handleDropdown(reply?._id, reply.comment_content)
                         }
                       >
-                        <BsThreeDotsVertical
-                          color="252f3f"
-                          size={25}
-                          color="gray"
-                        />
+                        <BsThreeDotsVertical color="252f3f" size={25} />
                       </button>
                     ) : (
                       <button onClick={() => handleModal(reply?._id)}>

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 
-const page = ({ close, feed, userId, getFeeds }) => {
+const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
   const [userData, setUserData] = useState();
   const [description, setDescription] = useState("");
 
@@ -49,7 +49,7 @@ const page = ({ close, feed, userId, getFeeds }) => {
         }
       );
       close();
-      getFeeds()
+      getFeeds();
       console.log(
         "Post created: WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
         response.data
@@ -213,4 +213,4 @@ const page = ({ close, feed, userId, getFeeds }) => {
   );
 };
 
-export default page;
+export default RePostPopUp;
