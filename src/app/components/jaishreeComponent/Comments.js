@@ -228,7 +228,11 @@ const Comments = ({ postId, userId }) => {
                           handleDropdown(comment?._id, comment.comment_content)
                         }
                       >
-                        <BsThreeDotsVertical size={25} color="gray" />
+                        <BsThreeDotsVertical
+                          color="252f3f"
+                          size={25}
+                          color="gray"
+                        />
                       </button>
                     ) : (
                       <button onClick={() => handleModal(comment?._id)}>

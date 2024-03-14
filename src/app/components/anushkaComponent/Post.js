@@ -38,8 +38,8 @@ const Post = () => {
             </div>
           </div>
           <div className="mt-1 m-5">
-            <BsThreeDotsVertical />
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
+            <BsThreeDotsVertical color="#252f3f" />
           </div>
         </div>
       </div>

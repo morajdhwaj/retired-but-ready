@@ -45,7 +45,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>
@@ -79,7 +79,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>
@@ -113,7 +113,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>
@@ -147,7 +147,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>
@@ -182,7 +182,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>
@@ -216,7 +216,7 @@ const HiringConnection = () => {
           </div>
         </div>
         <div className="flex mt-2 mx-5">
-          <BsThreeDotsVertical />
+          <BsThreeDotsVertical color="#252f3f" />
           <IoIosSend />
         </div>
       </div>

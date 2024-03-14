@@ -6,7 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import PopUp from "../components/PopUp";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const information = [
   {
@@ -43,10 +43,8 @@ const information = [
   },
 ];
 
-
-
 const Page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userId, setUserId] = useState("");
   const [groupsData, setGroupsData] = useState([]);
   const [showOption, setShowOption] = useState("");
@@ -55,9 +53,7 @@ const Page = () => {
   // GET USER ID FROM LOCALSTORAGE --------------------------------------
 
   useEffect(() => {
- 
-      setUserId(userIdFromContext);
-
+    setUserId(userIdFromContext);
   }, []); // Run only once when component mounts
 
   // GET GROUP DATA FROM API --------------------------------------------------
@@ -140,7 +136,7 @@ const Page = () => {
                       : setShowOption("");
                   }}
                 >
-                  <BsThreeDotsVertical />
+                  <BsThreeDotsVertical color="#252f3f" />
                 </button>
               </div>
               {showOption === groupData.group_id ? (

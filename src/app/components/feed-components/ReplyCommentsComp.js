@@ -306,7 +306,7 @@ const ReplyCommentsComp = ({
                   )}
                 </div>
               </Link>
-              <div className="border p-2 bg-gray-100 flex flex-col  gap-2 border-gray-300  rounded-b-lg w-full rounded-tr-lg">
+              <div className="border p-2 bg-gray-50 flex flex-col  gap-2 border-gray-300  w-full rounded-md">
                 <div className="flex justify-between">
                   <div className="flex   gap-2  justify-center">
                     <div className="">
@@ -391,7 +391,11 @@ const ReplyCommentsComp = ({
                           handleDropdown(reply?._id, reply.comment_content)
                         }
                       >
-                        <BsThreeDotsVertical size={25} color="gray" />
+                        <BsThreeDotsVertical
+                          color="252f3f"
+                          size={25}
+                          color="gray"
+                        />
                       </button>
                     ) : (
                       <button onClick={() => handleModal(reply?._id)}>
@@ -746,7 +750,7 @@ const ReplyCommentsComp = ({
                 />
                 <div>
                   <button onClick={() => setSelectedReplyImage("")}>
-                    <GrClose />
+                    <GrClose color="#f96363" />
                   </button>
                 </div>
               </div>

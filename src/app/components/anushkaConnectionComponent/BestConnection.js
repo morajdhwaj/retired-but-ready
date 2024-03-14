@@ -47,7 +47,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -85,7 +85,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -123,7 +123,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -161,7 +161,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -198,7 +198,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -236,7 +236,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />
@@ -274,7 +274,7 @@ const BestConnection = () => {
         </div>
         <div className="flex mt-2 lg:mx-5">
           <button>
-            <BsThreeDotsVertical />
+            <BsThreeDotsVertical color="#252f3f" />
           </button>
           <button>
             <IoIosSend />

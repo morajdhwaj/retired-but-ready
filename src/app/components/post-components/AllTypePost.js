@@ -51,7 +51,7 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds, selectedType }) => {
       >
         <div className="flex justify-end m-2">
           <button onClick={() => setAnyTypePost(false)}>
-            <GrClose />
+            <GrClose color="#f96363" />
           </button>
         </div>
         <div>
