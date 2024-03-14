@@ -47,7 +47,7 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds, selectedType }) => {
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  h-[50vh] w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20`}
+        className={`bg-white rounded-md z-50 h-[55vh] w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 p-2 sm:mr-20`}
       >
         <div className="flex justify-end m-2">
           <button onClick={() => setAnyTypePost(false)}>
@@ -55,16 +55,25 @@ const AllTypePost = ({ userId, setAnyTypePost, getFeeds, selectedType }) => {
           </button>
         </div>
         <div>
-          <div className="mx-5">
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className="border border-gray-300 rounded-lg px-2 py-1"
+          <div className="mx-5 flex gap-5">
+            <button
+              onClick={() => setType("Text")}
+              className={`border border-gray-300 rounded-lg  px-2 py-1 w-32 ${
+                type == "Text" && "bg-[#773fc6]  text-white"
+              }`}
             >
-              <option>Multimedia</option>
-              <option>Text</option>
-            </select>
+              Text
+            </button>
+            <button
+              onClick={() => setType("Multimedia")}
+              className={`border border-gray-300 rounded-lg px-2 py-1 w-32 ${
+                type == "Multimedia" && "bg-[#773fc6]  text-white"
+              }`}
+            >
+              Multimedia
+            </button>
           </div>
+
           <div className="mt-5 ">
             {type == "Text" && (
               <PostAsText

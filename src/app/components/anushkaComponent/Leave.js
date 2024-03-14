@@ -93,7 +93,12 @@ const Leave = () => {
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
       <div className=" gap-2 mt-5">
         <div className="mt-5 flex items-center gap-2">
-          <Image alt="" src="/assets/Ellipse-39.png" height={50} width={50} />
+          <Image
+            alt="rtr-pic"
+            src="/assets/Ellipse-39.png"
+            height={50}
+            width={50}
+          />
           <p className=" text-xs sm:text-base text-gray-400">
             Leave your thoughts here..
           </p>

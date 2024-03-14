@@ -45,20 +45,26 @@ const PostAsText = ({
     <div className="mx-5 ">
       <textarea
         value={descriptions}
-        onChange={(e) => setDescriptions(e.target.value)}
+        onChange={(e) =>
+          setDescriptions(
+            e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+              match.toUpperCase()
+            )
+          )
+        }
         className="border border-gray-200 w-full h-60 p-5 rounded"
-        placeholder="Write something here.."
+        placeholder="Write your thought here..."
       />
-      <div className="flex justify-between mx-5 mt-5 gap-5">
+      <div className="flex justify-end mx-5 mt-5 gap-5">
         <button
           onClick={() => createPost(false)}
-          className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+          className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
         >
           Draft
         </button>
         <button
           onClick={() => createPost(true)}
-          className="bg-[#773f6c] text-white px-4 py-2 rounded-lg"
+          className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
         >
           Post
         </button>

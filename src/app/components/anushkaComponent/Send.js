@@ -25,7 +25,7 @@ const Send = () => {
           <div className=" flex m-2 items-center gap-2 justify-between">
             <div className=" md:flex lg:flex gap-2 mt-5">
               <Image
-                alt=""
+                alt="rtr-pic"
                 src="/assets/Ellipse-39.png"
                 height={50}
                 width={50}

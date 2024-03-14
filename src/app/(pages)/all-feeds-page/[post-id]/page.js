@@ -51,7 +51,7 @@ const page = ({ params }) => {
           <div className="">
             {feed?.post_user?.user_image ? (
               <Image
-                alt=""
+                alt="rtr-pic"
                 src={feed?.post_user?.user_image}
                 height={50}
                 width={50}
@@ -86,7 +86,7 @@ const page = ({ params }) => {
           <div className="">
             {["png", "jpeg", "jpg"].includes(feed?.post_media[0].type) && (
               <Image
-                alt=""
+                alt="rtr-pic"
                 src={feed?.post_media[0]?.url}
                 height={500}
                 width={500}
