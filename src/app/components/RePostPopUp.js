@@ -50,10 +50,8 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
       );
       close();
       getFeeds();
-      console.log(
-        "Post created: WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-        response.data
-      );
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
       return response.data; // Return data if needed
     } catch (error) {
       console.error("Error creating post:", error);
