@@ -11,7 +11,7 @@ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
   const { setUserIdContext } = useContext(UserIdContext);
-  const [showModal, setShowModal] = useState(false);
+
   const [email, setEmail] = useState("");
   const [userData, setUserData] = useState("");
   const [password, setPassword] = useState("");
@@ -29,9 +29,6 @@ const page = () => {
       .then(function (response) {
         console.log(response?.data);
         setUserData(response?.data);
-        setDisplayName(response?.data?.user_display_name);
-        setFirstName(response?.data?.user_first_name);
-        setLastName(response?.data?.user_last_name);
       })
       .catch(function (error) {
         console.error(error);
