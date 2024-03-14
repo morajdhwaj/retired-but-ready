@@ -8,7 +8,7 @@ import { AiFillPicture } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
 
 const data = [
@@ -19,7 +19,7 @@ const data = [
 ];
 
 const Page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [Category, setCategory] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
@@ -171,7 +171,13 @@ const Page = () => {
                 className="w-[70%] p-1 border border-gray-200"
                 placeholder="Write description hear"
                 value={groupDescription}
-                onChange={(e) => setGroupDescription(e.target.value)}
+                onChange={(e) =>
+                  setGroupDescription(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
               ></textarea>
             </div>
             <div className="flex flex-col mt-5">

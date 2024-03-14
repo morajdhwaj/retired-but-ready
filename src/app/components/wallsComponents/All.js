@@ -428,7 +428,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <textarea
                       className="border p-2 text-xs w-1/2 rounded-lg"
                       value={editDescription}
-                      onChange={(e) => setEditDescription(e.target.value)}
+                      onChange={(e) =>
+                        setEditDescription(
+                          e.target.value.replace(
+                            /(^[a-zA-Z])|(\.\s*\w)/gm,
+                            (match) => match.toUpperCase()
+                          )
+                        )
+                      }
                     />
                   </div>
                   <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">

@@ -236,7 +236,12 @@ const page = () => {
                               className="p-2 w-[70vh]"
                               value={editDescription}
                               onChange={(e) =>
-                                setEditDescription(e.target.value)
+                                setEditDescription(
+                                  e.target.value.replace(
+                                    /(^[a-zA-Z])|(\.\s*\w)/gm,
+                                    (match) => match.toUpperCase()
+                                  )
+                                )
                               }
                             />
                           </div>

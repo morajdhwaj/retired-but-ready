@@ -43,7 +43,7 @@ const ReplyCommentsComp = ({
   const [reportType, setReportType] = useState("hate_speech");
   const [selectedReplyImage, setSelectedReplyImage] = useState("");
   const [showReaction, setShowReaction] = useState(false);
-  const [reactionName, setReactionName] = useState("")
+  const [reactionName, setReactionName] = useState("");
 
   useEffect(() => {
     getComments();
@@ -330,7 +330,14 @@ const ReplyCommentsComp = ({
                               <textarea
                                 className="border  p-2 text-xs w-80 "
                                 value={editComment}
-                                onChange={(e) => setEditComment(e.target.value)}
+                                onChange={(e) =>
+                                  setEditComment(
+                                    e.target.value.replace(
+                                      /(^[a-zA-Z])|(\.\s*\w)/gm,
+                                      (match) => match.toUpperCase()
+                                    )
+                                  )
+                                }
                               />
                             </div>
                             <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
@@ -711,7 +718,13 @@ const ReplyCommentsComp = ({
             <div className="flex  px-2 m-2 gap-3">
               <textarea
                 value={inputReply}
-                onChange={(e) => setInputReply(e.target.value)}
+                onChange={(e) =>
+                  setInputReply(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
                 className="p-1 text-sm  w-full  outline-none "
                 placeholder="Leave your comments"
                 onInput={autoResize}

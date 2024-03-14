@@ -306,7 +306,13 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
           <div className="flex  px-2 m-2 gap-3 ">
             <textarea
               value={inputComment}
-              onChange={(e) => setInputComment(e.target.value)}
+              onChange={(e) =>
+                setInputComment(
+                  e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                    match.toUpperCase()
+                  )
+                )
+              }
               className="p-1 text-sm  w-full  outline-none "
               placeholder="Leave your comments"
               onInput={autoResize}
@@ -421,7 +427,14 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                         <textarea
                           className="border  p-2 text-xs w-1/2"
                           value={editComment}
-                          onChange={(e) => setEditComment(e.target.value)}
+                          onChange={(e) =>
+                            setEditComment(
+                              e.target.value.replace(
+                                /(^[a-zA-Z])|(\.\s*\w)/gm,
+                                (match) => match.toUpperCase()
+                              )
+                            )
+                          }
                         />
                       </div>
                       <div className="text-xs flex  gap-5 text-[#773fc6] ml-5">
