@@ -160,7 +160,7 @@ const PostAsMultiMedia = ({
                 className="border-2 py-4 px-8 w-60  text-sm rounded-full font-semibold  border-[#773fc6] "
                 onClick={openFileInput}
               >
-                Upload from computer
+                Upload
               </button>
             </label>
             <div className=" mx-5 p-3">
