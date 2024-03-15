@@ -83,7 +83,7 @@ const page = () => {
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#A6A7A6]  px-10 ">
+    <div className="bg-[#e8e9e8]  px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
