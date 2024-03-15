@@ -8,10 +8,10 @@ import PopUp from "@/app/components/PopUp";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const FollowersPage = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [followers, setFollowers] = useState([]);
   const [userId, setUserId] = useState("");
   const [show, setShow] = useState({});
@@ -94,7 +94,10 @@ const FollowersPage = () => {
                       className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200 " />
+                    <FaUserCircle
+                      color="gray"
+                      className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200 "
+                    />
                   )}
                 </Link>
               </div>

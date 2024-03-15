@@ -102,7 +102,7 @@ const page = () => {
                         width={50}
                       />
                     ) : (
-                      <FaUserCircle size={50} />
+                      <FaUserCircle color="gray" size={50} />
                     )}
                     <div className="font-semibold">
                       <h2>{userData.user_display_name}</h2>

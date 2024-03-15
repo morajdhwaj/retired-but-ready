@@ -302,7 +302,7 @@ const ReplyCommentsComp = ({
                       className="w-10 h-10 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                 </div>
               </Link>
@@ -391,7 +391,7 @@ const ReplyCommentsComp = ({
                           handleDropdown(reply?._id, reply.comment_content)
                         }
                       >
-                        <BsThreeDotsVertical color="252f3f" size={25} />
+                        <BsThreeDotsVertical size={25} />
                       </button>
                     ) : (
                       <button onClick={() => handleModal(reply?._id)}>

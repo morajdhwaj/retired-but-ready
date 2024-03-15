@@ -7,10 +7,10 @@ import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import PopUp from "@/app/components/PopUp";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const ContactPage = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
   const [selectedFollower, setSelectedFollower] = useState(null);
@@ -81,7 +81,10 @@ const ContactPage = () => {
                       className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200 " />
+                    <FaUserCircle
+                      color="gray"
+                      className=" w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-200 "
+                    />
                   )}
                 </Link>
               </div>

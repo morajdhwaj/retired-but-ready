@@ -87,7 +87,7 @@ const Leave = () => {
           <p className="text-sm">
             Comments
           </p> <LuDot className="text-xl " /> 687
-          <p className="text-sm">Shares</p>
+          <p className="text-sm">Share</p>
         </div>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
@@ -183,7 +183,10 @@ const Leave = () => {
           <p className="text-sm">
             Comments
           </p> <LuDot className="text-xl " /> 687
-          <p className="text-sm">Shares</p>
+          <p className="text-sm">
+            {" "}
+            <FaUserCircle color="gray" />
+          </p>
         </div>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />

@@ -255,10 +255,19 @@ const page = ({ params }) => {
                           className="w-20 h-20 rounded-full border-2 border-gray-200"
                         />
                       ) : (
-                        <FaUserCircle size={70} />
+                        <FaUserCircle color="gray" size={70} />
                       )}
                       <div className="font-semibold">
-                        <h2>{userData.user_display_name}</h2>
+                        <h2>
+                          {userData.user_display_name
+                            .toLowerCase()
+                            .split(" ")
+                            .map(
+                              (word) =>
+                                word.charAt(0).toUpperCase() + word.slice(1)
+                            )
+                            .join(" ")}
+                        </h2>
                         <p className="text-gray-500">
                           {userData.last_designation}
                         </p>

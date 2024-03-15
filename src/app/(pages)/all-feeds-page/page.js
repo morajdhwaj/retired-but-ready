@@ -104,7 +104,7 @@ const page = () => {
                         className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle size={50} />
+                      <FaUserCircle color="gray" size={50} />
                     )}
                     <div className="font-semibold">
                       <h2>{userData.user_display_name}</h2>

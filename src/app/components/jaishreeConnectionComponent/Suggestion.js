@@ -287,14 +287,21 @@ const Suggestion = () => {
                         className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle className="w-20 h-20 rounded-full border-2 border-gray-200 " />
+                      <FaUserCircle
+                        color="gray"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200 "
+                      />
                     )}
                   </Link>
                 </div>
               </div>
               <Link href={`/profile/${cardElem?._id}`}>
                 <h1 className="mt-10 flex items-center justify-center  text-lg">
-                  {cardElem.user_display_name}
+                  {cardElem.user_display_name
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
                 </h1>
               </Link>
               <p className="  text-center text-sm mt-1 text-gray-500">

@@ -199,7 +199,7 @@ const page = () => {
                       width={50}
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                   <div className="font-semibold">
                     <h2>{userData.user_display_name}</h2>
@@ -252,11 +252,7 @@ const page = () => {
                         )}
                       </div>
                       <button onClick={() => handleDropdown(post?._id)}>
-                        <BsThreeDotsVertical
-                          color="252f3f"
-                          size={25}
-                          color="gray"
-                        />
+                        <BsThreeDotsVertical size={25} color="gray" />
                       </button>
                       {postId == post?._id && (
                         <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
@@ -271,7 +267,7 @@ const page = () => {
                               onClick={() => handleDelete(post?._id)}
                               className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                             >
-                              delete
+                              Delete
                             </button>
                           </div>
                         </div>

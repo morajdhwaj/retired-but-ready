@@ -85,7 +85,7 @@ const page = ({ params }) => {
                             className="w-20 h-20 rounded-full border-2 border-gray-200"
                           />
                         ) : (
-                          <FaUserCircle size={70} />
+                          <FaUserCircle color="gray" size={70} />
                         )}
                         <div className="">
                           <h2 className="text-md font-semibold">
@@ -109,7 +109,7 @@ const page = ({ params }) => {
                             className="w-20 h-20 rounded-full border-2 border-gray-200"
                           />
                         ) : (
-                          <FaUserCircle size={70} />
+                          <FaUserCircle color="gray" size={70} />
                         )}
                         <div className="">
                           <h2 className="text-md font-semibold">

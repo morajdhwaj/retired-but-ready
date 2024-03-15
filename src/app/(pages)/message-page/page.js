@@ -15,10 +15,10 @@ import Image from "next/image";
 import { debounce } from "lodash";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [userAllData, setUserAllData] = useState([]);
@@ -185,7 +185,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -201,7 +201,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -217,7 +217,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -233,7 +233,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -249,7 +249,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -265,7 +265,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -281,7 +281,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
@@ -297,7 +297,7 @@ const Page = () => {
                   <div className="p-3">
                     <a href="" className="flex h-20 ">
                       <div className="flex items-center">
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                       </div>
                       <div className="py-2 px-4 w-full border-b-2">
                         <div className="flex justify-between">
