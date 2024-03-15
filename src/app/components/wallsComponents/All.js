@@ -497,7 +497,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div className="border-b-[1px] pb-2">
                   <div className="flex items-center gap-2 ">
                     <div>
-                      {/* <Link href={`/profile/${feed?.post_user?.id}`}> */}
+                      <Link href={`/profile/${feed?.post_location?.post_user?.id}`}>
                       {feed?.post_location?.post_user?.user_image ? (
                         <Image
                           alt=""
@@ -509,7 +509,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       ) : (
                         <FaUserCircle size={50} />
                       )}
-                      {/* </Link> */}
+                      </Link>
                     </div>
                     <div>
                       <h2 className="text-sm font-semibold text-[#773fc6]  ">
