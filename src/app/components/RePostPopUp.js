@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
+import toast from "react-hot-toast";
+import { GrClose } from "react-icons/gr";
 
 const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
   const [userData, setUserData] = useState();
@@ -28,35 +30,34 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
     }
   };
 
-  const createPost = async () => {
-    try {
-      const response = await axios.post(
-        "https://retpro.catax.me/post/create",
-        {
-          post_user: userId,
-          post_type: "text",
-          post_description: description,
-          post_location: "repost",
-          location_id: feed?._id,
-          is_published: true,
-          comment_condition: "string",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            accept: "application/json",
-          },
-        }
-      );
-      close();
-      getFeeds();
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  const createPost = () => {
+    const options = {
+      method: "POST",
+      url: "https://retpro.catax.me/post/create",
+      headers: { "Content-Type": "application/json" },
+      data: {
+        post_user: userId,
+        post_type: "text",
+        post_description: description,
+        post_location: "repost",
+        location_id: feed?._id,
+        is_published: true,
+        comment_condition: "string",
+      },
+    };
 
-      return response.data; // Return data if needed
-    } catch (error) {
-      console.error("Error creating post:", error);
-      throw error; // Rethrow the error for handling in the UI or elsewhere
-    }
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success("successfully Repost");
+        getFeeds();
+        close();
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   console.log(
@@ -69,8 +70,13 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  h-[82vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-3 py-5`}
+        className={`bg-white rounded-md z-50  h-[75vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-6 py-5`}
       >
+        <div className="flex justify-end m-2">
+          <button onClick={close}>
+            <GrClose color="#f96363" />
+          </button>
+        </div>
         <div className="mb-10">
           <div className="">
             <div className="flex items-center gap-2 ">
@@ -80,9 +86,9 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
                     <Image
                       alt=""
                       src={userData?.user_image}
-                      height={50}
-                      width={50}
-                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                      height={20}
+                      width={20}
+                      className="w-12 h-12 rounded-full border-2 border-gray-200"
                     />
                   ) : (
                     <FaUserCircle size={50} />
@@ -103,11 +109,17 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
                 id=""
                 className="w-full border-2 p-2 rounded-lg mt-3 mb-2"
                 placeholder="Shear your thought .... "
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) =>
+                  setDescription(
+                    e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
+                      match.toUpperCase()
+                    )
+                  )
+                }
               ></textarea>
             </div>
           </div>
-          <div className=" border-2 p-2 max-h-[290px] overflow-y-scroll">
+          <div className=" border-2 p-5  rounded-lg max-h-[290px] overflow-y-scroll">
             <div className="flex items-center gap-2 ">
               <div>
                 <Link href={`/profile/${feed?.post_user?.id}`}>
@@ -192,15 +204,9 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between ">
+        <div className="flex justify-end ">
           <button
-            className="border-2 border-[#ac77f8] bg-[#E9D5FF] text-[#120a21] py-1 px-4 rounded-xl"
-            onClick={close}
-          >
-            close
-          </button>
-          <button
-            className="border-2 border-[#ac77f8] bg-[#E9D5FF] text-[#120a21] py-1 px-4 rounded-xl"
+            className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
             onClick={createPost}
           >
             Post
