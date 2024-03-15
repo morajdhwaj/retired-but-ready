@@ -2,9 +2,9 @@ import React from "react";
 
 const VideoComponent = () => {
   return (
-    <div className="bg-[#EDEBF2] px-10 flex flex-col md:flex-row gap-5  sm:py-10 md:py-20 lg:py-40  ">
+    <div className="bg-[#EDEBF2] px-10 flex flex-col md:flex-row gap-5 py-5 sm:py-10 md:py-20 lg:py-40  ">
       <div className="md:w-1/2 flex flex-col gap-5">
-        <h1 className="font-semibold text-3xl lg:text-5xl leading-[65px] ">
+        <h1 className="font-semibold text-3xl lg:text-5xl leading-[43px] lg:leading-[60px] ">
           Where young minds meet industrious retires
         </h1>
         <p className="text-gray-500 text-xl font-light leading-8">

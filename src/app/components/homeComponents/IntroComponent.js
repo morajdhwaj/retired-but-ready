@@ -2,7 +2,7 @@ import React from "react";
 
 const IntroComponent = () => {
   return (
-    <div className="bg-[#EDEBF2]  flex py-20 md:py-40  ">
+    <div className="bg-[#EDEBF2]  flex py-8  sm:py-10 md:py-12  ">
       <div className="bg-[#e5def2] w-full flex flex-col lg:flex-row m-4 p-10 xl:p-16 gap-5 rounded-xl ">
         <div className="lg:w-1/2">
           <h3 className="font-semibold text-[#2f327d] text-center text-2xl">

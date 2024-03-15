@@ -49,8 +49,8 @@ const ExpertsComponents = () => {
           <h2 className="text-center font-medium text-2xl mt-5">Consultants</h2>
         </div>
       </div>
-      <div className="mt-16 flex items-center justify-center">
-        <button className="border border-[#773fc6] text-[#773fc6] px-16 py-5 rounded-full text-2xl font-light ">
+      <div className=" mt-10 md:mt-16 flex items-center justify-center">
+        <button className="border border-[#773fc6] text-[#773fc6] px-10  md:px-16 py-3 md:py-5 rounded-full text-xl md:text-2xl font-light ">
           Explore all
         </button>
       </div>
