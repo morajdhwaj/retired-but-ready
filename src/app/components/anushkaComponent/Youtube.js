@@ -113,7 +113,10 @@ const Youtube = () => {
           <p className="text-sm">
             Comments
           </p> <LuDot className="text-xl " /> 687
-          <p className="text-sm"> <FaUserCircle color="gray"</p>
+          <p className="text-sm">
+            {" "}
+            <FaUserCircle color="gray" />
+          </p>
         </div>
       </div>
       <div className="h-0.5 w-full bg-gray-300 mt-5" />
@@ -137,11 +140,7 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical
-                    color="#252f3f"
-                    size={25}
-                    color="black"
-                  />
+                  <BsThreeDotsVertical color="#252f3f" size={25} />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -192,11 +191,7 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical
-                    color="#252f3f"
-                    size={25}
-                    color="black"
-                  />
+                  <BsThreeDotsVertical color="#252f3f" size={25} />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -247,11 +242,7 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical
-                    color="#252f3f"
-                    size={25}
-                    color="black"
-                  />
+                  <BsThreeDotsVertical color="#252f3f" size={25} />
                 </button>
               </div>
               <p className="text-sm text-black mt-2 ">
@@ -302,11 +293,7 @@ const Youtube = () => {
                   David Alto Swain
                 </h2>
                 <button>
-                  <BsThreeDotsVertical
-                    color="#252f3f"
-                    size={25}
-                    color="black"
-                  />
+                  <BsThreeDotsVertical color="#252f3f" size={25} />
                 </button>
               </div>
               <p className=" sm:text-xs lg:text-sm text-black mt-2 ">
