@@ -43,7 +43,7 @@ const ReplyCommentsComp = ({
   const [reportType, setReportType] = useState("hate_speech");
   const [selectedReplyImage, setSelectedReplyImage] = useState("");
   const [showReaction, setShowReaction] = useState(false);
-  const [reactionName, setReactionName] = useState("")
+  const [reactionName, setReactionName] = useState("");
 
   useEffect(() => {
     getComments();
