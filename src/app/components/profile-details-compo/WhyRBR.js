@@ -25,16 +25,6 @@ const RetireCause = [
   { value: "Others", label: "Others" },
 ];
 
-const wants = [
-  { value: "Work as consultant", label: "Work as consultant" },
-  { value: "Build connection", label: "Build connection" },
-  { value: "Match-making", label: "Match-making" },
-  { value: "Mentoring", label: "Mentoring" },
-  { value: "Work as freelancer", label: "Work as freelancer" },
-  { value: "Work full-time", label: "Work full-time" },
-  { value: "Work sort term", label: "Work sort term" },
-];
-
 const WhyRBR = ({ userId }) => {
   const [cause, setCause] = useState([]);
   const [updatedCause, setUpdatedCause] = useState([]);
@@ -57,6 +47,14 @@ const WhyRBR = ({ userId }) => {
         console.log(response?.data);
         setUserData(response?.data);
         setCause(response?.data?.retirement_cause);
+        setUpdatedCause(
+          response?.data?.retirement_cause.map((item) => {
+            return {
+              value: item,
+              label: item,
+            };
+          })
+        );
       })
       .catch(function (error) {
         console.error(error);
@@ -102,13 +100,7 @@ const WhyRBR = ({ userId }) => {
     return <h1 className="mx-5">Loading...</h1>;
   }
 
-  console.log(userData, "data");
-  console.log(
-    updatedCause.map((item) => item.label),
-    "update cause"
-  );
-
-  console.log(cause);
+  console.log(updatedCause);
 
   return (
     <div className="flex  flex-col gap-5  m-3 ">
