@@ -85,7 +85,7 @@ const page = ({ params }) => {
                         className="w-16 h-16 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle size={60} />
+                      <FaUserCircle color="gray" size={60} />
                     )}
                   </Link>
                   <div className="font-semibold">

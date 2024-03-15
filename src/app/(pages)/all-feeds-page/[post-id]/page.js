@@ -58,7 +58,7 @@ const page = ({ params }) => {
                 className="rounded-full"
               />
             ) : (
-              <FaUserCircle size={50} />
+              <FaUserCircle color="gray" size={50} />
             )}
           </div>
           <div>

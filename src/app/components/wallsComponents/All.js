@@ -4,7 +4,7 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsFillShareFill, BsThreeDotsVertical } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
@@ -368,7 +368,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         className="w-16 h-16 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle size={60} />
+                      <FaUserCircle color="gray" size={60} />
                     )}
                   </Link>
                 </div>
@@ -377,7 +377,13 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     href={`/profile/${feed?.post_user?.id}`}
                     className="text-sm font-semibold text-[#773fc6]  "
                   >
-                    {feed?.post_user?.user_display_name}
+                    {feed?.post_user?.user_display_name
+                      .toLowerCase()
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
                   </Link>
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
@@ -423,7 +429,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         onClick={handleDeleteModal}
                         className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                       >
-                        delete
+                        Delete
                       </button>
                     </div>
                   </div>
@@ -512,7 +518,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                             className="w-16 h-16 rounded-full border-2 border-gray-200"
                           />
                         ) : (
-                          <FaUserCircle size={50} />
+                          <FaUserCircle color="gray" size={50} />
                         )}
                       </Link>
                     </div>
@@ -521,7 +527,14 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                         href={`/profile/${feed?.post_location?.post_user?.id}`}
                         className="text-sm font-semibold text-[#773fc6]  "
                       >
-                        {feed?.post_location?.post_user?.user_display_name}
+                        {feed?.post_location?.post_user?.user_display_name
+                          .toLowerCase()
+                          .split(" ")
+                          .map(
+                            (word) =>
+                              word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(" ")}
                       </Link>
                       <p className="text-xs">
                         {feed?.post_location?.post_user?.last_designation}
@@ -858,7 +871,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     onClick={() => copyUrlToClipboard(feed?._id)}
                     className=""
                   >
-                    Shares
+                    <BsFillShareFill color="gray" size={20} />
                   </button>
                 </div>
               </div>
@@ -982,7 +995,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             <div className="flex items-center gap-2 text-sm">
               321
               <p className="text-sm">Comments</p> | 24
-              <p className="text-sm">Shares</p>
+              <p className="text-sm">Share</p>
             </div>
           </div>
         </div>

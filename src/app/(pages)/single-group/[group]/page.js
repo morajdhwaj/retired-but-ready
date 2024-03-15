@@ -80,7 +80,7 @@ const PostForm = ({ params }) => {
                         {/* {userData?.user_image ? (
               <Image alt="rtr-pic" src={userData?.user_image} height={50} width={50} />
             ) : ( */}
-                        <FaUserCircle size={50} />
+                        <FaUserCircle color="gray" size={50} />
                         {/* )} */}
                       </div>
                       <button className=" w-full border border-gray-300 rounded-full flex items-center px-5">

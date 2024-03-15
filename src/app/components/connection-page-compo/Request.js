@@ -100,7 +100,10 @@ const Request = () => {
                         className="w-10 h-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle className="h-10 w-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200 mt-5 md:mt-0" />
+                      <FaUserCircle
+                        color="gray"
+                        className="h-10 w-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200 mt-5 md:mt-0"
+                      />
                     )}
                   </Link>
                   <div className="mt-5 mx-2">

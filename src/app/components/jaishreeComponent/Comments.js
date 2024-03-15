@@ -261,7 +261,7 @@ const Comments = ({ postId, userId }) => {
                             onClick={handleDeleteModal}
                             className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                           >
-                            delete
+                            Delete
                           </button>
                         </div>
                       </div>

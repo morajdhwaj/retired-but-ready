@@ -91,7 +91,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
                       className="w-12 h-12 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                 </Link>
               </div>
@@ -132,7 +132,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
                       className="w-16 h-16 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                 </Link>
               </div>

@@ -11,10 +11,10 @@ import axios from "axios";
 
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
 
@@ -47,7 +47,7 @@ const page = () => {
   return (
     <div className=" w-full">
       <Navbar />
-      <div className="flex bg-[#B1B0B1] ">
+      <div className="flex bg-[#f2f1f3] ">
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
@@ -66,7 +66,10 @@ const page = () => {
                         className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle className="w-20 h-20 rounded-full border-2 border-gray-200 " />
+                      <FaUserCircle
+                        color="gray"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200 "
+                      />
                     )}
                     <div className="font-semibold">
                       <h2>{userData.user_display_name}</h2>

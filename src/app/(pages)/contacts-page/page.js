@@ -13,10 +13,10 @@ import { FaUserCircle } from "react-icons/fa";
 import ContactPage from "@/app/components/contact-component/ContactPage";
 import FollowingPage from "@/app/components/contact-component/FollowingPage";
 import FollowersPage from "@/app/components/contact-component/FollowersPage";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
   const [toggle, setToggle] = useState(1);
@@ -69,7 +69,10 @@ const page = () => {
                         className="w-20 h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle className="w-20 h-20 rounded-full border-2 border-gray-200" />
+                      <FaUserCircle
+                        color="gray"
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      />
                     )}
                     <div className="font-semibold">
                       <h2>{userData.user_display_name}</h2>

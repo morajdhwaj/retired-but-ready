@@ -26,7 +26,7 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
                 width={50}
               />
             ) : (
-              <FaUserCircle size={50} />
+              <FaUserCircle color="gray" size={50} />
             )}
           </div>
           <button

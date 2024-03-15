@@ -302,7 +302,7 @@ const ReplyCommentsComp = ({
                       className="w-10 h-10 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                 </div>
               </Link>

@@ -199,7 +199,7 @@ const page = () => {
                       width={50}
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                   <div className="font-semibold">
                     <h2>{userData.user_display_name}</h2>
@@ -271,7 +271,7 @@ const page = () => {
                               onClick={() => handleDelete(post?._id)}
                               className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                             >
-                              delete
+                              Delete
                             </button>
                           </div>
                         </div>

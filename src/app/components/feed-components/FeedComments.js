@@ -370,7 +370,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                       className="w-14 h-12 rounded-full border-2 border-gray-200"
                     />
                   ) : (
-                    <FaUserCircle size={50} />
+                    <FaUserCircle color="gray" size={50} />
                   )}
                 </div>
               </Link>
@@ -412,7 +412,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               onClick={handleDeleteModal}
                               className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
                             >
-                              delete
+                              Delete
                             </button>
                           </div>
                         </div>
