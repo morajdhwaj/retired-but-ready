@@ -30,12 +30,12 @@ const Connections = () => {
           </div>
         </div>
       </div>
-      <div className="  sm:pl-5  pl-10 md:pl-20 bg-gray-100 flex justify-end pt-20">
-        <div className="flex flex-col gap-5 items-center justify-center ">
-          <h1 className="font-semibold sm:text-xl md:text-3xl lg:text-5xl text-center ">
+      <div className="  sm:pl-5  pl-10 md:pl-20 bg-gray-100 flex justify-end pt-20 ">
+        <div className="flex flex-col gap-2 sm:gap-5 items-center justify-center my-2 ">
+          <h1 className="font-semibold text-md sm:text-2xl md:text-3xl lg:text-5xl text-center ">
             The world's only exclusive platform and
           </h1>
-          <h1 className="font-semibold sm:text-xl md:text-3xl lg:text-5xl text-center">
+          <h1 className="font-semibold text-md sm:text-2xl md:text-3xl lg:text-5xl text-center">
             community for retired professional
           </h1>
         </div>

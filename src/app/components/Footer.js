@@ -13,8 +13,8 @@ const Footer = () => {
         backgroundPosition: "right",
       }}
     >
-      <div className="py-32 ">
-        <div className="flex  justify-between flex-wrap  px-10 gap-20 ">
+      <div className=" py-12 sm:py-24 md:py-32 ">
+        <div className="flex  justify-between flex-wrap  px-10 gap-16 ">
           <div className="sm:w-48">
             <Image
               src="/assets/RBRLogo1.png"
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
           <div className="sm:w-40 flex flex-col gap-5">
             <h1 className="text-2xl font-semibold">About</h1>
-            <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col gap-3 ">
               <Link href="" className="text-gray-500 ">
                 About Us
               </Link>
@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
           <div className="w-40 flex flex-col gap-5">
             <h1 className="text-2xl font-semibold">Support</h1>
-            <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col gap-3 ">
               <Link href="" className="text-gray-500 ">
                 Account
               </Link>
@@ -76,13 +76,13 @@ const Footer = () => {
                   <h2 className="text-gray-700">Google Play</h2>
                 </div>
               </button>
-              <button className="flex border border-[#2b2b42] text-start self-start py-1 px-2 rounded items-center justify-center gap-2">
+              <button className="flex border border-[#2b2b42] text-start self-start py-1 px-2 rounded items-center justify-center gap-2 pr-5">
                 <div>
                   <FaApple size={30} color="#2b2b42" />
                 </div>
                 <div>
                   <p className="text-xs">GET IT ON</p>
-                  <h2 className="text-gray-700">Google Play</h2>
+                  <h2 className="text-gray-700">App Store</h2>
                 </div>
               </button>
             </div>

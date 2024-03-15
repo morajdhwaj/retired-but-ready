@@ -3,9 +3,9 @@ import { FaCircleCheck } from "react-icons/fa6";
 
 const CheckBox = () => {
   return (
-    <div className="flex flex-col items-center justify-center mx-10 sm:mx-20 md:mx-40 lg:mx-80 ">
+    <div className="flex flex-col items-center justify-center mx-8 sm:mx-20 md:mx-36 lg:mx-60 xl:mx-80 mt-5 sm:mt-0 ">
       <div>
-        <h1 className=" text-xl sm:text-3xl md:text-5xl text-center font-semibold leading-[60px]">
+        <h1 className=" text-2xl sm:text-3xl md:text-5xl text-center md:leading-[55px] font-semibold mb-2  lg:leading-[60px]">
           Creating impact for retired and working professionals
         </h1>
       </div>

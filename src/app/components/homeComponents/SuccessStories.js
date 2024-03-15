@@ -8,7 +8,7 @@ const SuccessStories = () => {
     <div className="py-10 px-10">
       <div className="flex">
         <div className="w-4/5">
-          <h1 className="text-3xl md:text-5xl  font-semibold leading-[60px]">
+          <h1 className="text-3xl md:text-5xl  font-semibold md:leading-[55px] lg:leading-[60px]">
             Some real life success stories to get inspired by
           </h1>
         </div>
@@ -22,11 +22,11 @@ const SuccessStories = () => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-center justify-center ">
-        <div className="md:w-1/2 flex flex-col gap-5  mt-10 md:pr-20">
+        <div className="md:w-1/2 flex flex-col gap-5 mt-7 ms:mt-10 md:pr-20">
           <h2 className="text-2xl">
             "No online course could have helped me this way"
           </h2>
-          <p className="leading-10 text-gray-500">
+          <p className=" sm:leading-6 lg:leading-7 text-gray-500">
             "A RetPro helped me realize that my aspirations were leaning more
             towards Data Sciences that what I am currently doing "
           </p>
@@ -56,7 +56,7 @@ const SuccessStories = () => {
           <h2 className="text-2xl">
             "I have been rewarded with both help and loyalty"
           </h2>
-          <p className="leading-10 text-gray-500">
+          <p className="sm:leading-6 lg:leading-7 text-gray-500">
             "The retired professional who is currently working with me to
             improve my language proficiency in French , is passionate about
             teaching "
