@@ -6,15 +6,14 @@ import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-
 import { FaBox } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
-
 import Loader from "@/app/components/Loader";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -23,6 +22,7 @@ const page = () => {
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const [addPost, setAddPost] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setUserId(userIdFromContext);

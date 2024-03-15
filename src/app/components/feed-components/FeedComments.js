@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { RiSpam2Fill } from "react-icons/ri";
 import PopUp from "../PopUp";
 import { AiOutlineLike } from "react-icons/ai";
-
 import ReplyCommentsComp from "./ReplyCommentsComp";
 import { GrClose, GrGallery } from "react-icons/gr";
 import { FaUserCircle } from "react-icons/fa";
@@ -319,7 +318,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
             />
             <label htmlFor="profile-picture" className="cursor-pointer ">
               <div className="flex items-center justify-center mt-3">
-                <GrGallery size={25} color="gray" />
+                <GrGallery size={25} color="#773fc6" />
               </div>
               <input
                 type="file"
