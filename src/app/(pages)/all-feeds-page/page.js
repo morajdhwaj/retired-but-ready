@@ -6,7 +6,7 @@ import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-import { FaBox } from "react-icons/fa";
+
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -14,6 +14,7 @@ import Loader from "@/app/components/Loader";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -114,12 +115,12 @@ const page = () => {
                     </div>
                   </div>
                 </Link>
-                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
+                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 mr-4">
                   <button
                     onClick={() => setAddPost(!addPost)}
-                    className="flex items-center gap-1 p-2 bg-white rounded-lg hover:bg-gray-100"
+                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border border-[#773fc6]  "
                   >
-                    <FaBox size={10} />
+                    <IoIosAddCircleOutline size={20} className="mr-1" />
                     Add Post
                   </button>
                 </div>
