@@ -188,7 +188,6 @@ const Main = () => {
           </div>
           <div>
             <BsThreeDotsVertical
-              color="252f3f"
               size={25}
               color="gray"
               onClick={() => toggleDropdown(index)}

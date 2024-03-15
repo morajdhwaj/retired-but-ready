@@ -252,11 +252,7 @@ const page = () => {
                         )}
                       </div>
                       <button onClick={() => handleDropdown(post?._id)}>
-                        <BsThreeDotsVertical
-                          color="252f3f"
-                          size={25}
-                          color="gray"
-                        />
+                        <BsThreeDotsVertical size={25} color="gray" />
                       </button>
                       {postId == post?._id && (
                         <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
