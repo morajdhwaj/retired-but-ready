@@ -50,7 +50,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success("successfully Re-post");
+        toast.success("successfully Repost");
         getFeeds();
         close();
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
