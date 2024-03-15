@@ -87,7 +87,7 @@ const page = () => {
               </span>
             </div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
+          <div className="  mt-36 sm:mt-32 md:mt-20 mx-5 ">
             {<Suggestion />}
           </div>
         </div>
