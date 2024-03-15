@@ -723,7 +723,7 @@ const ReplyCommentsComp = ({
               />{" "}
               <label>
                 <div className="flex items-center justify-center mt-3">
-                  <GrGallery size={25} color="gray" />
+                  <GrGallery size={25} color="#773fc6" />
                 </div>
                 <input
                   type="file"
