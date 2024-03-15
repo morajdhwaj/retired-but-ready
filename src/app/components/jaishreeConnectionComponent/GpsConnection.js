@@ -41,15 +41,15 @@ const GpsConnection = () => {
   ];
   return (
     <div>
-      <h1 className="mt-5 text-black font-medium text-sm">
+      <h1 className="mt-5 text-black font-medium text-sm ">
         Based on my GPS location
       </h1>
       <div className=" border border-[#D9D9D9] w-[15%] h-0.3 mt-2" />
-      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-y-14 gap-x-16">
+      <div className="grid place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-col-4 mt-5 gap-y-14 gap-x-16">
         {gpsData.map((cardElem, index) => (
           <div
             key={index}
-            className="border border-gray-300 shadow-lg rounded-lg"
+            className="border w-52 border-gray-300 shadow-lg rounded-lg"
           >
             <div className="bg-[#B3CEE2] h-20">
               <div className="flex justify-end">
@@ -71,12 +71,12 @@ const GpsConnection = () => {
               {cardElem.name}
             </h1>
 
-            <p className="text-center text-xs mt-2 text-gray-500">
+            <p className="text-center text-xs mt-1 text-gray-500">
               {cardElem.position}
             </p>
             <p className="text-center text-sm text-gray-500">text of the</p>
 
-            <div className="flex justify-center items-center mt-4 gap-1">
+            <div className="flex justify-center items-center mt-2 gap-1">
               <h1 className="text-gray-500 text-sm font-medium">
                 19 connections
               </h1>

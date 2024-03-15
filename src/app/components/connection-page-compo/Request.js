@@ -4,10 +4,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Request = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [invitation, setInvitation] = useState([]);
   const [userId, setUserId] = useState("");
 
@@ -82,8 +82,8 @@ const Request = () => {
             <h1> Invitation</h1>
             <div className=" border border-gray-300 font-thin w-full h-full rounded-lg"></div>
             {invitation.map((curEle, key) => (
-              <div className="flex justify-between  w-fullbg-white ">
-                <div className="flex mt-2">
+              <div className=" sm:flex sm:justify-between flex-wrap flex justify-center items-center  w-full bg-white  ">
+                <div className="flex mt-2 mx-5 sm:mx-1">
                   <Link key={key} href={`/profile/${curEle.from_user}`}>
                     {curEle.from_user_image ? (
                       <Image
@@ -91,10 +91,10 @@ const Request = () => {
                         width={30}
                         height={30}
                         alt="pic"
-                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                        className="w-10 h-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200"
                       />
                     ) : (
-                      <FaUserCircle className="w-20 h-20 rounded-full border-2 border-gray-200 " />
+                      <FaUserCircle className="h-10 w-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200 mt-5 md:mt-0" />
                     )}
                   </Link>
                   <div className="mt-5 mx-2">
@@ -104,15 +104,15 @@ const Request = () => {
                     <p>hello</p>
                   </div>
                 </div>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 items-center mx-2">
                   <button
-                    className="w-20 h-10 rounded-md border-2 border-gray-300 "
+                    className="px-2 md:px-0 md:w-20 md:h-10 rounded-md border-2 border-gray-300 text-sm sm:text-lg "
                     onClick={() => handleIgnore(curEle.network_request_id)}
                   >
                     Ignore
                   </button>
                   <button
-                    className="w-20 h-10 rounded-md border-[#D096CA] border-2"
+                    className="md:w-20 px-2 md:px-0 md:h-10 rounded-md border-[#D096CA] border-2 text-sm sm:text-lg"
                     onClick={() => handleAccept(curEle.network_request_id)}
                   >
                     Accept

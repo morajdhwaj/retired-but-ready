@@ -9,10 +9,10 @@ import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
 
@@ -82,7 +82,7 @@ const page = () => {
               </span>
             </div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
+          <div className="  mt-36 sm:mt-32 md:mt-20 mx-5 ">
             {<Suggestion />}
           </div>
         </div>
