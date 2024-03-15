@@ -373,9 +373,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </Link>
                 </div>
                 <div>
-                  <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                  <Link
+                    href={`/profile/${feed?.post_user?.id}`}
+                    className="text-sm font-semibold text-[#773fc6]  "
+                  >
                     {feed?.post_user?.user_display_name}
-                  </h2>
+                  </Link>
                   <p className="text-xs">{feed?.post_user?.last_designation}</p>
 
                   <div className="flex gap-10">
@@ -497,24 +500,29 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div className="border-b-[1px] pb-2">
                   <div className="flex items-center gap-2 ">
                     <div>
-                      <Link href={`/profile/${feed?.post_location?.post_user?.id}`}>
-                      {feed?.post_location?.post_user?.user_image ? (
-                        <Image
-                          alt=""
-                          src={feed?.post_location?.post_user?.user_image}
-                          height={50}
-                          width={50}
-                          className="w-16 h-16 rounded-full border-2 border-gray-200"
-                        />
-                      ) : (
-                        <FaUserCircle size={50} />
-                      )}
+                      <Link
+                        href={`/profile/${feed?.post_location?.post_user?.id}`}
+                      >
+                        {feed?.post_location?.post_user?.user_image ? (
+                          <Image
+                            alt=""
+                            src={feed?.post_location?.post_user?.user_image}
+                            height={50}
+                            width={50}
+                            className="w-16 h-16 rounded-full border-2 border-gray-200"
+                          />
+                        ) : (
+                          <FaUserCircle size={50} />
+                        )}
                       </Link>
                     </div>
                     <div>
-                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                      <Link
+                        href={`/profile/${feed?.post_location?.post_user?.id}`}
+                        className="text-sm font-semibold text-[#773fc6]  "
+                      >
                         {feed?.post_location?.post_user?.user_display_name}
-                      </h2>
+                      </Link>
                       <p className="text-xs">
                         {feed?.post_location?.post_user?.last_designation}
                       </p>

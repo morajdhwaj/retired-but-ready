@@ -5,6 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import All from "@/app/components/wallsComponents/All";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -12,7 +13,6 @@ const page = ({ params }) => {
   const profileId = params["other-user"];
   const [profileData, setProfileData] = useState([]);
   const [userFeed, setUserFeed] = useState([]);
-  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     getUserData();
@@ -61,7 +61,7 @@ const page = ({ params }) => {
     );
   }
 
-  console.log(profileId);
+  console.log(profileData, "Profile");
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
@@ -75,18 +75,23 @@ const page = ({ params }) => {
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex items-center justify-center gap-2">
-                  {profileData?.user_image ? (
-                    <Image
-                      alt="rtr-pic"
-                      src={profileData?.user_image}
-                      height={50}
-                      width={50}
-                    />
-                  ) : (
-                    <FaUserCircle size={50} />
-                  )}
+                  <Link href={`/profile/${profileData?._id}`}>
+                    {profileData?.user_image ? (
+                      <Image
+                        alt="rtr-pic"
+                        src={profileData?.user_image}
+                        height={50}
+                        width={50}
+                        className="w-16 h-16 rounded-full border-2 border-gray-200"
+                      />
+                    ) : (
+                      <FaUserCircle size={60} />
+                    )}
+                  </Link>
                   <div className="font-semibold">
-                    <h2>{profileData.user_display_name}</h2>
+                    <Link href={`/profile/${profileData?._id}`}>
+                      <h2>{profileData.user_display_name}</h2>
+                    </Link>
                     <p className="text-gray-500">
                       {profileData.last_designation}
                     </p>
@@ -105,7 +110,9 @@ const page = ({ params }) => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">My Walls</h2>
+              <h2 className="font-semibold text-2xl">
+                {profileData.user_display_name} Walls
+              </h2>
             </div>
           </div>
 
@@ -114,7 +121,6 @@ const page = ({ params }) => {
               feeds={userFeed}
               setFeeds={setUserFeed}
               getFeeds={getUserFeeds}
-              // userId={userId}
             />
           </div>
         </div>

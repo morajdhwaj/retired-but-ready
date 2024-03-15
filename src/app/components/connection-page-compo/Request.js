@@ -4,10 +4,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Request = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [invitation, setInvitation] = useState([]);
   const [userId, setUserId] = useState("");
 
@@ -43,6 +43,7 @@ const Request = () => {
       .request(options)
       .then(function (response) {
         console.log(response.data);
+        playSound();
         getInvitation();
         toast.success(response.data.message);
       })
@@ -67,6 +68,11 @@ const Request = () => {
       .catch(function (error) {
         console.error(error);
       });
+  };
+
+  const playSound = () => {
+    const audio = new Audio("/connect.mp3");
+    audio.play();
   };
 
   return (
