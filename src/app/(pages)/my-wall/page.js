@@ -149,11 +149,7 @@ const page = () => {
             </div>
           )}
 
-          <div
-            className={`${
-              !addPost && "mt-44 sm:mt-32 md:mt-20"
-            } mx-5 h-[100vh] `}
-          >
+          <div className={`${!addPost && "mt-44 sm:mt-32 md:mt-20"} mx-5 `}>
             <All
               feeds={myFeeds}
               setFeeds={setMyFeeds}

@@ -618,7 +618,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       width={20}
                     ></Image>
 
-                    {/* <BsHeartFill /> */}
+                    {/* <BSharetFill /> */}
                     <p className="text-sm w-2">{feed?.reaction_love?.length}</p>
                   </div>
                 )}

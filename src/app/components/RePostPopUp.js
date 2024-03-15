@@ -70,7 +70,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  h-[75vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-6 py-5`}
+        className={`bg-white rounded-md z-50  h-[75vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-4 py-2`}
       >
         <div className="flex justify-end m-2">
           <button onClick={close}>
@@ -78,9 +78,9 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
           </button>
         </div>
         <div className="mb-10">
-          <div className="">
+          <div className=" ">
             <div className="flex items-center gap-2 ">
-              <div>
+              <div className="">
                 <Link href={`/profile/${userData?._id}`}>
                   {userData?.user_image ? (
                     <Image
@@ -108,7 +108,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
                 name=""
                 id=""
                 className="w-full border-2 p-2 rounded-lg mt-3 mb-2"
-                placeholder="Shear your thought .... "
+                placeholder="Share your thought .... "
                 onChange={(e) =>
                   setDescription(
                     e.target.value.replace(/(^[a-zA-Z])|(\.\s*\w)/gm, (match) =>
