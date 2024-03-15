@@ -23,10 +23,10 @@ import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
 import GpsConnection from "./GpsConnection";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Suggestion = () => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [suggestionData, setSuggestionData] = useState([]);
   const [userId, setUserId] = useState("");
   const [request, setRequest] = useState([]);
@@ -81,7 +81,7 @@ const Suggestion = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-
+        playSound();
         getSuggestions();
         getRequest();
       })
@@ -139,6 +139,11 @@ const Suggestion = () => {
       .catch(function (error) {
         console.error(error);
       });
+  };
+
+  const playSound = () => {
+    const audio = new Audio("/connect.mp3");
+    audio.play();
   };
 
   // const handleToggle = (index) => {
