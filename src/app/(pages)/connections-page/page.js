@@ -79,16 +79,16 @@ const page = () => {
                     </div>
                   </div>
                 </Link>
-                <div className="flex gap-5">
+                <div className="flex gap-5 items-center mr-5">
                   <Link
                     href="/contacts-page"
-                    className="flex items-center justify-center w-20 h-8 bg-white rounded-lg "
+                    className="flex items-center justify-center  h-8 bg-white rounded-lg font-semibold  p-6  hover:border-opacity-100  border-opacity-0 border-2 border-[#773fc6]  shadow-xl "
                   >
-                    <p>Contacts</p>
+                    <p className="">Contacts</p>
                   </Link>
                   <Link
                     href="/followers-page"
-                    className="flex items-center justify-center w-20 h-8 bg-white rounded-lg "
+                    className="flex items-center justify-center  h-8 bg-white rounded-lg font-semibold  py-6  px-5 hover:border-opacity-100  border-opacity-0 border-2 border-[#773fc6] shadow-xl"
                   >
                     <p>Followers</p>
                   </Link>

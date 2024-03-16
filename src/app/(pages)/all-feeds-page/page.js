@@ -15,6 +15,7 @@ import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
 import { IoIosAddCircleOutline } from "react-icons/io";
+// import NextNProgress from "nextjs-progressbar";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -86,6 +87,8 @@ const page = () => {
   return (
     <div className="bg-[#e8e9e8]  px-10 ">
       <Navbar />
+
+      {/* <NextNProgress options={{ easing: "ease", speed: 500 }} /> */}
       <div className="flex">
         <div className="hidden lg:flex">
           <Sidebar />
@@ -118,7 +121,7 @@ const page = () => {
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 mr-4">
                   <button
                     onClick={() => setAddPost(!addPost)}
-                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border border-[#773fc6]  "
+                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border-opacity-100  border-opacity-0 border border-[#773fc6]  "
                   >
                     <IoIosAddCircleOutline size={20} className="mr-1" />
                     Add Post
