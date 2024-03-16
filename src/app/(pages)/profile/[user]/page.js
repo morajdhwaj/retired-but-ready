@@ -258,16 +258,7 @@ const page = ({ params }) => {
                         <FaUserCircle color="gray" size={70} />
                       )}
                       <div className="font-semibold">
-                        <h2>
-                          {userData.user_display_name
-                            .toLowerCase()
-                            .split(" ")
-                            .map(
-                              (word) =>
-                                word.charAt(0).toUpperCase() + word.slice(1)
-                            )
-                            .join(" ")}
-                        </h2>
+                        <h2>{userData?.user_display_name}</h2>
                         <p className="text-gray-500">
                           {userData.last_designation}
                         </p>
