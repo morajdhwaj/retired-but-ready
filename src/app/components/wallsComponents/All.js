@@ -867,12 +867,23 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 <div className="flex items-center gap-2 text-sm">
                   {feed?.post_comment_id?.length}
                   <p className="text-sm">Comments</p> |
-                  <button
-                    onClick={() => copyUrlToClipboard(feed?._id)}
-                    className=""
-                  >
-                    <BsFillShareFill color="gray" size={20} />
-                  </button>
+                  {feed?.post_location?._id ? (
+                    <button
+                      onClick={() =>
+                        copyUrlToClipboard(feed?.post_location?._id)
+                      }
+                      className=""
+                    >
+                      <BsFillShareFill color="gray" size={20} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => copyUrlToClipboard(feed?._id)}
+                      className=""
+                    >
+                      <BsFillShareFill color="gray" size={20} />
+                    </button>
+                  )}
                 </div>
               </div>
               {feed._id == showComments && (
