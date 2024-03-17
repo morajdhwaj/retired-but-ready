@@ -122,6 +122,7 @@ const Page = () => {
         )}`
       );
       getChats();
+      getAllChats();
       setMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
@@ -176,6 +177,7 @@ const Page = () => {
     allChats,
     // userId,
     userIdFromContext,
+    chatIdFromContext,
     "this is a group chat all channels   zzzzzzzzzzz"
   );
 

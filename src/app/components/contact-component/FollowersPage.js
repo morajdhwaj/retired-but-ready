@@ -9,9 +9,11 @@ import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
+import { useRouter } from "next/navigation";
 
 const FollowersPage = () => {
-  const { userIdFromContext } = useContext(UserIdContext);
+  const router = useRouter();
+  const { userIdFromContext, setChatIdContext } = useContext(UserIdContext);
   const [followers, setFollowers] = useState([]);
   const [userId, setUserId] = useState("");
   const [show, setShow] = useState({});
@@ -74,6 +76,11 @@ const FollowersPage = () => {
       });
   };
 
+  const setChatId = (chatId) => {
+    setChatIdContext(chatId);
+    router.push("/message-page");
+  };
+
   return (
     <div>
       {followers.length > 0 &&
@@ -82,7 +89,7 @@ const FollowersPage = () => {
             <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
               <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
                 <Link
-                  key={follower.from_user_id}
+                  key={follower?._id}
                   href={`/profile/${follower.from_user_id}`}
                 >
                   {follower.from_user_image ? (
@@ -129,7 +136,14 @@ const FollowersPage = () => {
                   </div>
                 </div>
               )}
-              <button className="text-3xl sm:text-4xl text-gray-400">
+              <button
+                className="text-3xl sm:text-4xl text-gray-400"
+                onClick={() => {
+                  follower?.from_user_id === userIdFromContext
+                    ? setChatId(follower?.to_user_id)
+                    : setChatId(follower?.from_user_id);
+                }}
+              >
                 <IoChatbubbleEllipsesOutline />
               </button>
             </div>

@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 const FollowingPage = () => {
+  const router = useRouter();
   const contacts = [
     {
       name: "Jaya",
@@ -16,6 +17,11 @@ const FollowingPage = () => {
       name: "Kimjan",
     },
   ];
+
+  const setChatId = (chatId) => {
+    setChatIdContext(chatId);
+    router.push("/message-page");
+  };
 
   return (
     <div>
