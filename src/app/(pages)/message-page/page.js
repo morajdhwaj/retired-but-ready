@@ -53,20 +53,23 @@ const Page = () => {
     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
   }, [chats]);
 
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     getChats();
+  //   }, 6000);
+
+  //   const timeoutId = setTimeout(() => {
+  //     clearInterval(intervalId);
+  //   }, 600);
+
+  //   return () => {
+  //     clearInterval(intervalId);
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      getChats();
-    }, 6000);
-
-    const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
-    }, 600);
-
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
-  }, []);
+    getChats();
+  }, [chats]);
 
   const userData = async () => {
     try {
