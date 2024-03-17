@@ -1,6 +1,6 @@
 import React from "react";
 import { CiPlay1 } from "react-icons/ci";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaUserCircle } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";

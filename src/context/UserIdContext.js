@@ -8,6 +8,7 @@ export const UserIdContext = createContext();
 
 export const UserIdProvider = ({ children }) => {
   const [userIdFromContext, setUserIdFromContext] = useState(null);
+  const [chatIdFromContext, setChatIdFromContext] = useState(null);
 
   useEffect(() => {
     // Check if the user ID exists in cookies
@@ -22,6 +23,11 @@ export const UserIdProvider = ({ children }) => {
     // Store the user ID in cookies
     Cookies.set("userId", userId, { expires: 365 }); // Set expiry to 1 year
   };
+  const setChatIdContext = (chatId) => {
+    setChatIdFromContext(chatId);
+    // Store the user ID in cookies
+    // Cookies.set("chatId", chatId, { expires: 1 }); // Set expiry to 1 year
+  };
 
   const removeUserId = () => {
     setUserIdFromContext(null);
@@ -30,7 +36,13 @@ export const UserIdProvider = ({ children }) => {
 
   return (
     <UserIdContext.Provider
-      value={{ userIdFromContext, setUserIdContext, removeUserId }}
+      value={{
+        userIdFromContext,
+        chatIdFromContext,
+        setUserIdContext,
+        removeUserId,
+        setChatIdContext,
+      }}
     >
       {children}
     </UserIdContext.Provider>
