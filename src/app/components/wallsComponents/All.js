@@ -502,7 +502,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
             {/* ------------------------------------------------------------------------------------ */}
 
             {feed?.post_location?._id && (
-              <div className="border-2 p-2 mx-4 rounded-lg ">
+              <div className="border-2 p-2 mx-1 sm:mx-4 rounded-lg ">
                 <div className="border-b-[1px] pb-2">
                   <div className="flex items-center gap-2 ">
                     <div>
@@ -577,7 +577,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   />
                 </div>
                 {feed?.post_location?.post_media && (
-                  <div className="flex px-10 pb-2 items-center justify-center">
+                  <div className="flex px-2 sm:px-10 pb-2 items-center justify-center">
                     {["png", "jpeg", "jpg"].includes(
                       feed?.post_location?.post_media[0].type
                     ) && (
@@ -675,7 +675,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                   </div>
                 )}
               </div>
-              <div className="mt-2 flex sm:flex-row  justify-between">
+              <div className="mt-2 flex flex-col sm:flex-row  justify-between">
                 <div className="relative flex items-center gap-2">
                   {isHovered == feed?._id && (
                     <div
@@ -834,9 +834,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
 
-                  <div className="flex gap-5 ml-20">
+                  <div className="flex gap-3  sm:gap-5 ml-2 sm:ml-5 md:ml-20">
                     <button
-                      className="flex items-center justify-center gap-2   "
+                      className="flex items-center justify-center gap-1  sm:gap-2   "
                       onClick={() => handleComments(feed?._id)}
                     >
                       <MdComment color="#c27803" className="mt-1" size={25} />
@@ -846,7 +846,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
                     {feed?.post_location?._id ? (
                       <button
-                        className="flex items-center justify-center gap-2"
+                        className="flex items-center justify-center gap-1 sm:gap-2"
                         onClick={() => setShowRepost(feed?.post_location)}
                       >
                         <BiRepost color="#4d7c0f" size={30} />
@@ -863,27 +863,30 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     )}
                   </div>
                 </div>
+                <div className="flex justify-between">
+                  <div className=""></div>
 
-                <div className="flex items-center gap-2 text-sm">
-                  {feed?.post_comment_id?.length}
-                  <p className="text-sm">Comments</p> |
-                  {feed?.post_location?._id ? (
-                    <button
-                      onClick={() =>
-                        copyUrlToClipboard(feed?.post_location?._id)
-                      }
-                      className=""
-                    >
-                      <BsFillShareFill color="gray" size={20} />
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => copyUrlToClipboard(feed?._id)}
-                      className=""
-                    >
-                      <BsFillShareFill color="gray" size={20} />
-                    </button>
-                  )}
+                  <div className="flex items-center gap-2 text-sm ">
+                    {feed?.post_comment_id?.length}
+                    <p className="text-sm">Comments</p> |
+                    {feed?.post_location?._id ? (
+                      <button
+                        onClick={() =>
+                          copyUrlToClipboard(feed?.post_location?._id)
+                        }
+                        className=""
+                      >
+                        <BsFillShareFill color="gray" size={20} />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => copyUrlToClipboard(feed?._id)}
+                        className=""
+                      >
+                        <BsFillShareFill color="gray" size={20} />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
               {feed._id == showComments && (
