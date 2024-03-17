@@ -8,9 +8,12 @@ import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import PopUp from "@/app/components/PopUp";
 import { UserIdContext } from "@/context/UserIdContext";
+import { useRouter } from "next/navigation";
 
 const ContactPage = () => {
-  const { userIdFromContext } = useContext(UserIdContext);
+  const router = useRouter();
+
+  const { userIdFromContext, setChatIdContext } = useContext(UserIdContext);
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
   const [selectedFollower, setSelectedFollower] = useState(null);
@@ -43,6 +46,11 @@ const ContactPage = () => {
     setSelectedFollower(follower._id);
   };
 
+  const setChatId = (chatId) => {
+    setChatIdContext(chatId);
+    router.push("/message-page");
+  };
+
   const removeContact = () => {
     // Implement your logic to remove the selected follower
     console.log("Removing contact:", selectedFollower);
@@ -64,6 +72,11 @@ const ContactPage = () => {
       });
   };
 
+  console.log(
+    contact,
+    "this is contact for AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  );
+
   return (
     <div>
       {contact.length > 0 &&
@@ -71,7 +84,7 @@ const ContactPage = () => {
           <div className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5">
             <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
               <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
-                <Link key={item.from_user} href={`/profile/${item.from_user}`}>
+                <Link key={item?._id} href={`/profile/${item.from_user}`}>
                   {item.from_user_image ? (
                     <Image
                       src={item.from_user_image}
@@ -103,7 +116,14 @@ const ContactPage = () => {
               >
                 Remove
               </button>
-              <button className="text-3xl sm:text-4xl text-gray-400">
+              <button
+                className="text-3xl sm:text-4xl text-gray-400"
+                onClick={() => {
+                  item?.from_user === userId
+                    ? setChatId(item?.to_user)
+                    : setChatId(item?.from_user);
+                }}
+              >
                 <IoChatbubbleEllipsesOutline />
               </button>
             </div>
