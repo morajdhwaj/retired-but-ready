@@ -68,7 +68,11 @@ const Page = () => {
   //   };
   // }, []);
   useEffect(() => {
-    getChats();
+    const intervalId = setInterval(() => {
+      getChats();
+    }, 6000);
+
+    return clearInterval(intervalId);
   }, [chats]);
 
   const userData = async () => {
@@ -329,8 +333,8 @@ const Page = () => {
                                 <button
                                   className={`absolute  ${
                                     chat.sender_id === chatIdFromContext
-                                      ? "left-1"
-                                      : "right-1 "
+                                      ? "right-1"
+                                      : "left-1 "
                                   }  px-1 mt-2`}
                                   key={chat.message_id}
                                   onClick={() => {
