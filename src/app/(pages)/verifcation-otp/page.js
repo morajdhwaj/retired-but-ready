@@ -61,7 +61,7 @@ const page = ({ length = 4 }) => {
   console.log(finalOtp);
   console.log(password);
   return (
-    <div className="bg-[#ECEAF0]">
+    <div className="bg-[#ECEAF0] min-h-[100vh]">
       <div className="pt-20 md:flex lg:flex justify-center items-center">
         <div className="bg-white m-6 p-10 ">
           <h1 className="text-2xl font-bold"> Email Verification Code</h1>

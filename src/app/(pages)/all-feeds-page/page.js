@@ -6,7 +6,7 @@ import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-import { FaBox } from "react-icons/fa";
+
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -14,6 +14,8 @@ import Loader from "@/app/components/Loader";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
+import { IoIosAddCircleOutline } from "react-icons/io";
+// import NextNProgress from "nextjs-progressbar";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -83,16 +85,18 @@ const page = () => {
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#e8e9e8]  px-10 ">
+    <div className="bg-[#e8e9e8]   sm:px-5 md:px-10 ">
       <Navbar />
+
+      {/* <NextNProgress options={{ easing: "ease", speed: 500 }} /> */}
       <div className="flex">
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:mx-60 pt-24  ">
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-60 lg:mr-32 xl:mx-60 pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
-              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 sm:flex-row py-5 justify-between rounded-xl px-5 ">
                 <Link href={`/profile/${userId}`}>
                   <div className="flex items-center justify-center gap-2">
                     {userData?.user_image ? (
@@ -114,12 +118,12 @@ const page = () => {
                     </div>
                   </div>
                 </Link>
-                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
+                <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 mr-4">
                   <button
                     onClick={() => setAddPost(!addPost)}
-                    className="flex items-center gap-1 p-2 bg-white rounded-lg hover:bg-gray-100"
+                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border-opacity-100  border-opacity-0 border border-[#773fc6]  "
                   >
-                    <FaBox size={10} />
+                    <IoIosAddCircleOutline size={20} className="mr-1" />
                     Add Post
                   </button>
                 </div>
@@ -154,7 +158,7 @@ const page = () => {
           <div
             className={`${
               !addPost && "mt-44 sm:mt-32 md:mt-20"
-            } mx-20 xl:mx-28 `}
+            } sm:mx-10 md:mx-20 xl:mx-28 `}
           >
             <div className="flex justify-between w-full text-gray-500">
               <button

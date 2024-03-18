@@ -180,13 +180,13 @@ const page = () => {
   console.log(draftData, "draft");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:mx-60 pt-24">
+        <div className="w-full bg-[#f2f1f3 bg-white  p-5 lg:mx-60 pt-24">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -223,7 +223,7 @@ const page = () => {
             </div>
           </div>
           {draftData.length !== 0 ? (
-            <div className="mt-10 flex flex-col gap-5">
+            <div className="mt-16 flex flex-col gap-5">
               {draftData.map((post) => {
                 return (
                   <div key={post?._key} className="border p-2 rounded-xl">
@@ -315,7 +315,7 @@ const page = () => {
                         ) : (
                           <button
                             onClick={() => publishPost(post?._id)}
-                            className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
+                            className="bg-[#773f6c bg-white hover: border-2 border-[#773fc6]  px-4 py-2 rounded-lg mt-5"
                           >
                             Publish
                           </button>
