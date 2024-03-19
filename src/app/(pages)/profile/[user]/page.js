@@ -21,9 +21,8 @@ import { UserIdContext } from "@/context/UserIdContext";
 const page = ({ params }) => {
   const profileId = params["user"];
   const { userIdFromContext } = useContext(UserIdContext);
-
   const [connections, setConnections] = useState([]);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState();
   const [userData, setUserData] = useState([]);
   const [education, setEducation] = useState([]);
   const [skill, setSkill] = useState([]);
@@ -36,15 +35,19 @@ const page = ({ params }) => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-  }, []); // Run only once when component mounts
+  }, [userIdFromContext]); // Run only once when component mounts
 
   useEffect(() => {
     getUserData();
     geFollowRequests();
-    checkRequests();
+    if (userId) {
+      checkRequests();
+    }
     getAllConnection();
-    getMyAllConnection();
-  }, [profileId]);
+    if (userId && profileId) {
+      getMyAllConnection();
+    }
+  }, [profileId, userId]);
 
   // GET PROFILE DATA ---------------------------------------------
 
@@ -161,7 +164,7 @@ const page = ({ params }) => {
       filterConnection(response.data.outgoing_requests);
       console.log(
         response.data.outgoing_requests,
-        "this is response from check requests "
+        "this is response from check requests AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "
       );
     } catch (error) {
       console.log(error, "this  is error from check requests");
@@ -176,6 +179,7 @@ const page = ({ params }) => {
         `https://retpro.catax.me/remove-request/${request_id}`
       );
       checkRequests();
+      getMyAllConnection();
       toast.success(response?.data?.message);
       console.log(response, "this is response form remove Request");
     } catch (error) {
@@ -189,7 +193,7 @@ const page = ({ params }) => {
   const filterConnection = (data) => {
     const isRequestedData = data.filter((item) => item.to_user === profileId);
     setIsRequested(isRequestedData);
-    console.log(isRequestedData, "this is requested data find");
+    console.log(isRequestedData, "this is requested data find ----------");
   };
 
   // GET ALL CONNECTION API ------------------------------------------------------------------------
@@ -213,7 +217,8 @@ const page = ({ params }) => {
         `https://retpro.catax.me/my-network/${userId}`
       );
       const isConnected = response.data.filter(
-        (items) => items.to_user === profileId || items.from_user === profileId
+        (items) =>
+          items?.to_user === profileId || items?.from_user === profileId
       );
       setMyConnections(isConnected);
       console.log(response.data, "this is response from get all connection");
@@ -361,8 +366,7 @@ const page = ({ params }) => {
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
-                      <span className="">{connections.length} </span>Connection{" "}
-                      {userIdFromContext}
+                      <span className="">{connections.length} </span>Connection
                     </Link>
                   </div>
                   <div className="flex gap-2 items-center ">
