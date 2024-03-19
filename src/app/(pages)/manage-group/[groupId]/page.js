@@ -7,7 +7,7 @@ const page = ({ params }) => {
   const groupId = params["groupId"];
 
   return (
-    <div className="bg-[#e8e9e8] h-[100vh]   sm:px-5 md:px-10 ">
+    <div className="bg-[#e8e9e8] pb-10 min-h-[100vh]  sm:px-5 md:px-10 ">
       <Navbar />
       <div className="pt-32 mx-20">
         <div className="bg-white rounded-lg ">

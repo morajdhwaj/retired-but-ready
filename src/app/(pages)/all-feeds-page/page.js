@@ -85,7 +85,7 @@ const page = () => {
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#e8e9e8]   sm:px-5 md:px-10 ">
+    <div className="bg-[#e8e9e8]  min-h-[100vh]  sm:px-5 md:px-10 ">
       <Navbar />
 
       {/* <NextNProgress options={{ easing: "ease", speed: 500 }} /> */}

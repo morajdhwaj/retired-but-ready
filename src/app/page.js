@@ -24,7 +24,7 @@ export default function Home() {
   }, [userIdFromContext]); // Include userIdFromContext in the dependency array
 
   return (
-    <div className="bg-[#EDEBF2]">
+    <div className="bg-[#e8e9e8]">
       <Navbar />
       <Connections />
       <VideoComponent />

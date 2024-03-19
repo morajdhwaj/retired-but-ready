@@ -1,14 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Member from "./Member";
 import Invite from "./Invite";
 import Admin from "./Admin";
 import Request from "./Request";
 import Blocked from "./Blocked";
+import axios from "axios";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Membership = ({ groupId }) => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const [tab, setTab] = useState("member");
+  const [groupInfo, setGroupInfo] = useState([]);
+
+  useEffect(() => {
+    getGroupInfo();
+  }, []);
+
+  const getGroupInfo = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/get-group-info/${groupId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setGroupInfo(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   return (
     <div className="flex gap-5 ">
@@ -85,8 +110,22 @@ const Membership = ({ groupId }) => {
         </button>
       </div>
       <div className="w-full">
-        {tab == "member" && <Member groupId={groupId} />}
-        {tab == "admin" && <Admin groupId={groupId} />}
+        {tab == "member" && (
+          <Member
+            groupId={groupId}
+            groupInfo={groupInfo}
+            userId={userIdFromContext}
+            getGroupInfo={getGroupInfo}
+          />
+        )}
+        {tab == "admin" && (
+          <Admin
+            groupId={groupId}
+            groupInfo={groupInfo}
+            userId={userIdFromContext}
+            getGroupInfo={getGroupInfo}
+          />
+        )}
         {tab == "request" && <Request groupId={groupId} />}
         {tab == "invite" && <Invite groupId={groupId} />}
         {tab == "blocked" && <Blocked groupId={groupId} />}
