@@ -25,6 +25,7 @@ const Page = () => {
   const [groupDescription, setGroupDescription] = useState("");
   const [userId, setUserId] = useState("");
   const [groupType, setGroupType] = useState("public");
+  const [handleSetImage, setHandleSetImage] = useState("");
 
   const router = useRouter();
 
@@ -59,7 +60,7 @@ const Page = () => {
     const requestData = {
       group_name: groupName,
       group_description: groupDescription,
-      group_image: "string",
+      group_image: handleSetImage,
       group_banner: "string",
       group_category: groupType,
       group_interests: Category.map((item) => item.value),
@@ -115,9 +116,6 @@ const Page = () => {
           >
             {/* Profile Picture */}
             <div className="p-10 rounded-full absolute  h-28 w-28 flex justify-center  items-center bottom-[-50px]   left-20 bg-white">
-              <div className="">
-                <FaUserLarge size={50} />
-              </div>
               <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
@@ -125,7 +123,19 @@ const Page = () => {
                     id="profile-picture"
                     accept="image/*"
                     className="hidden"
-                    // onChange={handleSetImage}
+                    onChange={(e) => setHandleSetImage(e.target.value)}
+                  />
+                  <FaUserLarge size={50} />
+                </label>
+              </button>
+              <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+                <label htmlFor="profile-picture" className="cursor-pointer">
+                  <input
+                    type="file"
+                    id="profile-picture"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => setHandleSetImage(e.target.value)}
                   />
                   <MdEdit size={20} />
                 </label>

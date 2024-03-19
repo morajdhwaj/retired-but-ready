@@ -8,41 +8,6 @@ import Link from "next/link";
 import PopUp from "../components/PopUp";
 import { UserIdContext } from "@/context/UserIdContext";
 
-const information = [
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "240 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "241 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "242 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "243 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "244 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "245 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "246 member",
-  },
-  {
-    Data: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-    Member: "247 member",
-  },
-];
-
 const Page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
   const [userId, setUserId] = useState("");
@@ -54,24 +19,26 @@ const Page = () => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-  }, []); // Run only once when component mounts
+  }, [userIdFromContext]); // Run only once when component mounts
 
-  // GET GROUP DATA FROM API --------------------------------------------------
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://retpro.catax.me/my-groups/${userId}`
-        );
-        setGroupsData(response.data);
-        console.log(response, "this is data from get group api");
-      } catch (error) {
-        console.log(error, "this error form get all groups");
-      }
-    };
-
-    fetchData();
+    if (userId) {
+      fetchData();
+    }
   }, [userId]);
+  // GET GROUP DATA FROM API --------------------------------------------------
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/my-groups/${userId}`
+      );
+      setGroupsData(response.data);
+      console.log(response.data, "this is data from get group api");
+    } catch (error) {
+      console.log(error, "this error form get all groups");
+    }
+  };
 
   // DELETE GROUP ------------------------------------------------------------------
 
@@ -97,14 +64,14 @@ const Page = () => {
     setShowDeleteModal("");
   };
 
-  console.log(userId, "this is user id  from our group");
+  console.log(userId, "this is user id  from our group ");
 
   return (
     <div>
-      <div className=" flex flex-col   lg:w-[40vh xl:w-[60vh  border-white bg-white rounded-lg">
-        {groupsData.map((groupData, key) => (
-          <div>
-            <div className="flex justify-between relative" key={key}>
+      <div className=" flex flex-col w-full   lg:w-[40vh xl:w-[60vh  border-white bg-white rounded-lg h-[73vh] sm:h-[65vh] overflow-y-scroll pr-2">
+        {groupsData.map((groupData) => (
+          <div key={groupData?.group_id}>
+            <div className="flex justify-between relative">
               {/* Map over the information array */}
               <Link
                 className="flex mt-2 mx-1 "
