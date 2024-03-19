@@ -12,7 +12,11 @@ const Recommendation = () => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-  }, []); // Run only once when component mounts
+  }, [userIdFromContext]); // Run only once when component mounts
+
+  useEffect(() => {
+    getRecommendedGroups();
+  }, [userId]);
 
   // RECOMMENDED GROUP API ---------------------------------------------
 
@@ -22,7 +26,7 @@ const Recommendation = () => {
         `https://retpro.catax.me/recommended-groups/${userId}`
       );
       setRecommendedGroupsData(response.data);
-      console.log(response, "this is response from recommended group");
+      console.log(response.data, "this is response from recommended group");
     } catch (error) {
       console.log(error, "this error get from recommended group api");
     }
@@ -41,7 +45,7 @@ const Recommendation = () => {
   };
 
   return (
-    <div>
+    <div className="h-[73vh] sm:h-[65vh] overflow-y-scroll pr-2 w-full">
       {recommendedGroupsData.map((data) => (
         <div key={data._id}>
           <div className="mt-5 flex justify-between">
@@ -52,7 +56,7 @@ const Recommendation = () => {
                   width={50}
                   height={50}
                   alt="pic"
-                  className="w-16 h-16 rounded-full border-2 border-gray-200"
+                  className="w-[64px] h-16 rounded-full border-2 border-gray-200"
                 />
               </div>
               <div className="mx-2 mt-1">

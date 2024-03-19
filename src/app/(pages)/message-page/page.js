@@ -31,26 +31,38 @@ const Page = () => {
   const [editButton, setEditButton] = useState("");
   const [receiverId, setReceiverId] = useState("65c4944bff9f155e520bc0f0");
   const [allChats, setAllChats] = useState([]);
-  const [userId, setUserId] = useState(userIdFromContext);
+  const [userId, setUserId] = useState(null);
   // const [chatId, setChatId] = useState("");
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
-    // setUserId(userIdFromContext);
-
-    if (userIdFromContext !== null) {
-      getAllChats();
-    }
-  }, [userIdFromContext, chatIdFromContext]);
+    setUserId(userIdFromContext);
+  }, [userIdFromContext]);
 
   useEffect(() => {
-    getChats();
-    userData();
-    // getAllChats();
+    // setUserId(userIdFromContext);
+
+    if (userId) {
+      getAllChats();
+    }
+  }, [userId, chatIdFromContext]);
+
+  useEffect(() => {
+    if (chatIdFromContext) {
+      getChats();
+      userData();
+    }
   }, [chatIdFromContext]);
 
   useEffect(() => {
     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [chats]);
+
+  useEffect(() => {
+    console.log(
+      chats,
+      "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+    );
   }, [chats]);
 
   // useEffect(() => {
@@ -70,12 +82,16 @@ const Page = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       getChats();
-    }, 6000);
+    }, 5000);
 
     return clearInterval(intervalId);
   }, [chats]);
 
   const userData = async () => {
+    console.log(
+      userIdFromContext,
+      "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+    );
     try {
       const response = await axios.get(
         `https://retpro.catax.me/user/profile/${chatIdFromContext}`
@@ -89,9 +105,13 @@ const Page = () => {
   const getChats = async () => {
     try {
       const response = await axios.get(
-        `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}`
+        `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
       setChats(response.data);
+      console.log(
+        response.data,
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      );
     } catch (error) {
       console.log("Error fetching chats:", error);
     }
@@ -163,7 +183,7 @@ const Page = () => {
   };
 
   // Group chats by date
-  const groupedChats = chats.reduce((acc, chat) => {
+  const groupedChats = chats?.reduce((acc, chat) => {
     const date = dayjs(new Date(chat.timestamp + "Z")).format("YYYY-MM-DD");
     if (!acc[date]) {
       acc[date] = [];
