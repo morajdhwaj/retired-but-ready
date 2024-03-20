@@ -9,18 +9,18 @@ import { FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
 import { MdComment } from "react-icons/md";
 import toast from "react-hot-toast";
-import FeedComments from "../feed-components/FeedComments";
-import PopUp from "../PopUp";
+import PopUp from "../../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
 import dayjs from "dayjs";
 import Link from "next/link";
 import { BiRepost } from "react-icons/bi";
-import RePostPopUp from "../RePostPopUp";
+import RePostPopUp from "../../RePostPopUp";
+import GroupFeedComments from "./GroupFeedComments";
 
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
-const All = ({ userId, feeds, setFeeds, getFeeds }) => {
+const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [reportPostId, setReportPostId] = useState("");
@@ -143,24 +143,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
       });
   };
 
-  // const postReaction = (userId, postId, type) => {
-  //   const options = {
-  //     method: "POST",
-  //     url: "https://retpro.catax.me/post/react",
-  //     params: { post_id: postId, user_id: userId, reaction_type: type },
-  //   };
-
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //       getFeeds();
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // };
-
   const handleDeleteModal = (comment_id) => {
     setShowDeleteModal(!showDeleteModal);
   };
@@ -255,6 +237,25 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
         toast.success(error?.response?.data?.detail);
       });
   };
+
+  // // the list of our video elements
+  // const videos = document.querySelectorAllPosts("video");
+
+  // // Function to play or pause video based on hover
+  // const handleHover = (event) => {
+  //   const video = event.target;
+  //   if (event.type === "mouseenter") {
+  //     video.play();
+  //   } else if (event.type === "mouseleave") {
+  //     video.pause();
+  //   }
+  // };
+
+  // // Add event listeners to each video element
+  // videos.forEach((video) => {
+  //   video.addEventListener("mouseenter", handleHover);
+  //   video.addEventListener("mouseleave", handleHover);
+  // });
 
   // the list of our video elements
   const videos = document.querySelectorAll("video");
@@ -499,6 +500,8 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                 )}
               </div>
             )}
+
+            {/* ------------------------------------------------------------------------------------ */}
 
             {feed?.post_location?._id && (
               <div className="border-2 p-2 mx-1 sm:mx-4 rounded-lg ">
@@ -842,24 +845,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
                       <p className="text-sm">Comment</p>
                     </button>
-
-                    {feed?.post_location?._id ? (
-                      <button
-                        className="flex items-center justify-center gap-1 sm:gap-2"
-                        onClick={() => setShowRepost(feed?.post_location)}
-                      >
-                        <BiRepost color="#4d7c0f" size={30} />
-                        <p className="text-sm">Repost</p>
-                      </button>
-                    ) : (
-                      <button
-                        className="flex items-center justify-center gap-2"
-                        onClick={() => setShowRepost(feed)}
-                      >
-                        <BiRepost color="#4d7c0f" size={30} />
-                        <p className="text-sm">Repost</p>
-                      </button>
-                    )}
                   </div>
                 </div>
                 <div className="flex justify-between">
@@ -867,7 +852,8 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
 
                   <div className="flex items-center gap-2 text-sm ">
                     {feed?.post_comment_id?.length}
-                    <p className="text-sm">Comments</p> |
+                    <p className="text-sm">Comments</p>
+                    {/* |
                     {feed?.post_location?._id ? (
                       <button
                         onClick={() =>
@@ -884,12 +870,12 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       >
                         <BsFillShareFill color="gray" size={20} />
                       </button>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>
               {feed._id == showComments && (
-                <FeedComments
+                <GroupFeedComments
                   getFeeds={getFeeds}
                   userId={userId}
                   postId={feed?._id}
@@ -935,4 +921,4 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   );
 };
 
-export default All;
+export default AllPosts;

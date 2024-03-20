@@ -2,14 +2,15 @@ import axios from "axios";
 import React, { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import { GrClose } from "react-icons/gr";
-import Loader from "../Loader";
+import Loader from "../../Loader";
 
-const PostAsMultiMedia = ({
+const GroupPostAsMultiMedia = ({
   descriptions,
   setDescriptions,
   userId,
   getFeeds,
   setAnyTypePost,
+  groupId,
 }) => {
   const [selectedFiles, setSelectedFiles] = useState("");
   const [showPostButton, setShowPostButton] = useState(false);
@@ -50,9 +51,9 @@ const PostAsMultiMedia = ({
         post_user: userId,
         post_type: "multimedia",
         post_description: descriptions,
-        post_location: "global",
-        location_id: null,
-        is_published: is_published,
+        post_location: "group",
+        location_id: groupId,
+        is_published: true,
         comment_condition: "string",
       },
     };
@@ -180,16 +181,6 @@ const PostAsMultiMedia = ({
             <div className="flex justify-end mx-10 mt-5 gap-5">
               {showPostButton ? (
                 <button
-                  onClick={() => UploadFile(false)}
-                  className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
-                >
-                  Save as Draft
-                </button>
-              ) : (
-                <div></div>
-              )}
-              {showPostButton ? (
-                <button
                   onClick={() => UploadFile(true)}
                   className="bg-[#773fc6] text-white px-4 py-2 rounded-lg"
                 >
@@ -211,4 +202,4 @@ const PostAsMultiMedia = ({
   );
 };
 
-export default PostAsMultiMedia;
+export default GroupPostAsMultiMedia;
