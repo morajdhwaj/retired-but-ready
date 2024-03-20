@@ -180,7 +180,7 @@ const page = () => {
   console.log(draftData, "draft");
 
   return (
-    <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
+    <div className="bg-[#EDEBF2] min-h-[100vh]  px-5 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
@@ -223,17 +223,22 @@ const page = () => {
             </div>
           </div>
           {draftData.length !== 0 ? (
-            <div className="mt-16 flex flex-col gap-5">
+            <div className="mt-28 sm:mt-16 flex flex-col gap-5">
               {draftData.map((post) => {
                 return (
-                  <div key={post?._key} className="border p-2 rounded-xl">
-                    <div className="flex justify-between">
-                      <div className="flex">
-                        <h2 className="p-2 w-32">Description -</h2>{" "}
+                  <div
+                    key={post?._key}
+                    className="border p-2 rounded-xl w-[100%] md:w-auto"
+                  >
+                    <div className="flex flex-wrap justify-between relative">
+                      <div className="flex flex-wrap">
+                        <h2 className="p-2 w-32 font-normal text-xs sm:text-base">
+                          Description -
+                        </h2>{" "}
                         {selectId === post?._id ? (
                           <div className="flex items-center gap-2">
                             <textarea
-                              className="p-2 w-[70vh]"
+                              className=""
                               value={editDescription}
                               onChange={(e) =>
                                 setEditDescription(
@@ -246,13 +251,17 @@ const page = () => {
                             />
                           </div>
                         ) : (
-                          <h2 className="w-[70vh] p-2 ">
+                          <h2 className=" p-2 text-xs sm:text-base  ">
                             {post.post_description}
                           </h2>
                         )}
                       </div>
                       <button onClick={() => handleDropdown(post?._id)}>
-                        <BsThreeDotsVertical size={25} color="gray" />
+                        <BsThreeDotsVertical
+                          size={25}
+                          color="gray"
+                          className="absolute top-1 right-0"
+                        />
                       </button>
                       {postId == post?._id && (
                         <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
@@ -274,7 +283,7 @@ const page = () => {
                       )}
                     </div>
 
-                    <div className=" flex justify-between items-end p-2">
+                    <div className="p-2 flex flex-wrap justify-between items-end">
                       {post?.post_media && (
                         <div className="flex items-center justify-center">
                           {["png", "jpeg", "jpg"].includes(
@@ -283,9 +292,9 @@ const page = () => {
                             <Image
                               alt="rtr-pic"
                               src={post?.post_media[0]?.url}
-                              height={200}
+                              height={300}
                               width={200}
-                              className=""
+                              className="w-[100%] h-full     rounded-xl  "
                             />
                           )}
 
@@ -304,23 +313,23 @@ const page = () => {
                           )}
                         </div>
                       )}
-                      <div className="">
-                        {selectId === post?._id ? (
-                          <button
-                            onClick={() => handleUpdate(post?._id)}
-                            className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
-                          >
-                            Update
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => publishPost(post?._id)}
-                            className="bg-[#773f6c bg-white hover: border-2 border-[#773fc6]  px-4 py-2 rounded-lg mt-5"
-                          >
-                            Publish
-                          </button>
-                        )}
-                      </div>
+                    </div>
+                    <div className="flex justify-center items-center sm:justify-end sm:items-end">
+                      {selectId === post?._id ? (
+                        <button
+                          onClick={() => handleUpdate(post?._id)}
+                          className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
+                        >
+                          Update
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => publishPost(post?._id)}
+                          className="w-full sm:w-auto bg-[#773f6c bg-white hover: border-2 border-[#773fc6] px-2 py-1  sm:px-4 sm:py-2 rounded-xl mt-2 mb-1 sm:mt-5 mx-3"
+                        >
+                          Publish
+                        </button>
+                      )}
                     </div>
                   </div>
                 );
