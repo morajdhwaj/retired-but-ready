@@ -3,7 +3,7 @@ import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { FaUserAlt, FaUserCircle } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa6";
@@ -15,17 +15,93 @@ import ChangePhoneNumber from "@/app/components/settingComponents/ChangePhoneNum
 import ChangePassword from "@/app/components/settingComponents/ChangePassword";
 import EmailVerificationOtp from "@/app/components/settingComponents/EmailVerificationOtp";
 import PhoneVerificationOpt from "@/app/components/settingComponents/PhoneVerificationOpt";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
+  const [userId, setUserId] = useState("");
   const [userAllData, setUserAllData] = useState([]);
-  const [showSettingOption, setShowSettingOption] = useState("security");
-  const [showSecurityOption, setShowSecurityOption] = useState("");
-  console.log(showSettingOption, "AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  const [showSettingOption, setShowSettingOption] = useState("profile");
+  const [newEmail, setNewEmail] = useState("");
+  const [newMobileNumber, setNewMobileNumber] = useState("");
+
+  const newEmailSet = (email) => {
+    setNewEmail(email);
+  };
 
   const setShowOptionValue = (value) => {
     setShowSettingOption(value);
   };
+
+  useEffect(() => {
+    if (userIdFromContext) {
+      setUserId(userIdFromContext);
+    }
+  }, [userIdFromContext]);
+
+  useEffect(() => {
+    if (userId) {
+      console.log(userId, "this is my user id");
+      getUserData();
+    }
+  }, [userId]);
+
+  const getUserData = async () => {
+    try {
+      const response = await axios.get(
+        `https://retpro.catax.me/user/profile/${userId}`
+      );
+      console.log(response.data, "this is response from get user data");
+      setUserAllData(response.data);
+    } catch (error) {
+      console.log(error, "this is form get user data");
+    }
+  };
+
+  // CHANGE EMAIL FUNCTION ----------------------------------------------------------------
+
+  const changeUserEmail = async () => {
+    if (newEmail) {
+      try {
+        const response = await axios.patch(
+          `https://retpro.catax.me/user/change-email?user_id=${userId}&new_email=${newEmail}`
+        );
+        console.log(response.data, "this is response form change email");
+        toast.success("OTP sent successfully");
+        setShowSettingOption("emailOtp");
+      } catch (error) {
+        console.log(error, "this is error form change email");
+        toast.error(error.response.data.detail);
+      }
+    }
+  };
+
+  // CHANGE PHONE NUMBER FUNCTION ----------------------------------------------------------------
+
+  const changeUserPhoneNumber = async () => {
+    if (newMobileNumber) {
+      try {
+        const res = await axios.patch(
+          `https://retpro.catax.me/user/change-mobile?user_id=${userId}&new_mobile=${newMobileNumber}`
+        );
+        console.log(res.data, "this is response from change mobile number");
+        toast.success("OTP sent successfully");
+        setShowSettingOption("phoneOtp");
+      } catch (error) {
+        console.log(error, "this is error from change mobile number");
+        toast.error(error.response.data.detail);
+      }
+    }
+  };
+
+  console.log(
+    showSettingOption,
+    userId,
+    userAllData,
+    newEmail,
+    "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  );
 
   return (
     <div className="bg-[#EDEBF2]  px-10 ">
@@ -55,21 +131,27 @@ const page = () => {
               </div>
               <div className="pl-2 flex flex-col gap-6 ">
                 <button
-                  className="flex gap-4 text-[#9A3D97]"
+                  className={`flex gap-4 ${
+                    showSettingOption == "profile" ? " text-[#9A3D97]" : ""
+                  }`}
                   onClick={() => setShowOptionValue("profile")}
                 >
                   <FaUserAlt size={20} />
                   <h2 className="">Profile</h2>
                 </button>
                 <button
-                  className="flex gap-4 text-[#9A3D97]"
+                  className={`flex gap-4   ${
+                    showSettingOption == "security" ? " text-[#9A3D97]" : ""
+                  } `}
                   onClick={() => setShowOptionValue("security")}
                 >
                   <IoIosLock size={20} />
                   <h2 className="">Security</h2>
                 </button>
                 <button
-                  className="flex gap-4 text-[#9A3D97]"
+                  className={`flex gap-4  ${
+                    showSettingOption == "dataPrivacy" ? " text-[#9A3D97]" : ""
+                  }`}
                   onClick={() => setShowOptionValue("dataPrivacy")}
                 >
                   <FiShield size={20} />
@@ -106,14 +188,14 @@ const page = () => {
                   <div className="flex justify-between py-4 border-b-2">
                     <p className="min-w-[90%] flex justify-between">
                       <span className="">Email Address</span>
-                      <span className="">xyz@gmail.com</span>
+                      <span className="">{userAllData?.user_email}</span>
                     </p>
                     <button onClick={() => setShowOptionValue("changeEmail")}>
                       <FaArrowRight size={20} />
                     </button>
                   </div>
                   <div className="flex justify-between py-4 border-b-2">
-                    <p className="min-w-[90%]">Number</p>
+                    <p className="min-w-[90%]">Phone Number</p>
                     <button onClick={() => setShowOptionValue("changePhone")}>
                       <FaArrowRight size={20} />
                     </button>
@@ -139,7 +221,11 @@ const page = () => {
                 showSettingOption == "addNewEmail") && (
                 <ChangeEmail
                   optionFunction={setShowOptionValue}
+                  setEmail={newEmailSet}
+                  getEmail={newEmail}
                   showOption={showSettingOption}
+                  userData={userAllData}
+                  changeUserEmail={changeUserEmail}
                 />
               )}
               {(showSettingOption == "changePhone" ||
@@ -147,16 +233,33 @@ const page = () => {
                 <ChangePhoneNumber
                   optionFunction={setShowOptionValue}
                   showOption={showSettingOption}
+                  newMobileNumber={newMobileNumber}
+                  setNewMobileNumber={setNewMobileNumber}
+                  changeUserPhoneNumber={changeUserPhoneNumber}
+                  userData={userAllData}
                 />
               )}
               {showSettingOption == "changePassword" && (
                 <ChangePassword optionFunction={setShowOptionValue} />
               )}
               {showSettingOption == "emailOtp" && (
-                <EmailVerificationOtp optionFunction={setShowOptionValue} />
+                <EmailVerificationOtp
+                  optionFunction={setShowOptionValue}
+                  userData={userAllData}
+                  getEmail={newEmail}
+                  setEmail={newEmailSet}
+                  changeUserEmail={changeUserEmail}
+                  getUserData={getUserData}
+                />
               )}
               {showSettingOption == "phoneOtp" && (
-                <PhoneVerificationOpt optionFunction={setShowOptionValue} />
+                <PhoneVerificationOpt
+                  optionFunction={setShowOptionValue}
+                  changeUserPhoneNumber={changeUserPhoneNumber}
+                  userData={userAllData}
+                  setNewMobileNumber={setNewMobileNumber}
+                  getUserData={getUserData}
+                />
               )}
               {showSettingOption == "passwordOtp" && (
                 <PasswordVerificationOtp optionFunction={setShowOptionValue} />
