@@ -110,7 +110,7 @@ const page = () => {
         <div className="hidden lg:flex mt-96 ">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3  p-5 lg:ml-52 pt-24 h-[100vh]">
+        <div className="w-full  p-5 lg:ml-52 pt-[120px] h-[100vh]">
           <div className=" w-full  flex gap-6">
             <div className="flex flex-col gap-6 bg-white  rounded-lg shadow-xl p-4 pb-20 w-[15%] ">
               <div className="flex  gap-4 ">
@@ -121,7 +121,7 @@ const page = () => {
                       src={userAllData?.user_image}
                       height={40}
                       width={40}
-                      className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
                     />
                   ) : (
                     <FaUserCircle color="gray" size={40} />
@@ -212,9 +212,36 @@ const page = () => {
               )}
               {showSettingOption == "dataPrivacy" && (
                 <div className="shadow-xl p-4 min-h-[30vh] bg-white rounded-lg  ">
-                  <h1 className="text-2xl font-semibold text-[#773FC6] mb-2">
-                    Data Privacy
+                  <h1 className="text-2xl font-semibold  mb-5">
+                    Privacy Details
                   </h1>
+                  <p className="">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem tempora dolorum repellendus eveniet provident
+                    natus excepturi rem, reiciendis et atque ex expedita
+                    doloremque, omnis quae fuga unde facilis eaque blanditiis,
+                    commodi minima incidunt? Laudantium quasi soluta officiis ab
+                    laborum consequatur non voluptatibus voluptatum, laboriosam
+                    fugit. Facilis ducimus praesentium voluptas aspernatur?
+                  </p>
+                  <p className="mt-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem tempora dolorum repellendus eveniet provident
+                    natus excepturi rem, reiciendis et atque ex expedita
+                    doloremque, omnis quae fuga unde facilis eaque blanditiis,
+                    commodi minima incidunt? Laudantium quasi soluta officiis ab
+                    laborum consequatur non voluptatibus voluptatum, laboriosam
+                    fugit. Facilis ducimus praesentium voluptas aspernatur?
+                  </p>
+                  <p className="mt-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Voluptatem tempora dolorum repellendus eveniet provident
+                    natus excepturi rem, reiciendis et atque ex expedita
+                    doloremque, omnis quae fuga unde facilis eaque blanditiis,
+                    commodi minima incidunt? Laudantium quasi soluta officiis ab
+                    laborum consequatur non voluptatibus voluptatum, laboriosam
+                    fugit. Facilis ducimus praesentium voluptas aspernatur?
+                  </p>
                 </div>
               )}
               {(showSettingOption == "changeEmail" ||

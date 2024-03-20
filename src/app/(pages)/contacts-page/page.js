@@ -23,7 +23,12 @@ const page = () => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-    getUserData();
+  }, [userIdFromContext]);
+
+  useEffect(() => {
+    if (userId) {
+      getUserData();
+    }
   }, [userId]);
 
   const getUserData = () => {
@@ -35,10 +40,10 @@ const page = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response?.data);
+        console.log(response?.data, "this is data from get user data");
         setUserData(response?.data);
-        setCompanyName(response?.data?.work_history[0].company_name);
-        setTitle(response?.data?.work_history[0].title);
+        // setCompanyName(response?.data?.work_history[0].company_name);
+        // setTitle(response?.data?.work_history[0].title);
       })
       .catch(function (error) {
         console.error(error);
