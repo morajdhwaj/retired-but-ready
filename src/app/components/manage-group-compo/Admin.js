@@ -1,8 +1,10 @@
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import toast from "react-hot-toast";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaUserCircle } from "react-icons/fa";
 
 const Admin = ({ groupId, groupInfo, userId, getGroupInfo }) => {
   const admins = groupInfo.admins;
@@ -31,36 +33,45 @@ const Admin = ({ groupId, groupInfo, userId, getGroupInfo }) => {
     <div className="bg-white w-4/5 rounded-lg pt-5 overflow-hidden">
       <div className="">
         <div className="flex items-end gap-5 py-5 border-b border-gray-300 px-5">
-          <h2 className="text-xl">Admin</h2>
-          <h5 className="text-sm">{admins?.length} Person</h5>
+          <h2 className="text-xl"> {admins?.length} Admin</h2>
         </div>
       </div>
       <div className="">
-        {admins?.map((admin, i) => (
+        {admins?.map((admin) => (
           <div
-            key={i}
+            key={admin?.id}
             className="flex justify-between border-b border-gray-300 p-5 "
           >
             <div className="flex gap-5 items-center ">
-              <Image
-                src="/assets/110.png"
-                alt="profile"
-                height={50}
-                width={50}
-                className="h-14 w-14 rounded-full"
-              />
               <div>
-                <h2 className="text-xl">{admin}</h2>
-                <h2 className="text-xs">UX Designer</h2>
+                <Link href={`/profile/${admin?.id}`}>
+                  {admin?.image ? (
+                    <Image
+                      alt="rtr-pic"
+                      src={admin?.image}
+                      height={50}
+                      width={50}
+                      className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle color="gray" size={60} />
+                  )}
+                </Link>
+              </div>
+              <div>
+                <Link href={`/profile/${admin?.id}`} className="text-xl">
+                  {admin.name}
+                </Link>
+                <h2 className="text-xs">{admin?.last_designation}</h2>
               </div>
             </div>
             <div>
-              {admin !== userId && (
+              {admin.id !== userId && (
                 <button
-                  onClick={() => removeAdmin(admin)}
-                  className=" border border-[#773fc6]  hover:bg-[#773fc6] w-40 rounded-md hover:text-white text-black p-2"
+                  onClick={() => removeAdmin(admin?.id)}
+                  className=" border border-[#773fc6]  hover:bg-[#773fc6] w-48 rounded-md hover:text-white text-black p-2"
                 >
-                  Remove Admin
+                  Remove from Admin
                 </button>
               )}
             </div>
