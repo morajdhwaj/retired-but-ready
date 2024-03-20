@@ -104,6 +104,11 @@ const Page = () => {
 
   const getChats = async () => {
     try {
+      console.log(
+        userIdFromContext,
+        chatIdFromContext,
+        "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+      );
       const response = await axios.get(
         `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
@@ -168,10 +173,12 @@ const Page = () => {
 
   const getAllChats = async () => {
     try {
+      console.log(userIdFromContext, "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
       const response = await axios.get(
         `https://retpro.catax.me/all-my-chats?user_id=${userIdFromContext}`
       );
       setAllChats(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log("Error fetching chats:", error);
     }
@@ -255,12 +262,22 @@ const Page = () => {
                             : setIdForChat(data.participants[0]);
                         }}
                       >
-                        <div className="flex items-center">
-                          <FaUserCircle color="gray" size={50} />
+                        <div className="flex items-center justify-center gap-2">
+                          {data?.sender_image ? (
+                            <Image
+                              alt="rtr-pic"
+                              src={data?.sender_image}
+                              height={50}
+                              width={50}
+                              className="w-20 h-16 rounded-full border-2 border-gray-200"
+                            />
+                          ) : (
+                            <FaUserCircle color="gray" size={50} />
+                          )}
                         </div>
                         <div className="py-2 px-4 w-full border-b-2">
                           <div className="flex justify-between">
-                            <h2 className="">Aman Patel</h2>
+                            <h2 className="">{data?.sender_name}</h2>
                             <span className="">Feb 22</span>
                           </div>
                           <div className="">

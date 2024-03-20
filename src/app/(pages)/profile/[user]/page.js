@@ -403,7 +403,7 @@ const page = ({ params }) => {
                         >
                           Post
                         </Link>
-                        <Link
+                        {/* <Link
                           href={`/feed/${profileId}`}
                           className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
                         >
@@ -414,7 +414,7 @@ const page = ({ params }) => {
                           className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
                         >
                           Image
-                        </Link>
+                        </Link> */}
                       </div>
                       {/* <div className="border-2 rounded-lg h-16 w-full"></div> */}
                     </div>
