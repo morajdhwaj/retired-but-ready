@@ -1,11 +1,21 @@
 import React from "react";
 import { IoReturnUpBackSharp } from "react-icons/io5";
 
-const ChangePhoneNumber = ({ optionFunction, showOption }) => {
+const ChangePhoneNumber = ({
+  optionFunction,
+  showOption,
+  newMobileNumber,
+  setNewMobileNumber,
+  changeUserPhoneNumber,
+  userData,
+}) => {
   return (
     <>
       <div className="shadow-xl p-4 pb-10 min-h-[30vh] bg-white rounded-lg ">
-        <button className="flex gap-2 items-center ">
+        <button
+          className="flex gap-2 items-center "
+          onClick={() => optionFunction("security")}
+        >
           <IoReturnUpBackSharp size={25} />
           <span className="text-sm">Back</span>
         </button>
@@ -16,19 +26,19 @@ const ChangePhoneNumber = ({ optionFunction, showOption }) => {
           </div>
           <div className="mt-3">
             <p className="text-md">Primary Number</p>
-            <p className="text-sm">91+ 1234567899</p>
+            <p className="text-sm">{userData?.user_mobile}</p>
             <button
-              className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-5 ${
-                showOption == "addPhone" ? "hidden" : "block"
-              }`}
-              onClick={() => optionFunction("phoneOtp")}
+              className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-5`}
+              onClick={() => optionFunction("addPhone")}
             >
               Add Number
             </button>
           </div>
           <div className="mt-10">
             <input
-              type="text"
+              type="number"
+              value={newMobileNumber}
+              onChange={(e) => setNewMobileNumber(e.target.value)}
               className={`rounded-lg w-64 p-2 border-2 ${
                 showOption == "addPhone" ? "block" : "hidden"
               } `}
@@ -37,7 +47,7 @@ const ChangePhoneNumber = ({ optionFunction, showOption }) => {
               className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-3 ${
                 showOption == "addPhone" ? "block" : "hidden"
               }`}
-              onClick={() => optionFunction("security")}
+              onClick={changeUserPhoneNumber}
             >
               Submit
             </button>

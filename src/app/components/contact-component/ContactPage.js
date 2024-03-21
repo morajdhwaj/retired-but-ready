@@ -20,7 +20,12 @@ const ContactPage = () => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-    getContact();
+  }, [userIdFromContext]);
+
+  useEffect(() => {
+    if (userId) {
+      getContact();
+    }
   }, [userId]);
 
   const getContact = () => {
@@ -32,7 +37,7 @@ const ContactPage = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data, "this is response from get contac");
         setContact(response.data);
       })
       .catch(function (error) {
@@ -81,13 +86,16 @@ const ContactPage = () => {
     <div>
       {contact.length > 0 &&
         contact.map((item) => (
-          <div className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5">
+          <div
+            className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5"
+            key={item?._id}
+          >
             <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
               <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
-                <Link key={item?._id} href={`/profile/${item.from_user}`}>
-                  {item.from_user_image ? (
+                <Link href={`/profile/${item.from_user}`}>
+                  {item?.user_image ? (
                     <Image
-                      src={item.from_user_image}
+                      src={item?.user_image}
                       width={30}
                       height={30}
                       alt="pic"
@@ -102,9 +110,9 @@ const ContactPage = () => {
                 </Link>
               </div>
               <div className="w-1/2 sm:w-[85%]  ">
-                <Link href={`/profile/${item.from_user}`}>
+                <Link href={`/profile/${item?.user_id}`}>
                   <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
-                    {item.from_user_full_name}
+                    {item?.user_full_name}
                   </h1>
                 </Link>
               </div>

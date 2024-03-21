@@ -22,7 +22,12 @@ const FollowersPage = () => {
 
   useEffect(() => {
     setUserId(userIdFromContext);
-    getFollowers();
+  }, [userIdFromContext]);
+
+  useEffect(() => {
+    if (userId) {
+      getFollowers();
+    }
   }, [userId]);
 
   const getFollowers = () => {
@@ -34,7 +39,10 @@ const FollowersPage = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        console.log(
+          response.data,
+          "this is followers data WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+        );
         setFollowers(response.data);
       })
       .catch(function (error) {
@@ -85,16 +93,16 @@ const FollowersPage = () => {
     <div>
       {followers.length > 0 &&
         followers.map((follower, index) => (
-          <div className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5">
+          <div
+            className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5"
+            key={follower?._id}
+          >
             <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
               <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
-                <Link
-                  key={follower?._id}
-                  href={`/profile/${follower.from_user_id}`}
-                >
-                  {follower.from_user_image ? (
+                <Link href={`/profile/${follower.from_user_id}`}>
+                  {follower?.from_user_image ? (
                     <Image
-                      src={follower.from_user_image}
+                      src={follower?.from_user_image}
                       width={30}
                       height={30}
                       alt="pic"
