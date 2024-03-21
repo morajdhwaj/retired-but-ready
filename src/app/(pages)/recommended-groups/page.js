@@ -67,7 +67,10 @@ const page = () => {
             <Sidebar />
           </div>
         </div>
-        <div className="   mt-[60px] lg:mt-[92px]  mx-5 sm:mx-14 lg:ml-[260px] mr-32 bg-white p-10 rounded-lg ">
+        <div className="   mt-[60px] lg:mt-[92px]  mx-5 sm:mx-14 lg:ml-[260px] mr-32 bg-white p-10 pt-5 rounded-lg min-h-[70vh] ">
+          <h1 className="text-base font-medium mb-6 ">
+            Recommendations just for you
+          </h1>
           <div className="grid xl: grid-cols-3 2xl:grid-cols-4 gap-10">
             {recommendedGroupsData.map((data) => (
               <div
@@ -76,9 +79,9 @@ const page = () => {
               >
                 <div className="flex flex-col justify-between h-full">
                   <div className="">
-                    <button className="absolute right-2 top-2">
+                    {/* <button className="absolute right-2 top-2">
                       <RxCross2 size={20} />
-                    </button>
+                    </button> */}
                     <div className="bg-[#B8CDE0] w-full h-[120px]"></div>
                     <div className="">
                       <Image

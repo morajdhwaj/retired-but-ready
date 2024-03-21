@@ -47,10 +47,10 @@ const Recommendation = () => {
   return (
     <div className="h-[73vh] sm:h-[65vh] overflow-y-scroll pr-2 w-full">
       {recommendedGroupsData.map((data) => (
-        <div key={data._id}>
-          <div className="mt-5 flex justify-between">
+        <div key={data._id} className="border-b-2 border-gray-200 py-2 pr-2">
+          <div className=" flex justify-between">
             <div className="flex">
-              <div className="mt-3">
+              <div className="">
                 <Image
                   src="/assets/Ellipse-39.png"
                   width={50}
@@ -59,25 +59,27 @@ const Recommendation = () => {
                   className="w-[64px] h-16 rounded-full border-2 border-gray-200"
                 />
               </div>
-              <div className="mx-2 mt-1">
-                <p className="text-base font-medium lg:text-lg lg:font-semibold">
+              <div className="mx-2 mt-1 flex flex-col justify-center">
+                <p className="text-[17px] font-medium   capitalize ">
                   {data.group_name}
                 </p>
-                <p className=" text-sm md:text-sm ">{data.group_description}</p>
+                <p className=" text-sm md:text-sm capitalize ">
+                  {data.group_description.slice(0, 30)}
+                </p>
                 {/* <p className=" text-sm md:text-sm ">{curelem.paragraph}</p> */}
               </div>
             </div>
-            <div>
+            <div className="flex items-center">
               {data.join_requests &&
               data.join_requests.some(
                 (item) => item.requested_user === userId
               ) ? (
-                <button className="border-2 border-[#A8359C] p-1 w- lg:w- text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0">
+                <button className="border-2 border-[#A8359C] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
                   Requested
                 </button>
               ) : (
                 <button
-                  className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg mt-5 mx-2 lg:mx-0"
+                  className="border-2 border-[#A8359C] py-1 px-8 w- 14 lg:w- 24 text-center font-medium rounded-lg  mx-2 lg:mx-0"
                   onClick={() => joinGroup(data._id)}
                 >
                   Join
@@ -85,7 +87,7 @@ const Recommendation = () => {
               )}
             </div>
           </div>
-          <div className="border border-gray-200 mt-2 mx-2" />
+          {/* <div className="border border-gray-200 mt-2 mx-2" /> */}
         </div>
       ))}
     </div>
