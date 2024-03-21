@@ -13,15 +13,35 @@ import Groupsuggestion from "@/app/components/one-group-compo/Groupsuggestion";
 import Inviteconnection from "@/app/components/one-group-compo/Inviteconnection";
 import React, { useState, useEffect, useContext } from "react";
 import { UserIdContext } from "@/context/UserIdContext";
+import axios from "axios";
 
 const page = ({ params }) => {
   const { userIdFromContext } = useContext(UserIdContext);
+  const [groupPost, setGroupPost] = useState([]);
   const groupId = params["groupId"];
 
   const [userId, setUserId] = useState("");
   useEffect(() => {
     setUserId(userIdFromContext);
+    getAllGroupPost();
   }, [userId]);
+
+  const getAllGroupPost = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/get-all-group-posts/${groupId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setGroupPost(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
 
   console.log(groupId, "page ka groupid");
   console.log(userId, "userId page ka");
@@ -56,8 +76,8 @@ const page = ({ params }) => {
               </div>
             </div>
             <div className=" flex flex-col justify-center items-center">
-              <Inputpost groupId={groupId} />
-              <Postadd groupId={groupId} />
+              <Inputpost groupId={groupId} getAllGroupPost={getAllGroupPost} />
+              {groupPost && <Postadd groupId={groupId} groupPost={groupPost} />}
             </div>
           </div>
         </div>

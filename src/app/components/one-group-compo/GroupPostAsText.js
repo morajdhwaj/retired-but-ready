@@ -13,6 +13,7 @@ const GroupPostAsText = ({
   setAnyGroupPost,
 
   groupId,
+  getAllGroupPost,
 }) => {
   const [userId, setUserId] = useState("");
   const { userIdFromContext } = useContext(UserIdContext);

@@ -14,6 +14,7 @@ const AllTypeGroupPost = ({
 
   selectedType,
   groupId,
+  getAllGroupPost,
 }) => {
   const [descriptions, setDescriptions] = useState("");
   const [type, setType] = useState(selectedType);
@@ -88,6 +89,7 @@ const AllTypeGroupPost = ({
                 setDescriptions={setDescriptions}
                 setAnyGroupPost={setAnyGroupPost}
                 groupId={groupId}
+                getAllGroupPost={getAllGroupPost}
               />
             )}
             {type == "Multimedia" && (
@@ -96,6 +98,7 @@ const AllTypeGroupPost = ({
                 setDescriptions={setDescriptions}
                 setAnyGroupPost={setAnyGroupPost}
                 groupId={groupId}
+                getAllGroupPost={getAllGroupPost}
               />
             )}
           </div>

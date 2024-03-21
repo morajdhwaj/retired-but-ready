@@ -9,7 +9,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import AllTypeGroupPost from "./AllTypeGroupPost";
 
-const Inputpost = ({ groupId }) => {
+const Inputpost = ({ groupId, getAllGroupPost }) => {
   const [anyGroupPost, setAnyGroupPost] = useState(false);
   const [type, setType] = useState(null);
   const [userId, setUserId] = useState("");
@@ -68,6 +68,7 @@ const Inputpost = ({ groupId }) => {
             setAnyGroupPost={setAnyGroupPost}
             selectedType={type}
             groupId={groupId}
+            getAllGroupPost={getAllGroupPost}
           />
         </div>
       )}
