@@ -832,8 +832,9 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                     {/* <showIcon size={20} /> */}
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
-
-                  <div className="flex gap-3  sm:gap-5 ml-2 sm:ml-5 md:ml-20">
+                </div>
+                <div className="flex justify-between">
+                  <div className="flex gap-3  sm:gap-5 ml-2 sm:ml-5 md:ml-20 mr-5">
                     <button
                       className="flex items-center justify-center gap-1  sm:gap-2   "
                       onClick={() => handleComments(feed?._id)}
@@ -861,10 +862,6 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
                       </button>
                     )}
                   </div>
-                </div>
-                <div className="flex justify-between">
-                  <div className=""></div>
-
                   <div className="flex items-center gap-2 text-sm ">
                     {feed?.post_comment_id?.length}
                     <p className="text-sm">Comments</p> |
