@@ -33,10 +33,7 @@ const FollowingPage = () => {
         `https://retpro.catax.me/following/${userId}`
       );
       setFollowing(response.data);
-      console.log(
-        response.data.message,
-        "this is response form following page"
-      );
+      console.log(response.data, "this is response form following page");
     } catch (error) {
       console.log(error, "this error get from recommended following page");
     }
@@ -108,11 +105,7 @@ const FollowingPage = () => {
               </button>
               <button
                 className="text-3xl sm:text-4xl text-gray-400"
-                onClick={() => {
-                  item?.from_user === userId
-                    ? setChatId(item?.to_user)
-                    : setChatId(item?.from_user);
-                }}
+                onClick={() => setChatId(item?.to_user_id)}
               >
                 <IoChatbubbleEllipsesOutline />
               </button>
