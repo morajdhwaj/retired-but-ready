@@ -186,7 +186,7 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3 bg-white  p-5 lg:mx-60 pt-24">
+        <div className="w-full bg-[#f2f1f3]bg-white  p-5 lg:mx-60 pt-24">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -325,7 +325,7 @@ const page = () => {
                       ) : (
                         <button
                           onClick={() => publishPost(post?._id)}
-                          className="w-full sm:w-auto bg-[#773f6c bg-white hover: border-2 border-[#773fc6] px-2 py-1  sm:px-4 sm:py-2 rounded-xl mt-2 mb-1 sm:mt-5 mx-3"
+                          className="w-full sm:w-auto bg-[#773f6c bg-white hover: border-2 border-[#773fc6] px-2 py-1  sm:px-4 sm:py-2 rounded-lg mt-2 mb-1 sm:mt-5 mx-3"
                         >
                           Publish
                         </button>
@@ -336,7 +336,7 @@ const page = () => {
               })}
             </div>
           ) : (
-            <div className="mt-20 h-[100vh] flex justify-center">
+            <div className="mt-20 min-h-[100vh] flex justify-center">
               <h1>No draft available</h1>
             </div>
           )}

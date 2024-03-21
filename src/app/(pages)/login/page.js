@@ -66,6 +66,8 @@ const page = () => {
       .catch(function (error) {
         console.error(error);
         toast.error(error?.response?.data?.detail || "Something wrong");
+        setEmail("");
+        setPassword("");
       });
     setLoading(false);
   };
@@ -73,7 +75,7 @@ const page = () => {
   console.log(userData);
 
   return (
-    <div className="  bg-gray-200  h-[100vh] lg:[80vh]  xl:h-[100vh]">
+    <div className="  bg-gray-200  min-h-[100vh] lg:[80vh]  xl:h-[100vh]">
       <Navbar />
       {/* Image */}
 
@@ -91,75 +93,72 @@ const page = () => {
         </div>
         {/* Login form */}
 
-        <div className=" xl:w-1/2 flex flex-col justify-center items-center   lg:flex lg:flex-col lg:justify-start lg:items-start ml-14  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
-          <h1 className=" text-2xl md:text-4xl font-bold mt-10  md:mt-14">
-            Login in to your account
-          </h1>
-          <div>
-            <p className="text-xs mt-2 text-gray-500  ">
-              Welcome back! Select method log in:
-            </p>
+        <div className=" xl:w-1/2  flex flex-col justify-center items-center   lg:flex lg:flex-col lg:justify-start lg:items-start ml-14  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
+          <div className="rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col  mt-5 sm:mt-10   ">
+            <h1 className=" text-2xl md:text-4xl font-bold mt-10  md:mt-14 ">
+              Login in to your account
+            </h1>
+            <div>
+              <p className="text-xs mt-2 text-gray-500  ">
+                Welcome back! Select method log in:
+              </p>
+            </div>
+            <div className="mt-5  md:flex  gap-2 mr-5 ">
+              <button
+                onClick={() => {
+                  toast.error("Google login not working");
+                }}
+                className="w-full md:w-32  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
+              >
+                <Image
+                  src="/assets/GOOGLE.png"
+                  alt="google"
+                  width={30}
+                  height={30}
+                  className=" text-center mx-2"
+                />
+                Google
+              </button>
+              <button
+                onClick={() => {
+                  toast.error("Facebook login not working");
+                }}
+                className="w-40 md:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+              >
+                <Image
+                  src="/assets/facebook.png"
+                  alt="facebook"
+                  width={30}
+                  height={30}
+                  className="text-center mx-2"
+                />
+                Facebook
+              </button>
+              <button
+                onClick={() => {
+                  toast.error("Mobile login not working");
+                }}
+                className="w-full md:w-32   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+              >
+                <Image
+                  src="/assets/mobile-phone-svgrepo-com-1.png"
+                  alt="mobile"
+                  width={30}
+                  height={30}
+                  className="mx-2  "
+                />
+                Mobile
+              </button>
+            </div>
+            <div className="flex justify-center items-center   lg:items-center gap-2 w-full">
+              <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5 flex" />
+              <p className="text-sm text-gray-400 text-center mt-5">
+                or continue with email
+              </p>
+              <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5" />
+            </div>
           </div>
-          <div className="mt-5  md:flex  gap-2 mr-5">
-            <button
-              onClick={() => {
-                toast.error("Google login not working");
-              }}
-              className="w-full md:w-32  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
-            >
-              <Image
-                src="/assets/GOOGLE.png"
-                alt="google"
-                width={30}
-                height={30}
-                className=" text-center mx-2"
-              />
-              Google
-            </button>
-            <button
-              onClick={() => {
-                toast.error("Facebook login not working");
-              }}
-              className="w-40 md:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
-            >
-              <Image
-                src="/assets/facebook.png"
-                alt="facebook"
-                width={30}
-                height={30}
-                className="text-center mx-2"
-              />
-              Facebook
-            </button>
-            <button
-              onClick={() => {
-                toast.error("Mobile login not working");
-              }}
-              className="w-full md:w-32   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
-            >
-              <Image
-                src="/assets/mobile-phone-svgrepo-com-1.png"
-                alt="mobile"
-                width={30}
-                height={30}
-                className="mx-2  "
-              />
-              Mobile
-            </button>
-          </div>
-          <div
-            className="
-        flex justify-center items-center  lg:flex lg:justify-start lg:items-center gap-2 w-full"
-          >
-            {" "}
-            <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5 flex" />
-            <p className="text-sm text-gray-400 text-center mt-5">
-              or continue with email
-            </p>
-            <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5" />
-          </div>
-
-          <div className="    rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col lg:justify-start lg:items-start mt-5 sm:mt-10   ">
+          <div className=" rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col  mt-5 sm:mt-10  ">
             <input
               type="email"
               value={email}
@@ -178,7 +177,7 @@ const page = () => {
             <div className=" flex justify-end  lg:w-[106%] xl:w-[73%] ">
               <Link
                 href="/forgot-password"
-                className="text-sm text-[#40295F] mt-1 "
+                className="text-sm hover:text-[#773FC6] mt-1 "
               >
                 Forget password ?
               </Link>
@@ -189,24 +188,16 @@ const page = () => {
             >
               Login
             </button>
-          </div>
-          <div className="   text-center flex  mt-3">
-            <h3 className="text-[#8E8E8E] text-sm ">
-              Don't have an account ? &nbsp;{" "}
-            </h3>
-            <Link href="/register" className="text-[#773FC6] text-sm">
-              Create Account
-            </Link>
+            <div className=" flex text-center mt-5">
+              <h3 className="text-[#8E8E8E] text-sm ">
+                Don't have an account ? &nbsp;{" "}
+              </h3>
+              <Link href="/register" className="text-[#773FC6] text-sm">
+                Create Account
+              </Link>
+            </div>
           </div>
         </div>
-        {/* {showModal && (
-          <PopUp
-            onClick={handleModal}
-            title="Logged in , lets build your profile now"
-            action="Enter Profile details"
-            message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
-          />
-        )} */}
       </div>
     </div>
   );

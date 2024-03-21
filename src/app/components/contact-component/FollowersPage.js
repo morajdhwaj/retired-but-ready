@@ -96,7 +96,7 @@ const FollowersPage = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[50vh]">
       {followers.length > 0 &&
         followers.map((follower, index) => (
           <div

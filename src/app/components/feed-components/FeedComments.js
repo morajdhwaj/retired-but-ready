@@ -312,7 +312,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                   )
                 )
               }
-              className="p-1 text-sm  w-full  outline-none "
+              className="p-2 text-sm  w-full  rounded-lg  outline-none "
               placeholder="Leave your comments"
               onInput={autoResize}
             />
