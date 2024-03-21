@@ -99,7 +99,9 @@ const page = () => {
                 borderRadius: 10,
               }}
               className="text-white p-5 flex  justify-between"
-            ></div>
+            >
+              <h2 className="font-semibold text-2xl">My Contacts</h2>
+            </div>
           </div>
 
           <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">

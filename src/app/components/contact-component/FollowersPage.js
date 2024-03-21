@@ -60,6 +60,10 @@ const FollowersPage = () => {
   const handleDeleteModal = (follower) => {
     setSelectedFollower(follower);
     setShowDeleteModal(true);
+    setShow((prevShow) => ({
+      ...prevShow,
+      [followers.findIndex((f) => f._id === follower._id)]: false,
+    }));
   };
 
   const handleCloseDeleteModal = () => {
