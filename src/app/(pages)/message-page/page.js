@@ -36,16 +36,16 @@ const Page = () => {
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
-    setUserId(userIdFromContext);
+    if (userIdFromContext) {
+      setUserId(userIdFromContext);
+    }
   }, [userIdFromContext]);
 
   useEffect(() => {
-    // setUserId(userIdFromContext);
-
     if (userId) {
       getAllChats();
     }
-  }, [userId, chatIdFromContext]);
+  }, [userId]);
 
   useEffect(() => {
     if (chatIdFromContext) {
@@ -112,7 +112,11 @@ const Page = () => {
       const response = await axios.get(
         `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
-      setChats(response.data);
+      if (Array.isArray(response?.data)) {
+        setChats(response.data);
+      } else {
+        setChats([]);
+      }
       console.log(
         response.data,
         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -150,6 +154,9 @@ const Page = () => {
           message
         )}`
       );
+      console.log(
+        "message sent successfully PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      );
       getChats();
       getAllChats();
       setMessage("");
@@ -175,7 +182,7 @@ const Page = () => {
     try {
       console.log(userIdFromContext, "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
       const response = await axios.get(
-        `https://retpro.catax.me/all-my-chats?user_id=${userIdFromContext}`
+        `https://retpro.catax.me/all-my-chats?user_id=${userId}`
       );
       setAllChats(response.data);
       console.log(response.data);
@@ -293,14 +300,6 @@ const Page = () => {
               </div>
               {/* Right Section */}
               <div className="w-[70%] h-full  ">
-                {/* <div className="flex justify-between py-4 border-b-2 text-xl">
-                  <h1 className="px-3 ">{userAllData.user_display_name}</h1>
-                  <div className="">
-                    <button className="px-3">
-                      <BsThreeDots />
-                    </button>
-                  </div>
-                </div> */}
                 <div className="">
                   <div className="px-5 py-3 flex">
                     <Link href={`/profile/${userAllData?._id}`}>
@@ -365,7 +364,7 @@ const Page = () => {
                             } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl px-8 py-1 max-w-[60%] text-wrap relative flex items-center pb-5`}
                           >
                             {chat.message}
-                            {showOptionButton === chat.message_id &&
+                            {/* {showOptionButton === chat.message_id &&
                               showThreeDought && (
                                 <button
                                   className={`absolute  ${
@@ -382,7 +381,7 @@ const Page = () => {
                                 >
                                   <BsThreeDots size={20} />
                                 </button>
-                              )}
+                              )} */}
 
                             <p className="text-xs absolute right-2 bottom-1">
                               {dayjs(new Date(chat.timestamp + "Z")).format(
@@ -390,7 +389,7 @@ const Page = () => {
                               )}
                             </p>
 
-                            {showOptionId === chat.message_id && showOption && (
+                            {/* {showOptionId === chat.message_id && showOption && (
                               <div
                                 className={`flex flex-col absolute bg-[#773FC6] p-2 rounded-xl top-1 ${
                                   chat.sender_id === chatIdFromContext
@@ -431,7 +430,7 @@ const Page = () => {
                                   <span className="">Edit</span>
                                 </button>
                               </div>
-                            )}
+                            )} */}
                           </p>
 
                           <br />
