@@ -57,10 +57,8 @@ const JoinNewGroup = () => {
     <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[80vh] hidden md:block ">
       <div className="lg:px-10 sm:px-5    lg:w-[28vw ">
         <div className="rounded-lg flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center  py-5 gap-2  border bg-white">
-          <div className="text-center text-lg font-bold">
-            <h1 className="text-lg md:text-sm">
-              Groups you might be interested in
-            </h1>
+          <div className="text-center text-lg font-medium">
+            <h1 className="text-md">Groups you might be interested in</h1>
           </div>
           <div className="border-2 mt-2 border-gray-200  w-full" />
           <div className="max-h-[65vh] sm:px-5 ">
@@ -78,8 +76,8 @@ const JoinNewGroup = () => {
                       />
                     </div>
                     <div>
-                      <p className=" mx-2">{data.group_name}</p>
-                      <p className=" mx-2">
+                      <p className=" mx-2 capitalize ">{data.group_name}</p>
+                      <p className=" mx-2 capitalize ">
                         {data.group_description.slice(0, 30)}
                         {data?.group_description.length > 30 ? "..." : ""}
                       </p>
@@ -91,12 +89,12 @@ const JoinNewGroup = () => {
                     data.join_requests.some(
                       (item) => item.requested_user === userId
                     ) ? (
-                      <button className="border-2 border-[#A8359C] p-1 w- lg:w- text-center font-bold rounded-lg my-1 mx-2 lg:mx-0">
+                      <button className="border-2 border-[#A8359C] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
                         Requested
                       </button>
                     ) : (
                       <button
-                        className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg my-1 mx-2 lg:mx-0"
+                        className="border-2 border-[#A8359C] py-1 px-8 w- 14 lg:w- 24 text-center font-medium rounded-lg  mx-2 lg:mx-0"
                         onClick={() => joinGroup(data._id)}
                       >
                         Join
