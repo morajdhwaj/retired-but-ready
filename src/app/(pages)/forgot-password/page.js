@@ -37,7 +37,7 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className=" bg-gray-200 h-[100vh] md:flex lg:flex">
+      <div className=" bg-gray-200 min-h-[100vh] md:flex lg:flex">
         <div className="md:w-full lg:w-1/2  justify-center items-center flex ">
           <Image
             src="/assets/Group-26113.png"

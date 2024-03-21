@@ -5,6 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const JoinNewGroup = () => {
   const router = useRouter();
@@ -66,7 +67,7 @@ const JoinNewGroup = () => {
               <div key={data._id} className="w-full ">
                 <div className="mt-2 flex justify-between  w-full md:flex md:flex-col mx-1">
                   <div className="flex">
-                    <div>
+                    <Link href={`/group-page/${data?._id}`}>
                       <Image
                         src="/assets/Ellipse-39.png"
                         width={50}
@@ -74,9 +75,14 @@ const JoinNewGroup = () => {
                         alt="pic"
                         className="w-16 h-16 rounded-full border-2 border-gray-200"
                       />
-                    </div>
+                    </Link>
                     <div>
-                      <p className=" mx-2 capitalize ">{data.group_name}</p>
+                      <Link
+                        href={`/group-page/${data?._id}`}
+                        className=" mx-2 capitalize font-semibold "
+                      >
+                        {data.group_name}
+                      </Link>
                       <p className=" mx-2 capitalize ">
                         {data.group_description.slice(0, 30)}
                         {data?.group_description.length > 30 ? "..." : ""}

@@ -62,7 +62,7 @@ const FollowingPage = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-[50vh]">
       {following.length > 0 &&
         following.map((item) => (
           <div

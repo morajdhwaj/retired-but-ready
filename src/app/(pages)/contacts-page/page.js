@@ -55,7 +55,9 @@ const page = () => {
   return (
     <div className="min-h-[100vh]">
       <Navbar />
+
       <div className="bg-[#B0B0B1] min-h-[100vh] p-10 ">
+
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
