@@ -53,9 +53,9 @@ const page = () => {
   console.log(userData, "userId");
 
   return (
-    <div className="h-[100vh]">
+    <div className="min-h-[100vh]">
       <Navbar />
-      <div className="bg-[#B0B0B1] p-10 ">
+      <div className="bg-[#e8e9e8] p-10 ">
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>

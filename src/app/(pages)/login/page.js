@@ -73,7 +73,7 @@ const page = () => {
   console.log(userData);
 
   return (
-    <div className="  bg-gray-200  h-[100vh] lg:[80vh]  xl:h-[100vh]">
+    <div className="  bg-gray-200  min-h-[100vh] lg:[80vh]  xl:h-[100vh]">
       <Navbar />
       {/* Image */}
 

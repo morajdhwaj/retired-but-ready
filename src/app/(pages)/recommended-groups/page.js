@@ -8,6 +8,7 @@ import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -83,7 +84,7 @@ const page = () => {
                       <RxCross2 size={20} />
                     </button> */}
                     <div className="bg-[#B8CDE0] w-full h-[120px]"></div>
-                    <div className="">
+                    <Link href={`/group-page/${data?._id}`} className="">
                       <Image
                         src="/assets/Ellipse-39.png"
                         alt="group-1"
@@ -91,10 +92,12 @@ const page = () => {
                         height={100}
                         className="m-auto mt-[-50px]"
                       />
-                    </div>
-                    <p className="text-center mt-4 text-lg font-bold px-2">
-                      {data?.group_name}
-                    </p>
+                    </Link>
+                    <Link href={`/group-page/${data?._id}`}>
+                      <p className="text-center mt-4 text-lg font-bold px-2">
+                        {data?.group_name}
+                      </p>
+                    </Link>
                     <p className="text-center">200 Member</p>
                   </div>
                   <div className="flex justify-center bottom-[20px] mb-5 ">

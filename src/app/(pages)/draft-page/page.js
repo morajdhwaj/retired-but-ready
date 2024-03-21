@@ -186,7 +186,7 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3 bg-white  p-5 lg:mx-60 pt-24">
+        <div className="w-full bg-[#f2f1f3]bg-white  p-5 lg:mx-60 pt-24">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -336,7 +336,7 @@ const page = () => {
               })}
             </div>
           ) : (
-            <div className="mt-20 h-[100vh] flex justify-center">
+            <div className="mt-20 min-h-[100vh] flex justify-center">
               <h1>No draft available</h1>
             </div>
           )}
