@@ -95,7 +95,7 @@ const Request = ({ groupId, getGroupInfo }) => {
                   {request?.user_info?.image ? (
                     <Image
                       alt="rtr-pic"
-                      src={member?.user_image}
+                      src={request?.user_image}
                       height={50}
                       width={50}
                       className="w-16 h-16 rounded-full border-2 border-gray-200"

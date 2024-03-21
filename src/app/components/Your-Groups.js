@@ -75,7 +75,7 @@ const Page = () => {
               {/* Map over the information array */}
               <Link
                 className="flex mt-2 mx-1 "
-                href={`/single-group/${groupData.group_id}`}
+                href={`/group-page/${groupData?.group_id}`}
               >
                 <Image
                   src="/assets/Ellipse-39.png"
