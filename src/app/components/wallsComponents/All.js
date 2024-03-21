@@ -129,7 +129,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   };
 
   const copyUrlToClipboard = (postId) => {
-    const currentUrl = `${window.location.href}/${postId}`;
+    const currentUrl = `${window.location.origin}/all-feeds-page/${postId}`;
     navigator.clipboard
       .writeText(currentUrl)
       .then(() => {

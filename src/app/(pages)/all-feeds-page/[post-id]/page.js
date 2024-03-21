@@ -637,7 +637,10 @@ const page = ({ params }) => {
                             </p>
                           )}
                       </div>
-
+                    </div>
+                  </div>
+                  <div className="flex gap-2 ">
+                    <div className="flex items-center">
                       <button
                         className="flex items-center justify-center gap-2  mt-1 mr-2 ml-20 "
                         onClick={() => handleComments(feed?._id)}
@@ -655,14 +658,12 @@ const page = ({ params }) => {
                         <p className="text-sm">Repost</p>
                       </button>
                     </div>
-                  </div>
-                  <div className=" flex justify-between">
-                    {/* <div className="flex"> */}
-
-                    {/* </div> */}
-                    <div className="flex items-end pb-1  gap-2 text-sm">
-                      {feed?.post_comment_id?.length}
-                      <p className="text-sm">Comments</p> |
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        <p> {feed?.post_comment_id?.length}</p>
+                        <p className="text-sm"> Comments</p>
+                      </div>
+                      |
                       <button onClick={copyUrlToClipboard} className="">
                         <BsFillShareFill color="gray" size={20} />
                       </button>
