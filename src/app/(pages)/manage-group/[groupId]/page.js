@@ -45,7 +45,7 @@ const page = ({ params }) => {
       <Navbar />
       <div className="pt-32 mx-20">
         <div className="bg-white rounded-lg ">
-          <div className="border-b border-gray-200 p-8 flex gap-2 items-center">
+          <div className="border-b border-gray-200 p-8 flex gap-3 items-center">
             <Image
               alt="group-dp"
               src="/assets/Group.png"
@@ -53,7 +53,12 @@ const page = ({ params }) => {
               height={50}
               className="h-14 w-14 rounded-full"
             />
-            <h1 className="text-lg font-semibold">{groupInfo?.name}</h1>
+            <div className="">
+              <h1 className="text-lg font-semibold capitalize ">
+                {groupInfo?.name}
+              </h1>
+              <p className="capitalize text-sm">{groupInfo?.description}</p>
+            </div>
           </div>
           <div>
             <h1 className="p-8">Manage Group </h1>

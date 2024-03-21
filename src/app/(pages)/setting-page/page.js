@@ -211,7 +211,7 @@ const page = () => {
                 </div>
               )}
               {showSettingOption == "dataPrivacy" && (
-                <div className="shadow-xl p-4 min-h-[30vh] bg-white rounded-lg  ">
+                <div className="shadow-xl p-4 min-h-[30vh] bg-white rounded-lg pb-10 ">
                   <h1 className="text-2xl font-semibold  mb-5">
                     Privacy Details
                   </h1>

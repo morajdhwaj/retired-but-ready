@@ -92,7 +92,7 @@ const ContactPage = () => {
           >
             <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
               <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
-                <Link href={`/profile/${item.from_user}`}>
+                <Link href={`/profile/${item.user_id}`}>
                   {item?.user_image ? (
                     <Image
                       src={item?.user_image}

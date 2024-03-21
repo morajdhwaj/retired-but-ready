@@ -276,7 +276,6 @@ const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
     video.addEventListener("mouseleave", handleHover);
   });
 
-  console.log(reportPostId, "reportPost ID");
   return (
     <div className=" flex flex-col mt-5">
       {feeds.map((feed) => {

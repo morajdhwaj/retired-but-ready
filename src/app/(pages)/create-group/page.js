@@ -10,6 +10,9 @@ import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoArrowBackOutline } from "react-icons/io5";
+import Link from "next/link";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -116,7 +119,7 @@ const Page = () => {
           >
             {/* Profile Picture */}
             <div className="p-10 rounded-full absolute  h-28 w-28 flex justify-center  items-center bottom-[-50px]   left-20 bg-white">
-              <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+              <button className=" h-7 w-7 flex justify-center items-center  bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
                     type="file"
@@ -250,12 +253,22 @@ const Page = () => {
             </div>
 
             {/* Create Group Button */}
-            <button
-              className="py-3 px-8 border-2 border-[#A8359C]  absolute right-14 bottom-10 "
-              onClick={createGroup}
-            >
-              Create Group
-            </button>
+
+            <div className="flex justify-between">
+              <button
+                className="py-3 px-8 border-2 border-[#A8359C]  absolute right-14 bottom-10 rounded-md "
+                onClick={createGroup}
+              >
+                Create Group
+              </button>{" "}
+              <Link
+                href="/groups-page"
+                className="py-3 px-4 items-center border-2 border-[#A8359C] flex  absolute left-14 bottom-10 rounded-md "
+              >
+                <IoArrowBackOutline size={20} />
+                Back
+              </Link>
+            </div>
           </div>
         </div>
       </div>
