@@ -24,7 +24,7 @@ const page = ({ params }) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         setGroupInfo(response.data);
       })
       .catch(function (error) {
