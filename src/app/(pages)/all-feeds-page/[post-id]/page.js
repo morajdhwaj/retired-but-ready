@@ -202,14 +202,14 @@ const page = ({ params }) => {
   };
   console.log(userIdFromContext, "userId");
   return (
-    <div className="bg-[#A6A7A6 bg-white  px-10 ">
+    <div className="bg-[#A6A7A6]   px-10 ">
       <Navbar />
       <div className="flex gap-10 ">
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3     lg:mx-60 pt-20 mt-20">
-          <div className="w-full bg-[#f2f1f3 border-2 rounded-lg mb-10 p-4">
+        <div className="w-full bg-[#f2f1f3]    lg:mx-60 pt-20 mt-20">
+          <div className="w-full bg-[#f2f1f3]border-2 rounded-lg mb-10 p-4">
             <div key={feed?._id}>
               <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">
                 <div className="flex items-center gap-2 justify-center">
@@ -428,7 +428,7 @@ const page = ({ params }) => {
                     <div className="relative flex  gap-1 items-center mt-2">
                       {showReactionsButton && (
                         <div
-                          className="absolute  bottom-7 py-  flex bg-[#F2F1F3 bg-white gap-2 h-10 w-60"
+                          className="absolute  bottom-7 py-  flex bg-[#f2f1f3]bg-white gap-2 h-10 w-60"
                           // onMouseLeave={() => setIsHovered(false)}
                         >
                           <button
@@ -637,7 +637,10 @@ const page = ({ params }) => {
                             </p>
                           )}
                       </div>
-
+                    </div>
+                  </div>
+                  <div className="flex gap-2 ">
+                    <div className="flex items-center">
                       <button
                         className="flex items-center justify-center gap-2  mt-1 mr-2 ml-20 "
                         onClick={() => handleComments(feed?._id)}
@@ -655,14 +658,12 @@ const page = ({ params }) => {
                         <p className="text-sm">Repost</p>
                       </button>
                     </div>
-                  </div>
-                  <div className=" flex justify-between">
-                    {/* <div className="flex"> */}
-
-                    {/* </div> */}
-                    <div className="flex items-end pb-1  gap-2 text-sm">
-                      {feed?.post_comment_id?.length}
-                      <p className="text-sm">Comments</p> |
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        <p> {feed?.post_comment_id?.length}</p>
+                        <p className="text-sm"> Comments</p>
+                      </div>
+                      |
                       <button onClick={copyUrlToClipboard} className="">
                         <BsFillShareFill color="gray" size={20} />
                       </button>

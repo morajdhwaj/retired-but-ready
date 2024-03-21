@@ -45,11 +45,11 @@ const ProfileConnection = () => {
         Based on my Profile
       </h1>
       <div className=" border border-[#D9D9D9] w-[15%] h-0.3 mt-2" />
-      <div className="grid place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-4 mt-5 gap-y-14 gap-x-16">
+      <div className="grid place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-y-14 gap-x-16">
         {gpsData.map((cardElem, index) => (
           <div
             key={index}
-            className="border w-52 border-gray-300 shadow-lg rounded-lg"
+            className="border w-48 border-gray-300 shadow-lg rounded-lg"
           >
             <div className="bg-[#B3CEE2] h-20">
               <div className="flex justify-end">

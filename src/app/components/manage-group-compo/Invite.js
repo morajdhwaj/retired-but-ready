@@ -88,25 +88,28 @@ const Invite = ({ groupId, groupInfo, userId, getGroupInfo }) => {
                 <h2 className="text-xs">UX Designer</h2>
               </div>
             </div>
-            <div className="flex gap-5">
-              {groupInfo?.users?.some(
-                (user) => user?.id === member?.user_id
-              ) ? (
-                <button
-                  // onClick={() => addMember(member?.user_id)}
-                  className="border border-[#773FC6] px-5 h-10 rounded-xl hover:shadow-lg"
-                >
-                  Group Member
-                </button>
-              ) : (
-                <button
-                  onClick={() => addMember(member?.user_id)}
-                  className="border border-[#773FC6] px-7 h-10 rounded-xl hover:shadow-lg"
-                >
-                  Add Member
-                </button>
-              )}
-            </div>
+            {groupInfo?.admins?.some((user) => user?.id === member?.user_id) ? (
+              <button className="border border-[#773FC6] px-7 h-10 rounded-xl hover:shadow-lg">
+                Group Admin
+              </button>
+            ) : (
+              <div className="flex gap-5">
+                {groupInfo?.users?.some(
+                  (user) => user?.id === member?.user_id
+                ) ? (
+                  <button className="border border-[#773FC6] px-5 h-10 rounded-xl hover:shadow-lg">
+                    Group Member
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => addMember(member?.user_id)}
+                    className="border border-[#773FC6] px-7 h-10 rounded-xl hover:shadow-lg"
+                  >
+                    Add Member
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>
