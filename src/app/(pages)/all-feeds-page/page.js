@@ -43,8 +43,6 @@ const page = () => {
       .then(function (response) {
         console.log(response?.data);
         setUserData(response?.data);
-        setCompanyName(response?.data?.work_history[0].company_name);
-        setTitle(response?.data?.work_history[0].title);
       })
       .catch(function (error) {
         console.error(error);
