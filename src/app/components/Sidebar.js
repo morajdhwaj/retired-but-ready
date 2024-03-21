@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <div className="mx-5 fixed py-10 pt-16 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
+      <div className="mx-5 fixed py-10 pt-20 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
         <div className={`flex justify-end my-2`}>
           <button onClick={() => setClose(!close)}>
             {close ? (
@@ -84,13 +84,22 @@ const Sidebar = () => {
               </div>
             </Link>
             <Link
-              href="/setting-page"
+              href="/draft-page"
               className="flex gap-5   items-center bg-white p-2 hover:bg-gray-200 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
                 <FiOctagon color="#344767" />
               </div>
             </Link>
+            <Link
+              href="/setting-page"
+              className="flex gap-5   items-center bg-white p-2 hover:bg-gray-200 rounded-xl"
+            >
+              <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
+                <IoMdSettings color="#344767" />
+              </div>
+            </Link>
+
             <Link
               href="/about-us-page"
               className="flex gap-5   items-center bg-white p-2 hover:bg-gray-200 rounded-xl"

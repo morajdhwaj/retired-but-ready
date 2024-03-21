@@ -1,92 +1,65 @@
 "use Client";
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoReturnUpBackSharp } from "react-icons/io5";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { UserIdContext } from "@/context/UserIdContext";
 
-const ChangeEmail = ({ optionFunction, showOption }) => {
-  const { userIdFromContext } = useContext(UserIdContext);
-
-  // const [userId, setUserId] = useState("");
-  // const [userData, setUserData] = useState([]);
-
-  // useEffect(() => {
-  //   setUserId(userIdFromContext);
-  // }, [userIdFromContext]);
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     console.log(userId, "this is user id ");
-  //     getUserData();
-  //   }
-  // }, [userId]);
-
-  // const getUserData = async () => {
-  //   console.log(userId, "this is user id ");
-  //   try {
-  //     const response = await axios.get(
-  //       `https://retpro.catax.me/user/profile/${userId}`
-  //     );
-  //     console.log(response.data, "this is response data");
-  //     setUserData(response.data);
-  //   } catch (error) {
-  //     console.log(error, "this is error from get user data");
-  //   }
-  // };
-
-  // const handleEmail = () => {
-  //   const options = {
-  //     method: "GET",
-  //     url: "https://retpro.catax.me/user/forgot-password",
-  //     params: { user_email: userData?.user_email },
-  //   };
-
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //       toast.success(response?.data?.message);
+const ChangeEmail = ({
+  optionFunction,
+  showOption,
+  userData,
+  setEmail,
+  getEmail,
+  changeUserEmail,
+}) => {
+  // const changeUserEmail = async () => {
+  //   if (getEmail) {
+  //     try {
+  //       const response = await axios.patch(
+  //         `https://retpro.catax.me/user/change-email?user_id=${userData?._id}&new_email=${getEmail}`
+  //       );
+  //       console.log(response.data, "this is response form change email");
+  //       toast.success("OTP sent successfully");
   //       optionFunction("emailOtp");
-  //       // router.push(`/forgot-password-otp/${response?.data?.user_id}`);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
+  //     } catch (error) {
+  //       console.log(error, "this is error form change email");
+  //     }
+  //   }
   // };
 
-  // const userShowData = () => {
-  //   console.log(userData, "this is user data from email");
-  // };
+  console.log(userData, "this is user data BBBBBBBBBBBBBBBB");
 
   return (
     <>
       <div className="shadow-xl p-4 pb-10 min-h-[30vh] bg-white rounded-lg ">
-        <button className="flex gap-2 items-center ">
+        <button
+          className="flex gap-2 items-center "
+          onClick={() => optionFunction("security")}
+        >
           <IoReturnUpBackSharp size={25} />
           <span className="text-sm">Back</span>
         </button>
         <div className="pl-8 mt-5">
           <div className="">
             <h1 className="text-lg font-semibold">Email Address</h1>
-            <p className="text-md">Email you have added</p>
+            <p className="text-md text-gray-400">Email you have added</p>
           </div>
           <div className="mt-3">
-            <p className="text-md">Primary Email</p>
-            <p className="text-sm">xyz@gmail.com</p>
+            <p className="text-md text-gray-400">Primary Email</p>
+            <p className="text-sm text-blue-600 ">{userData?.user_email}</p>
             <button
-              className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-5 ${
-                showOption == "addNewEmail" ? "hidden" : "block"
-              }`}
-              onClick={() => optionFunction("emailOtp")}
+              className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-5 `}
+              onClick={() => optionFunction("addNewEmail")}
             >
               Add Email Address
             </button>
           </div>
           <div className="mt-10">
             <input
-              type="text"
+              type="email"
+              value={getEmail}
+              onChange={(e) => setEmail(e.target.value)}
               className={`rounded-lg w-64 p-2 border-2 ${
                 showOption == "addNewEmail" ? "block" : "hidden"
               } `}
@@ -95,7 +68,7 @@ const ChangeEmail = ({ optionFunction, showOption }) => {
               className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-3 ${
                 showOption == "addNewEmail" ? "block" : "hidden"
               }`}
-              onClick={() => optionFunction("security")}
+              onClick={() => changeUserEmail()}
             >
               Submit
             </button>
