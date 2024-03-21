@@ -83,7 +83,7 @@ const ContactPage = () => {
   );
 
   return (
-    <div>
+    <div className="min-h-[50vh]">
       {contact.length > 0 &&
         contact.map((item) => (
           <div

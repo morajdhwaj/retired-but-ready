@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 import { UserIdContext } from "@/context/UserIdContext";
+import Link from "next/link";
 
 const Recommendation = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -50,7 +51,7 @@ const Recommendation = () => {
         <div key={data._id} className="border-b-2 border-gray-200 py-2 pr-2">
           <div className=" flex justify-between">
             <div className="flex">
-              <div className="">
+              <Link href={`/group-page/${data?._id}`} className="">
                 <Image
                   src="/assets/Ellipse-39.png"
                   width={50}
@@ -58,12 +59,15 @@ const Recommendation = () => {
                   alt="pic"
                   className="w-[64px] h-16 rounded-full border-2 border-gray-200"
                 />
-              </div>
+              </Link>
               <div className="mx-2 mt-1 flex flex-col justify-center">
-                <p className="text-[17px] font-medium   capitalize ">
+                <Link
+                  href={`/group-page/${data?._id}`}
+                  className="text-[17px] font-medium   capitalize "
+                >
                   {data.group_name}
-                </p>
-                <p className=" text-sm md:text-sm capitalize ">
+                </Link>
+                <p className=" text-sm capitalize ">
                   {data.group_description.slice(0, 30)}
                 </p>
                 {/* <p className=" text-sm md:text-sm ">{curelem.paragraph}</p> */}

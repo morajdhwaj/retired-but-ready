@@ -120,7 +120,7 @@ const page = ({ params }) => {
   return (
     <div className="bg-[#ECEAF0]">
       <Navbar />
-      <div className="pt-8 md:flex  h-[100vh] lg:flex">
+      <div className="pt-8 md:flex  min-h-[100vh] lg:flex">
         <div className="md:w-[100%] lg:w-1/2  flex justify-center items-center ">
           <Image src="/assets/Group-26113.png" width={450} height={450} />
         </div>

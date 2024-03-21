@@ -10,7 +10,7 @@ const page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3] flex items-center justify-center p-5 lg:ml-52 pt-24  h-[100vh]  ">
+        <div className="w-full bg-[#f2f1f3] flex items-center justify-center p-5 lg:ml-52 pt-24  min-h-[100vh]  ">
           Wallet coming soon...
         </div>
       </div>
