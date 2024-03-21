@@ -2,12 +2,16 @@
 import Loader from "@/app/components/Loader";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
+import GroupAdmin from "@/app/components/group-components/group-post-input/GroupAdmin";
 import GroupPostInput from "@/app/components/group-components/group-post-input/GroupPostInput";
 import AllPosts from "@/app/components/group-components/group-posts/AllPosts";
 import { UserIdContext } from "@/context/UserIdContext";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
+import { FaUserCircle } from "react-icons/fa";
 import { RiGroup2Fill } from "react-icons/ri";
 
 const page = ({ params }) => {
@@ -16,6 +20,10 @@ const page = ({ params }) => {
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   const [groupFeeds, setGroupFeeds] = useState([]);
+  const [groupAdmins, setGroupAdmins] = useState([]);
+  const [groupUsers, setGroupUsers] = useState([]);
+
+  const router = useRouter();
 
   const [groupInfo, setGroupInfo] = useState([]);
 
@@ -35,8 +43,10 @@ const page = ({ params }) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
-        setGroupInfo(response.data);
+        console.log(response?.data);
+        setGroupInfo(response?.data);
+        setGroupAdmins(response?.data?.admins);
+        setGroupUsers(response?.data?.users);
       })
       .catch(function (error) {
         console.error(error);
@@ -84,7 +94,12 @@ const page = ({ params }) => {
       </div>
     );
   }
-  console.log(groupFeeds, "userData");
+
+  const isAdminUserConditionTrue =
+    groupAdmins.some((admin) => admin.id === userId) !==
+    groupUsers.some((user) => user.id === userId);
+
+  console.log(groupUsers, "group users");
   return (
     <div className="bg-[#e8e9e8]  min-h-[100vh]  sm:px-5 md:px-10 ">
       <Navbar />
@@ -93,7 +108,7 @@ const page = ({ params }) => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-60 lg:mr-32 xl:mx-60 pt-24  ">
+        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-60   pt-24  ">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 sm:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -123,14 +138,16 @@ const page = ({ params }) => {
               <h2 className="font-semibold text-2xl">Group Posts</h2>
             </div>
           </div>
-          <div className="mt-44 sm:mt-32 md:mt-20 mx-20   ">
-            <GroupPostInput
-              userData={userData}
-              getFeeds={getGroupPosts}
-              userId={userId}
-              groupId={groupId}
-            />
-          </div>
+          {isAdminUserConditionTrue && (
+            <div className="mt-44 sm:mt-32 md:mt-20 mx-20   ">
+              <GroupPostInput
+                userData={userData}
+                getFeeds={getGroupPosts}
+                userId={userId}
+                groupId={groupId}
+              />
+            </div>
+          )}
           <div className="mt-44 sm:mt-32 md:mt-10">
             <AllPosts
               feeds={groupFeeds}
@@ -139,6 +156,11 @@ const page = ({ params }) => {
               userId={userId}
             />
           </div>
+        </div>
+        <div className="mt-20 w-80  ">
+          {groupAdmins.some((admin) => admin?.id === userId) && (
+            <GroupAdmin groupId={groupId} userData={userData} />
+          )}
         </div>
       </div>
     </div>
