@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
@@ -11,7 +11,40 @@ import Postadd from "@/app/components/one-group-compo/Postadd";
 import Groupowner from "@/app/components/one-group-compo/Groupowner";
 import Groupsuggestion from "@/app/components/one-group-compo/Groupsuggestion";
 import Inviteconnection from "@/app/components/one-group-compo/Inviteconnection";
-const page = () => {
+import React, { useState, useEffect, useContext } from "react";
+import { UserIdContext } from "@/context/UserIdContext";
+import axios from "axios";
+
+const page = ({ params }) => {
+  const { userIdFromContext } = useContext(UserIdContext);
+  const [groupPost, setGroupPost] = useState([]);
+  const groupId = params["groupId"];
+
+  const [userId, setUserId] = useState("");
+  useEffect(() => {
+    setUserId(userIdFromContext);
+    getAllGroupPost();
+  }, [userId]);
+
+  const getAllGroupPost = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/get-all-group-posts/${groupId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setGroupPost(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  console.log(groupId, "page ka groupid");
+  console.log(userId, "userId page ka");
   return (
     <div className=" ">
       <Navbar />
@@ -21,7 +54,7 @@ const page = () => {
         </div>
         <div className="w-3/5">
           <div className="bg-white min-h-[100vh] mt-10">
-            <h1 className="text-black bg-black h-20">jaya</h1>
+            <h1 className="text-black bg-black h-20">jaya </h1>
             <div className="flex justify-between pl-5 pr-5 pb-5 border border-b-gray-300">
               <div>
                 <Image
@@ -43,8 +76,8 @@ const page = () => {
               </div>
             </div>
             <div className=" flex flex-col justify-center items-center">
-              <Inputpost />
-              <Postadd />
+              <Inputpost groupId={groupId} getAllGroupPost={getAllGroupPost} />
+              {groupPost && <Postadd groupId={groupId} groupPost={groupPost} />}
             </div>
           </div>
         </div>
