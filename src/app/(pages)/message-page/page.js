@@ -36,16 +36,16 @@ const Page = () => {
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
-    setUserId(userIdFromContext);
+    if (userIdFromContext) {
+      setUserId(userIdFromContext);
+    }
   }, [userIdFromContext]);
 
   useEffect(() => {
-    // setUserId(userIdFromContext);
-
     if (userId) {
       getAllChats();
     }
-  }, [userId, chatIdFromContext]);
+  }, [userId]);
 
   useEffect(() => {
     if (chatIdFromContext) {
@@ -112,7 +112,11 @@ const Page = () => {
       const response = await axios.get(
         `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
-      setChats(response.data);
+      if (Array.isArray(response?.data)) {
+        setChats(response.data);
+      } else {
+        setChats([]);
+      }
       console.log(
         response.data,
         "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -150,6 +154,9 @@ const Page = () => {
           message
         )}`
       );
+      console.log(
+        "message sent successfully PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      );
       getChats();
       getAllChats();
       setMessage("");
@@ -175,7 +182,7 @@ const Page = () => {
     try {
       console.log(userIdFromContext, "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
       const response = await axios.get(
-        `https://retpro.catax.me/all-my-chats?user_id=${userIdFromContext}`
+        `https://retpro.catax.me/all-my-chats?user_id=${userId}`
       );
       setAllChats(response.data);
       console.log(response.data);
@@ -221,7 +228,7 @@ const Page = () => {
         </div>
         <div className="w-full">
           {/* Main Content */}
-          <div className="bg-[#f2f1f3]  p-5 pb-3 lg:mx-60 pt-24 w-full  lg:w-[80vw] h-[100vh]">
+          <div className="bg-[#f2f1f3]  p-5 pb-3 lg:mx-60 pt-24 w-full  lg:w-[80vw] min-h-[100vh]">
             <div className="w-full h-full border-2 rounded-xl flex justify-between  ">
               {/* Left Section */}
               <div className="bg-blue- w-[30%] h-full border-r-2">
@@ -243,19 +250,20 @@ const Page = () => {
                     <ImSearch />
                   </span>
                 </div>
-                <div className="flex w-full">
+                {/* <div className="flex w-full">
                   <button className="w-[50%] text-[#773FC6] font-semibold p-2 border-b-2 border-[#773FC6]">
                     Focused
                   </button>
                   <button className="w-[50%] text-[#773FC6] font-semibold p-2">
                     Other
                   </button>
-                </div>
-                <div className="overflow-y-scroll h-[60vh]">
+                </div> */}
+                <div className="border-b-2 border-[#773FC6]"></div>
+                <div className="overflow-y-scroll h-[65vh]">
                   {allChats.map((data) => (
-                    <div className="p-3" key={data?._id}>
+                    <div className="p-3 " key={data?._id}>
                       <button
-                        className="flex h-20 "
+                        className="flex  "
                         onClick={() => {
                           data?.participants[0] == userIdFromContext
                             ? setIdForChat(data.participants[1])
@@ -269,20 +277,22 @@ const Page = () => {
                               src={data?.sender_image}
                               height={50}
                               width={50}
-                              className="w-20 h-16 rounded-full border-2 border-gray-200"
+                              className="w-20 h-[60px] rounded-full "
                             />
                           ) : (
-                            <FaUserCircle color="gray" size={50} />
+                            <FaUserCircle color="gray" size={60} />
                           )}
                         </div>
-                        <div className="py-2 px-4 w-full border-b-2">
+                        <div className="py-2 px-4 w-full ">
                           <div className="flex justify-between">
-                            <h2 className="">{data?.sender_name}</h2>
-                            <span className="">Feb 22</span>
+                            <h2 className="capitalize">{data?.sender_name}</h2>
+                            {/* <span className="">Feb 22</span> */}
                           </div>
                           <div className="">
                             <p className="text-sm">
-                              {data?.latest_message?.message.slice(0, 30)}....
+                              {data?.latest_message?.message.slice(0, 30)}
+                              {data?.latest_message?.message.length > 30 &&
+                                "...."}
                             </p>
                           </div>
                         </div>
@@ -293,16 +303,8 @@ const Page = () => {
               </div>
               {/* Right Section */}
               <div className="w-[70%] h-full  ">
-                {/* <div className="flex justify-between py-4 border-b-2 text-xl">
-                  <h1 className="px-3 ">{userAllData.user_display_name}</h1>
-                  <div className="">
-                    <button className="px-3">
-                      <BsThreeDots />
-                    </button>
-                  </div>
-                </div> */}
-                <div className="">
-                  <div className="px-5 py-3 flex">
+                <div className={` ${chatIdFromContext ? "" : "hidden"} `}>
+                  <div className={`px-5 py-3 flex `}>
                     <Link href={`/profile/${userAllData?._id}`}>
                       <div className="flex items-center justify-center gap-2">
                         {userAllData?.user_image ? (
@@ -314,27 +316,25 @@ const Page = () => {
                             className="w-20 h-20 rounded-full border-2 border-gray-200"
                           />
                         ) : (
-                          <FaUserCircle color="gray" size={50} />
+                          <FaUserCircle color="gray" size={60} />
                         )}
                       </div>
                     </Link>
 
                     <div className="ml-5 mt-2">
-                      <h1 className="text-xl">
+                      <h1 className="text-xl capitalize">
                         {userAllData.user_display_name}
                       </h1>
                       <p className="text-sm">{userAllData.last_designation}</p>
                     </div>
                   </div>
-                  <div className="relative">
-                    <div className=" w-full border border-[#773FC6] "></div>
-                    {/* <span className="absolute top-[-10px] left-[47%] bg-[#f2f1f3] px-2">
-                     {dayjs(date).format("MMMM DD, YYYY")}
-                    </span> */}
-                  </div>
+
+                  <div className=" w-full border border-[#773FC6] "></div>
                 </div>
                 <div
-                  className="h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[60vh]"
+                  className={`h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[58vh]  ${
+                    chatIdFromContext ? "flex" : "hidden"
+                  }`}
                   ref={chatContainerRef}
                 >
                   {/* Render chat messages with separation by date */}
@@ -360,12 +360,12 @@ const Page = () => {
                             }}
                             className={`${
                               chat.sender_id === userIdFromContext
-                                ? "float-right pl-8 bg-[#773FC6]"
-                                : "float-left pr-8 bg-[#ab7cee]"
-                            } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl px-8 py-1 max-w-[60%] text-wrap relative flex items-center pb-5`}
+                                ? "float-right pl-3 pr-12 bg-[#773FC6]"
+                                : "float-left pr-3 pl-12 bg-[#ab7cee]"
+                            } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl  py-1 max-w-[60%] text-wrap relative flex items-center pb-5`}
                           >
                             {chat.message}
-                            {showOptionButton === chat.message_id &&
+                            {/* {showOptionButton === chat.message_id &&
                               showThreeDought && (
                                 <button
                                   className={`absolute  ${
@@ -382,7 +382,7 @@ const Page = () => {
                                 >
                                   <BsThreeDots size={20} />
                                 </button>
-                              )}
+                              )} */}
 
                             <p className="text-xs absolute right-2 bottom-1">
                               {dayjs(new Date(chat.timestamp + "Z")).format(
@@ -390,7 +390,7 @@ const Page = () => {
                               )}
                             </p>
 
-                            {showOptionId === chat.message_id && showOption && (
+                            {/* {showOptionId === chat.message_id && showOption && (
                               <div
                                 className={`flex flex-col absolute bg-[#773FC6] p-2 rounded-xl top-1 ${
                                   chat.sender_id === chatIdFromContext
@@ -431,7 +431,7 @@ const Page = () => {
                                   <span className="">Edit</span>
                                 </button>
                               </div>
-                            )}
+                            )} */}
                           </p>
 
                           <br />
@@ -441,7 +441,11 @@ const Page = () => {
                   ))}
                 </div>
                 {/* Message Input */}
-                <div className="p-4 relative  flex">
+                <div
+                  className={`p-4 relative items-center ${
+                    chatIdFromContext ? "flex" : "hidden"
+                  } `}
+                >
                   <textarea
                     value={message}
                     onChange={handleInputChange}
@@ -450,7 +454,7 @@ const Page = () => {
                     placeholder="Write a message"
                   />
                   {/* Send Button */}
-                  {editButton ? (
+                  {/* {editButton ? (
                     <div className="flex absolute right-4 bottom-4 p-1  text-white rounded-lg bg-[#773FC6]">
                       <button
                         className=" h-[30px] w-[30px] flex justify-center items-center border-r-2 "
@@ -470,15 +474,15 @@ const Page = () => {
                         <IoCheckmark />
                       </button>
                     </div>
-                  ) : (
-                    <button
-                      className="absolute right-3 bottom-4 p-2 text-2xl text-white rounded-xl bg-[#773FC6] h-[40px] w-[40px] "
-                      onClick={() => sendMessage()}
-                      disabled={message.length === 0}
-                    >
-                      <VscSend />
-                    </button>
-                  )}
+                  ) : ( */}
+                  <button
+                    className="absolute right-3  p-2 mr-2  text-xl text-white rounded-xl bg-[#773FC6] h-[36px w-[36px "
+                    onClick={() => sendMessage()}
+                    disabled={message.length === 0}
+                  >
+                    <VscSend />
+                  </button>
+                  {/* )} */}
                 </div>
               </div>
             </div>

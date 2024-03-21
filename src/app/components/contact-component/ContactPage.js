@@ -68,7 +68,7 @@ const ContactPage = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data, "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
         setSelectedFollower(null);
         getContact();
       })
@@ -126,11 +126,7 @@ const ContactPage = () => {
               </button>
               <button
                 className="text-3xl sm:text-4xl text-gray-400"
-                onClick={() => {
-                  item?.from_user === userId
-                    ? setChatId(item?.to_user)
-                    : setChatId(item?.from_user);
-                }}
+                onClick={() => setChatId(item?.user_id)}
               >
                 <IoChatbubbleEllipsesOutline />
               </button>
