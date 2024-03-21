@@ -717,7 +717,7 @@ const ReplyCommentsComp = ({
                     )
                   )
                 }
-                className="p-1 text-sm  w-full  outline-none "
+                className="p-2 rounded-lg text-sm  w-full   outline-none "
                 placeholder="Leave your comments"
                 onInput={autoResize}
               />{" "}
