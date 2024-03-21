@@ -202,7 +202,7 @@ const page = ({ params }) => {
   };
   console.log(userIdFromContext, "userId");
   return (
-    <div className="bg-[#A6A7A6]   px-10 ">
+    <div className="bg-[#e8e9e8]  min-h-[100vh] px-10 ">
       <Navbar />
       <div className="flex gap-10 ">
         <div className="hidden lg:flex">
