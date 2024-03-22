@@ -44,8 +44,8 @@ const ContactPage = () => {
         console.error(error);
       });
   };
-  console.log(contact, "ye contact ka data hai");
-  console.log(userId, "userid");
+  // console.log(contact, "ye contact ka data hai");
+  // console.log(userId, "userid");
 
   const handleDeleteModal = (follower) => {
     setSelectedFollower(follower._id);
@@ -77,10 +77,10 @@ const ContactPage = () => {
       });
   };
 
-  console.log(
-    contact,
-    "this is contact for AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  );
+  // console.log(
+  //   contact,
+  //   "this is contact for AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  // );
 
   return (
     <div className="min-h-[50vh]">
