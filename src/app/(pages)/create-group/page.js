@@ -10,7 +10,7 @@ import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
-import { IoIosArrowRoundBack } from "react-icons/io";
+
 import { IoArrowBackOutline } from "react-icons/io5";
 import Link from "next/link";
 
@@ -19,6 +19,22 @@ const data = [
   { id: 2, value: "Business", label: "Business" },
   { id: 3, value: "Law", label: "Law" },
   { id: 4, value: "Sports", label: "Sports" },
+  { id: 5, value: "Health", label: "Health" },
+  { id: 6, value: "Education", label: "Education" },
+  { id: 7, value: "Finance", label: "Finance" },
+  { id: 8, value: "Art", label: "Art" },
+  { id: 9, value: "Science", label: "Science" },
+  { id: 10, value: "Food", label: "Food" },
+  { id: 11, value: "Travel", label: "Travel" },
+  { id: 12, value: "Music", label: "Music" },
+  { id: 13, value: "Fashion", label: "Fashion" },
+  { id: 14, value: "Environment", label: "Environment" },
+  { id: 15, value: "Politics", label: "Politics" },
+  { id: 16, value: "Entertainment", label: "Entertainment" },
+  { id: 17, value: "History", label: "History" },
+  { id: 18, value: "Religion", label: "Religion" },
+  { id: 19, value: "Pets", label: "Pets" },
+  { id: 20, value: "Automotive", label: "Automotive" },
 ];
 
 const Page = () => {
