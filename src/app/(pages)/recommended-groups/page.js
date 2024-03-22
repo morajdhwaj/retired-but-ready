@@ -68,11 +68,11 @@ const page = () => {
             <Sidebar />
           </div>
         </div>
-        <div className="   mt-[60px] lg:mt-[92px]  mx-5 sm:mx-14 lg:ml-[260px] mr-32 bg-white p-10 pt-5 rounded-lg min-h-[70vh] ">
+        <div className="   mt-[60px] lg:mt-[92px]  mx-5 sm:mx-14 lg:ml-[260px] lg:mr-32 sm:mr-14 bg-white p-10 pt-5 rounded-lg min-h-[70vh] ">
           <h1 className="text-base font-medium mb-6 ">
             Recommendations just for you
           </h1>
-          <div className="grid xl: grid-cols-3 2xl:grid-cols-4 gap-10">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-10">
             {recommendedGroupsData.map((data) => (
               <div
                 className="rounded-lg h-[350px] w-full  shadow-xl overflow-hidden relative "
