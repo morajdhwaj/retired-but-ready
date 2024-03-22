@@ -1,8 +1,7 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import Image from "next/image";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
@@ -17,6 +16,7 @@ const ContactPage = () => {
   const [contact, setContact] = useState([]);
   const [userId, setUserId] = useState("");
   const [selectedFollower, setSelectedFollower] = useState(null);
+  const [showChat, setShowChat] = useState("");
 
   useEffect(() => {
     setUserId(userIdFromContext);
@@ -87,11 +87,11 @@ const ContactPage = () => {
       {contact.length > 0 &&
         contact.map((item) => (
           <div
-            className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5"
+            className="w-full p-2 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
             key={item?._id}
           >
-            <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
-              <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
+            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-between ">
+              <div className="w-1/2  sm:w-[10%]  flex items-center ">
                 <Link href={`/profile/${item.user_id}`}>
                   {item?.user_image ? (
                     <Image
@@ -109,7 +109,7 @@ const ContactPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="w-1/2 sm:w-[85%]  ">
+              <div className="w-1/2 sm:w-[90%]  ">
                 <Link href={`/profile/${item?.user_id}`}>
                   <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
                     {item?.user_full_name}
@@ -117,7 +117,7 @@ const ContactPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+            <div className="w-full sm:w-[15%] lg:w-[15%] flex  gap-10 items-center mt-2 sm:mt-0 lg:mt-0">
               <button
                 className="border border-[#A8359C] text-black rounded-md  text-xs sm:text-sm p-2"
                 onClick={() => handleDeleteModal(item)}
@@ -125,10 +125,17 @@ const ContactPage = () => {
                 Remove
               </button>
               <button
-                className="text-3xl sm:text-4xl text-gray-400"
+                className="text-3xl sm:text-4xl text-gray-400 relative"
+                onMouseEnter={() => setShowChat(item?._id)}
+                onMouseLeave={() => setShowChat("")}
                 onClick={() => setChatId(item?.user_id)}
               >
-                <IoChatbubbleEllipsesOutline />
+                <Image src="/emoji/chat.png" width={30} height={30}></Image>
+                {showChat === item?._id && (
+                  <p className="bg- [#773fc6] text-[#62B498] text-xs font-medium px-1 py- rounded-sm  absolute top-[-25px] right-1 ">
+                    Chat
+                  </p>
+                )}
               </button>
             </div>
           </div>
