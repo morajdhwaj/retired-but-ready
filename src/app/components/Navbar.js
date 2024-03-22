@@ -66,13 +66,13 @@ const Navbar = () => {
           <div className="flex gap-2">
             <Link
               href="/register"
-              className="bg-purple-200 px-3  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "
+              className="bg-white  border border-[#773fc6] px-3  py-1 md:px-4 md:py-2  rounded-lg text-[#773fc6] "
             >
               Register
             </Link>
             <Link
               href="/login"
-              className="bg-purple-200 px-5  py-1 md:px-7 md:py-2  rounded-lg text-[#773fc6]  "
+              className=" px-5  py-1 md:px-7 md:py-2  rounded-lg bg-[#773fc6] text-white "
             >
               Login
             </Link>

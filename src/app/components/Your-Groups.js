@@ -90,7 +90,7 @@ const Page = () => {
                 <div className="mt- mx-2 text-base font-medium lg:text-sm flex items-center">
                   <p className="capitalize  text-[17px]">
                     {groupData.group_name}{" "}
-                    <span className="text-[#c66ebe] text-xs">
+                    <span className="text-gray-400 text-xs">
                       {groupData?.created_by === userId && "(owner)"}
                     </span>
                   </p>
