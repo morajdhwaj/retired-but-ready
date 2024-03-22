@@ -88,8 +88,8 @@ const Request = () => {
             <h1> Invitation</h1>
             <div className=" border border-[#E3E3E3] font-thin w-full h-full rounded-lg"></div>
             {invitation.map((curEle, key) => (
-              <div className=" flex flex-wrap sm:flex sm:flex-nowrap justify-between items-center  w-full bg-[#FAFAFA]  ">
-                <div className="flex pb-2 pt-2">
+              <div className=" flex  flex-wrap sm:flex sm:flex-nowrap justify-between items-center  w-full bg-white mt-5 p-2 ">
+                <div className="flex  gap-5 pb-2 pt-2">
                   <Link key={key} href={`/profile/${curEle.from_user}`}>
                     <div className="">
                       {curEle.from_user_image ? (
@@ -108,21 +108,23 @@ const Request = () => {
                       )}
                     </div>
                   </Link>
-                  <div className=" ">
+                  <div className="flex items-center justify-center ">
                     <Link href={`/profile/${curEle?.from_user}`}>
-                      <h1>{curEle.from_user_full_name}</h1>
+                      <h1 className="font-semibold">
+                        {curEle.from_user_full_name}
+                      </h1>
                     </Link>
                   </div>
                 </div>
                 <div className="flex gap-2 items-center mx-2">
                   <button
-                    className="px-4 py-1 rounded-md border border-gray-300 text-sm  "
+                    className="px-4 py-1 rounded-md border border-gray-300 text-sm hover:shadow-lg"
                     onClick={() => handleIgnore(curEle.network_request_id)}
                   >
                     Ignore
                   </button>
                   <button
-                    className=" px-4 py-1 rounded-md border-[#D096CA] border text-sm "
+                    className=" px-4 py-1 rounded-md border-[#D096CA] border text-sm hover:shadow-lg "
                     onClick={() => handleAccept(curEle.network_request_id)}
                   >
                     Accept
