@@ -100,7 +100,7 @@ const ChangePassword = ({ optionFunction }) => {
           </div>
           <div className="mt-4 flex flex-col">
             <label htmlFor="" className="">
-              Conform new password
+              Confirm new password
             </label>
             <input
               type="password"

@@ -10,6 +10,8 @@ import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
+import { FiMessageSquare } from "react-icons/fi";
+import { MdMessage, MdOutlineMessage } from "react-icons/md";
 
 const FollowersPage = () => {
   const router = useRouter();
@@ -149,14 +151,17 @@ const FollowersPage = () => {
                 </div>
               )}
               <button
-                className="text-3xl sm:text-4xl text-gray-400"
+                className="text-3xl sm:text-4xl text-gray-600"
                 onClick={() => {
                   follower?.from_user_id === userIdFromContext
                     ? setChatId(follower?.to_user_id)
                     : setChatId(follower?.from_user_id);
                 }}
               >
-                <IoChatbubbleEllipsesOutline />
+                {/* <IoChatbubbleEllipsesOutline /> */}
+                {/* <FiMessageSquare /> */}
+                {/* <MdMessage /> */}
+                <MdOutlineMessage />
               </button>
             </div>
           </div>

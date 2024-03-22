@@ -182,8 +182,7 @@ const page = () => {
           <div className="border-2 border-gray-300 w-[80%] rounded-md   hover:shadow-sm p-5 ">
             <div>
               <h2 className="ml-2">
-                {" "}
-                Full name <span className="text-red-500">*</span>{" "}
+                Full name <span className="text-red-500">*</span>
               </h2>
               <input
                 value={userName}
@@ -199,8 +198,7 @@ const page = () => {
 
             <div>
               <h2 className="ml-2">
-                {" "}
-                Display name <span className="text-red-500">*</span>{" "}
+                Display name <span className="text-red-500">*</span>
               </h2>
               <input
                 value={displayName}
@@ -215,8 +213,7 @@ const page = () => {
             </div>
             <div>
               <h2 className="ml-2">
-                {" "}
-                Mobile number <span className="text-red-500">*</span>{" "}
+                Mobile number <span className="text-red-500">*</span>
               </h2>
 
               <div className="flex   mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg  w-full h-10 p-1.5">
@@ -250,7 +247,7 @@ const page = () => {
             </div>
             <div>
               <h2 className="ml-2">
-                Email <span className="text-red-500">*</span>{" "}
+                Email <span className="text-red-500">*</span>
               </h2>
               <input
                 type="email"
@@ -261,7 +258,7 @@ const page = () => {
             </div>
             <div>
               <h2 className="ml-2">
-                Password <span className="text-red-500">*</span>{" "}
+                Password <span className="text-red-500">*</span>
               </h2>
 
               <input
@@ -512,8 +509,8 @@ export default page;
 //           <div className="border-2 border-gray-300 w-[80%] rounded-md   hover:shadow-sm p-4 ">
 //             <div>
 //               <h2 className="ml-2">
-//                 {" "}
-//                 Full name <span className="text-red-500">*</span>{" "}
+//
+//                 Full name <span className="text-red-500">*</span>
 //               </h2>
 //               <input
 //                 value={userName}
@@ -529,8 +526,8 @@ export default page;
 
 //             <div>
 //               <h2 className="ml-2">
-//                 {" "}
-//                 Display name <span className="text-red-500">*</span>{" "}
+//
+//                 Display name <span className="text-red-500">*</span>
 //               </h2>
 //               <input
 //                 value={displayName}
@@ -545,8 +542,8 @@ export default page;
 //             </div>
 //             <div>
 //               <h2 className="ml-2">
-//                 {" "}
-//                 Mobile number <span className="text-red-500">*</span>{" "}
+//
+//                 Mobile number <span className="text-red-500">*</span>
 //               </h2>
 
 //               <div className="flex   mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg  w-full h-10 p-1.5">
@@ -580,7 +577,7 @@ export default page;
 //             </div>
 //             <div>
 //               <h2 className="ml-2">
-//                 Email <span className="text-red-500">*</span>{" "}
+//                 Email <span className="text-red-500">*</span>
 //               </h2>
 //               <input
 //                 type="email"
@@ -591,7 +588,7 @@ export default page;
 //             </div>
 //             <div>
 //               <h2 className="ml-2">
-//                 Password <span className="text-red-500">*</span>{" "}
+//                 Password <span className="text-red-500">*</span>
 //               </h2>
 
 //               <input

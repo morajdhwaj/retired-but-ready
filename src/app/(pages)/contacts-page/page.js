@@ -55,11 +55,13 @@ const page = () => {
   return (
     <div className="min-h-[100vh]">
       <Navbar />
-      <div className="bg-[#e8e9e8] p-10 ">
+
+      <div className="bg-[#B0B0B1] min-h-[100vh] p-10 ">
+
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
-        <div className="  lg:ml-52  bg-[#F2F2F2] rounded  mt-20 p-10">
+        <div className="  lg:ml-52  bg-[#F2F2F2] min-h-[80vh] rounded  mt-20 p-10">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">

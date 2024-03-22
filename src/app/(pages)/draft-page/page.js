@@ -325,7 +325,7 @@ const page = () => {
                       ) : (
                         <button
                           onClick={() => publishPost(post?._id)}
-                          className="w-full sm:w-auto bg-[#773f6c bg-white hover: border-2 border-[#773fc6] px-2 py-1  sm:px-4 sm:py-2 rounded-xl mt-2 mb-1 sm:mt-5 mx-3"
+                          className="w-full sm:w-auto bg-[#773f6c bg-white hover: border-2 border-[#773fc6] px-2 py-1  sm:px-4 sm:py-2 rounded-lg mt-2 mb-1 sm:mt-5 mx-3"
                         >
                           Publish
                         </button>
