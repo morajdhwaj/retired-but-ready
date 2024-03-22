@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useContext } from "react";
 import { UserIdContext } from "@/context/UserIdContext";
@@ -16,6 +15,7 @@ const FollowingPage = () => {
   const { userIdFromContext, setChatIdContext } = useContext(UserIdContext);
   const [userId, setUserId] = useState("");
   const [selectedFollowing, setSelectedFollowing] = useState(null);
+  const [showChat, setShowChat] = useState("");
 
   useEffect(() => {
     setUserId(userIdFromContext);
@@ -104,10 +104,17 @@ const FollowingPage = () => {
                 Following
               </button>
               <button
-                className="text-3xl sm:text-4xl text-gray-400"
+                className="text-3xl sm:text-4xl text-gray-400 relative"
+                onMouseEnter={() => setShowChat(item?.to_user_id)}
+                onMouseLeave={() => setShowChat("")}
                 onClick={() => setChatId(item?.to_user_id)}
               >
-                <IoChatbubbleEllipsesOutline />
+                <Image src="/emoji/chat.png" width={30} height={30}></Image>
+                {showChat === item?.to_user_id && (
+                  <p className="bg- [#773fc6] text-[#62B498] text-xs font-medium px-1 py- rounded-sm  absolute top-[-25px] right-1 ">
+                    Chat
+                  </p>
+                )}
               </button>
             </div>
           </div>

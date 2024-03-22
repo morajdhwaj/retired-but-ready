@@ -1,17 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { PiShareFatLight } from "react-icons/pi";
+
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+
 import { FaUserCircle } from "react-icons/fa";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
-import { FiMessageSquare } from "react-icons/fi";
-import { MdMessage, MdOutlineMessage } from "react-icons/md";
 
 const FollowersPage = () => {
   const router = useRouter();
@@ -21,6 +18,7 @@ const FollowersPage = () => {
   const [show, setShow] = useState({});
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedFollower, setSelectedFollower] = useState(null);
+  const [showChat, setShowChat] = useState("");
 
   useEffect(() => {
     setUserId(userIdFromContext);
@@ -151,17 +149,21 @@ const FollowersPage = () => {
                 </div>
               )}
               <button
-                className="text-3xl sm:text-4xl text-gray-600"
+                className="text-3xl sm:text-4xl text-gray-600 relative"
+                onMouseEnter={() => setShowChat(follower?.from_user_id)}
+                onMouseLeave={() => setShowChat("")}
                 onClick={() => {
                   follower?.from_user_id === userIdFromContext
                     ? setChatId(follower?.to_user_id)
                     : setChatId(follower?.from_user_id);
                 }}
               >
-                {/* <IoChatbubbleEllipsesOutline /> */}
-                {/* <FiMessageSquare /> */}
-                {/* <MdMessage /> */}
-                <MdOutlineMessage />
+                <Image src="/emoji/chat.png" width={30} height={30}></Image>
+                {showChat === follower?.from_user_id && (
+                  <p className="bg- [#773fc6] text-[#62B498] text-xs font-medium px-1 py- rounded-sm  absolute top-[-25px] right-1 ">
+                    Chat
+                  </p>
+                )}
               </button>
             </div>
           </div>
