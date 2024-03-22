@@ -56,7 +56,7 @@ const page = () => {
     <div className="min-h-[100vh]">
       <Navbar />
 
-      <div className="bg-[#e8e9e8]  min-h-[100vh] p-10 ">
+      <div className="bg-[#B0B0B1] min-h-[100vh] p-10 ">
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
@@ -106,12 +106,12 @@ const page = () => {
           </div>
 
           <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">
-            <div className="flex  text-black border-b-2 w-full sm:w-[40%] relative">
+            <div className="flex justify-between  text-black  w-full sm:w-[40%] ">
               <div
                 onClick={() => setToggle(1)}
                 className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px]  ${
                   toggle === 1
-                    ? "border-[#773fc6] text-[#773fc6]"
+                    ? "border-[#A8359C] text-[#A8359C]"
                     : "border-[#D1C9C9]"
                 } `}
               >
@@ -121,7 +121,7 @@ const page = () => {
                 onClick={() => setToggle(3)}
                 className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px] left-[35%]  sm:left-[30%]  ${
                   toggle === 3
-                    ? "border-[#773fc6] text-[#773fc6]"
+                    ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200"
                 } `}
               >
@@ -131,7 +131,7 @@ const page = () => {
                 onClick={() => setToggle(2)}
                 className={`border-b-2 text-xs sm:text-sm font-medium absolute bottom-[-2px]  left-[70%] sm:left-[60%]  ${
                   toggle === 2
-                    ? "border-[#773fc6] text-[#773fc6]"
+                    ? "border-[#A8359C] text-[#A8359C]"
                     : "border-gray-200" - []
                 } `}
               >
