@@ -425,10 +425,10 @@ const page = ({ params }) => {
                       )}
                     </div>
 
-                    <div className="relative flex  gap-1 items-center mt-2">
+                    <div className="relative flex  gap-1 items-center mt-2 ">
                       {showReactionsButton && (
                         <div
-                          className="absolute  bottom-7 py-  flex bg-[#f2f1f3]bg-white gap-2 h-10 w-60"
+                          className="absolute  bottom-7 py-  flex bg-[#f2f1f3]bg-white gap-2 h-10 w-60 bg-[#F2F1F3]"
                           // onMouseLeave={() => setIsHovered(false)}
                         >
                           <button
