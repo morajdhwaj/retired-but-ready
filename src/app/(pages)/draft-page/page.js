@@ -8,7 +8,7 @@ import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox, FaUserCircle } from "react-icons/fa";
+import { FaBox, FaEdit, FaUserCircle } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
+import { MdDelete } from "react-icons/md";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -238,7 +239,7 @@ const page = () => {
                         {selectId === post?._id ? (
                           <div className="flex items-center gap-2">
                             <textarea
-                              className=""
+                              className="border border-black p-2 rounded-lg w-80"
                               value={editDescription}
                               onChange={(e) =>
                                 setEditDescription(
@@ -269,15 +270,17 @@ const page = () => {
                             <div className="flex flex-col p-2 items-center justify-center">
                               <button
                                 onClick={() => getPost(post?._id)}
-                                className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                                className="hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                               >
-                                Edit
+                                <h2>Edit</h2>
+                                <FaEdit />
                               </button>
                               <button
                                 onClick={() => handleDelete(post?._id)}
-                                className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                                className=" hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                               >
-                                Delete
+                                <h2>Delete</h2>
+                                <MdDelete />
                               </button>
                             </div>
                           </div>
