@@ -350,18 +350,18 @@ const Page = () => {
                       {chatsForDate.map((chat) => (
                         <div className="p-2 " key={chat.message_id}>
                           <p
-                            onMouseEnter={() => {
-                              setShowOptionButton(chat.message_id),
-                                setShowThreeDought(!showThreeDought);
-                            }}
-                            onMouseLeave={() => {
-                              setShowOptionButton(""),
-                                setShowThreeDought(false);
-                            }}
+                            // onMouseEnter={() => {
+                            //   setShowOptionButton(chat.message_id),
+                            //     setShowThreeDought(!showThreeDought);
+                            // }}
+                            // onMouseLeave={() => {
+                            //   setShowOptionButton(""),
+                            //     setShowThreeDought(false);
+                            // }}
                             className={`${
                               chat.sender_id === userIdFromContext
                                 ? "float-right pl-3 pr-12 bg-[#773FC6]"
-                                : "float-left pr-3 pl-12 bg-[#ab7cee]"
+                                : "float-left pl-3 pr-12 bg-[#ab7cee]"
                             } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl  py-1 max-w-[60%] text-wrap relative flex items-center pb-5`}
                           >
                             {chat.message}
@@ -386,7 +386,7 @@ const Page = () => {
 
                             <p className="text-xs absolute right-2 bottom-1">
                               {dayjs(new Date(chat.timestamp + "Z")).format(
-                                " HH:mm "
+                                " hh:mm A"
                               )}
                             </p>
 
