@@ -2,10 +2,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { FaClosedCaptioning } from "react-icons/fa6";
-import { GrClose } from "react-icons/gr";
+
 import { IoClose } from "react-icons/io5";
 import Select from "react-select";
+import { companyTitle } from "../array-data/CompanyTitle";
 
 const languagesOption = [
   { value: "en", label: "English" },
@@ -234,15 +234,24 @@ const Experiences = ({
           </div>
           <div className="mt-5">
             <h2 className="text-[#808184] font-medium">Title*</h2>
-            <input
+
+            <select
               value={title}
-              onChange={(e) =>
-                setTitle(
-                  e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
-                )
-              }
-              className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
-            />
+              onChange={(e) => setTitle(e.target.value)}
+              className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
+            >
+              <>
+                <option value="" disabled>
+                  Select Title
+                </option>
+                {companyTitle.map((title) => (
+                  <option key={title} value={title}>
+                    {title}
+                  </option>
+                ))}
+                <option>Other</option>
+              </>
+            </select>
           </div>
           <div className="flex gap-6 mt-5">
             <div className="w-1/2">

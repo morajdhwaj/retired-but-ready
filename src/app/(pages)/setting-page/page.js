@@ -126,7 +126,7 @@ const page = () => {
                   ) : (
                     <FaUserCircle color="gray" size={40} />
                   )}
-                  <p className="text-lg font-medium">Setting</p>
+                  <p className="text-lg font-medium">Settings</p>
                 </div>
               </div>
               <div className="pl-2 flex flex-col gap-6 ">
