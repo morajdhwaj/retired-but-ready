@@ -98,11 +98,11 @@ const FollowersPage = () => {
       {followers.length > 0 &&
         followers.map((follower, index) => (
           <div
-            className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5"
+            className="w-full p-2 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
             key={follower?._id}
           >
-            <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
-              <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
+            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-between ">
+              <div className="w-1/2  sm:w-[10%]  flex items-center ">
                 <Link href={`/profile/${follower.from_user_id}`}>
                   {follower?.from_user_image ? (
                     <Image
@@ -120,7 +120,7 @@ const FollowersPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="w-1/2 sm:w-[85%]  ">
+              <div className="w-1/2 sm:w-[90%]  ">
                 <Link href={`/profile/${follower.from_user_id}`}>
                   <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
                     {follower.from_user_full_name}
@@ -129,7 +129,7 @@ const FollowersPage = () => {
               </div>
             </div>
 
-            <div className="relative w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+            <div className="relative w-full sm:w-[15%] lg:w-[15%] flex gap-10 items-center mt-2 sm:mt-0 lg:mt-0">
               <button
                 className="border border-[#A8359C] text-black rounded-md p-2"
                 onClick={() => handleShow(index)}

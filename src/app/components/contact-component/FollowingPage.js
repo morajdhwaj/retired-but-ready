@@ -66,11 +66,11 @@ const FollowingPage = () => {
       {following.length > 0 &&
         following.map((item) => (
           <div
-            className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5"
+            className="w-full p-2 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
             key={item?.to_user_id}
           >
-            <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
-              <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
+            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-between ">
+              <div className="w-1/2  sm:w-[10%]  flex items-center ">
                 <Link href={`/profile/${item.to_user_id}`}>
                   {item?.to_user_image ? (
                     <Image
@@ -88,7 +88,7 @@ const FollowingPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="w-1/2 sm:w-[85%]  ">
+              <div className="w-1/2 sm:w-[90%]  ">
                 <Link href={`/profile/${item?.to_user_id}`}>
                   <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
                     {item?.to_user_full_name}
@@ -96,7 +96,7 @@ const FollowingPage = () => {
                 </Link>
               </div>
             </div>
-            <div className="w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+            <div className="w-full sm:w-[15%] lg:w-[15%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
               <button
                 className="border border-[#A8359C] text-black rounded-md  text-xs sm:text-sm p-2"
                 onClick={() => handleUnfollowModal(item)}
