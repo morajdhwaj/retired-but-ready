@@ -109,7 +109,7 @@ const page = () => {
             <div className="flex justify-between  text-black  w-full sm:w-[40%] ">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 ${
+                className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 cursor-pointer ${
                   toggle === 1 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
@@ -117,7 +117,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center ${
+                className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center cursor-pointer ${
                   toggle === 3 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
@@ -125,7 +125,7 @@ const page = () => {
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center ${
+                className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center cursor-pointer ${
                   toggle === 2 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
