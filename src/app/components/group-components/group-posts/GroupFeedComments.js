@@ -9,10 +9,11 @@ import { RiSpam2Fill } from "react-icons/ri";
 import PopUp from "../../PopUp";
 import { AiOutlineLike } from "react-icons/ai";
 import { GrClose, GrGallery } from "react-icons/gr";
-import { FaUserCircle } from "react-icons/fa";
+import { FaEdit, FaUserCircle } from "react-icons/fa";
 import dayjs from "dayjs";
 import Link from "next/link";
 import GroupCommentsReply from "./GroupCommentsReply";
+import { MdDelete } from "react-icons/md";
 
 const GroupFeedComments = ({ postId, userId, getFeeds }) => {
   const [comments, setComments] = useState([]);
@@ -404,15 +405,17 @@ const GroupFeedComments = ({ postId, userId, getFeeds }) => {
                           <div className="flex flex-col p-2 items-center justify-center">
                             <button
                               onClick={() => handleEditInput(comment._id)}
-                              className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                              className="hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                             >
-                              Edit
+                              <h2>Edit</h2>
+                              <FaEdit />
                             </button>
                             <button
                               onClick={handleDeleteModal}
-                              className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                              className=" hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                             >
-                              Delete
+                              <h2>Delete</h2>
+                              <MdDelete />
                             </button>
                           </div>
                         </div>
