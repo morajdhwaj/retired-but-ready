@@ -76,6 +76,11 @@ const Page = () => {
   };
 
   const createGroup = () => {
+    if (groupName.length <= 0) {
+      toast.error("Group name cannot be empty");
+      return;
+    }
+
     const requestData = {
       group_name: groupName,
       group_description: groupDescription,
