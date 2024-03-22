@@ -244,7 +244,7 @@ const SocialInfo = ({
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Facebook</h2>
         <h2 className="text-xs text-gray-500">
-          ex- https://www.facebook.com/zuck
+          Example: https://www.facebook.com/zuck
         </h2>
         <input
           value={facebook}
@@ -255,7 +255,9 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Twitter</h2>
-        <h2 className="text-xs text-gray-500">ex- https://twitter.com/zuck</h2>
+        <h2 className="text-xs text-gray-500">
+          Example: https://twitter.com/zuck
+        </h2>
 
         <input
           value={twitter}
@@ -267,7 +269,7 @@ const SocialInfo = ({
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">LinkedIn</h2>
         <h2 className="text-xs text-gray-500">
-          ex- https://www.linkedin.com/in/zuck/
+          Example: https://www.linkedin.com/in/zuck/
         </h2>
 
         <input
@@ -280,7 +282,7 @@ const SocialInfo = ({
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Instagram</h2>
         <h2 className="text-xs text-gray-500">
-          ex- https://www.instafram.com/zuck/
+          Example: https://www.instafram.com/zuck/
         </h2>
 
         <input
