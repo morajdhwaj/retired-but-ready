@@ -55,16 +55,16 @@ const JoinNewGroup = () => {
   };
 
   return (
-    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[80vh] hidden md:block ">
-      <div className="lg:px-10 sm:px-5    lg:w-[28vw ">
-        <div className="rounded-lg flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center  py-5 gap-2  border bg-white">
+    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[76vh] hidden md:block ">
+      <div className="lg:px-10 sm:px-5 h-full   lg:w-[28vw ">
+        <div className="rounded-lg h-full flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center  py-5 gap-2  border bg-white">
           <div className="text-center text-lg font-medium">
             <h1 className="text-md">Groups you might be interested in</h1>
           </div>
           <div className="border-2 mt-2 border-gray-200  w-full" />
           <div className="max-h-[65vh] sm:px-5 ">
             {mapData.map((data) => (
-              <div key={data._id} className="w-full ">
+              <div key={data._id} className="w-full py-1 ">
                 <div className="mt-2 flex justify-between  w-full md:flex md:flex-col mx-1">
                   <div className="flex">
                     <Link href={`/group-page/${data?._id}`}>

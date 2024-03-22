@@ -164,7 +164,7 @@ const page = ({ params }) => {
       filterConnection(response.data.outgoing_requests);
       console.log(
         response.data.outgoing_requests,
-        "this is response from check requests AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA "
+        "this is response from check requests"
       );
     } catch (error) {
       console.log(error, "this  is error from check requests");
@@ -217,11 +217,14 @@ const page = ({ params }) => {
         `https://retpro.catax.me/my-network/${userId}`
       );
       const isConnected = response.data.filter(
-        (items) =>
-          items?.to_user === profileId || items?.from_user === profileId
+        (items) => items?.user_id === profileId
       );
       setMyConnections(isConnected);
-      console.log(response.data, "this is response from get all connection");
+      console.log(
+        response.data,
+        isConnected,
+        "this is response from get all connection AAAAAAAAAAAAAAAAAAAA"
+      );
     } catch (error) {
       console.log(error, "this is error from get all connection");
     }
@@ -245,8 +248,8 @@ const page = ({ params }) => {
               <Sidebar />
             </div>
           </div>
-          <div className=" md:flex justify-between md:mx-8 pb-10 mt-20 lg:mt-[130px] mx-5 sm:mx-14 lg:ml-[260px]   ">
-            <div className="w-[68%] min-h-[80vh] pb-5  bg-white rounded-t-lg">
+          <div className=" md:flex justify-between md:mx-8 pb-10 mt-20 lg:mt-[82px] mx-5 sm:mx-14 lg:ml-[240px] gap-3  ">
+            <div className="w-[65%] min-h-[80vh] pb-5  bg-white rounded-t-lg">
               <div className="relative flex  justify-center ">
                 <div className="absolute  w-full   pt-24 ">
                   <div className="w-full bg-gradient-to-tr  from-purple-200 to-white flex bg-transparent flex-col md:flex-row gap-5 py-5 justify-between items-center rounded-t-xl px-5 ">
@@ -355,7 +358,7 @@ const page = ({ params }) => {
                   <h2 className="font-semibold text-2xl">Profile</h2>
                 </div>
               </div>
-              <div className="mt-20  px-[5%]  ">
+              <div className="mt-24  px-[5%]  ">
                 <div className="flex justify-between ">
                   <div className="">
                     <h2 className="text-lg">
@@ -508,7 +511,9 @@ const page = ({ params }) => {
                 </div>
               </div>
             </div>
-            <JoinGroupRecommendation />
+            <div className="">
+              <JoinGroupRecommendation />
+            </div>
           </div>
         </div>
       </div>
