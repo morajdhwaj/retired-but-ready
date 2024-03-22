@@ -332,7 +332,7 @@ const Page = () => {
                   <div className=" w-full border border-[#773FC6] "></div>
                 </div>
                 <div
-                  className={`h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll h-[58vh]  ${
+                  className={`h-[200px w-full flex flex-col border-b-2 border-[#773FC6] overflow-y-scroll  h-[58vh]  ${
                     chatIdFromContext ? "flex" : "hidden"
                   }`}
                   ref={chatContainerRef}

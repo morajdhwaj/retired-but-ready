@@ -66,11 +66,11 @@ const FollowingPage = () => {
       {following.length > 0 &&
         following.map((item) => (
           <div
-            className="w-full p-2 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
+            className="w-full p-2 pl-0 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
             key={item?.to_user_id}
           >
-            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-between ">
-              <div className="w-1/2  sm:w-[10%]  flex items-center ">
+            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-betwee ">
+              <div className="w-1/2  sm:w-[9%]  flex items-center ">
                 <Link href={`/profile/${item.to_user_id}`}>
                   {item?.to_user_image ? (
                     <Image
@@ -88,9 +88,9 @@ const FollowingPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="w-1/2 sm:w-[90%]  ">
+              <div className="w-1/2 sm:w-[90%] flex items-center ">
                 <Link href={`/profile/${item?.to_user_id}`}>
-                  <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
+                  <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-[-10px] capitalize ">
                     {item?.to_user_full_name}
                   </h1>
                 </Link>

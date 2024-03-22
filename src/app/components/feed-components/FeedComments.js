@@ -780,7 +780,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               className="w-[30px] mt-1"
                               onMouseEnter={() => setShowReaction(comment._id)}
                             >
-                              <AiOutlineLike size={20} />
+                              <AiOutlineLike color="#2C68CB" size={20} />
                             </p>
                           )}
                       </div>

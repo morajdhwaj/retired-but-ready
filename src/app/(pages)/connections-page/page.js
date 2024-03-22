@@ -107,10 +107,7 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <span className="text-sm font-normal">
-                profile
-                <br /> Overview
-              </span>
+              <h2 className="font-semibold text-2xl">Connections</h2>
             </div>
           </div>
           <div className="flex items-center justify-center">

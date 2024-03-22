@@ -79,7 +79,7 @@ const Post = () => {
       </div>
       <div className="text-lg mt-2 sm:mt-2 lg:mt-0 flex">
         <button>
-          <AiOutlineLike />
+          <AiOutlineLike color="#2C68CB" />
         </button>
         <button>
           <PiHandsClappingLight />
@@ -96,7 +96,7 @@ const Post = () => {
       <div className=" flex flex-col sm:flex-row gap-5 justify-between mt-5">
         <div className=" flex flex-wrap gap-1 sm:flex sm:flex-wrap sm:gap-1 lg:flex lg:items-center lg:gap-2">
           <button>
-            <AiOutlineLike />
+            <AiOutlineLike color="#2C68CB" />
           </button>
           <p className="text-sm">Like</p>
           <button>

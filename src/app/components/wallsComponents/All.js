@@ -290,7 +290,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
       {feeds.map((feed) => {
         console.log(feed, "this is for feed testing");
 
-        let showIcon = <AiOutlineLike color="gray" size={25} />; // Default icon
+        let showIcon = <AiOutlineLike color="#2C68CB" size={25} />; // Default icon
 
         const likes = feed.reaction_like.filter(
           (likeId) => likeId.user_id === userId

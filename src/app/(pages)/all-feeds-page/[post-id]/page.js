@@ -633,7 +633,7 @@ const page = ({ params }) => {
                               className="w-[30px] "
                               onMouseEnter={() => setShowReactionsButton(true)}
                             >
-                              <AiOutlineLike size={20} />
+                              <AiOutlineLike color="#2C68CB" size={20} />
                             </p>
                           )}
                       </div>

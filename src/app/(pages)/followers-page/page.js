@@ -120,18 +120,18 @@ const page = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-center sm:flex md:flex lg:flex gap-2 flex-wrap">
+                <div className="flex justify-center sm:flex md:flex lg:flex gap-3 flex-wrap">
                   <Link
                     href="/suggestion-page"
-                    className="flex items-center  p-1 bg-white rounded-lg "
+                    className="flex items-center justify-center  h-8 bg-white rounded-lg font-semibold  py-6 px-4  hover:border-opacity-100  border-opacity-0 border-2 border-[#773fc6]  shadow-xl "
                   >
-                    <h1> SUGGESTION</h1>
+                    <p className="">SUGGESTION</p>
                   </Link>
                   <Link
                     href="/connections-page"
-                    className="flex items-center p-1  bg-white rounded-lg"
+                    className="flex items-center justify-center  h-8 bg-white rounded-lg font-semibold  py-6 px-4  hover:border-opacity-100  border-opacity-0 border-2 border-[#773fc6]  shadow-xl "
                   >
-                    <h1> CONNECTION</h1>
+                    <p className="">CONNECTION</p>
                   </Link>
                 </div>
               </div>
@@ -147,16 +147,13 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <span className="text-sm font-normal">
-                profile
-                <br /> Overview
-              </span>
+              <h2 className="font-semibold text-2xl">Followers</h2>
             </div>
           </div>
           <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
             <div>
-              <h1 className="font-semi-bold text-lg">
-                {followers.length}Followers
+              <h1 className="font-semi-bold text-lg mb-6">
+                {followers.length} Followers
               </h1>
               {followers.map((curelem, key) => {
                 return (
@@ -190,7 +187,7 @@ const page = () => {
 
                       <div className="flex gap-2">
                         <button
-                          className="border-2 border-black h-10 p-1 rounded-full "
+                          className="border border-[#A8359C] text-black rounded-md  text- sm:text-sm p-2 "
                           onClick={() =>
                             handleDeleteModal(curelem.from_user_id)
                           }

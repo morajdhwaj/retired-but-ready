@@ -10,11 +10,11 @@ import { FaArrowRight } from "react-icons/fa6";
 import { FiShield } from "react-icons/fi";
 import { IoIosLock } from "react-icons/io";
 import { UserIdContext } from "@/context/UserIdContext";
-import ChangeEmail from "@/app/components/settingComponents/ChangeEmail";
-import ChangePhoneNumber from "@/app/components/settingComponents/ChangePhoneNumber";
-import ChangePassword from "@/app/components/settingComponents/ChangePassword";
-import EmailVerificationOtp from "@/app/components/settingComponents/EmailVerificationOtp";
-import PhoneVerificationOpt from "@/app/components/settingComponents/PhoneVerificationOpt";
+import ChangeEmail from "@/app/components/wallsComponents/settingComponents/ChangeEmail";
+import ChangePhoneNumber from "@/app/components/wallsComponents/settingComponents/ChangePhoneNumber";
+import ChangePassword from "@/app/components/wallsComponents/settingComponents/ChangePassword";
+import EmailVerificationOtp from "@/app/components/wallsComponents/settingComponents/EmailVerificationOtp";
+import PhoneVerificationOpt from "@/app/components/wallsComponents/settingComponents/PhoneVerificationOpt";
 import axios from "axios";
 import toast from "react-hot-toast";
 

@@ -75,7 +75,7 @@ const Youtube = () => {
       </div>
       <div className="text-xl mt-2 sm:mt-2 lg:mt-0">
         <button>
-          <AiOutlineLike />
+          <AiOutlineLike color="#2C68CB" />
         </button>
         <button>
           <PiHandsClappingLight />
@@ -91,7 +91,7 @@ const Youtube = () => {
       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
         <div className="flex flex-wrap sm:flex sm:flex-wrap lg:flex lg:items-center gap-2 mt-5">
           <button>
-            <AiOutlineLike />
+            <AiOutlineLike color="#2C68CB" />
           </button>
           <p className="text-sm">Like</p>
           <button>
@@ -155,7 +155,7 @@ const Youtube = () => {
               <div className="text-base  flex flex-wrap sm:flex sm:flex-wrap lg:flex gap-3 mt-1">
                 <div className="mt-2 flex gap-1">
                   <button>
-                    <AiOutlineLike />
+                    <AiOutlineLike color="#2C68CB" />
                   </button>
                   <button>
                     <PiHandsClappingLight />
@@ -206,7 +206,7 @@ const Youtube = () => {
               <div className="text-base flex flex-wrap sm:flex sm:flex-wrap  lg:flex gap-3 mt-1">
                 <div className="mt-2 flex flex-wrap sm:flex sm:flex-wrap lg:flex gap-1">
                   <button>
-                    <AiOutlineLike />
+                    <AiOutlineLike color="#2C68CB" />
                   </button>
                   <button>
                     <PiHandsClappingLight />
@@ -257,7 +257,7 @@ const Youtube = () => {
               <div className="text-base  flex flex-wrap sm:flex sm:flex-wrap lg:flex gap-3 mt-1">
                 <div className="mt-2 flex gap-1">
                   <button>
-                    <AiOutlineLike />
+                    <AiOutlineLike color="#2C68CB" />
                   </button>
                   <button>
                     <PiHandsClappingLight />
@@ -308,7 +308,7 @@ const Youtube = () => {
               <div className="text-base  flex flex-wrap sm:flex sm:flex-wrap lg:flex gap-3 mt-1">
                 <div className="mt-2 flex gap-1">
                   <button>
-                    <AiOutlineLike />
+                    <AiOutlineLike color="#2C68CB" />
                   </button>
                   <button>
                     <PiHandsClappingLight />

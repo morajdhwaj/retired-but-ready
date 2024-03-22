@@ -87,11 +87,11 @@ const ContactPage = () => {
       {contact.length > 0 &&
         contact.map((item) => (
           <div
-            className="w-full p-2 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
+            className="w-full p-2 pl-0 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
             key={item?._id}
           >
-            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-between ">
-              <div className="w-1/2  sm:w-[10%]  flex items-center ">
+            <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-betwee ">
+              <div className="w-1/2  sm:w-[9%]  flex items-center ">
                 <Link href={`/profile/${item.user_id}`}>
                   {item?.user_image ? (
                     <Image
@@ -109,11 +109,12 @@ const ContactPage = () => {
                   )}
                 </Link>
               </div>
-              <div className="w-1/2 sm:w-[90%]  ">
-                <Link href={`/profile/${item?.user_id}`}>
-                  <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
+              <div className="w-1/2 sm:w-[90%] flex items-center ">
+                <Link href={`/profile/${item?.user_id} `}>
+                  <h1 className="text-[#2C2C2C] text-sm text-start font-medium capitalize mt-[-10px]">
                     {item?.user_full_name}
                   </h1>
+                  <p className="">{}</p>
                 </Link>
               </div>
             </div>
