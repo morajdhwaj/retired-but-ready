@@ -70,7 +70,7 @@ const RePostPopUp = ({ close, feed, userId, getFeeds }) => {
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  max-h-[80vh] h-auto w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-4 py-2`}
+        className={`bg-white rounded-md z-50  max-h-[85vh] h-auto w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20 px-4 py-2`}
       >
         <div className="flex justify-end m-2">
           <button onClick={close}>
