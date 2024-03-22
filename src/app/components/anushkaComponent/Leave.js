@@ -50,7 +50,7 @@ const Leave = () => {
       </div>
       <div className="text-xl mt-2 sm:mt-2 lg:mt-0">
         <button>
-          <AiOutlineLike />
+          <AiOutlineLike color="#2C68CB" />
         </button>
         <button>
           <PiHandsClappingLight />
@@ -65,7 +65,7 @@ const Leave = () => {
       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
         <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex lg:items-center gap-2">
           <button>
-            <AiOutlineLike />
+            <AiOutlineLike color="#2C68CB" />
           </button>
           <p className="text-sm">Like</p>
           <button>
@@ -146,7 +146,7 @@ const Leave = () => {
       </div>
       <div className="text-xl mt-2 sm:mt-2 lg:mt-0">
         <button>
-          <AiOutlineLike />
+          <AiOutlineLike color="#2C68CB" />
         </button>
         <button>
           <PiHandsClappingLight />
@@ -161,7 +161,7 @@ const Leave = () => {
       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
         <div className=" flex flex-wrap sm:flex sm:flex-wrap lg:flex items-center gap-2">
           <button>
-            <AiOutlineLike />
+            <AiOutlineLike color="#2C68CB" />
           </button>
           <p className="text-sm">Like</p>
           <button>
