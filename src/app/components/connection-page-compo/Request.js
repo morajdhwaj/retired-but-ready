@@ -77,51 +77,52 @@ const Request = () => {
 
   return (
     <div>
-      <div className="bg-white p-2 rounded-md font-medium text-gray-400 border border-gray-300">
+      <div className="bg-white p-2 rounded-md font-medium text-gray-400 border border-[#E3E3E3]">
         {invitation.length === 0 ? "No Pending Request" : "Pending Invitation"}
       </div>
       {invitation.length === 0 ? (
         ""
       ) : (
-        <div className="bg-gray-200 mt-2 rounded-md ">
-          <div className="p-6">
+        <div className="bg-[#FAFAFA] mt-2 rounded-md ">
+          <div className="  p-1 sm:p-3 md:p-6">
             <h1> Invitation</h1>
-            <div className=" border border-gray-300 font-thin w-full h-full rounded-lg"></div>
+            <div className=" border border-[#E3E3E3] font-thin w-full h-full rounded-lg"></div>
             {invitation.map((curEle, key) => (
-              <div className=" sm:flex sm:justify-between flex-wrap flex justify-center items-center  w-full bg-white  ">
-                <div className="flex mt-2 mx-5 sm:mx-1">
+              <div className=" flex flex-wrap sm:flex sm:flex-nowrap justify-between items-center  w-full bg-[#FAFAFA]  ">
+                <div className="flex pb-2 pt-2">
                   <Link key={key} href={`/profile/${curEle.from_user}`}>
-                    {curEle.from_user_image ? (
-                      <Image
-                        src={curEle.from_user_image}
-                        width={30}
-                        height={30}
-                        alt="pic"
-                        className="w-10 h-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200"
-                      />
-                    ) : (
-                      <FaUserCircle
-                        color="gray"
-                        className="h-10 w-10 md:w-20 md:h-20 rounded-full border-2 border-gray-200 mt-5 md:mt-0"
-                      />
-                    )}
+                    <div className="">
+                      {curEle.from_user_image ? (
+                        <Image
+                          src={curEle.from_user_image}
+                          width={50}
+                          height={50}
+                          alt="pic"
+                          className="w-16 h-16  rounded-full border-2 border-gray-200"
+                        />
+                      ) : (
+                        <FaUserCircle
+                          color="gray"
+                          className="h-16 w-16 rounded-full border-2 border-gray-200  "
+                        />
+                      )}
+                    </div>
                   </Link>
-                  <div className="mt-5 mx-2">
+                  <div className=" ">
                     <Link href={`/profile/${curEle?.from_user}`}>
                       <h1>{curEle.from_user_full_name}</h1>
                     </Link>
-                    <p>hello</p>
                   </div>
                 </div>
                 <div className="flex gap-2 items-center mx-2">
                   <button
-                    className="px-2 md:px-0 md:w-20 md:h-10 rounded-md border-2 border-gray-300 text-sm sm:text-lg "
+                    className="px-4 py-1 rounded-md border border-gray-300 text-sm  "
                     onClick={() => handleIgnore(curEle.network_request_id)}
                   >
                     Ignore
                   </button>
                   <button
-                    className="md:w-20 px-2 md:px-0 md:h-10 rounded-md border-[#D096CA] border-2 text-sm sm:text-lg"
+                    className=" px-4 py-1 rounded-md border-[#D096CA] border text-sm "
                     onClick={() => handleAccept(curEle.network_request_id)}
                   >
                     Accept

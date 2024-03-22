@@ -172,7 +172,7 @@ const page = () => {
     <div>
       <Navbar />
 
-      <div className="bg-gray-200 md:flex lg:flex pt-28 md:h-[100vh] lg:h-[100vh]  ">
+      <div className="bg-gray-200 md:flex lg:flex pt-28 min-h-full  ">
         <div className=" md:w-[100%] lg:w-[54%] flex flex-col   items-center ">
           <h1 className="text-2xl font-bold hover:border-b-2  mt-5">
             Create an account
@@ -211,13 +211,13 @@ const page = () => {
                 className="mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg block w-full h-10 p-1.5 "
               />
             </div>
-            <div>
+            <div className="">
               <h2 className="ml-2">
                 Mobile number <span className="text-red-500">*</span>
               </h2>
 
-              <div className="flex   mb-4 bg-gray-200 border-gray-300 border-2 text-md rounded-lg  w-full h-10 p-1.5">
-                <div className="h-20">
+              {/* <div className=" flex flex-col md:flex mb-4  border-gray-300 border-2 text-md rounded-lg  w-full  p-1.5">
+                <div className="">
                   <select
                     value={countryName}
                     onChange={(e) => setCountryName(e.target.value)}
@@ -230,22 +230,51 @@ const page = () => {
                     ))}
                   </select>
                 </div>
-
-                <input
-                  type="text"
-                  pattern="[0-9]"
-                  value={mobile}
-                  onChange={(e) => {
-                    const onlyNum = e.target.value.replace(/[^0-9]/g, "");
-                    setMobile(onlyNum);
-                  }}
-                  maxLength={10}
-                  className=" bg-gray-200 text-md rounded-lg block w-full pl-5    focus:outline-none"
-                  // Added focus:outline-none to remove the focus border
-                />
+                <div>
+                  <input
+                    type="text"
+                    pattern="[0-9]"
+                    value={mobile}
+                    onChange={(e) => {
+                      const onlyNum = e.target.value.replace(/[^0-9]/g, "");
+                      setMobile(onlyNum);
+                    }}
+                    maxLength={10}
+                    className="  bg-gray-200 text-md rounded-lg block  focus:outline-none"
+                    // Added focus:outline-none to remove the focus border
+                  />
+                </div>
+              </div> */}
+              <div className="flex flex-col sm:flex-row mb-4 border-gray-300 border-2 text-md rounded-lg w-full p-1.5">
+                <div className="w-full sm:w-1/2 mb-2 md:mb-0 md:mr-2">
+                  <select
+                    value={countryName}
+                    onChange={(e) => setCountryName(e.target.value)}
+                    className="w-full bg-gray-200 focus:outline-none"
+                  >
+                    {country_codes.map((country, index) => (
+                      <option key={index} value={country?.country}>
+                        {country.country} ({country.std_code})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="w-full sm:w-1/2">
+                  <input
+                    type="text"
+                    pattern="[0-9]"
+                    value={mobile}
+                    onChange={(e) => {
+                      const onlyNum = e.target.value.replace(/[^0-9]/g, "");
+                      setMobile(onlyNum);
+                    }}
+                    maxLength={10}
+                    className="w-full bg-gray-200 text-md rounded-lg block focus:outline-none"
+                  />
+                </div>
               </div>
             </div>
-            <div>
+            <div className="mt-3">
               <h2 className="ml-2">
                 Email <span className="text-red-500">*</span>
               </h2>
