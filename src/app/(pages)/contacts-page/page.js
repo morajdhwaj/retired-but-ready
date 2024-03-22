@@ -57,7 +57,6 @@ const page = () => {
       <Navbar />
 
       <div className="bg-[#B0B0B1] min-h-[100vh] p-10 ">
-
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
@@ -107,33 +106,27 @@ const page = () => {
           </div>
 
           <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">
-            <div className="flex  text-black border-b-2 w-full sm:w-[40%] relative">
+            <div className="flex justify-between  text-black  w-full sm:w-[40%] ">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px]  ${
-                  toggle === 1
-                    ? "border-[#A8359C] text-[#A8359C]"
-                    : "border-[#D1C9C9]"
+                className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 ${
+                  toggle === 1 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
                 Contact
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px] left-[35%]  sm:left-[30%]  ${
-                  toggle === 3
-                    ? "border-[#A8359C] text-[#A8359C]"
-                    : "border-gray-200"
+                className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center ${
+                  toggle === 3 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
                 Followers
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-2 text-xs sm:text-sm font-medium absolute bottom-[-2px]  left-[70%] sm:left-[60%]  ${
-                  toggle === 2
-                    ? "border-[#A8359C] text-[#A8359C]"
-                    : "border-gray-200" - []
+                className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center ${
+                  toggle === 2 && "border-[#A8359C] text-[#A8359C]"
                 } `}
               >
                 Following
