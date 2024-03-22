@@ -73,39 +73,39 @@ const page = () => {
   console.log(userData);
 
   return (
-    <div className="  bg-gray-200  h-[100vh] lg:[80vh]  xl:h-[100vh]">
+    <div className="  bg-gray-200  h-[110vh] sm:h-[110vh] md:h-[115vh] lg:[110vh]  xl:h-[100vh]">
       <Navbar />
       {/* Image */}
 
-      <div className=" md:flex  md:justify-start md:items-start   h-full md:pt-32 lg:pt-20   lg:ml-32">
-        <div className="hidden md:flex md:flex-col   ">
+      <div className=" md:flex  md:justify-center    h-full  lg:pt-20   lg:ml-32">
+        <div className="hidden lg:flex lg:flex-col   ">
           <div className=" flex justify-center items-center mt-16">
             <Image
               alt="register"
               src="/assets/Group-626217.png"
               width={500}
-              height={300}
+              height={500}
               className="lg:w-[540px] lg:h-[540px]"
             />
           </div>
         </div>
         {/* Login form */}
 
-        <div className=" xl:w-1/2 flex flex-col justify-center items-center   lg:flex lg:flex-col lg:justify-start lg:items-start ml-14  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
-          <h1 className=" text-2xl md:text-4xl font-bold mt-10  md:mt-14">
+        <div className=" xl:w-1/2   lg:flex lg:flex-col lg:justify-start lg:items-start   lg:ml-28 xl:ml-36 pt-16 lg:pt-10">
+          <h1 className=" text-2xl md:text-3xl lg:text-4xl  font-bold mt-10  text-center lg:text-start ">
             Login in to your account
           </h1>
           <div>
-            <p className="text-xs mt-2 text-gray-500  ">
+            <p className="text-xs mt-2 text-gray-500 text-center lg:text-start ">
               Welcome back! Select method log in:
             </p>
           </div>
-          <div className="mt-5  md:flex  gap-2 mr-5">
+          <div className="mt-5  flex md:flex-row justify-center items-center gap-2 md:mr-5  lg:flex  lg:flex-row lg:justify-start lg:items-center">
             <button
               onClick={() => {
                 toast.error("Google login not working");
               }}
-              className="w-full md:w-32  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
+              className="w-fit sm:w-36  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
             >
               <Image
                 src="/assets/GOOGLE.png"
@@ -114,13 +114,13 @@ const page = () => {
                 height={30}
                 className=" text-center mx-2"
               />
-              Google
+              <span className="hidden sm:block">Google</span>
             </button>
             <button
               onClick={() => {
                 toast.error("Facebook login not working");
               }}
-              className="w-40 md:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+              className=" w-fit sm:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
             >
               <Image
                 src="/assets/facebook.png"
@@ -129,13 +129,13 @@ const page = () => {
                 height={30}
                 className="text-center mx-2"
               />
-              Facebook
+              <span className="hidden sm:block">Facebook</span>
             </button>
             <button
               onClick={() => {
                 toast.error("Mobile login not working");
               }}
-              className="w-full md:w-32   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+              className="w-fit sm:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
             >
               <Image
                 src="/assets/mobile-phone-svgrepo-com-1.png"
@@ -144,7 +144,7 @@ const page = () => {
                 height={30}
                 className="mx-2  "
               />
-              Mobile
+              <span className="hidden sm:block"> Mobile</span>
             </button>
           </div>
           <div
@@ -152,49 +152,52 @@ const page = () => {
         flex justify-center items-center  lg:flex lg:justify-start lg:items-center gap-2 w-full"
           >
             {" "}
-            <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5 flex" />
-            <p className="text-sm text-gray-400 text-center mt-5">
+            <div className="border border-gray-300 h-[0.1] w-[15%] md:w-[35%] lg:w-[30%] xl:w-[24%] mt-5 flex" />
+            <p className="text-xs sm:text-sm text-gray-400 text-center mt-5">
               or continue with email
             </p>
-            <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5" />
+            <div className="border border-gray-300 h-[0.1] w-[15%] md:w-[25%] lg:w-[30%] xl:w-[20%] mt-5" />
           </div>
 
-          <div className="    rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col lg:justify-start lg:items-start mt-5 sm:mt-10   ">
+          <div className="    rounded-md   md:w-full lg:w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col lg:justify-start lg:items-start mt-5 sm:mt-10   lg:ml-0 ">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Registered email "
               autoComplete="email"
-              className="w-[85%] md:w-full lg:w-[106%] xl:w-[73%] border-2 rounded-md bg-gray-200 border-gray-300 p-3 flex  items-center hover:border-2 outline-none hover:border-[#773FC6] text-sm"
+              className="w-[55%] md:w-full lg:w-[106%] xl:w-[77%] border-2 rounded-md bg-gray-200 border-gray-300 p-3 flex  flex-wrap justify-center  items-center hover:border-2 outline-none hover:border-[#773FC6] text-sm"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="w-[85%]  md:w-full lg:w-[106%] xl:w-[73%]  border-2  bg-gray-200 border-gray-300 p-3 text-sm flex items-center rounded-md mt-5 outline-none hover:border-2  hover:border-[#773FC6]"
+              className="w-[55%]  md:w-full lg:w-[106%] xl:w-[77%]  border-2  bg-gray-200 border-gray-300 p-3 text-sm flex items-center rounded-md mt-5 outline-none hover:border-2  hover:border-[#773FC6]"
             />
-            <div className=" flex justify-end  lg:w-[106%] xl:w-[73%] ">
+            <div className=" flex flex-wrap justify-end  lg:w-[106%] xl:w-[77%] ">
               <Link
                 href="/forgot-password"
-                className="text-sm text-[#40295F] mt-1 "
+                className="text-xs sm:text-sm text-[#40295F] mt-1 "
               >
                 Forget password ?
               </Link>
             </div>
             <button
               onClick={handleLogin}
-              className="w-[85%]  bg-[#773FC6] md:w-full lg:w-[106%] xl:w-[73%] rounded-lg font-normal p-2 text-lg text-center text-white mt-5 shadow-xl"
+              className="w-[55%]  bg-[#773FC6] md:w-full lg:w-[106%] xl:w-[77%] rounded-lg font-normal p-2 text-lg text-center text-white mt-5 shadow-xl"
             >
               Login
             </button>
           </div>
-          <div className="   text-center flex  mt-3">
-            <h3 className="text-[#8E8E8E] text-sm ">
+          <div className="   text-center flex  flex-wrap justify-center items-center lg:justify-start lg:items-start mt-3">
+            <h3 className="text-[#8E8E8E] text-xs sm:text-sm ">
               Don't have an account ? &nbsp;{" "}
             </h3>
-            <Link href="/register" className="text-[#773FC6] text-sm">
+            <Link
+              href="/register"
+              className="text-[#773FC6] text-xs sm:text-sm"
+            >
               Create Account
             </Link>
           </div>
