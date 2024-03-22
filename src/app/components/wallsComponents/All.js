@@ -20,7 +20,7 @@ import RePostPopUp from "../RePostPopUp";
 var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
-const All = ({ userId, feeds, setFeeds, getFeeds }) => {
+const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
   const [postId, setPostId] = useState("");
   const [editPostId, setEditPostId] = useState("");
   const [reportPostId, setReportPostId] = useState("");
@@ -189,7 +189,16 @@ const All = ({ userId, feeds, setFeeds, getFeeds }) => {
   };
 
   if (feeds.length === 0) {
-    return <div className="h-[100vh]">No feed</div>;
+    return (
+      <div className="min-h-[100vh] w-full flex  justify-center  mt-10">
+        <button
+          onClick={() => setAddPost(!addPost)}
+          className="border-2 border-[#773fc6] rounded-lg mt-20 self-start  text-xl  p-2"
+        >
+          Create your first post
+        </button>
+      </div>
+    );
   }
 
   const getPost = () => {
