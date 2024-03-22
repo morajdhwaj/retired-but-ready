@@ -47,6 +47,10 @@ const page = ({ params }) => {
   };
 
   const handleVerification = () => {
+    if (finalOtp.length < 4) {
+      toast.error("Please enter a valid OTP");
+      return;
+    }
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters long");
       return;
