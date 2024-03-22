@@ -115,7 +115,7 @@ const Certification = ({
         is_charged: true,
         acceptable_currencies: acceptableCurrencies.map((item) => item.label),
         profile_headline: "string",
-        profile_summary: "string",
+        profile_summary: aboutYou,
       },
     };
 
