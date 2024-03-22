@@ -7,14 +7,9 @@ import { FaGlobe } from "react-icons/fa";
 import { FaSearchLocation } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
-import { SiHsbc } from "react-icons/si";
-import { MdOutlineJoinInner } from "react-icons/md";
-import { BsThreeDots } from "react-icons/bs";
-import ProfileConnection from "./ProfileConnection";
-import WorkConnection from "./WorkConnection";
-import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
-import BestConnection from "../anushkaConnectionComponent/BestConnection";
-import MyConnection from "./MyConnection";
+
+// import ProfileConnection from "./ProfileConnection";
+
 import Request from "../connection-page-compo/Request";
 import axios from "axios";
 import { MdPersonAddAlt1 } from "react-icons/md";
@@ -22,7 +17,7 @@ import { ImProfile } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import GpsConnection from "./GpsConnection";
+// import GpsConnection from "./GpsConnection";
 import { UserIdContext } from "@/context/UserIdContext";
 
 const Suggestion = () => {
@@ -146,11 +141,6 @@ const Suggestion = () => {
     audio.play();
   };
 
-  // const handleToggle = (index) => {
-  //   setSuggestionData([]);
-  //   activePage === index ? setActivePage(0) : setActivePage(index);
-  // };
-
   return (
     <div className="">
       <Request />
@@ -272,7 +262,7 @@ const Suggestion = () => {
           (cardElem) => (
             <div className="border w-52 border-gray-300 shadow-lg  rounded-lg">
               <div className="  bg-[#B3CEE2] h-20 ">
-                <div className="flex justify-end ">
+                <div className="flex p-2 justify-end ">
                   <IoMdCloseCircle className="size-6 " />
                 </div>
 
@@ -296,7 +286,7 @@ const Suggestion = () => {
                 </div>
               </div>
               <Link href={`/profile/${cardElem?._id}`}>
-                <h1 className="mt-10 flex items-center justify-center  text-lg">
+                <h1 className="mt-14 flex items-center justify-center  text-lg">
                   {cardElem.user_display_name
                     .toLowerCase()
                     .split(" ")
@@ -304,17 +294,8 @@ const Suggestion = () => {
                     .join(" ")}
                 </h1>
               </Link>
-              <p className="  text-center text-sm mt-1 text-gray-500">
-                Postion
-              </p>
-              <p className=" text-center text-sm text-gray-500"> text of the</p>
 
-              <div className="flex justify-center items-center mt-2 gap-1">
-                <h1 className="text-gray-500 text-sm font-medium ">
-                  19 connections
-                </h1>
-              </div>
-              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-2 mb-4">
+              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-8 mb-4">
                 {request.some((item) => item.to_user === cardElem._id) ? (
                   <button
                     className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
@@ -345,8 +326,8 @@ const Suggestion = () => {
         </h1>
       </div>
 
-      <GpsConnection />
-      <ProfileConnection />
+      {/* <GpsConnection />
+      <ProfileConnection /> */}
     </div>
   );
 };
