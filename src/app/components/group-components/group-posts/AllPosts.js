@@ -5,9 +5,9 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { BsFillShareFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
+import { FaEdit, FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
-import { MdComment } from "react-icons/md";
+import { MdComment, MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import PopUp from "../../PopUp";
 import { RiSpam2Fill } from "react-icons/ri";
@@ -428,15 +428,17 @@ const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
                     <div className="flex flex-col p-2 items-center justify-center">
                       <button
                         onClick={() => handleEditInput(feed._id)}
-                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        className="hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                       >
-                        Edit
+                        <h2>Edit</h2>
+                        <FaEdit />
                       </button>
                       <button
                         onClick={handleDeleteModal}
-                        className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        className=" hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                       >
-                        Delete
+                        <h2>Delete</h2>
+                        <MdDelete />
                       </button>
                     </div>
                   </div>
@@ -840,8 +842,10 @@ const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
                     {/* <showIcon size={20} /> */}
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
-
-                  <div className="flex gap-3  sm:gap-5 ml-2 sm:ml-5 md:ml-20">
+                </div>
+                <div className="flex justify-between">
+                  <div className=" mr-5">
+                    {" "}
                     <button
                       className="flex items-center justify-center gap-1  sm:gap-2   "
                       onClick={() => handleComments(feed?._id)}
@@ -851,9 +855,6 @@ const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
                       <p className="text-sm">Comment</p>
                     </button>
                   </div>
-                </div>
-                <div className="flex justify-between">
-                  <div className=""></div>
 
                   <div className="flex items-center gap-2 text-sm ">
                     {feed?.post_comment_id?.length}
