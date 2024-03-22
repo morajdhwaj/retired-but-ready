@@ -34,7 +34,7 @@ const PersonalInfo = ({
   }, []);
 
   const handleStepUp = () => {
-    if (!city || !country || !state) {
+    if (!city || !country) {
       setShowModal(true);
       return;
     }

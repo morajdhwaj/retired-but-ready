@@ -74,6 +74,39 @@ const SocialInfo = ({
       setShowModal(true);
       return;
     }
+
+    // Validate Facebook URL
+    const isFacebookValid =
+      /^(https?:\/\/)?(www\.)?facebook\.com\/(profile\.php\?id=\d+|[a-zA-Z0-9\.]+\/?)$/.test(
+        facebook.trim()
+      );
+
+    if (!isFacebookValid) {
+      toast.error("Invalid Facebook URL");
+      return;
+    }
+
+    // Validate Twitter URL
+    const isTwitterValid =
+      /^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+$/.test(
+        twitter.trim()
+      );
+
+    if (!isTwitterValid) {
+      toast.error("Invalid Twitter URL");
+      return;
+    }
+
+    // Validate LinkedIn URL
+    const isLinkedInValid = /^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/.test(
+      linkedin.trim()
+    );
+
+    if (!isLinkedInValid) {
+      toast.error("Invalid LinkedIn URL");
+      return;
+    }
+
     const options = {
       method: "PATCH",
       url: "https://retpro.catax.me/registration-step/2",
@@ -210,15 +243,20 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Facebook</h2>
+        <h2 className="text-xs text-gray-500">
+          ex- https://www.facebook.com/zuck
+        </h2>
         <input
           value={facebook}
           onChange={(e) => setFacebook(e.target.value)}
-          placeholder="https://www.facebook.com/in/user-name/"
+          placeholder="https://www.facebook.com/username"
           className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 rounded w-full"
         />
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Twitter</h2>
+        <h2 className="text-xs text-gray-500">ex- https://twitter.com/zuck</h2>
+
         <input
           value={twitter}
           onChange={(e) => setTwitter(e.target.value)}
@@ -228,6 +266,10 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">LinkedIn</h2>
+        <h2 className="text-xs text-gray-500">
+          ex- https://www.linkedin.com/in/zuck/
+        </h2>
+
         <input
           value={linkedin}
           onChange={(e) => setLinkedin(e.target.value)}
@@ -237,6 +279,10 @@ const SocialInfo = ({
       </div>
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Instagram</h2>
+        <h2 className="text-xs text-gray-500">
+          ex- https://www.instafram.com/zuck/
+        </h2>
+
         <input
           value={instagram}
           placeholder="https://www.instagram.com/in/user-name/"
