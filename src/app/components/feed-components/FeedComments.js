@@ -316,7 +316,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
               placeholder="Leave your comments"
               onInput={autoResize}
             />
-            <label htmlFor="profile-picture" className="cursor-pointer ">
+            <label className="cursor-pointer">
               <div className="flex items-center justify-center mt-3">
                 <GrGallery size={25} color="#773fc6" />
               </div>

@@ -365,7 +365,7 @@ const page = () => {
           <PopUp
             onClick={handleModal}
             title="Account created successfully"
-            action="verify"
+            action="Verify"
             message={`we have send a verification code on ${email} `}
           />
         )}
