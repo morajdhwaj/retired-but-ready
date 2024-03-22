@@ -109,24 +109,30 @@ const page = () => {
             <div className="flex justify-between  text-black  w-full sm:w-[40%] ">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 ${
-                  toggle === 1 && "border-[#A8359C] text-[#A8359C]"
+                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px]  ${
+                  toggle === 1
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-[#D1C9C9]"
                 } `}
               >
                 Contact
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center ${
-                  toggle === 3 && "border-[#A8359C] text-[#A8359C]"
+                className={`border-b-2  text-xs sm:text-sm font-medium absolute bottom-[-2px] left-[35%]  sm:left-[30%]  ${
+                  toggle === 3
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200"
                 } `}
               >
                 Followers
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center ${
-                  toggle === 2 && "border-[#A8359C] text-[#A8359C]"
+                className={`border-b-2 text-xs sm:text-sm font-medium absolute bottom-[-2px]  left-[70%] sm:left-[60%]  ${
+                  toggle === 2
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200" - []
                 } `}
               >
                 Following

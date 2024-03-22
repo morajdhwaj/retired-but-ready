@@ -45,7 +45,7 @@ const PopUp = ({
               reportType={reportType}
             />
           )}
-          <p className="text-xs text-center">{message}</p>
+          <p className="text-sm text-center">{message}</p>
           <button
             className="bg-[#773fc6] px-20 py-2 rounded-lg text-white"
             onClick={onClick}

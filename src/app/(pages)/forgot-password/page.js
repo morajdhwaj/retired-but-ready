@@ -37,17 +37,18 @@ const page = () => {
   return (
     <div>
       <Navbar />
-      <div className=" bg-gray-200 min-h-[100vh] md:flex lg:flex">
-        <div className="md:w-full lg:w-1/2  justify-center items-center flex ">
+      <div className=" bg-gray-200 min-h-[100vh] md:flex">
+        <div className=" w-full md:w-1/2  flex items-center justify-center">
           <Image
             src="/assets/Group-26113.png"
-            width={500}
+            width={400}
             alt="forgot-image"
-            height={500}
+            height={400}
+            className="p-5 lg:p-0"
           />
         </div>
-        <div className="md:w-full  justify-center flex items-center lg:w-1/2 ">
-          <div className="bg-white  rounded-xl w-[80%] p-10">
+        <div className="w-full md:w-1/2  flex justify-center md:items-center">
+          <div className="bg-white  rounded-xl w-[80%] h-[50%] p-10">
             <h1 className="font-bold text-2xl">Forgot Password</h1>
             <h6 className="text-sm pt-2">
               Please enter your email address to reset your password

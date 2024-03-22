@@ -6,16 +6,14 @@ import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
 import React, { useState, useEffect, useContext } from "react";
-import { AiFillTool } from "react-icons/ai";
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox, FaUserCircle } from "react-icons/fa";
-import { PiFilesFill } from "react-icons/pi";
+import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -82,7 +80,7 @@ const page = () => {
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
@@ -115,9 +113,9 @@ const page = () => {
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button
                     onClick={() => setAddPost(!addPost)}
-                    className="flex items-center gap-1 p-2 bg-white rounded-lg hover:bg-gray-100"
+                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border-opacity-100  border-opacity-0 border border-[#773fc6]  "
                   >
-                    <FaBox size={10} />
+                    <IoIosAddCircleOutline size={20} className="mr-1" />
                     Add Post
                   </button>
                 </div>
@@ -155,6 +153,8 @@ const page = () => {
               setFeeds={setMyFeeds}
               getFeeds={getMyFeeds}
               userId={userId}
+              addPost={addPost}
+              setAddPost={setAddPost}
             />
           </div>
         </div>

@@ -87,7 +87,7 @@ const page = () => {
                     <p className="">Contacts</p>
                   </Link>
                   <Link
-                    href="/followers-page"
+                    href="/contacts-page"
                     className="flex items-center justify-center  h-8 bg-white rounded-lg font-semibold  py-6  px-5 hover:border-opacity-100  border-opacity-0 border-2 border-[#773fc6] shadow-xl"
                   >
                     <p>Followers</p>

@@ -16,7 +16,7 @@ const Join = () => {
             className={
               tab
                 ? "text-black text-xs sm:text-sm lg:text-base "
-                : "text-[#A8359C] text-xs sm:text-base md:text-sm lg:text-base "
+                : "text-[#773fc6]  text-xs sm:text-base md:text-sm lg:text-base "
             }
             onClick={() => setTab(false)}
           >
@@ -25,7 +25,7 @@ const Join = () => {
           <button
             className={
               tab
-                ? "text-[#A8359C]  text-sm sm:text-sm lg:text-base "
+                ? "text-[#773fc6]  text-sm sm:text-sm lg:text-base "
                 : "text-black  text-sm sm:text-sm lg:text-base"
             }
             onClick={() => setTab(true)}
@@ -37,7 +37,7 @@ const Join = () => {
         <div className=" sm:ml-5 lg:ml-0 xl:ml-24 ">
           <Link
             href="/create-group"
-            className="border text-sm sm:text-base  bg-[#A8359C] text-white p-2 mb-1 rounded-lg "
+            className="border text-sm sm:text-base  bg-[#773fc6] text-white p-2 mb-1 rounded-lg "
           >
             Create Group
           </Link>

@@ -162,7 +162,7 @@ const page = ({ params }) => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-14 rounded w-full border border-gray-200"
+                  className="h-14 p-2 rounded w-full border border-gray-200"
                 />
               </div>
             )}

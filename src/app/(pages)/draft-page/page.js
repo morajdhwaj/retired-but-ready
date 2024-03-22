@@ -228,7 +228,7 @@ const page = () => {
                 return (
                   <div
                     key={post?._key}
-                    className="border p-2 rounded-xl w-[100%] md:w-auto"
+                    className="border p-2 rounded-xl bg-white w-[100%] md:w-auto"
                   >
                     <div className="flex flex-wrap justify-between relative">
                       <div className="flex flex-wrap">
@@ -256,31 +256,33 @@ const page = () => {
                           </h2>
                         )}
                       </div>
-                      <button onClick={() => handleDropdown(post?._id)}>
-                        <BsThreeDotsVertical
-                          size={25}
-                          color="gray"
-                          className="absolute top-1 right-0"
-                        />
-                      </button>
-                      {postId == post?._id && (
-                        <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
-                          <div className="flex flex-col p-2 items-center justify-center">
-                            <button
-                              onClick={() => getPost(post?._id)}
-                              className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                            >
-                              Edit
-                            </button>
-                            <button
-                              onClick={() => handleDelete(post?._id)}
-                              className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
-                            >
-                              Delete
-                            </button>
+                      <div>
+                        <button onClick={() => handleDropdown(post?._id)}>
+                          <BsThreeDotsVertical
+                            size={25}
+                            color="gray"
+                            className="absolute top-1 right-0"
+                          />
+                        </button>
+                        {postId == post?._id && (
+                          <div className="absolute border bg-white border-gray-300 right-5 shadow-md rounded-md flex flex-col  px-2 ">
+                            <div className="flex flex-col p-2 items-center justify-center">
+                              <button
+                                onClick={() => getPost(post?._id)}
+                                className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => handleDelete(post?._id)}
+                                className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                              >
+                                Delete
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
 
                     <div className="p-2 flex flex-wrap justify-between items-end">
@@ -294,7 +296,7 @@ const page = () => {
                               src={post?.post_media[0]?.url}
                               height={300}
                               width={200}
-                              className="w-[100%] h-full     rounded-xl  "
+                              className=" h-full     rounded-xl  "
                             />
                           )}
 

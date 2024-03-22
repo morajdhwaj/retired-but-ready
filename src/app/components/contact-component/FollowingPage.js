@@ -98,7 +98,7 @@ const FollowingPage = () => {
             </div>
             <div className="w-full sm:w-[15%] lg:w-[15%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
               <button
-                className="border border-[#A8359C] text-black rounded-md  text-xs sm:text-sm p-2"
+                className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm p-2"
                 onClick={() => handleUnfollowModal(item)}
               >
                 Following

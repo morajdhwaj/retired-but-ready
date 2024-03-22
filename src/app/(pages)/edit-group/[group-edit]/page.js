@@ -305,7 +305,7 @@ const Page = ({ params }) => {
 
             {/* Create Group Button */}
             <button
-              className="py-3 px-8 border-2 border-[#A8359C]  absolute right-14 bottom-10  rounded-xl hover:shadow-lg"
+              className="py-3 px-8 border-2 border-[#773fc6]  absolute right-14 bottom-10  rounded-xl hover:shadow-lg"
               onClick={updateGroupInfo}
             >
               Save Changes
