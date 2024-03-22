@@ -7,10 +7,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
- import { UserIdContext } from "@/context/UserIdContext";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = ({ length = 4 }) => {
-   const { userIdFromContext } = useContext(UserIdContext);
+  const { userIdFromContext } = useContext(UserIdContext);
   const [otp, setOtp] = useState(Array(length).fill(""));
   const finalOtp = otp.join("");
   const [userId, setUserId] = useState("");
@@ -42,6 +42,10 @@ const page = ({ length = 4 }) => {
   const router = useRouter();
 
   const handleVerification = () => {
+    if (finalOtp.length < 4) {
+      toast.error("Please enter a valid OTP");
+      return;
+    }
     const options = {
       method: "POST",
       url: "https://retpro.catax.me/user/verify-otp",
