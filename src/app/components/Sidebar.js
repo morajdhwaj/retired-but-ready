@@ -184,7 +184,7 @@ const Sidebar = () => {
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
                 <IoMdSettings color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">Setting </h2>
+              <h2 className="text-sm font-medium">Settings</h2>
             </Link>
             <Link
               href="/about-us-page"

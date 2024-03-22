@@ -112,15 +112,14 @@ const page = ({ params }) => {
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 sm:flex-row py-5 justify-between rounded-xl px-5 ">
-                <Link href={`/profile`}>
-                  <div className="flex items-center justify-center gap-2">
-                    <RiGroup2Fill color="gray" size={50} />
+                <div className="flex items-center justify-center gap-2">
+                  <RiGroup2Fill color="gray" size={50} />
 
-                    <div className="font-semibold">
-                      <h2>{groupInfo?.name}</h2>
-                    </div>
+                  <div className="font-semibold">
+                    <h2>{groupInfo?.name}</h2>
                   </div>
-                </Link>
+                </div>
+
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5 mr-4"></div>
               </div>
             </div>
