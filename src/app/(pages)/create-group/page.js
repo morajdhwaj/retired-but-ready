@@ -256,14 +256,14 @@ const Page = () => {
 
             <div className="flex justify-between">
               <button
-                className="py-3 px-8 border-2 border-[#A8359C]  absolute right-14 bottom-10 rounded-md "
+                className="py-3 px-8 border-2 border-[#773fc6]  absolute right-14 bottom-10 rounded-md "
                 onClick={createGroup}
               >
                 Create Group
               </button>{" "}
               <Link
                 href="/groups-page"
-                className="py-3 px-4 items-center border-2 border-[#A8359C] flex  absolute left-14 bottom-10 rounded-md "
+                className="py-3 px-4 items-center border-2 border-[#773fc6] flex  absolute left-14 bottom-10 rounded-md "
               >
                 <IoArrowBackOutline size={20} />
                 Back

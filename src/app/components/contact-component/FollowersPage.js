@@ -131,7 +131,7 @@ const FollowersPage = () => {
 
             <div className="relative w-full sm:w-[15%] lg:w-[15%] flex gap-10 items-center mt-2 sm:mt-0 lg:mt-0">
               <button
-                className="border border-[#A8359C] text-black rounded-md p-2"
+                className="border border-[#773fc6] text-black rounded-md p-2"
                 onClick={() => handleShow(index)}
               >
                 Following

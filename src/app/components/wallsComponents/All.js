@@ -3,11 +3,11 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { AiOutlineLike } from "react-icons/ai";
+import { AiFillEdit, AiOutlineEdit, AiOutlineLike } from "react-icons/ai";
 import { BsFillShareFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
+import { FaEdit, FaUserCircle } from "react-icons/fa";
 import { IoIosShareAlt } from "react-icons/io";
-import { MdComment } from "react-icons/md";
+import { MdComment, MdDelete } from "react-icons/md";
 import toast from "react-hot-toast";
 import FeedComments from "../feed-components/FeedComments";
 import PopUp from "../PopUp";
@@ -431,15 +431,17 @@ const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
                     <div className="flex flex-col p-2 items-center justify-center">
                       <button
                         onClick={() => handleEditInput(feed._id)}
-                        className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        className="hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                       >
-                        Edit
+                        <h2>Edit</h2>
+                        <FaEdit />
                       </button>
                       <button
                         onClick={handleDeleteModal}
-                        className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                        className=" hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                       >
-                        Delete
+                        <h2>Delete</h2>
+                        <MdDelete />
                       </button>
                     </div>
                   </div>

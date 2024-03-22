@@ -105,12 +105,12 @@ const page = () => {
                     data.join_requests.some(
                       (item) => item.requested_user === userId
                     ) ? (
-                      <button className="border-2 border-[#A8359C] py-1 w- lg:w- text-center font-bold rounded-lg my-1 px-2 mx-2 lg:mx-0">
+                      <button className="border-2 border-[#773fc6] py-1 w- lg:w- text-center font-bold rounded-lg my-1 px-2 mx-2 lg:mx-0">
                         Requested
                       </button>
                     ) : (
                       <button
-                        className="border-2 border-[#A8359C] p-1 w-14 lg:w-20 text-center font-bold rounded-lg my-1 mx-2 lg:mx-0"
+                        className="border-2 border-[#773fc6] p-1 w-14 lg:w-20 text-center font-bold rounded-lg my-1 mx-2 lg:mx-0"
                         onClick={() => joinGroup(data?._id)}
                       >
                         Join

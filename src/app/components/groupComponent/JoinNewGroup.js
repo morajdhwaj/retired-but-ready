@@ -95,12 +95,12 @@ const JoinNewGroup = () => {
                     data.join_requests.some(
                       (item) => item.requested_user === userId
                     ) ? (
-                      <button className="border-2 border-[#A8359C] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
+                      <button className="border-2 border-[#773fc6] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
                         Requested
                       </button>
                     ) : (
                       <button
-                        className="border-2 border-[#A8359C] py-1 px-8 w- 14 lg:w- 24 text-center font-medium rounded-lg  mx-2 lg:mx-0"
+                        className="border-2 border-[#773fc6] py-1 px-8 w- 14 lg:w- 24 text-center font-medium rounded-lg  mx-2 lg:mx-0"
                         onClick={() => joinGroup(data._id)}
                       >
                         Join
@@ -115,7 +115,7 @@ const JoinNewGroup = () => {
 
           <div className="flex justify-center items-center mt-2 mb-full">
             <button
-              className="border-2 border-[#A8359C] w-40 h-10 text-lg font-medium text-center rounded-lg"
+              className="border-2 border-[#773fc6] w-40 h-10 text-lg font-medium text-center rounded-lg"
               onClick={() => showAllRecommendation()}
             >
               Show All
