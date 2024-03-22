@@ -113,7 +113,7 @@ const page = () => {
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button
                     onClick={() => setAddPost(!addPost)}
-                    className="flex items-center gap-1 py-2 px-4 bg-white rounded-md  font-medium  hover:border-opacity-100  border-opacity-0 border border-[#773fc6]  "
+                    className="flex items-center gap-1 py-2 shadow-lg px-4 bg-white rounded-md  font-medium  hover:border-opacity-100  border-opacity-0 border border-[#773fc6]  "
                   >
                     <IoIosAddCircleOutline size={20} className="mr-1" />
                     Add Post
