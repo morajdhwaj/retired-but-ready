@@ -60,7 +60,7 @@ const page = () => {
   }, [recommendedGroupsData]);
 
   return (
-    <div className="bg-[#B1B0B1]  lg:px-10 min-h-[100vh] ">
+    <div className="bg-[#e8e9e8]   lg:px-10 min-h-[100vh] ">
       <Navbar />
       <div className="  pt-10 sm:pt-20 lg:pt-10 lg:mt-0">
         <div className="hidden lg:flex ">
