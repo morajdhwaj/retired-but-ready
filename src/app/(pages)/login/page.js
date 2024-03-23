@@ -174,7 +174,7 @@ const page = () => {
               placeholder="Password"
               className="w-full lg:w-[106%] xl:w-[73%]  border-2  bg-gray-200 border-gray-300 p-3 text-sm flex items-center rounded-md mt-5 outline-none hover:border-2  hover:border-[#773FC6]"
             />
-            <div className=" flex flex-wrap justify-center items-center lg:flex lg::justify-end  lg:w-[106%] xl:w-[73%] ">
+            <div className=" flex flex-wrap  lg:flex justify-end  lg:w-[106%] xl:w-[73%] ">
               <Link
                 href="/forgot-password"
                 className="text-xs sm:text-sm hover:text-[#773FC6] mt-1 "
