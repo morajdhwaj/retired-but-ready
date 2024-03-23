@@ -98,79 +98,6 @@ const page = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [step]);
 
-  // const handleSubmit = () => {
-  //   const options = {
-  //     method: "PUT",
-  //     url: "https://retpro.catax.me/user/update-profile",
-  //     params: { user_id: userId },
-  //     headers: { "Content-Type": "application/json" },
-  //     data: {
-  //       user_display_name: displayName,
-  //       user_first_name: firstName,
-  //       user_last_name: lastName,
-  //       user_age: age,
-  //       user_gender: gender,
-  //       country_id: toString(countryId) || "11",
-  //       country_name: country,
-  //       user_state: state,
-  //       user_city: city,
-  //       city_coordinates: ["12.3210", "43.432123"],
-  //       profile_headline: "ganja piyo mst rho",
-  //       profile_summary: "saste ganja ke liye sampark kare",
-  //       last_designation: "Product manager",
-  //       total_experience: "30+",
-  //       professional_field: "IT",
-  //       professional_expertise: "Management",
-  //       skills: {
-  //         personal: personalSkills.map((item) => item.label),
-  //         professional: [],
-  //       },
-  //       languages: [],
-  //       english_proficiency: englishProficiency,
-  //       education: [
-  //         {
-  //           institution_id: "657aa5ab21d8f5ad8d839413",
-  //           institution_name: "allen",
-  //           degree: "B.tech",
-  //           field: "IT",
-  //           start_year: 2020,
-  //           end_year: 2024,
-  //         },
-  //       ],
-  //       work_history: experiences,
-  //       certifications: [
-  //         {
-  //           certification_id: null,
-  //           certification_name: "aws cloud",
-  //           credentials: "UC-b88f5ab3-3812-4901-bf6e-0a751d09ef65",
-  //           certification_date: "2022-11-26T00:00:00.000Z",
-  //         },
-  //       ],
-  //       is_charged: true,
-  //       acceptable_currencies: [acceptableCurrencies],
-  //       interests: ["ganja"],
-  //       retirement_cause: retirementCause.map((item) => item.label),
-  //       social_links: {
-  //         linkedIn: linkedin,
-  //         facebook: facebook,
-  //         twitter: twitter,
-  //       },
-  //     },
-  //   };
-
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       console.log(response.data);
-  //       toast.success(response?.data?.message);
-  //       router.push("/profile-details");
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //       toast.error(error?.response?.data?.detail);
-  //     });
-  // };
-
   const form = new FormData();
   form.append("file", selectedImage);
 
@@ -218,7 +145,7 @@ const page = () => {
     "ps"
   );
 
-  console.log(userData, "userData");
+  console.log(userData, "sssss");
   return (
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
@@ -229,47 +156,61 @@ const page = () => {
 
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
           <div className="flex flex-col md:flex-row items-center justify-center gap-5 w-full ">
-            <div className="md:w-1/2 md:flex items-center justify-end">
-              <h1 className="text-4xl font-medium"> Profile</h1>
+            <div
+              className={`md:w-1/2 w-full md:flex items-center ${
+                userData?.user_image ? "justify-center" : "justify-end"
+              }`}
+            >
+              <h1 className="text-4xl font-medium text-center"> Profile</h1>
             </div>
-            <div className="w-1/2 flex items-center justify-center flex-col gap-5">
-              {selectedImage ? (
-                <div className="rounded-full flex  flex-col items-center justify-center bg-red-20">
-                  <Image
-                    src={URL.createObjectURL(selectedImage)}
-                    alt="Selected Profile"
-                    className="mt-2 rounded-full h-40 w-40"
-                    height={150}
-                    width={150}
-                  />
-
-                  <button
-                    onClick={uploadImg}
-                    className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 "
-                  >
-                    Click again for upload
-                  </button>
-                </div>
-              ) : (
-                <div className="">
-                  <label htmlFor="profile-picture" className="cursor-pointer">
-                    <div className="flex items-center justify-center">
-                      <FaCircleUser size={100} />
-                    </div>
-                    <input
-                      type="file"
-                      id="profile-picture"
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleImageChange}
+            {userData.user_image ? (
+              <Image
+                src={userData.user_image}
+                alt="Selected Profile"
+                className="mt-2 rounded-full h-40 w-40"
+                height={100}
+                width={100}
+              />
+            ) : (
+              <div className="w-1/2 flex items-center justify-center flex-col gap-5">
+                {selectedImage ? (
+                  <div className="rounded-full flex  flex-col items-center justify-center bg-red-20">
+                    <Image
+                      src={URL.createObjectURL(selectedImage)}
+                      alt="Selected Profile"
+                      className="mt-2 rounded-full h-40 w-40"
+                      height={150}
+                      width={150}
                     />
-                    <h1 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 ">
-                      Click here for select profile
-                    </h1>
-                  </label>
-                </div>
-              )}
-            </div>
+
+                    <button
+                      onClick={uploadImg}
+                      className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 "
+                    >
+                      Click again for upload
+                    </button>
+                  </div>
+                ) : (
+                  <div className="">
+                    <label htmlFor="profile-picture" className="cursor-pointer">
+                      <div className="flex items-center justify-center">
+                        <FaCircleUser size={100} />
+                      </div>
+                      <input
+                        type="file"
+                        id="profile-picture"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleImageChange}
+                      />
+                      <h1 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 ">
+                        Click here for select profile
+                      </h1>
+                    </label>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           <div className="lg:mx-40 mt-5 flex flex-col gap-5">
             <p className="text-gray-500 text-center">
