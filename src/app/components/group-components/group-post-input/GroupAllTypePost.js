@@ -23,7 +23,7 @@ const GroupAllTypePost = ({
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50 h-[55vh] w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 p-2 sm:mr-20`}
+        className={`bg-white rounded-md z-50 self-start min-h-[55vh]  w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 p-2 py-4 sm:mr-20`}
       >
         <div className="flex justify-end m-2">
           <button onClick={() => setAnyTypePost(false)}>
