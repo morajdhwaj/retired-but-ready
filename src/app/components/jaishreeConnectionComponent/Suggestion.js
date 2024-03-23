@@ -256,10 +256,10 @@ const Suggestion = () => {
         <div className=" border border-[#D9D9D9] w-[10%] h-0.3" />
       </div>
 
-      <div className="grid place-items-center sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-8 md:gap-10 lg:gap-9 xl:gap-16">
+      <div className=" flex flex-wrap gap-10 w-full  justify-center">
         {(showAll ? suggestionData : suggestionData.slice(0, 12)).map(
           (cardElem) => (
-            <div className="border w-52 border-gray-300 shadow-lg  rounded-lg">
+            <div className="border w-60 xl:w-2/12 border-gray-300 shadow-lg  self-start rounded-lg mt-5 ">
               <div className="  bg-[#B3CEE2] h-20 ">
                 <div className="flex p-2 justify-end ">
                   <IoMdCloseCircle className="size-6 " />
