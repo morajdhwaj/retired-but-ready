@@ -12,6 +12,7 @@ import axios from "axios";
 import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
+import Loader from "@/app/components/Loader";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -42,6 +43,14 @@ const page = () => {
       });
   };
 
+  if (userData.length === 0) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   console.log(userData, "userId");
 
   return (
@@ -53,8 +62,8 @@ const page = () => {
         </div>
         <div className="w-full p-5 lg:ml-52 pt-24  ">
           <div className="relative flex  justify-center ">
-            <div className="absolute  w-full   p-5  pt-24 ">
-              <div className="   bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
+            <div className="absolute w-[96%]   pt-24 ">
+              <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5">
                 <Link href={`/profile/${userId}`}>
                   <div className="flex items-center justify-center gap-2">
                     {userData.user_image ? (
@@ -100,8 +109,7 @@ const page = () => {
                 backgroundImage: `url('/assets/Background.png')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                width: "96%",
-                // full screen width
+                width: "100%", // full screen width
                 height: "20vh", // full screen height
                 borderRadius: 10,
               }}

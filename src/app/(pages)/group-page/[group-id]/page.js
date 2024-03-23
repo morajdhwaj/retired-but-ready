@@ -99,7 +99,7 @@ const page = ({ params }) => {
     groupAdmins.some((admin) => admin.id === userId) !==
     groupUsers.some((user) => user.id === userId);
 
-  console.log(groupUsers, "group users");
+  console.log(groupInfo, "group users");
   return (
     <div className="bg-[#e8e9e8]  min-h-[100vh]  sm:px-5 md:px-10 ">
       <Navbar />
@@ -116,7 +116,10 @@ const page = ({ params }) => {
                   <RiGroup2Fill color="gray" size={50} />
 
                   <div className="font-semibold">
-                    <h2>{groupInfo?.name}</h2>
+                    <h2 className="text-xl"> {groupInfo?.name}</h2>
+                    <h2 className="text-sm font-normal">
+                      {groupInfo?.description}
+                    </h2>
                   </div>
                 </div>
 
