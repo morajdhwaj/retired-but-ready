@@ -198,6 +198,7 @@ const page = () => {
                       src={userData?.user_image}
                       height={50}
                       width={50}
+                      className="w-20 h-20 rounded-full border-2 border-gray-200"
                     />
                   ) : (
                     <FaUserCircle color="gray" size={50} />
