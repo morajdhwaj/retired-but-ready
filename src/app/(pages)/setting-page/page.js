@@ -96,10 +96,8 @@ const page = () => {
   };
 
   console.log(
-    showSettingOption,
     userId,
-    userAllData,
-    newEmail,
+
     "AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
   );
 
@@ -112,7 +110,7 @@ const page = () => {
         </div>
         <div className="w-full  p-5 lg:ml-52 pt-[120px] h-[100vh]">
           <div className=" w-full  flex gap-6">
-            <div className="flex flex-col gap-6 bg-white  rounded-lg shadow-xl p-4 pb-20 w-[15%] ">
+            <div className="flex flex-col gap-6 bg-white  rounded-lg shadow-xl p-4 pb-20 w-60 ">
               <div className="flex  gap-4 ">
                 <div className="flex items-center justify-center gap-2">
                   {userAllData?.user_image ? (
@@ -166,14 +164,7 @@ const page = () => {
                     Profile Information
                   </h1>
                   <div className="flex justify-between">
-                    <p className="w-[90%]">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Sunt, ullam quos. Sit nulla rerum in suscipit maxime totam
-                      a eum.
-                    </p>
+                    <p className="w-[90%]">{userAllData?.profile_summary}</p>
                     <Link href={`/profile/${userIdFromContext}`}>
                       <FaArrowRight size={20} />
                     </Link>
