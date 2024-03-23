@@ -79,7 +79,7 @@ const page = () => {
       <Navbar />
       {/* Image */}
 
-      <div className="flex justify-center items-center lg:flex  lg:justify-start lg:items-start   h-full md:pt-32 lg:pt-20   lg:ml-32">
+      <div className="flex justify-center  lg:flex  lg:justify-start lg:items-start   h-full pt-10 lg:pt-20   lg:ml-32">
         <div className="hidden lg:flex md:flex-col   ">
           <div className=" flex justify-center items-center mt-16">
             <Image
@@ -93,9 +93,9 @@ const page = () => {
         </div>
         {/* Login form */}
 
-        <div className=" xl:w-1/2    lg:flex lg:flex-col lg:justify-start lg:items-start  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
+        <div className=" xl:w-1/2    lg:flex lg:flex-col lg:justify-start lg:items-start  lg:ml-28 xl:ml-36   pt-16 ">
           <div className="rounded-md   lg:w-[90%]  ">
-            <h1 className=" text-2xl md:text-4xl lg:text-3xl  xl:text-4xl font-bold mt-10  md:mt-14 ">
+            <h1 className=" text-2xl md:text-3xl  xl:text-4xl font-bold lg:mt-10 text-center lg:text-start  ">
               Login in to your account
             </h1>
             <div>
