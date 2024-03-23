@@ -5,6 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 import { UserIdContext } from "@/context/UserIdContext";
 import Link from "next/link";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const Recommendation = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -52,13 +53,7 @@ const Recommendation = () => {
           <div className=" flex justify-between">
             <div className="flex">
               <Link href={`/group-page/${data?._id}`} className="">
-                <Image
-                  src="/assets/Ellipse-39.png"
-                  width={50}
-                  height={50}
-                  alt="pic"
-                  className="w-[64px] h-16 rounded-full border-2 border-gray-200"
-                />
+                <RiGroup2Fill color="gray" size={50} />
               </Link>
               <div className="mx-2 mt-1 flex flex-col justify-center">
                 <Link

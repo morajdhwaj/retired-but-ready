@@ -9,6 +9,7 @@ import Sidebar from "@/app/components/Sidebar";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -85,13 +86,9 @@ const page = () => {
                     </button> */}
                     <div className="bg-[#B8CDE0] w-full h-[120px]"></div>
                     <Link href={`/group-page/${data?._id}`} className="">
-                      <Image
-                        src="/assets/Ellipse-39.png"
-                        alt="group-1"
-                        width={100}
-                        height={100}
-                        className="m-auto mt-[-50px]"
-                      />
+                      <div className="m-auto mt-[-50px] flex items-center justify-center">
+                        <RiGroup2Fill color="gray" size={100} />
+                      </div>
                     </Link>
                     <Link href={`/group-page/${data?._id}`}>
                       <p className="text-center mt-4 text-lg font-bold px-2">
@@ -105,9 +102,9 @@ const page = () => {
                     data.join_requests.some(
                       (item) => item.requested_user === userId
                     ) ? (
-                      <button className="border-2 border-[#773fc6] py-1 w- lg:w- text-center font-bold rounded-lg my-1 px-2 mx-2 lg:mx-0">
+                      <div className="border-2 border-[#773fc6] py-1 w- lg:w- text-center font-bold rounded-lg my-1 px-2 mx-2 lg:mx-0">
                         Requested
-                      </button>
+                      </div>
                     ) : (
                       <button
                         className="border-2 border-[#773fc6] p-1 w-14 lg:w-20 text-center font-bold rounded-lg my-1 mx-2 lg:mx-0"

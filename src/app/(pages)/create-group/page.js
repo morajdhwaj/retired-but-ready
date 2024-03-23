@@ -13,6 +13,7 @@ import { UserIdContext } from "@/context/UserIdContext";
 
 import { IoArrowBackOutline } from "react-icons/io5";
 import Link from "next/link";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -149,10 +150,10 @@ const Page = () => {
                     className="hidden"
                     onChange={(e) => setHandleSetImage(e.target.value)}
                   />
-                  <FaUserLarge size={50} />
+                  <RiGroup2Fill color="gray" size={100} />
                 </label>
               </button>
-              <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+              {/* <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
                     type="file"
@@ -163,10 +164,10 @@ const Page = () => {
                   />
                   <MdEdit size={20} />
                 </label>
-              </button>
+              </button> */}
             </div>
             {/* Add Picture Button */}
-            <div className="rounded-full w-5  h-5 p-4 flex justify-center items-center absolute right-3 top-3 bg-white">
+            {/* <div className="rounded-full w-5  h-5 p-4 flex justify-center items-center absolute right-3 top-3 bg-white">
               <button className="">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
@@ -179,7 +180,7 @@ const Page = () => {
                   <AiFillPicture />
                 </label>
               </button>
-            </div>
+            </div> */}
           </div>
           {/* Group Details */}
           <div className="pl-20 pt-16 pb-5 ">
@@ -277,7 +278,7 @@ const Page = () => {
 
             <div className="flex justify-between">
               <button
-                className="py-3 px-8 border-2 border-[#773fc6]  absolute right-14 bottom-10 rounded-md "
+                className="py-3 px-8 bg-[#773fc6] text-white  absolute right-14 bottom-10 rounded-md "
                 onClick={createGroup}
               >
                 Create Group

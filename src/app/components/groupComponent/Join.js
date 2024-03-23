@@ -15,8 +15,8 @@ const Join = () => {
           <button
             className={
               tab
-                ? "text-black text-xs sm:text-sm lg:text-base "
-                : "text-[#773fc6]  text-xs sm:text-base md:text-sm lg:text-base "
+                ? "text-black text-lg "
+                : "text-[#773fc6]  font-semibold text-lg "
             }
             onClick={() => setTab(false)}
           >
@@ -25,8 +25,8 @@ const Join = () => {
           <button
             className={
               tab
-                ? "text-[#773fc6]  text-sm sm:text-sm lg:text-base "
-                : "text-black  text-sm sm:text-sm lg:text-base"
+                ? "text-[#773fc6]  font-semibold text-lg"
+                : "text-black  text-lg"
             }
             onClick={() => setTab(true)}
           >
