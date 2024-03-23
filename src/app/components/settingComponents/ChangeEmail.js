@@ -52,7 +52,7 @@ const ChangeEmail = ({
               className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-5 `}
               onClick={() => optionFunction("addNewEmail")}
             >
-              Add Email Address
+              Change Email
             </button>
           </div>
           <div className="mt-10">

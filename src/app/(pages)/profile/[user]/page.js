@@ -17,6 +17,7 @@ import { IoMdPersonAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 
 import { UserIdContext } from "@/context/UserIdContext";
+import Loader from "@/app/components/Loader";
 
 const page = ({ params }) => {
   const profileId = params["user"];
@@ -237,6 +238,14 @@ const page = ({ params }) => {
     myConnections,
     "this is profile id "
   );
+
+  if (userData.length === 0) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
