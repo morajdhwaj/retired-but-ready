@@ -79,8 +79,8 @@ const page = () => {
       <Navbar />
       {/* Image */}
 
-      <div className=" md:flex  md:justify-start md:items-start   h-full md:pt-32 lg:pt-20   lg:ml-32">
-        <div className="hidden md:flex md:flex-col   ">
+      <div className="flex justify-center items-center lg:flex  lg:justify-start lg:items-start   h-full md:pt-32 lg:pt-20   lg:ml-32">
+        <div className="hidden lg:flex md:flex-col   ">
           <div className=" flex justify-center items-center mt-16">
             <Image
               alt="register"
@@ -93,22 +93,22 @@ const page = () => {
         </div>
         {/* Login form */}
 
-        <div className=" xl:w-1/2  flex flex-col justify-center items-center   lg:flex lg:flex-col lg:justify-start lg:items-start ml-14  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
-          <div className="rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col  mt-5 sm:mt-10   ">
-            <h1 className=" text-2xl md:text-4xl font-bold mt-10  md:mt-14 ">
+        <div className=" xl:w-1/2    lg:flex lg:flex-col lg:justify-start lg:items-start  lg:ml-28 xl:ml-36   pt-16 md:pt-0">
+          <div className="rounded-md   lg:w-[90%]  ">
+            <h1 className=" text-2xl md:text-4xl lg:text-3xl  xl:text-4xl font-bold mt-10  md:mt-14 ">
               Login in to your account
             </h1>
             <div>
-              <p className="text-xs mt-2 text-gray-500  ">
+              <p className="text-xs mt-2 text-gray-500 text-center lg:text-start ">
                 Welcome back! Select method log in:
               </p>
             </div>
-            <div className="mt-5  md:flex  gap-2 mr-5 ">
+            <div className="mt-5  flex justify-center items-center lg:justify-start lg:items-start gap-2 lg:mr-5 ">
               <button
                 onClick={() => {
                   toast.error("Google login not working");
                 }}
-                className="w-full md:w-32  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
+                className=" w-fit md:w-32  flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg mt-4 md:mt-0"
               >
                 <Image
                   src="/assets/GOOGLE.png"
@@ -117,28 +117,28 @@ const page = () => {
                   height={30}
                   className=" text-center mx-2"
                 />
-                Google
+                <span className="hidden md:block">Google</span>
               </button>
               <button
                 onClick={() => {
                   toast.error("Facebook login not working");
                 }}
-                className="w-40 md:w-36   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+                className="w-fit md:w-40   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
               >
                 <Image
                   src="/assets/facebook.png"
                   alt="facebook"
                   width={30}
                   height={30}
-                  className="text-center mx-2"
+                  className=" text-center mx-2"
                 />
-                Facebook
+                <span className=" hidden md:block">Facebook</span>
               </button>
               <button
                 onClick={() => {
                   toast.error("Mobile login not working");
                 }}
-                className="w-full md:w-32   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
+                className="w-fit md:w-32   flex items-center border bg-white rounded-lg text-lg h-12 shadow-lg  mt-4 md:mt-0"
               >
                 <Image
                   src="/assets/mobile-phone-svgrepo-com-1.png"
@@ -147,37 +147,37 @@ const page = () => {
                   height={30}
                   className="mx-2  "
                 />
-                Mobile
+                <span className="hidden md:block"> Mobile</span>
               </button>
             </div>
-            <div className="flex justify-center items-center   lg:items-center gap-2 w-full">
+            <div className="flex flex-wrap justify-center items-center   gap-2 w-full  lg:flex lg:justify-start lg:items-center ">
               <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5 flex" />
-              <p className="text-sm text-gray-400 text-center mt-5">
+              <p className="text-xs sm:text-sm text-gray-400 text-center mt-5">
                 or continue with email
               </p>
-              <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[20%] mt-5" />
+              <div className="border border-gray-300 h-[0.1] w-[15%] lg:w-[25%] xl:w-[24%] mt-5" />
             </div>
           </div>
-          <div className=" rounded-md   w-[90%] flex flex-col justify-center items-center lg:flex xl:flex-col  mt-5 sm:mt-10  ">
+          <div className=" rounded-md   lg:w-[90%] flex flex-col justify-center items-center lg:flex lg:flex-col lg:justify-start lg:items-start xl:flex-col  mt-5 sm:mt-10  ">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Registered email "
               autoComplete="email"
-              className="w-[85%] md:w-full lg:w-[106%] xl:w-[73%] border-2 rounded-md bg-gray-200 border-gray-300 p-3 flex  items-center hover:border-2 outline-none hover:border-[#773FC6] text-sm"
+              className="w-full lg:w-[106%] xl:w-[73%] border-2 rounded-md bg-gray-200 border-gray-300 p-3 flex  items-center hover:border-2 outline-none hover:border-[#773FC6] text-sm"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="w-[85%]  md:w-full lg:w-[106%] xl:w-[73%]  border-2  bg-gray-200 border-gray-300 p-3 text-sm flex items-center rounded-md mt-5 outline-none hover:border-2  hover:border-[#773FC6]"
+              className="w-full lg:w-[106%] xl:w-[73%]  border-2  bg-gray-200 border-gray-300 p-3 text-sm flex items-center rounded-md mt-5 outline-none hover:border-2  hover:border-[#773FC6]"
             />
-            <div className=" flex justify-end  lg:w-[106%] xl:w-[73%] ">
+            <div className=" flex flex-wrap justify-center items-center lg:flex lg::justify-end  lg:w-[106%] xl:w-[73%] ">
               <Link
                 href="/forgot-password"
-                className="text-sm hover:text-[#773FC6] mt-1 "
+                className="text-xs sm:text-sm hover:text-[#773FC6] mt-1 "
               >
                 Forget password ?
               </Link>
@@ -188,11 +188,14 @@ const page = () => {
             >
               Login
             </button>
-            <div className=" flex text-center mt-5">
-              <h3 className="text-[#8E8E8E] text-sm ">
+            <div className=" flex flex-wrap justify-center items-center lg:justify-start lg:items-start text-center mt-5">
+              <h3 className="text-[#8E8E8E] text-xs sm:text-sm ">
                 Don't have an account ? &nbsp;{" "}
               </h3>
-              <Link href="/register" className="text-[#773FC6] text-sm">
+              <Link
+                href="/register"
+                className="text-[#773FC6] text-xs sm:text-sm"
+              >
                 Create Account
               </Link>
             </div>
