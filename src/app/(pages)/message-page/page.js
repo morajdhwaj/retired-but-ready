@@ -24,12 +24,12 @@ const Page = () => {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [userAllData, setUserAllData] = useState([]);
-  const [showOption, setShowOption] = useState(false);
-  const [showOptionId, setShowOptionId] = useState("");
-  const [showThreeDought, setShowThreeDought] = useState(false);
-  const [showOptionButton, setShowOptionButton] = useState("");
-  const [editButton, setEditButton] = useState("");
-  const [receiverId, setReceiverId] = useState("65c4944bff9f155e520bc0f0");
+  // const [showOption, setShowOption] = useState(false);
+  // const [showOptionId, setShowOptionId] = useState("");
+  // const [showThreeDought, setShowThreeDought] = useState(false);
+  // const [showOptionButton, setShowOptionButton] = useState("");
+  // const [editButton, setEditButton] = useState("");
+  // const [receiverId, setReceiverId] = useState("65c4944bff9f155e520bc0f0");
   const [allChats, setAllChats] = useState([]);
   const [userId, setUserId] = useState(null);
   // const [chatId, setChatId] = useState("");
@@ -59,10 +59,10 @@ const Page = () => {
   }, [chats]);
 
   useEffect(() => {
-    console.log(
-      chats,
-      "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
-    );
+    // console.log(
+    //   chats,
+    //   "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+    // );
   }, [chats]);
 
   // useEffect(() => {
@@ -88,10 +88,10 @@ const Page = () => {
   }, [chats]);
 
   const userData = async () => {
-    console.log(
-      userIdFromContext,
-      "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
-    );
+    // console.log(
+    //   userIdFromContext,
+    //   "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+    // );
     try {
       const response = await axios.get(
         `https://retpro.catax.me/user/profile/${chatIdFromContext}`
@@ -104,11 +104,11 @@ const Page = () => {
 
   const getChats = async () => {
     try {
-      console.log(
-        userIdFromContext,
-        chatIdFromContext,
-        "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-      );
+      // console.log(
+      //   userIdFromContext,
+      //   chatIdFromContext,
+      //   "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+      // );
       const response = await axios.get(
         `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
@@ -117,10 +117,10 @@ const Page = () => {
       } else {
         setChats([]);
       }
-      console.log(
-        response.data,
-        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-      );
+      // console.log(
+      //   response.data,
+      //   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      // );
     } catch (error) {
       console.log("Error fetching chats:", error);
     }
@@ -154,9 +154,9 @@ const Page = () => {
           message
         )}`
       );
-      console.log(
-        "message sent successfully PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
-      );
+      // console.log(
+      //   "message sent successfully PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      // );
       getChats();
       getAllChats();
       setMessage("");
@@ -172,7 +172,7 @@ const Page = () => {
       );
       getChats();
       setMessage("");
-      setEditButton("");
+      // setEditButton("");
     } catch (error) {
       console.log("Error changing message:", error);
     }
@@ -180,12 +180,20 @@ const Page = () => {
 
   const getAllChats = async () => {
     try {
-      console.log(userIdFromContext, "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+      // console.log(userIdFromContext, "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
       const response = await axios.get(
         `https://retpro.catax.me/all-my-chats?user_id=${userId}`
       );
-      setAllChats(response.data);
-      console.log(response.data);
+
+      const sortedChats = response.data.sort((a, b) => {
+        const timestampA = new Date(a.latest_message.timestamp).getTime();
+        const timestampB = new Date(b.latest_message.timestamp).getTime();
+        return timestampB - timestampA; // Sort in descending order
+      });
+
+      setAllChats(sortedChats);
+      // setAllChats(response.data);
+      // console.log(response.data, "AAAAAAAAAAAAAAAAAAAAA");
     } catch (error) {
       console.log("Error fetching chats:", error);
     }
@@ -208,16 +216,16 @@ const Page = () => {
 
   const setIdForChat = (id) => {
     setChatIdContext(id);
-    console.log(id, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log(id);
   };
 
-  console.log(
-    allChats,
-    // userId,
-    userIdFromContext,
-    chatIdFromContext,
-    "this is a group chat all channels   zzzzzzzzzzz"
-  );
+  // console.log(
+  //   allChats,
+  //   // userId,
+  //   userIdFromContext,
+  //   chatIdFromContext,
+  //   "this is a group chat all channels   zzzzzzzzzzz"
+  // );
 
   return (
     <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
@@ -261,9 +269,9 @@ const Page = () => {
                 <div className="border-b-2 border-[#773FC6]"></div>
                 <div className="overflow-y-scroll h-[65vh]">
                   {allChats.map((data) => (
-                    <div className="p-3 " key={data?._id}>
+                    <div className="p-3 pr-1 " key={data?._id}>
                       <button
-                        className="flex  "
+                        className="flex w-full "
                         onClick={() => {
                           data?.participants[0] == userIdFromContext
                             ? setIdForChat(data.participants[1])
@@ -286,10 +294,14 @@ const Page = () => {
                         <div className="py-2 px-4 w-full ">
                           <div className="flex justify-between">
                             <h2 className="capitalize">{data?.sender_name}</h2>
-                            {/* <span className="">Feb 22</span> */}
+                            <p className="text-[11px]">
+                              {dayjs(
+                                new Date(data?.latest_message?.timestamp + "Z")
+                              ).format(" hh:mm A")}
+                            </p>
                           </div>
                           <div className="">
-                            <p className="text-sm">
+                            <p className="text-sm text-start">
                               {data?.latest_message?.message.slice(0, 30)}
                               {data?.latest_message?.message.length > 30 &&
                                 "...."}
