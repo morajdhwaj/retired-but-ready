@@ -124,10 +124,10 @@ const Page = () => {
   console.log(userId, "this is user id from create group page");
 
   return (
-    <div className="bg-[#EDEBF2] h-[100vh pb-5  px-10 ">
+    <div className="bg-[#EDEBF2]  pb-5  md:px-10 ">
       <Navbar />
       <div className="mt-20 pt-8">
-        <div className=" bg-[#F2F2F2] relative pb-32  w-[80%] m-auto">
+        <div className=" bg-[#F2F2F2] relative pb-32  lg:w-[80%] m-auto">
           <div
             className="relative  m-auto bg-[#EBEBEB] h-40  border-2"
             style={{
@@ -140,7 +140,7 @@ const Page = () => {
             }}
           >
             {/* Profile Picture */}
-            <div className="p-10 rounded-full absolute  h-28 w-28 flex justify-center  items-center bottom-[-50px]   left-20 bg-white">
+            <div className="md:p-10 rounded-full absolute  h-28 w-28 flex justify-center  items-center bottom-[-50px]   left-20 bg-white">
               <button className=" h-7 w-7 flex justify-center items-center  bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
@@ -183,23 +183,39 @@ const Page = () => {
             </div> */}
           </div>
           {/* Group Details */}
-          <div className="pl-20 pt-16 pb-5 ">
-            <div className="flex flex-col">
-              <h1 className="font-semibold ">Group name</h1>
-              <input
-                type="text"
-                className="rounded-sm border border-gray-200 w-[70%] p-[6px]"
-                placeholder="Enter your group name"
-                value={groupName}
-                onChange={(e) => setGroupName(e.target.value)}
-              />
+          <div className="p-16">
+            <div className="flex-wrap flex md:flex-nowrap items-center justify-center gap-4 mt-6">
+              <div className="flex flex-col w-full">
+                <h1 className="font-semibold ">Group name</h1>
+                <input
+                  type="text"
+                  className="rounded-sm border border-gray-200 p-[6px]"
+                  placeholder="Enter your group name"
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                <h1 className="font-semibold ">Category</h1>
+                <CreatableSelect
+                  id="personal"
+                  value={Category}
+                  instanceId="selectSkills"
+                  isMulti
+                  name="colors"
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                  options={data}
+                  onChange={handleCategory}
+                />
+              </div>
             </div>
             <div className="flex flex-col mt-5 ">
               <h1 className="font-semibold ">Description</h1>
               <textarea
                 name=""
                 id=""
-                className="w-[70%] p-1 border border-gray-200"
+                className="w-full p-1 border border-gray-200 flex"
                 placeholder="Write description hear"
                 value={groupDescription}
                 onChange={(e) =>
@@ -211,20 +227,7 @@ const Page = () => {
                 }
               ></textarea>
             </div>
-            <div className="flex flex-col mt-5">
-              <h1 className="font-semibold ">Category</h1>
-              <CreatableSelect
-                id="personal"
-                value={Category}
-                instanceId="selectSkills"
-                isMulti
-                name="colors"
-                className="basic-multi-select w-[70%]"
-                classNamePrefix="select"
-                options={data}
-                onChange={handleCategory}
-              />
-            </div>
+
             {/* Group Type */}
             <div className="mt-5">
               <h2 className="font-semibold ">Group Type</h2>
@@ -242,7 +245,7 @@ const Page = () => {
                     Public
                   </label>
                 </div>
-                <p className="text-sm ml-5 text-gray-400">
+                <p className="text-xs sm:text-sm ml-5 text-gray-400">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
                   id inventore iste. Commodi, ab voluptate!
                 </p>
@@ -261,7 +264,7 @@ const Page = () => {
                     Private
                   </label>
                 </div>
-                <p className="text-sm ml-5 text-gray-400">
+                <p className="text-xs sm:text-sm  ml-5 text-gray-400">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Dolor, natus! Eveniet sit laborum magnam optio.
                 </p>
@@ -270,20 +273,13 @@ const Page = () => {
 
             {/* Create Group Button */}
 
-            <div className="flex justify-between">
+            <div className="flex justify-end items-end mt-10 w-full">
               <button
-                className="py-3 px-8 bg-[#773fc6] text-white  absolute right-14 bottom-10 rounded-md "
+                className="py-3 text-center px-8 bg-[#773fc6] text-white rounded-md  w-full sm:w-auto  "
                 onClick={createGroup}
               >
                 Create Group
-              </button>{" "}
-              <Link
-                href="/groups-page"
-                className="py-3 px-4 items-center border-2 border-[#773fc6] flex  absolute left-14 bottom-10 rounded-md "
-              >
-                <IoArrowBackOutline size={20} />
-                Back
-              </Link>
+              </button>
             </div>
           </div>
         </div>
