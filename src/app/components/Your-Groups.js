@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
@@ -7,6 +7,9 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import PopUp from "../components/PopUp";
 import { UserIdContext } from "@/context/UserIdContext";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const Page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -80,13 +83,7 @@ const Page = () => {
                 className="flex  mx-1 items-center "
                 href={`/group-page/${groupData?.group_id}`}
               >
-                <Image
-                  src="/assets/Ellipse-39.png"
-                  width={40}
-                  height={40}
-                  alt="pic"
-                  className="w-14 h-14 rounded-full border-2 border-gray-200 "
-                />
+                <RiGroup2Fill color="gray" size={50} />
                 <div className="mt- mx-2 text-base font-medium lg:text-sm flex items-center">
                   <p className="capitalize  text-[17px]">
                     {groupData.group_name}{" "}
@@ -114,18 +111,20 @@ const Page = () => {
               {showOption === groupData.group_id ? (
                 <div className="absolute flex flex-col border right-2 top-12 bg-white py-2 px-3 rounded-md gap-1  z-20">
                   <Link
-                    className="hover:bg-[#9B3D98] hover:text-white px-3 py-1 rounded-lg text-center"
+                    className="hover:bg-[#773fc6] hover:text-white px-3 py-1 rounded-lg text-center  flex w-24 justify-between items-center"
                     href={`/edit-group/${groupData.group_id}`}
                   >
-                    Edit
+                    <h2>Edit</h2>
+                    <FaEdit />
                   </Link>
                   <button
-                    className="hover:bg-[#9B3D98] hover:text-white px-3 py-1 rounded-lg text-center"
+                    className="hover:bg-[#773fc6] hover:text-white px-3 py-1 rounded-lg text-center flex w-24 justify-between items-center"
                     onClick={() => {
                       setShowDeleteModal(groupData.group_id), setShowOption("");
                     }}
                   >
-                    Delete
+                    <h2>Delete</h2>
+                    <MdDelete />
                   </button>
                 </div>
               ) : (
@@ -140,7 +139,7 @@ const Page = () => {
         <PopUp
           close={handleDeleteModal}
           onClick={deleteGroup}
-          title="Are you sure to Delete this post"
+          title="Are you sure to Delete this group"
           action="Delete"
           message=""
           error="error"

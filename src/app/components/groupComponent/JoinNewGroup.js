@@ -6,6 +6,7 @@ import axios from "axios";
 import { UserIdContext } from "@/context/UserIdContext";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const JoinNewGroup = () => {
   const router = useRouter();
@@ -65,16 +66,10 @@ const JoinNewGroup = () => {
           <div className="max-h-[65vh] sm:px-5 ">
             {mapData.map((data) => (
               <div key={data._id} className="w-full py-1 ">
-                <div className="mt-2 flex justify-between  w-full md:flex md:flex-col mx-1">
+                <div className="mt-2 flex justify-between gap-5 p-2  w-full md:flex md:flex-col mx-1">
                   <div className="flex">
                     <Link href={`/group-page/${data?._id}`}>
-                      <Image
-                        src="/assets/Ellipse-39.png"
-                        width={50}
-                        height={50}
-                        alt="pic"
-                        className="w-16 h-16 rounded-full border-2 border-gray-200"
-                      />
+                      <RiGroup2Fill color="gray" size={50} />
                     </Link>
                     <div>
                       <Link
@@ -95,9 +90,9 @@ const JoinNewGroup = () => {
                     data.join_requests.some(
                       (item) => item.requested_user === userId
                     ) ? (
-                      <button className="border-2 border-[#773fc6] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
+                      <div className="border-2 border-[#773fc6] py-1 px-2 w- lg:w- text-center font-medium rounded-lg  mx-2 lg:mx-0">
                         Requested
-                      </button>
+                      </div>
                     ) : (
                       <button
                         className="border-2 border-[#773fc6] py-1 px-8 w- 14 lg:w- 24 text-center font-medium rounded-lg  mx-2 lg:mx-0"

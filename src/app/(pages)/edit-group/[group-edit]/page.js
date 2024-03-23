@@ -12,12 +12,30 @@ import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
 // import { useRouter } from "next/navigation";
 import { UserIdContext } from "@/context/UserIdContext";
+import Loader from "@/app/components/Loader";
+import { RiGroup2Fill } from "react-icons/ri";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
   { id: 2, value: "Business", label: "Business" },
   { id: 3, value: "Law", label: "Law" },
   { id: 4, value: "Sports", label: "Sports" },
+  { id: 5, value: "Health", label: "Health" },
+  { id: 6, value: "Education", label: "Education" },
+  { id: 7, value: "Finance", label: "Finance" },
+  { id: 8, value: "Art", label: "Art" },
+  { id: 9, value: "Science", label: "Science" },
+  { id: 10, value: "Food", label: "Food" },
+  { id: 11, value: "Travel", label: "Travel" },
+  { id: 12, value: "Music", label: "Music" },
+  { id: 13, value: "Fashion", label: "Fashion" },
+  { id: 14, value: "Environment", label: "Environment" },
+  { id: 15, value: "Politics", label: "Politics" },
+  { id: 16, value: "Entertainment", label: "Entertainment" },
+  { id: 17, value: "History", label: "History" },
+  { id: 18, value: "Religion", label: "Religion" },
+  { id: 19, value: "Pets", label: "Pets" },
+  { id: 20, value: "Automotive", label: "Automotive" },
 ];
 
 const Page = ({ params }) => {
@@ -118,6 +136,14 @@ const Page = ({ params }) => {
     }
   };
 
+  if (!groupName) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   console.log(category, groupType, "this is category ");
 
   return (
@@ -139,9 +165,9 @@ const Page = ({ params }) => {
             {/* Profile Picture */}
             <div className="p-10 rounded-full absolute  h-28 w-28 flex justify-center  items-center bottom-[-50px]   left-20 bg-white">
               <div className="">
-                <FaUserLarge size={50} />
+                <RiGroup2Fill color="gray" size={100} />
               </div>
-              <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+              {/* <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
                     type="file"
@@ -152,10 +178,10 @@ const Page = ({ params }) => {
                   />
                   <MdEdit size={20} />
                 </label>
-              </button>
+              </button> */}
             </div>
             {/* Add Picture Button */}
-            <div className="rounded-full w-5  h-5 p-4 flex justify-center items-center absolute right-3 top-3 bg-white">
+            {/* <div className="rounded-full w-5  h-5 p-4 flex justify-center items-center absolute right-3 top-3 bg-white">
               <button className="">
                 <label htmlFor="profile-picture" className="cursor-pointer">
                   <input
@@ -168,7 +194,7 @@ const Page = ({ params }) => {
                   <AiFillPicture />
                 </label>
               </button>
-            </div>
+            </div> */}
           </div>
           {/* Group Details */}
           <div className="pl-20 pt-16 pb-5 ">
@@ -305,7 +331,7 @@ const Page = ({ params }) => {
 
             {/* Create Group Button */}
             <button
-              className="py-3 px-8 border-2 border-[#773fc6]  absolute right-14 bottom-10  rounded-xl hover:shadow-lg"
+              className="py-3 px-8  bg-[#773fc6] text-white  absolute right-14 bottom-10  rounded-xl hover:shadow-lg"
               onClick={updateGroupInfo}
             >
               Save Changes
