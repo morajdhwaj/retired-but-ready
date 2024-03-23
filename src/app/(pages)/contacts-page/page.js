@@ -110,7 +110,7 @@ const page = () => {
               <div
                 onClick={() => setToggle(1)}
                 className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 cursor-pointer ${
-                  toggle === 1 && "border-[#A8359C] text-[#A8359C]"
+                  toggle === 1 && "border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Contact
@@ -118,7 +118,7 @@ const page = () => {
               <div
                 onClick={() => setToggle(3)}
                 className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center cursor-pointer ${
-                  toggle === 3 && "border-[#A8359C] text-[#A8359C]"
+                  toggle === 3 && "border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Followers
@@ -126,7 +126,7 @@ const page = () => {
               <div
                 onClick={() => setToggle(2)}
                 className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center cursor-pointer ${
-                  toggle === 2 && "border-[#A8359C] text-[#A8359C]"
+                  toggle === 2 && "border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Following
