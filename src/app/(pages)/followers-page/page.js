@@ -187,7 +187,7 @@ const page = () => {
 
                       <div className="flex gap-2">
                         <button
-                          className="border border-[#A8359C] text-black rounded-md  text- sm:text-sm p-2 "
+                          className="border border-[#773fc6] text-black rounded-md  text- sm:text-sm p-2 "
                           onClick={() =>
                             handleDeleteModal(curelem.from_user_id)
                           }
