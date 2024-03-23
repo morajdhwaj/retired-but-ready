@@ -185,21 +185,17 @@ const Page = () => {
           {/* Group Details */}
           <div className="pl-20 pt-16 pb-5 ">
             <div className="flex flex-col">
-              <label htmlFor="" className="">
-                Group name
-              </label>
+              <h1 className="font-semibold ">Group name</h1>
               <input
                 type="text"
-                className="rounded-sm border border-gray-200 w-[70%] p-[6px] mt-2"
+                className="rounded-sm border border-gray-200 w-[70%] p-[6px]"
                 placeholder="Enter your group name"
                 value={groupName}
                 onChange={(e) => setGroupName(e.target.value)}
               />
             </div>
             <div className="flex flex-col mt-5 ">
-              <label htmlFor="" className="mb-2">
-                Description
-              </label>
+              <h1 className="font-semibold ">Description</h1>
               <textarea
                 name=""
                 id=""
@@ -216,9 +212,7 @@ const Page = () => {
               ></textarea>
             </div>
             <div className="flex flex-col mt-5">
-              <label htmlFor="" className="mb-2">
-                Category
-              </label>
+              <h1 className="font-semibold ">Category</h1>
               <CreatableSelect
                 id="personal"
                 value={Category}
@@ -233,7 +227,7 @@ const Page = () => {
             </div>
             {/* Group Type */}
             <div className="mt-5">
-              <h2 className="mb-3">Group Type</h2>
+              <h2 className="font-semibold ">Group Type</h2>
               <div className="mb-5">
                 <div className="">
                   <input
