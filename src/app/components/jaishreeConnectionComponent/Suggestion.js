@@ -253,7 +253,7 @@ const Suggestion = () => {
         <h1 className="mt-5 text-black font-medium text-sm">
           {suggestionData.length} Suggestion
         </h1>
-        <div className=" border border-[#D9D9D9] w-[15%] h-0.3" />
+        <div className=" border border-[#D9D9D9] w-[10%] h-0.3" />
       </div>
 
       <div className="grid place-items-center sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-8 md:gap-10 lg:gap-9 xl:gap-16">
