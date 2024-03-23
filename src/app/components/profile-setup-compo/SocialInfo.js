@@ -74,37 +74,41 @@ const SocialInfo = ({
       setShowModal(true);
       return;
     }
+    if (facebook) {
+      // Validate Facebook URL
+      const isFacebookValid =
+        /^(https?:\/\/)?(www\.)?facebook\.com\/(profile\.php\?id=\d+|[a-zA-Z0-9\.]+\/?)$/.test(
+          facebook.trim()
+        );
 
-    // Validate Facebook URL
-    const isFacebookValid =
-      /^(https?:\/\/)?(www\.)?facebook\.com\/(profile\.php\?id=\d+|[a-zA-Z0-9\.]+\/?)$/.test(
-        facebook.trim()
-      );
+      if (!isFacebookValid) {
+        toast.error("Invalid Facebook URL");
+        return;
+      }
+    }
+    if (twitter) {
+      // Validate Twitter URL
+      const isTwitterValid =
+        /^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+$/.test(
+          twitter.trim()
+        );
 
-    if (!isFacebookValid) {
-      toast.error("Invalid Facebook URL");
-      return;
+      if (!isTwitterValid) {
+        toast.error("Invalid Twitter URL");
+        return;
+      }
     }
 
-    // Validate Twitter URL
-    const isTwitterValid =
-      /^(https?:\/\/)?(www\.)?twitter\.com\/[a-zA-Z0-9_]+$/.test(
-        twitter.trim()
+    if (linkedin) {
+      // Validate LinkedIn URL
+      const isLinkedInValid = /^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/.test(
+        linkedin.trim()
       );
 
-    if (!isTwitterValid) {
-      toast.error("Invalid Twitter URL");
-      return;
-    }
-
-    // Validate LinkedIn URL
-    const isLinkedInValid = /^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/.test(
-      linkedin.trim()
-    );
-
-    if (!isLinkedInValid) {
-      toast.error("Invalid LinkedIn URL");
-      return;
+      if (!isLinkedInValid) {
+        toast.error("Invalid LinkedIn URL");
+        return;
+      }
     }
 
     const options = {
