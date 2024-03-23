@@ -24,6 +24,8 @@ const Page = () => {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [userAllData, setUserAllData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredChats, setFilteredChats] = useState([]);
   // const [showOption, setShowOption] = useState(false);
   // const [showOptionId, setShowOptionId] = useState("");
   // const [showThreeDought, setShowThreeDought] = useState(false);
@@ -58,12 +60,13 @@ const Page = () => {
     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
   }, [chats]);
 
-  useEffect(() => {
-    // console.log(
-    //   chats,
-    //   "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
-    // );
-  }, [chats]);
+  // useEffect(() => {
+
+  // console.log(
+  //   chats,
+  //   "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
+  // );
+  // }, [chats]);
 
   // useEffect(() => {
   //   const intervalId = setInterval(() => {
@@ -79,6 +82,7 @@ const Page = () => {
   //     clearTimeout(timeoutId);
   //   };
   // }, []);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       getChats();
@@ -86,6 +90,24 @@ const Page = () => {
 
     return clearInterval(intervalId);
   }, [chats]);
+
+  useEffect(() => {
+    filterChats();
+  }, [allChats, searchQuery]);
+
+  const handleSearchInputChange = (event) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+  };
+
+  const filterChats = () => {
+    const filtered = allChats.filter(
+      (chat) =>
+        chat.sender_name &&
+        chat.sender_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredChats(filtered);
+  };
 
   const userData = async () => {
     // console.log(
@@ -165,18 +187,18 @@ const Page = () => {
     }
   };
 
-  const changeMessage = async (messageId) => {
-    try {
-      await axios.patch(
-        `https://retpro.catax.me/patch-message?message_id=${messageId}&new_content=${message}`
-      );
-      getChats();
-      setMessage("");
-      // setEditButton("");
-    } catch (error) {
-      console.log("Error changing message:", error);
-    }
-  };
+  // const changeMessage = async (messageId) => {
+  //   try {
+  //     await axios.patch(
+  //       `https://retpro.catax.me/patch-message?message_id=${messageId}&new_content=${message}`
+  //     );
+  //     getChats();
+  //     setMessage("");
+  //     // setEditButton("");
+  //   } catch (error) {
+  //     console.log("Error changing message:", error);
+  //   }
+  // };
 
   const getAllChats = async () => {
     try {
@@ -253,6 +275,8 @@ const Page = () => {
                     type="search"
                     className="w-full bg-[#E4E7EB] px-9 py-2 rounded-lg outline-none "
                     placeholder="Search messages"
+                    value={searchQuery}
+                    onChange={handleSearchInputChange}
                   />
                   <span className="left-5  top-5 absolute ">
                     <ImSearch />
@@ -268,7 +292,7 @@ const Page = () => {
                 </div> */}
                 <div className="border-b-2 border-[#773FC6]"></div>
                 <div className="overflow-y-scroll h-[65vh]">
-                  {allChats.map((data) => (
+                  {filteredChats.map((data) => (
                     <div className="p-3 pr-1 " key={data?._id}>
                       <button
                         className="flex w-full "
