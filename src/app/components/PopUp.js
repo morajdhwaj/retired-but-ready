@@ -18,7 +18,7 @@ const PopUp = ({
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  h-[50vh] w-full sm:w-4/5 md:w-3/5 xl:w-2/5 mt-20 sm:mr-20`}
+        className={`bg-white rounded-md z-50  h-[50vh] w-full sm:w-4/5 md:w-3/5 xl:w-3/6 mt-20 sm:mr-20 py-5`}
       >
         {close && (
           <div className="mt-2 mr-2 flex  justify-end">
@@ -35,7 +35,7 @@ const PopUp = ({
           ) : (
             <SiCachet size={50} color="#39b54a" />
           )}
-          <h2 className="text-xl font-medium text-[#773fc6] text-center">
+          <h2 className="text-2xl font-semibold text-[#773fc6] text-center">
             {title}
           </h2>
 
@@ -45,9 +45,9 @@ const PopUp = ({
               reportType={reportType}
             />
           )}
-          <p className="text-sm text-center">{message}</p>
+          <p className="text-lg text-center w-full ">{message}</p>
           <button
-            className="bg-[#773fc6] px-20 py-2 rounded-lg text-white"
+            className="bg-[#773fc6] px-20 py-2 rounded-lg text-white hover:s"
             onClick={onClick}
           >
             {action}
