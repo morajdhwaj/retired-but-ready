@@ -174,7 +174,7 @@ const AllPosts = ({ userId, feeds, setFeeds, getFeeds }) => {
     return (
       <div className="h-[100vh] flex justify-center">
         <h2 className="border-2 border-[#773fc6] self-start px-6  py-2 mt-20 rounded-lg font-semibold">
-          No post available
+          No posts available
         </h2>
       </div>
     );

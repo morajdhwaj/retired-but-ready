@@ -198,6 +198,7 @@ const page = () => {
                       src={userData?.user_image}
                       height={50}
                       width={50}
+                      className="w-20 h-20 rounded-full border-2 border-gray-200"
                     />
                   ) : (
                     <FaUserCircle color="gray" size={50} />
@@ -224,7 +225,7 @@ const page = () => {
             </div>
           </div>
           {draftData.length !== 0 ? (
-            <div className="mt-28 sm:mt-16 flex flex-col gap-5">
+            <div className=" mt-20 sm:mt-24 flex flex-col gap-5">
               {draftData.map((post) => {
                 return (
                   <div
@@ -257,7 +258,8 @@ const page = () => {
                           </h2>
                         )}
                       </div>
-                      <div>
+
+                      <div className="">
                         <button onClick={() => handleDropdown(post?._id)}>
                           <BsThreeDotsVertical
                             size={25}
@@ -266,7 +268,7 @@ const page = () => {
                           />
                         </button>
                         {postId == post?._id && (
-                          <div className="absolute border bg-white border-gray-300 right-5 shadow-md rounded-md flex flex-col  px-2 ">
+                          <div className="absolute border bg-white border-gray-300  shadow-md rounded-md flex flex-col top-7 right-0">
                             <div className="flex flex-col p-2 items-center justify-center">
                               <button
                                 onClick={() => getPost(post?._id)}
@@ -277,7 +279,7 @@ const page = () => {
                               </button>
                               <button
                                 onClick={() => handleDelete(post?._id)}
-                                className=" hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
+                                className="hover:bg-[#773fc6] w-24 rounded-md hover:text-white text-black p-2 flex items-center justify-between"
                               >
                                 <h2>Delete</h2>
                                 <MdDelete />

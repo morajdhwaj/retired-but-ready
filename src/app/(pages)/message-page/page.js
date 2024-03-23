@@ -232,14 +232,14 @@ const Page = () => {
             <div className="w-full h-full border-2 rounded-xl flex justify-between  ">
               {/* Left Section */}
               <div className="bg-blue- w-[30%] h-full border-r-2">
-                <div className="flex justify-between py-4 border-b-2 text-xl">
+                {/* <div className="flex justify-between py-4 border-b-2 text-xl">
                   <h1 className="px-3 ">message</h1>
                   <div className="">
                     <button className="px-3">
                       <BsThreeDots />
                     </button>
                   </div>
-                </div>
+                </div> */}
                 <div className="p-2 relative">
                   <input
                     type="search"

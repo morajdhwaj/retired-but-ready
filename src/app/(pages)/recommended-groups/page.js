@@ -10,6 +10,7 @@ import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { RiGroup2Fill } from "react-icons/ri";
+import Loader from "@/app/components/Loader";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -60,6 +61,14 @@ const page = () => {
     );
   }, [recommendedGroupsData]);
 
+  if (recommendedGroupsData.length === 0) {
+    return (
+      <div className="h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-[#e8e9e8]   lg:px-10 min-h-[100vh] ">
       <Navbar />
@@ -70,7 +79,7 @@ const page = () => {
           </div>
         </div>
         <div className="   mt-[60px] lg:mt-[92px]  mx-5 sm:mx-14 lg:ml-[260px] lg:mr-32 sm:mr-14 bg-white p-10 pt-5 rounded-lg min-h-[70vh] ">
-          <h1 className="text-base font-medium mb-6 ">
+          <h1 className="text-base font-semibold mb-6 ">
             Recommendations just for you
           </h1>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-10">
@@ -95,7 +104,10 @@ const page = () => {
                         {data?.group_name}
                       </p>
                     </Link>
-                    <p className="text-center">200 Member</p>
+                    <p className="text-center p-2 text-xs">
+                      {" "}
+                      {data?.group_description}
+                    </p>
                   </div>
                   <div className="flex justify-center bottom-[20px] mb-5 ">
                     {data.join_requests &&

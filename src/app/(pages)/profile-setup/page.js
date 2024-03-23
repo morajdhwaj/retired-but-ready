@@ -131,6 +131,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response.data.message); // Show success message using toast
+        getUserData();
         // Update any state or UI as necessary
       })
       .catch(function (error) {

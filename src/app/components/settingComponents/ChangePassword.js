@@ -21,6 +21,11 @@ const ChangePassword = ({ optionFunction }) => {
   }, [userIdFromContext]);
 
   const changePassword = async () => {
+    if (conformPassword.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
     if (newPassword === conformPassword && oldPassword > 0 && newPassword > 0) {
       const payload = {
         // method: "PATCH",

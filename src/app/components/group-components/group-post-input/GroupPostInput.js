@@ -21,8 +21,9 @@ const GroupPostInput = ({ userId, userData, getFeeds, groupId }) => {
               <Image
                 alt="rtr-pic"
                 src={userData?.user_image}
-                height={50}
-                width={50}
+                height={40}
+                width={40}
+                className="w-16 h-14 rounded-full border-2 border-gray-200"
               />
             ) : (
               <FaUserCircle color="gray" size={50} />
