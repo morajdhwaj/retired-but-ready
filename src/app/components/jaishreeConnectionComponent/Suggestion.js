@@ -2,10 +2,10 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import Image from "next/image";
-import { FaSatellite } from "react-icons/fa";
-import { FaGlobe } from "react-icons/fa";
-import { FaSearchLocation } from "react-icons/fa";
-import { IoPeopleSharp } from "react-icons/io5";
+// import { FaSatellite } from "react-icons/fa";
+// import { FaGlobe } from "react-icons/fa";
+// import { FaSearchLocation } from "react-icons/fa";
+// import { IoPeopleSharp } from "react-icons/io5";
 import { IoMdCloseCircle } from "react-icons/io";
 
 // import ProfileConnection from "./ProfileConnection";
@@ -13,7 +13,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import Request from "../connection-page-compo/Request";
 import axios from "axios";
 import { MdPersonAddAlt1 } from "react-icons/md";
-import { ImProfile } from "react-icons/im";
+// import { ImProfile } from "react-icons/im";
 import { FaUserCircle } from "react-icons/fa";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -144,37 +144,36 @@ const Suggestion = () => {
   return (
     <div className="">
       <Request />
-      <div className="  mt-5 gap-5 sm:mt-5 md:mt-5 lg:mt-8 flex flex-wrap justify-start items-start sm:justify-center sm:items-center md:flex-nowrap md:flex md:justify-between bg-scroll ">
+
+      {/* <div className="bg-yellow-300 mt-5 gap-5 sm:mt-5 md:mt-5 lg:mt-8 flex justify-center items-center sm:justify-center sm:items-center md:flex-nowrap md:flex md:justify-between bg-scroll">
         <div
-          className="hover:border-gray-400 hover:border-b-2  "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(1)}
         >
-          <div className="bg-gray-300 w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4  mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-
-            <FaSatellite className="  mx-2 md:mx-6 md:mt-2  size-5 md:size-8 fill-red-500" />
+            <FaSatellite className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
-          <h1 className="text-center  text-xs md:font-medium mt-2 ">
+          <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my
             <br /> GPS location
           </h1>
         </div>
-
         <div
-          className="hover:border-gray-400 hover:border-b-2 "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(2)}
         >
-          <div className=" bg-gray-300 w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
-                14k+
+                10k+
               </p>
             </div>
-            <ImProfile className=" mx-3 md:mx-6 md:mt-2 size-5 md:size-8 fill-pink-500" />
+            <ImProfile className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my
@@ -182,16 +181,16 @@ const Suggestion = () => {
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2 "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(3)}
         >
-          <div className="bg-gray-300  w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
-                16k+
+                10k+
               </p>
             </div>
-            <FaGlobe className="mx-3  md:mx-6 md:mt-2 size-5 md:size-8 fill-blue-500" />
+            <FaGlobe className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my <br />
@@ -199,16 +198,16 @@ const Suggestion = () => {
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2 "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(4)}
         >
-          <div className="bg-gray-300  w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <FaSearchLocation className="mx-3 md:mx-6 md:mt-2 size-6 md:size-8 fill-blue-500" />
+            <FaSearchLocation className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my
@@ -216,46 +215,46 @@ const Suggestion = () => {
           </h1>
         </div>
         <div
-          className="hover:border-gray-400 hover:border-b-2 "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(5)}
         >
-          <div className="bg-gray-300 w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0 ">
-            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
                 10k+
               </p>
             </div>
-            <FaSearchLocation className=" mx-2 md:mx-6 md:mt-2 size-6 md:size-8 fill-orange-500" />
+            <FaSearchLocation className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my
             <br /> Work experience
           </h1>
         </div>
-
         <div
-          className="hover:border-gray-400 hover:border-b-2 "
+          className="hover:border-gray-400 hover:border-b-2"
           onClick={() => handleToggle(6)}
         >
-          <div className="bg-gray-300  w-12 h-12 md:w-20  md:h-20 rounded-full border-2  border-gray-400 mt-5 md:mt-0 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14  ">
+          <div className="bg-gray-300 w-12 h-12 md:w-20 md:h-20 rounded-full border-2 border-gray-400 mt-5 md:mt-0">
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-7 md:mx-14">
               <p className="text-xs flex items-center justify-center font-semibold">
-                20k+
+                10k+
               </p>
             </div>
-            <IoPeopleSharp className=" mx-3 md:mx-6 md:mt-2 size-6 md:size-8 fill-green-500" />
+            <IoPeopleSharp className="mx-2 md:mx-6 md:mt-2 size-5 md:size-8 fill-red-500" />
           </div>
           <h1 className="text-center text-xs md:font-medium mt-2">
             Based on my
             <br /> best matches
           </h1>
         </div>
+      </div> */}
+      <div>
+        <h1 className="mt-5 text-black font-medium text-sm">
+          {suggestionData.length} Suggestion
+        </h1>
+        <div className=" border border-[#D9D9D9] w-[15%] h-0.3" />
       </div>
-
-      <h1 className="mt-5 text-black font-medium text-sm">
-        {suggestionData.length} Suggestion
-      </h1>
-      <div className=" border border-[#D9D9D9] w-[10%] h-0.3 mt-2" />
 
       <div className="grid place-items-center sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-8 md:gap-10 lg:gap-9 xl:gap-16">
         {(showAll ? suggestionData : suggestionData.slice(0, 12)).map(
@@ -266,7 +265,7 @@ const Suggestion = () => {
                   <IoMdCloseCircle className="size-6 " />
                 </div>
 
-                <div className="flex items-center justify-center pt-2">
+                <div className="flex items-center justify-center pt-0">
                   <Link key={cardElem._id} href={`/profile/${cardElem._id}`}>
                     {cardElem.user_image ? (
                       <Image
