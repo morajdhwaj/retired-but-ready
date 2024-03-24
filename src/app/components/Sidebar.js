@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { IoIosHome } from "react-icons/io";
 import { FaFile } from "react-icons/fa6";
 import { AiFillTool } from "react-icons/ai";
-import { FaCartShopping } from "react-icons/fa6";
+import { HiUserGroup } from "react-icons/hi";
 import { PiFilesFill } from "react-icons/pi";
-import { BsFillRocketTakeoffFill } from "react-icons/bs";
+import { MdMessage } from "react-icons/md";
 import { FiOctagon } from "react-icons/fi";
 import {
   MdAnnouncement,
@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <div className="mx-5 fixed py-10 pt-20 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
+      <div className="mx-5 fixed py-10 pt-16 mt-80 top-0 left-0 bottom-0  h-10 z-50 flex flex-col  justify-center  ">
         <div className={`flex justify-end my-2`}>
           <button onClick={() => setClose(!close)}>
             {close ? (
@@ -42,7 +42,7 @@ const Sidebar = () => {
             </Link>
 
             <Link
-              href="/walls-page"
+              href="/all-feeds-page"
               className="flex gap-5 items-center   bg-white  hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
@@ -59,11 +59,11 @@ const Sidebar = () => {
               </div>
             </Link>
             <Link
-              href="/wallet-page"
+              href="/groups-page"
               className="flex gap-5   items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <FaCartShopping color="#344767" />
+                <HiUserGroup color="#344767" />
               </div>
             </Link>
 
@@ -76,11 +76,11 @@ const Sidebar = () => {
               </div>
             </Link>
             <Link
-              href="/basics-page"
+              href="/message-page"
               className="flex gap-5   items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <BsFillRocketTakeoffFill color="#344767" />
+                <MdMessage color="#344767" />
               </div>
             </Link>
             <Link
@@ -103,13 +103,13 @@ const Sidebar = () => {
         ) : (
           <div className="border border-[#773fc6] bg-[#EDEBF2]  rounded-lg fixe flex flex-col items-center p-5 gap-2 self-start">
             <Link
-              href="/walls-page"
+              href="/all-feeds-page"
               className="flex gap-5 items-center w-40 bg-white p-2 rounded-xl hover:bg-gray-200"
             >
               <div className="bg-[#773fc6] p-2 rounded-lg">
                 <IoIosHome color="white" />
               </div>
-              <h2 className="text-sm font-medium">Dashboard</h2>
+              <h2 className="text-sm font-medium">All feeds</h2>
             </Link>
 
             <Link
@@ -132,13 +132,13 @@ const Sidebar = () => {
               <h2 className="text-sm font-medium">My Contacts</h2>
             </Link>
             <Link
-              href="/wallet-page"
+              href="/groups-page"
               className="flex gap-5  w-40 items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <FaCartShopping color="#344767" />
+                <HiUserGroup color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">My Wallet</h2>
+              <h2 className="text-sm font-medium">Groups</h2>
             </Link>
 
             <Link
@@ -151,22 +151,22 @@ const Sidebar = () => {
               <h2 className="text-sm font-medium">Connections</h2>
             </Link>
             <Link
-              href="/basics-page"
+              href="/message-page"
               className="flex gap-5  w-40 items-center bg-white hover:bg-gray-200 p-2 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
-                <BsFillRocketTakeoffFill color="#344767" />
+                <MdMessage color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">Basics</h2>
+              <h2 className="text-sm font-medium">Messages</h2>
             </Link>
             <Link
-              href="/setting-page"
+              href="/draft-page"
               className="flex gap-5  w-40 items-center bg-white p-2 hover:bg-gray-200 rounded-xl"
             >
               <div className="bg-white p-2 rounded-lg hover:bg-[#773fc6]">
                 <FiOctagon color="#344767" />
               </div>
-              <h2 className="text-sm font-medium">Setting </h2>
+              <h2 className="text-sm font-medium">Drafts </h2>
             </Link>
             <Link
               href="/about-us-page"

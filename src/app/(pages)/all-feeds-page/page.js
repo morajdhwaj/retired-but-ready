@@ -5,7 +5,7 @@ import Sidebar from "@/app/components/Sidebar";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
@@ -15,8 +15,11 @@ import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
 import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
+import Link from "next/link";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const [feeds, setFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
@@ -24,7 +27,7 @@ const page = () => {
   const [addPost, setAddPost] = useState(false);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
     getFeeds();
   }, [userId]);
@@ -92,22 +95,27 @@ const page = () => {
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
-                <div className="flex items-center justify-center gap-2">
-                  {userData?.user_image ? (
-                    <Image
-                      alt=""
-                      src={userData?.user_image}
-                      height={50}
-                      width={50}
-                    />
-                  ) : (
-                    <FaUserCircle size={50} />
-                  )}
-                  <div className="font-semibold">
-                    <h2>{userData.user_display_name}</h2>
-                    <p className="text-gray-500">{userData.last_designation}</p>
+                <Link href={`/profile/${userId}`}>
+                  <div className="flex items-center justify-center gap-2">
+                    {userData?.user_image ? (
+                      <Image
+                        alt=""
+                        src={userData?.user_image}
+                        height={50}
+                        width={50}
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      />
+                    ) : (
+                      <FaUserCircle size={50} />
+                    )}
+                    <div className="font-semibold">
+                      <h2>{userData.user_display_name}</h2>
+                      <p className="text-gray-500">
+                        {userData.last_designation}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 <div className="text-xs flex flex-col sm:flex-row items-center justify-center gap-5">
                   <button
                     onClick={() => setAddPost(!addPost)}
@@ -130,11 +138,11 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">My Walls</h2>
+              <h2 className="font-semibold text-2xl">All Feeds</h2>
             </div>
           </div>
           {addPost && (
-            <div className="mt-44 sm:mt-32 md:mt-20">
+            <div className="mt-44 sm:mt-32 md:mt-20 mx-20   ">
               <PostInput
                 feeds={feeds}
                 userData={userData}
@@ -145,7 +153,11 @@ const page = () => {
             </div>
           )}
 
-          <div className={`${!addPost && "mt-44 sm:mt-32 md:mt-20"} mx-5 `}>
+          <div
+            className={`${
+              !addPost && "mt-44 sm:mt-32 md:mt-20"
+            } mx-20 xl:mx-28 `}
+          >
             <div className="flex justify-between w-full text-gray-500">
               <button
                 onClick={() => setTab(1)}

@@ -2,19 +2,21 @@
 import Navbar from "@/app/components/Navbar";
 import axios from "axios";
 import PopUp from "@/app/components/PopUp";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+ import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
   }, []);
 
   const router = useRouter();

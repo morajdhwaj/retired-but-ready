@@ -11,19 +11,23 @@ import Youtube from "@/app/components/anushkaComponent/Youtube";
 import All from "@/app/components/wallsComponents/All";
 import Trending from "@/app/components/wallsComponents/Trending";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
+ import { UserIdContext } from "@/context/UserIdContext";
+
+
 const page = () => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 

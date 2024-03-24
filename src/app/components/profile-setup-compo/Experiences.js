@@ -36,6 +36,7 @@ const Experiences = ({
   const [title, setTitle] = useState("");
   const [companyStart, setCompanyStart] = useState("");
   const [companyEnd, setCompanyEnd] = useState("");
+  const currentDate = new Date().toISOString().split("T")[0];
 
   const handleStepUp = () => {
     if (experiences?.length === 0) {
@@ -62,6 +63,7 @@ const Experiences = ({
       })
       .catch(function (error) {
         console.error(error);
+        toast.error(error?.response?.data?.detail);
       });
   };
   const handleStepDown = () => {
@@ -86,6 +88,11 @@ const Experiences = ({
   };
 
   const handleAddExperience = () => {
+    if (!companyName || !title || !companyStart || !companyEnd) {
+      toast.error("Please fill the input fields");
+      return;
+    }
+
     const newExperience = {
       company_name: companyName,
       title: title,
@@ -128,11 +135,23 @@ const Experiences = ({
           onChange={(e) => setEnglishProficiency(e.target.value)}
           className=" mt-5 h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
         >
-          <option>Basic</option>
-          <option>Conversational</option>
-          <option>Competent</option>
-          <option>Proficient</option>
-          <option>Fluent</option>
+          <option value="" disabled>
+            Select English Proficiency
+          </option>
+          <option>
+            Basic - Only able to communicate in this language through written
+            communication
+          </option>
+          <option>
+            Conversational - Conversational - Comfortable in verbal discussion
+          </option>
+          <option>
+            Fluent - Complete command of this language with perfect grammar
+          </option>
+          <option>
+            Native - Complete command of this language with no discernible
+            accent
+          </option>
         </select>
       </div>
       <div className="mt-5">
@@ -205,7 +224,11 @@ const Experiences = ({
             <h2 className="text-[#808184] font-medium">Company Name*</h2>
             <input
               value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
+              onChange={(e) =>
+                setCompanyName(
+                  e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+                )
+              }
               className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
@@ -213,28 +236,34 @@ const Experiences = ({
             <h2 className="text-[#808184] font-medium">Title*</h2>
             <input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) =>
+                setTitle(
+                  e.target.value.replace(/\b\w/g, (c) => c.toUpperCase())
+                )
+              }
               className=" h-10  bg-[#f2f1f3] px-2 border-gray-300 border rounded w-full"
             />
           </div>
           <div className="flex gap-6 mt-5">
             <div className="w-1/2">
-              <h2 className="text-[#808184] font-medium">Start date</h2>
+              <h2 className="text-[#808184] font-medium">Start date*</h2>
               <input
                 value={companyStart}
                 onChange={(e) => setCompanyStart(e.target.value)}
-                className="  h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+                className="h-10 bg-[#f2f1f3] border-gray-300 border text-gray-600 pl-2  rounded w-full"
                 type="date"
-              ></input>
+                max={currentDate}
+              />
             </div>
             <div className="w-1/2">
-              <h2 className="text-[#808184] font-medium">End date</h2>
+              <h2 className="text-[#808184] font-medium">End date*</h2>
               <input
                 value={companyEnd}
                 onChange={(e) => setCompanyEnd(e.target.value)}
-                className="  h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
+                className="  h-10 bg-[#f2f1f3] border-gray-300 text-gray-600 pl-2  border rounded  w-full"
                 type="date"
-              ></input>
+                max={currentDate}
+              />
             </div>
           </div>
         </div>
@@ -242,9 +271,9 @@ const Experiences = ({
         <div className="flex justify-center items-center">
           <button
             onClick={handleAddExperience}
-            className="text-xl text-[#773fc6] font-medium mt-10"
+            className="text-xl text-[#773fc6]  border p-2 rounded-lg border-[#773fc6] font-medium mt-10"
           >
-            + ADD positions
+            Add position
           </button>
         </div>
 

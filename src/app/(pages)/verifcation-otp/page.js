@@ -16,27 +16,27 @@ const page = ({ length = 4 }) => {
 
   const router = useRouter();
 
-  //   const handleVerification = () => {
-  //     const options = {
-  //       method: "PATCH",
-  //       url: "https://retpro.catax.me/user/reset-password-otp",
-  //       params: { user_id: "6593af5ef4f7ce4f923051f3" },
-  //       headers: { "Content-Type": "application/json" },
-  //       data: { otp: finalOtp, new_password: password },
-  //     };
+  const handleVerification = () => {
+    const options = {
+      method: "PATCH",
+      url: "https://retpro.catax.me/user/reset-password-otp",
+      params: { user_id: "6593af5ef4f7ce4f923051f3" },
+      headers: { "Content-Type": "application/json" },
+      data: { otp: finalOtp, new_password: password },
+    };
 
-  //     axios
-  //       .request(options)
-  //       .then(function (response) {
-  //         console.log(response.data);
-  //         toast.success(response?.data?.message);
-  //         router.push("/");
-  //       })
-  //       .catch(function (error) {
-  //         console.error(error);
-  //         toast.error(error.response.data.detail);
-  //       });
-  //   };
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        router.push("/");
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error.response.data.detail);
+      });
+  };
 
   const handleInputChange = (index, value) => {
     // Only update the state if the entered value is a number

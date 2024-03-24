@@ -8,68 +8,46 @@ const FollowingPage = () => {
   const contacts = [
     {
       name: "Jaya",
-      role: "OPPO India Marketing Head",
-      company: "Tech Connection India Pvt.Ltd.",
-      lastConnected: "Connected 2 days ago",
     },
     {
       name: "Parul",
-      role: "Role for Parul",
-      company: "Company for Parul",
-      lastConnected: "Connected 2 days ago",
     },
     {
       name: "Kimjan",
-      role: "Role for Kimjan",
-      company: "Company for Kimjan",
-      lastConnected: "Connected 2 days ago",
     },
   ];
 
   return (
     <div>
       {contacts.map((contact, index) => (
-        <div className="flex" key={index}>
-          <div className="w-3/4   flex-wrap lg:flex justify-between items-center  pb-5">
-            <div className="w-[10%]">
+        <div
+          className="w-full p-2 flex flex-col sm:flex-row lg:flex-row border-b border-[#E3CCE1] mt-5 "
+          key={index}
+        >
+          <div className="w-full sm:w-[75%] lg:w-[75%] flex justify-between ">
+            <div className="w-1/2  sm:w-[15%]  flex items-center justify-center">
               <Image
                 src="/assets/Ellipse-39.png"
                 width={50}
                 height={50}
                 alt="pic"
-                // className="  sm:w-1/5 md:w-1/5 p-1 rounded-full  "
               />
             </div>
-            <div className="flex justify-between items-center w-[90%]  border-[#E3CCE1] border-b  p-2">
-              <div className="">
-                <h1 className="text-[#2C2C2C] text-sm font-medium">
-                  {contact.name}
-                </h1>
-                <p className="text-[#888888] font-medium text-xs">
-                  {contact.role}
-                </p>
-                <p className="text-[#888888] font-medium text-xs">
-                  {contact.company}
-                </p>
-                <p className="text-[#888888] font-medium text-xs">
-                  {contact.lastConnected}
-                </p>
-              </div>
-
-              <button className="border border-[#A8359C] text-black rounded-md p-2">
-                Following
-              </button>
+            <div className="w-1/2 sm:w-[85%]  ">
+              <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-2">
+                {contact.name}
+              </h1>
             </div>
           </div>
-          <div className="w-1/4  flex items-center justify-center">
-            <div>
-              <button className="text-2xl text-gray-500">
-                <BsThreeDotsVertical />
-              </button>
-              <button className="text-2xl text-gray-500">
-                <IoChatbubbleEllipsesOutline />
-              </button>
-            </div>
+
+          <div className="relative w-full sm:w-[25%] lg:w-[25%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+            <button className="border border-[#A8359C] text-black rounded-md p-2">
+              Following
+            </button>
+
+            <button className="text-3xl sm:text-4xl text-gray-400">
+              <IoChatbubbleEllipsesOutline />
+            </button>
           </div>
         </div>
       ))}

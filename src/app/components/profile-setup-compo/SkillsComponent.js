@@ -2,8 +2,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
+import { profession } from "../array-data/profession";
 
 const SkillsComponent = ({
   userId,
@@ -82,12 +82,19 @@ const SkillsComponent = ({
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
-        setAllSkills(response.data);
+        const capitalizedSkills = response.data.map((skill) => ({
+          ...skill,
+          skill_name: capitalizeFirstLetter(skill.skill_name),
+        }));
+        setAllSkills(capitalizedSkills);
       })
       .catch(function (error) {
         console.error(error);
       });
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const displayPersonalSkills = allSkills.filter(
@@ -169,7 +176,18 @@ const SkillsComponent = ({
     // }
   };
 
-  console.log(professionalExpertise, "pssddddsss");
+  const handleCategoryChange = (event) => {
+    setProfessionalField(event.target.value);
+    setProfessionalExpertise("");
+  };
+
+  const handleSubcategoryChange = (event) => {
+    setProfessionalExpertise(event.target.value);
+  };
+
+  const selectedProfessionalField = profession.find(
+    (item) => item.category === professionalField
+  );
 
   return (
     <div className="mx-20 mb-40 ">
@@ -180,7 +198,7 @@ const SkillsComponent = ({
               {" "}
               Most recent Designation*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
@@ -189,9 +207,18 @@ const SkillsComponent = ({
             onChange={(e) => setLastDesignation(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>Software Developer</option>
-            <option>Testing</option>
-            <option>Human Resource</option>
+            <option value="" disabled>
+              Select Last Designation
+            </option>
+            <option>Senior Management</option>
+            <option>Top-Level Manager</option>
+            <option>Middle-Level Manager</option>
+            <option>First level Manager/ Employee</option>
+            <option>Chief Executive Officer (CEO)</option>
+            <option>Chief Operating Officer (COO)</option>
+            <option>President</option>
+            <option>Director</option>
+            <option>Other</option>
           </select>
         </div>
 
@@ -201,7 +228,7 @@ const SkillsComponent = ({
               {" "}
               Total Work Experience*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
@@ -210,11 +237,14 @@ const SkillsComponent = ({
             onChange={(e) => setTotalExperience(e.target.value)}
             className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>0-5 Years</option>
-            <option>5-10 Years</option>
-            <option>10-15Years</option>
-            <option>15-20 Years</option>
-            <option>20+ Years</option>
+            <option value="" disabled>
+              Select Total Work Experience
+            </option>
+            <option>30 to above Years</option>
+            <option>20 to 30 Years </option>
+            <option>10 to 20 Years</option>
+            <option>5 to 10 Years</option>
+            <option>5 and less Years</option>
           </select>
         </div>
 
@@ -223,22 +253,25 @@ const SkillsComponent = ({
             <h2 className=" text-gray-500 font-medium text-xl">
               Professional field*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
           <select
             value={professionalField}
-            onChange={(e) => setProfessionalField(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-72 rounded"
+            onChange={handleCategoryChange}
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>Healthcare</option>
-            <option>Information Technology</option>
-            <option>Finance</option>
-            <option>Education</option>
-            <option>Engineering</option>
-            <option>Sales</option>
-            <option>Agriculture</option>
+            <>
+              <option value="" disabled>
+                Select professional field
+              </option>
+              {profession.map((item, index) => (
+                <option key={index} value={item.category}>
+                  {item.category}
+                </option>
+              ))}
+            </>
           </select>
         </div>
 
@@ -247,21 +280,26 @@ const SkillsComponent = ({
             <h2 className=" text-gray-500 font-medium text-xl">
               Professional expertise*
             </h2>
-            <h6 className="font-small text-gray-300 ml-3">
+            <h6 className="font-small text-gray-400 ml-3">
               (Before Retirement)
             </h6>
           </div>
           <select
             value={professionalExpertise}
-            onChange={(e) => setProfessionalExpertise(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2 w-72 rounded"
+            onChange={handleSubcategoryChange}
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
           >
-            <option>Data Analysis</option>
-            <option>Software Development</option>
-            <option>Project Management </option>
-            <option>Content Creation </option>
-            <option>Social Media Marketing </option>
-            <option>Network Security </option>
+            <option value="" disabled>
+              Select professional expertise
+            </option>
+            {selectedProfessionalField &&
+              selectedProfessionalField.subcategories.map(
+                (subcategory, index) => (
+                  <option key={index} value={subcategory}>
+                    {subcategory}
+                  </option>
+                )
+              )}
           </select>
         </div>
       </div>

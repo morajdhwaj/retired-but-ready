@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
-import { FaBox } from "react-icons/fa";
+import { FaBox, FaUserCircle } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import { AiFillTool } from "react-icons/ai";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
@@ -18,15 +18,17 @@ import Link from "next/link";
 import Loader from "@/app/components/Loader";
 import toast from "react-hot-toast";
 import { MdEdit } from "react-icons/md";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const Page = () => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
   // const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 
@@ -41,8 +43,6 @@ const Page = () => {
       .then(function (response) {
         console.log(response?.data, "hello im sachin");
         setUserData(response?.data);
-        // setCompanyName(response?.data?.work_history[0].company_name);
-        // setTitle(response?.data?.work_history[0].title);
       })
       .catch(function (error) {
         console.error(error);
@@ -52,10 +52,7 @@ const Page = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // setSelectedImage(file);
-      uploadImg(file); // Pass the file to uploadImg function
-      console.log("file", file);
-      // console.log("hello im sachin");
+      uploadImg(file);
     }
   };
 
@@ -113,14 +110,19 @@ const Page = () => {
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
                 <div className="flex gap-2">
                   <div className="relative">
-                    <Image
-                      src={userData?.user_image}
-                      alt="/assets/110.png"
-                      height={50}
-                      width={50}
-                      className="rounded-xl h-[70px] w-[70px]"
-                    />
-                    <button className="right-0 top-14 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
+                    {userData?.user_image ? (
+                      <Image
+                        alt="user profile"
+                        src={userData?.user_image}
+                        height={50}
+                        width={50}
+                        className="w-20 h-20 rounded-full border-2 border-gray-200"
+                      />
+                    ) : (
+                      <FaUserCircle size={65} />
+                    )}
+
+                    <button className="right-[-10px] top-10 h-7 w-7 flex justify-center items-center absolute bg-gradient-to-b from-[#f1cbf1] to-white rounded-full">
                       <label
                         htmlFor="profile-picture"
                         className="cursor-pointer"

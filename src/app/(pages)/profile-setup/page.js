@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import { FaCircleUser } from "react-icons/fa6";
@@ -13,8 +13,10 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import PopUp from "@/app/components/PopUp";
 import Image from "next/image";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
+  const { userIdFromContext } = useContext(UserIdContext);
   const [step, setStep] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
@@ -22,24 +24,23 @@ const page = () => {
   const [displayName, setDisplayName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("18-25 Years");
-  const [gender, setGender] = useState("Male");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
   const [countryId, setCountryId] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [profileHeadline, setProfileHeadline] = useState("");
   const [profileSummary, setProfileSummary] = useState("");
-  const [lastDesignation, setLastDesignation] = useState("Software Developer");
-  const [totalExperience, setTotalExperience] = useState("0-5 Years");
-  const [professionalField, setProfessionalField] = useState("Healthcare");
-  const [professionalExpertise, setProfessionalExpertise] =
-    useState("Data Analysis");
+  const [lastDesignation, setLastDesignation] = useState("");
+  const [totalExperience, setTotalExperience] = useState("");
+  const [professionalField, setProfessionalField] = useState("");
+  const [professionalExpertise, setProfessionalExpertise] = useState("");
   const [skills, setSkills] = useState([]);
   const [personalSkills, setPersonalSkills] = useState([]);
   const [professionalSkills, setProfessionalSkills] = useState([]);
   const [languages, setLanguages] = useState([]);
-  const [englishProficiency, setEnglishProficiency] = useState("Basic");
+  const [englishProficiency, setEnglishProficiency] = useState("");
   const [institutionId, setInstitutionId] = useState("");
   const [institutionName, setInstitutionName] = useState("");
   const [degree, setDegree] = useState("");
@@ -68,7 +69,7 @@ const page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
     getUserData();
   }, [userId]);
 
@@ -237,15 +238,16 @@ const page = () => {
                   <Image
                     src={URL.createObjectURL(selectedImage)}
                     alt="Selected Profile"
-                    className="mt-2 rounded-full"
+                    className="mt-2 rounded-full h-40 w-40"
                     height={150}
                     width={150}
                   />
+
                   <button
                     onClick={uploadImg}
                     className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 "
                   >
-                    Add a profile picture
+                    Click again for upload
                   </button>
                 </div>
               ) : (
@@ -262,7 +264,7 @@ const page = () => {
                       onChange={handleImageChange}
                     />
                     <h1 className="border border-[#773fc6] text-[#773fc6] p-1 text-xs rounded mt-3 ">
-                      Click here for upload profile
+                      Click here for select profile
                     </h1>
                   </label>
                 </div>

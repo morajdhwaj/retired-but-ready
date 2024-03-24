@@ -21,6 +21,7 @@ import { PiNotepadFill } from "react-icons/pi";
 import { PiNotepadLight } from "react-icons/pi";
 import { BsHeartFill } from "react-icons/bs";
 import dayjs from "dayjs";
+import Link from "next/link";
 
 const ReplyCommentsComp = ({
   userId,
@@ -41,6 +42,8 @@ const ReplyCommentsComp = ({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reportType, setReportType] = useState("hate_speech");
   const [selectedReplyImage, setSelectedReplyImage] = useState("");
+  const [showReaction, setShowReaction] = useState(false);
+  const [reactionName, setReactionName] = useState("");
 
   useEffect(() => {
     getComments();
@@ -296,26 +299,30 @@ const ReplyCommentsComp = ({
         {commentReply.map((reply) => {
           return (
             <div key={reply._id} className="flex gap-2 mt-5">
-              <div className="">
-                {reply?.comment_by?.user_image ? (
-                  <Image
-                    alt=""
-                    src={reply?.comment_by?.user_image}
-                    height={20}
-                    width={20}
-                    className="rounded-full"
-                  />
-                ) : (
-                  <FaUserCircle size={50} />
-                )}
-              </div>
+              <Link href={`/profile/${reply?.comment_by?.id}`}>
+                <div className="">
+                  {reply?.comment_by?.user_image ? (
+                    <Image
+                      alt=""
+                      src={reply?.comment_by?.user_image}
+                      height={30}
+                      width={30}
+                      className="w-10 h-10 rounded-full border-2 border-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle size={50} />
+                  )}
+                </div>
+              </Link>
               <div className="border p-2 bg-gray-100 flex flex-col  gap-2 border-gray-300  rounded-b-lg w-full rounded-tr-lg">
                 <div className="flex justify-between">
                   <div className="flex   gap-2  justify-center">
                     <div className="">
-                      <h2 className="text-sm font-semibold text-[#773fc6]  ">
-                        {reply?.comment_by?.user_display_name}
-                      </h2>
+                      <Link href={`/profile/${reply?.comment_by.id}`}>
+                        <h2 className="text-sm font-semibold text-[#773fc6]  ">
+                          {reply?.comment_by?.user_display_name}
+                        </h2>
+                      </Link>
                       <div className="">
                         {editReplyId == reply._id ? (
                           <div>
@@ -335,9 +342,17 @@ const ReplyCommentsComp = ({
                           </div>
                         ) : (
                           <div className="flex flex-col gap-5">
-                            <p className="text-xs font-medium text-gray-800 mt-4">
-                              {reply?.comment_content}
-                            </p>
+                            <p
+                              className="text-xs font-medium text-gray-800 mt-4"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  reply?.comment_content &&
+                                  reply?.comment_content.replace(
+                                    /(https?:\/\/[^\s]+)/g,
+                                    '<a class="text-blue-600" href="$1" target="_blank">$1</a>'
+                                  ),
+                              }}
+                            />
                             {reply?.comment_image && (
                               <Image
                                 src={reply?.comment_image}
@@ -404,11 +419,18 @@ const ReplyCommentsComp = ({
                     )}
                   </div>
                 </div>
-                <div className="mt-5">
+                <div
+                  className="mt-5 relative "
+                  onMouseLeave={() => setShowReaction(false)}
+                >
                   <div className="flex gap-2 items-center g   ">
                     {reply?.reaction_like?.length > 0 && (
                       <div className="flex items-center gap-1 justify-center">
-                        <AiFillLike />
+                        <Image
+                          src="/emoji/like2.png"
+                          height={25}
+                          width={20}
+                        ></Image>
                         <p className="text-sm w-2">
                           {reply?.reaction_like?.length}
                         </p>
@@ -416,7 +438,11 @@ const ReplyCommentsComp = ({
                     )}
                     {reply?.reaction_love?.length > 0 && (
                       <div className="flex items-center  gap-1 justify-center">
-                        <BsHeartFill />
+                        <Image
+                          src="/emoji/love.png"
+                          height={25}
+                          width={20}
+                        ></Image>
                         <p className="text-sm w-2">
                           {reply?.reaction_love?.length}
                         </p>
@@ -424,7 +450,11 @@ const ReplyCommentsComp = ({
                     )}
                     {reply?.reaction_thinking?.length > 0 && (
                       <div className="flex items-center  gap-1 justify-center">
-                        <BiSolidSad />
+                        <Image
+                          src="/emoji/thinking.png"
+                          height={25}
+                          width={20}
+                        ></Image>
                         <p className="text-sm w-2">
                           {reply?.reaction_thinking?.length}
                         </p>
@@ -432,7 +462,11 @@ const ReplyCommentsComp = ({
                     )}
                     {reply?.reaction_insight?.length > 0 && (
                       <div className="flex items-center  gap-1 justify-center">
-                        <IoBulb />
+                        <Image
+                          src="/emoji/bulb.png"
+                          height={25}
+                          width={15}
+                        ></Image>
                         <p className="text-sm w-2">
                           {reply?.reaction_insight?.length}
                         </p>
@@ -440,124 +474,232 @@ const ReplyCommentsComp = ({
                     )}
                     {reply?.reaction_appraise?.length > 0 && (
                       <div className="flex items-center  gap-1 justify-center">
-                        <PiNotepadFill />
+                        <Image
+                          src="/emoji/clap.png"
+                          height={25}
+                          width={20}
+                        ></Image>
                         <p className="text-sm w-2">
                           {reply?.reaction_appraise?.length}
                         </p>
                       </div>
                     )}
                   </div>
-                  <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() =>
-                          addReaction(reply._id, "reaction_like", userId)
-                        }
-                      >
-                        {reply.reaction_like.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <AiFillLike size={20} />
-                        ) : (
-                          <AiOutlineLike size={20} />
-                        )}
-                      </button>
+                  {showReaction && (
+                    <div className=" pb-2 mt-2 bg-[#F3F4F6] py-1  w-[55%] flex flex-col sm:flex-row gap-5 justify-between absolute bottom-5">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            addReaction(reply._id, "reaction_like", userId),
+                              setShowReaction(false);
+                          }}
+                          className="relative"
+                          onMouseEnter={() => setReactionName("like")}
+                          onMouseLeave={() => setReactionName("")}
+                        >
+                          {" "}
+                          {reactionName === "like" && (
+                            <p className="absolute top-[-28px]  bg-[#773FC6] text-white px-2 rounded-lg left-[-10px]">
+                              Like
+                            </p>
+                          )}
+                          <Image
+                            src="/emoji/like2.png"
+                            height={25}
+                            width={20}
+                          ></Image>
+                        </button>
 
-                      <button
-                        onClick={() =>
-                          addReaction(reply._id, "reaction_love", userId)
-                        }
-                      >
-                        {reply.reaction_love.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <FaHeart size={20} />
-                        ) : (
-                          <CiHeart size={20} />
-                        )}
-                      </button>
-                      <button
-                        onClick={() =>
-                          addReaction(reply._id, "reaction_thinking", userId)
-                        }
-                      >
-                        {reply.reaction_thinking.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <BiSolidSad size={20} />
-                        ) : (
-                          <BiSad size={20} />
-                        )}
-                      </button>
+                        <button
+                          onClick={() => {
+                            addReaction(reply._id, "reaction_love", userId),
+                              setShowReaction(false);
+                          }}
+                          className="relative"
+                          onMouseEnter={() => setReactionName("love")}
+                          onMouseLeave={() => setReactionName("")}
+                        >
+                          {reactionName === "love" && (
+                            <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-12px]">
+                              Love
+                            </p>
+                          )}
+                          <Image
+                            src="/emoji/love.png"
+                            height={25}
+                            width={20}
+                          ></Image>
+                        </button>
+                        <button
+                          onClick={() => {
+                            addReaction(reply._id, "reaction_thinking", userId),
+                              setShowReaction(false);
+                          }}
+                          className="relative"
+                          onMouseEnter={() => setReactionName("Think")}
+                          onMouseLeave={() => setReactionName("")}
+                        >
+                          {reactionName === "Think" && (
+                            <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-15px]">
+                              Think
+                            </p>
+                          )}
+                          <Image
+                            src="/emoji/thinking.png"
+                            height={25}
+                            width={20}
+                          ></Image>
+                        </button>
 
-                      <button
-                        onClick={() =>
-                          addReaction(reply._id, "reaction_insight", userId)
-                        }
-                      >
-                        {reply.reaction_insight.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <IoBulb size={20} />
-                        ) : (
-                          <IoBulbOutline size={20} />
-                        )}
-                      </button>
-                      <button
-                        onClick={() =>
-                          addReaction(reply._id, "reaction_appraise", userId)
-                        }
-                      >
-                        {reply.reaction_appraise.some(
-                          (user) => user.user_id === userId
-                        ) ? (
-                          <PiNotepadFill size={20} />
-                        ) : (
-                          <PiNotepadLight size={20} />
-                        )}
-                      </button>
+                        <button
+                          onClick={() => {
+                            addReaction(reply._id, "reaction_insight", userId),
+                              setShowReaction(false);
+                          }}
+                          className="relative"
+                          onMouseEnter={() => setReactionName("insight")}
+                          onMouseLeave={() => setReactionName("")}
+                        >
+                          {reactionName === "insight" && (
+                            <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-20px]">
+                              Insight
+                            </p>
+                          )}
+                          <Image
+                            src="/emoji/bulb.png"
+                            height={25}
+                            width={15}
+                          ></Image>
+                        </button>
+                        <button
+                          onClick={() => {
+                            addReaction(reply._id, "reaction_appraise", userId),
+                              setShowReaction(false);
+                          }}
+                          className={`relative `}
+                          onMouseEnter={() => setReactionName("Appreciate")}
+                          onMouseLeave={() => setReactionName("")}
+                        >
+                          {" "}
+                          {reactionName === "Appreciate" && (
+                            <p className="absolute top-[-28px] bg-[#773FC6] text-white px-2 rounded-lg left-[-30px]">
+                              Appreciate
+                            </p>
+                          )}
+                          <Image
+                            src="/emoji/clap.png"
+                            height={25}
+                            width={20}
+                          ></Image>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  )}
 
-                {/* <div className="text-xs mt-4 flex gap-5">
-               <div className="flex gap-1 items-center justify-center">
-               {reply?.reaction_like?.length !== 0 && (
-                <p> {reply?.reaction_like?.length} </p>
-               )}
-               <button
-                onClick={() =>
-                  addReaction(reply?._id, "reaction_like", userId)
-                }
-                >
-                {reply?.reaction_like?.some(
-                  (user) => user.user_id === userId
-                ) ? (
-                  <AiFillLike size={20} />
-                ) : (
-                  <AiOutlineLike size={20} />
-                )}
-              </button>
-            </div>
-            <div className="flex gap-1 items-center justify-center">
-              {reply?.reaction_love?.length !== 0 && (
-                <p> {reply?.reaction_love?.length} </p>
-              )}
-              <button
-                onClick={() =>
-                  addReaction(reply?._id, "reaction_love", userId)
-                }
-              >
-                {reply?.reaction_love?.some(
-                  (user) => user.user_id === userId
-                ) ? (
-                  <FaHeart size={20} />
-                ) : (
-                  <CiHeart size={20} />
-                )}
-              </button>
-            </div>
-          </div> */}
+                  <div className="">
+                    {reply.reaction_like.filter(
+                      (item) => item.user_id === userId
+                    ).length > 0 && (
+                      <p
+                        className="w-[30px] mt-1"
+                        onMouseEnter={() => setShowReaction(reply._id)}
+                      >
+                        <Image
+                          src="/emoji/like2.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                      </p>
+                    )}
+                    {reply.reaction_love.filter(
+                      (item) => item.user_id === userId
+                    ).length > 0 && (
+                      <p
+                        className="w-[30px] mt-1"
+                        onMouseEnter={() => setShowReaction(reply._id)}
+                      >
+                        <Image
+                          src="/emoji/love.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                      </p>
+                    )}
+                    {reply.reaction_thinking.filter(
+                      (item) => item.user_id === userId
+                    ).length > 0 && (
+                      <p
+                        className="w-[30px] mt-1"
+                        onMouseEnter={() => setShowReaction(reply._id)}
+                      >
+                        <Image
+                          src="/emoji/thinking.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                      </p>
+                    )}
+                    {reply.reaction_insight.filter(
+                      (item) => item.user_id === userId
+                    ).length > 0 && (
+                      <p
+                        className="w-[30px] mt-1"
+                        onMouseEnter={() => setShowReaction(reply._id)}
+                      >
+                        <Image
+                          src="/emoji/bulb.png"
+                          height={25}
+                          width={15}
+                        ></Image>
+                      </p>
+                    )}
+                    {reply.reaction_appraise.filter(
+                      (item) => item.user_id === userId
+                    ).length > 0 && (
+                      <p
+                        className="w-[30px] mt-1"
+                        onMouseEnter={() => setShowReaction(reply._id)}
+                      >
+                        <Image
+                          src="/emoji/clap.png"
+                          height={25}
+                          width={20}
+                        ></Image>
+                      </p>
+                    )}
+                    {reply.reaction_love.filter(
+                      (item) => item.user_id === userId
+                    ).length <= 0 &&
+                      reply.reaction_appraise.filter(
+                        (item) => item.user_id === userId
+                      ).length <= 0 &&
+                      reply.reaction_insight.filter(
+                        (item) => item.user_id === userId
+                      ).length <= 0 &&
+                      reply.reaction_thinking.filter(
+                        (item) => item.user_id === userId
+                      ).length <= 0 &&
+                      reply.reaction_like.filter(
+                        (item) => item.user_id === userId
+                      ).length <= 0 && (
+                        <p
+                          className="w-[30px] mt-1"
+                          onMouseEnter={() => setShowReaction(reply._id)}
+                        >
+                          <AiOutlineLike size={20} />
+                        </p>
+                      )}
+                  </div>
+
+                  {/* <div className=" mt-2">
+                    <Image
+                      src="/emoji/clap.png"
+                      onMouseEnter={() => setShowReaction(true)}
+                      height={25}
+                      width={20}
+                    ></Image>
+                  </div> */}
+                </div>
               </div>
             </div>
           );
@@ -649,3 +791,44 @@ const ReplyCommentsComp = ({
 };
 
 export default ReplyCommentsComp;
+
+{
+  /* <div className="text-xs mt-4 flex gap-5">
+               <div className="flex gap-1 items-center justify-center">
+               {reply?.reaction_like?.length !== 0 && (
+                <p> {reply?.reaction_like?.length} </p>
+               )}
+               <button
+                onClick={() =>
+                  addReaction(reply?._id, "reaction_like", userId)
+                }
+                >
+                {reply?.reaction_like?.some(
+                  (user) => user.user_id === userId
+                ) ? (
+                  <AiFillLike size={20} />
+                ) : (
+                  <AiOutlineLike size={20} />
+                )}
+              </button>
+            </div>
+            <div className="flex gap-1 items-center justify-center">
+              {reply?.reaction_love?.length !== 0 && (
+                <p> {reply?.reaction_love?.length} </p>
+              )}
+              <button
+                onClick={() =>
+                  addReaction(reply?._id, "reaction_love", userId)
+                }
+              >
+                {reply?.reaction_love?.some(
+                  (user) => user.user_id === userId
+                ) ? (
+                  <FaHeart size={20} />
+                ) : (
+                  <CiHeart size={20} />
+                )}
+              </button>
+            </div>
+          </div> */
+}

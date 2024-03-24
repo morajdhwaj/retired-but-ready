@@ -1,10 +1,11 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { UserIdContext } from "@/context/UserIdContext";
 
 const page = () => {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,7 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         toast.success(response?.data?.message);
-        router.push("/forgot-password-otp");
+        router.push(`/forgot-password-otp/${response?.data?.user_id}`);
       })
       .catch(function (error) {
         console.error(error);

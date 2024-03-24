@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEdit } from "react-icons/md";
@@ -8,7 +8,8 @@ import { AiFillPicture } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios"; // Import Axios
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; 
+import { UserIdContext } from "@/context/UserIdContext";
 
 const data = [
   { id: 1, value: "Technology", label: "Technology" },
@@ -18,15 +19,17 @@ const data = [
 ];
 
 const Page = () => {
+   const { userIdFromContext } = useContext(UserIdContext);
   const [Category, setCategory] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
   const [userId, setUserId] = useState("");
+  const [groupType, setGroupType] = useState("public");
 
   const router = useRouter();
 
   useEffect(() => {
-    setUserId(localStorage.getItem("userId"));
+    setUserId(userIdFromContext);
   }, [userId]);
 
   const handleCategory = (selected, selection) => {
@@ -58,7 +61,7 @@ const Page = () => {
       group_description: groupDescription,
       group_image: "string",
       group_banner: "string",
-      group_category: "string",
+      group_category: groupType,
       group_interests: Category.map((item) => item.value),
       join_requests: [],
       approved_requests: [],
@@ -69,7 +72,7 @@ const Page = () => {
       is_deleted: false,
       group_comments: [],
       is_group_featured: false,
-      group_status: "string",
+      group_status: groupType,
     };
 
     axios
@@ -91,6 +94,8 @@ const Page = () => {
         // Handle error, maybe show a message to the user
       });
   };
+
+  console.log(userId, "this is user id from create group page");
 
   return (
     <div className="bg-[#EDEBF2] h-[100vh pb-5  px-10 ">
@@ -190,7 +195,14 @@ const Page = () => {
               <h2 className="mb-3">Group Type</h2>
               <div className="mb-5">
                 <div className="">
-                  <input type="radio" name="group" className="" />
+                  <input
+                    type="radio"
+                    value="public"
+                    checked={groupType === "public"}
+                    onChange={(e) => setGroupType(e.target.value)}
+                    name="group"
+                    className=""
+                  />
                   <label htmlFor="" className="ml-2">
                     Public
                   </label>
@@ -202,7 +214,14 @@ const Page = () => {
               </div>
               <div className="">
                 <div className="">
-                  <input type="radio" name="group" className="" />
+                  <input
+                    type="radio"
+                    value="private"
+                    name="group"
+                    checked={groupType === "private"}
+                    onChange={(e) => setGroupType(e.target.value)}
+                    className=""
+                  />
                   <label htmlFor="" className="ml-2">
                     Private
                   </label>

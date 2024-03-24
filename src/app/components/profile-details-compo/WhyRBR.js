@@ -2,14 +2,27 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
 
 const RetireCause = [
-  { value: "Medical issues", label: "Medical issues" },
-  { value: "Family issues", label: "Family issues" },
-  { value: "Retired from service", label: "Retired from service" },
+  {
+    value: "Retired from service/business",
+    label: "Retired from service/business",
+  },
+  {
+    value: "Early Retired from service/business",
+    label: "Early Retired from service/business",
+  },
+  { value: "Working from home", label: "working from home" },
+  {
+    value: "Physically challenged/Disable",
+    label: "Physically challenged/Disable",
+  },
+  { value: "Medical issue", label: "Medical issue" },
+  { value: "Family issue", label: "Family issue" },
+  { value: "Others", label: "Others" },
 ];
 
 const wants = [
@@ -116,7 +129,7 @@ const WhyRBR = ({ userId }) => {
         </h2>
 
         {edit ? (
-          <Select
+          <CreatableSelect
             id="selectCause"
             instanceId="selectCause"
             isMulti
