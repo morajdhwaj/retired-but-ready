@@ -1,5 +1,5 @@
 "use-client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { ImProfile } from "react-icons/im";
@@ -16,58 +16,39 @@ import WorkConnection from "./WorkConnection";
 import HiringConnection from "../anushkaConnectionComponent/HiringConnection";
 import BestConnection from "../anushkaConnectionComponent/BestConnection";
 import MyConnection from "./MyConnection";
-import Request from "@/Request";
-
-const cards = [
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-
-  {
-    name: "Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Raj",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar ",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar ",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-  {
-    name: "Munwar Raj Singh",
-    position: "OPPO India Marketing Head",
-    company: "Tech Connection India Pvt.Ltd.",
-  },
-];
+import Request from "../connection-page-compo/Request";
+import axios from "axios";
 
 const Suggestion = () => {
   const [activePage, setActivePage] = useState([null]);
-  const [card, setCard] = useState(cards);
+  const [suggestionData, setSuggestionData] = useState([]);
+  const [userId, setUserId] = useState("");
 
+  useEffect(() => {
+    setUserId(localStorage.getItem("userId"));
+    getSuggestions();
+  }, [userId]);
+
+  const getSuggestions = () => {
+    const options = {
+      method: "GET",
+      url: `https://retpro.catax.me/network/suggestions?user_id=${userId}`,
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        setSuggestionData(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+  console.log(userId, "usedId");
+  console.log(suggestionData, "suggestion ka data");
   const handleToggle = (index) => {
-    setCard([]);
+    setSuggestionData([]);
     activePage === index ? setActivePage(0) : setActivePage(index);
   };
 
@@ -81,7 +62,9 @@ const Suggestion = () => {
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 p-2">
             <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
-              <p className="text-xs "></p>
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
             </div>
             <Image
               src="/assets/antina.png"
@@ -102,7 +85,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(2)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                14k+
+              </p>
+            </div>
             <ImProfile className=" mx-8 mt-3 size-8 fill-pink-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -115,7 +102,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(3)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                16k+
+              </p>
+            </div>
             <FaGlobe className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -128,7 +119,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(4)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
+            </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-blue-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -141,7 +136,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(5)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border  border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                10k+
+              </p>
+            </div>
             <FaSearchLocation className=" mx-8 mt-3 size-8 fill-orange-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -154,7 +153,11 @@ const Suggestion = () => {
           onClick={() => handleToggle(6)}
         >
           <div className="bg-gray-300 w-24  h-24 rounded-full border-2  border-gray-400 ">
-            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  "></div>
+            <div className="bg-gray-100 rounded-full border border-red-500 w-10 h-4 mx-16  ">
+              <p className="text-xs flex items-center justify-center font-semibold">
+                20k+
+              </p>
+            </div>
             <IoPeopleSharp className=" mx-8 mt-3 size-8 fill-green-500" />
           </div>
           <h1 className="text-center text-sm font-medium mt-2">
@@ -173,7 +176,7 @@ const Suggestion = () => {
       {activePage === 6 && <BestConnection />}
 
       <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-5 gap-2 ">
-        {card.map((card, index) => (
+        {suggestionData.map((cardElem, index) => (
           <div className="border border-gray-300  rounded-md" key={index}>
             <div className=" bg-[#B3CEE2]   ">
               <div className="flex justify-end mt-2 mx-2">
@@ -182,7 +185,11 @@ const Suggestion = () => {
 
               <div className="flex items-center justify-center pb-4">
                 <Image
-                  src="/assets/Ellipse-39.png"
+                  src={
+                    cardElem.user_image
+                      ? cardElem.user_image
+                      : "/assets/Ellipse-39.png"
+                  }
                   width={40}
                   height={40}
                   alt="pic"
@@ -191,11 +198,9 @@ const Suggestion = () => {
               </div>
             </div>
             <h1 className="mt-5 flex items-center justify-center font-sans text-xl">
-              {card.name}
+              {cardElem.user_display_name}
             </h1>
-            <p className="  text-center text-xs mt-1 text-gray-500">
-              {card.position}
-            </p>
+            <p className="  text-center text-xs mt-1 text-gray-500">postion</p>
             <p className=" text-center text-sm text-gray-500"> text of the</p>
             <div className="flex  flex-wrap  justify-center items-center gap-2 mt-2">
               <SiHsbc className="fill-red-600 size-8" />

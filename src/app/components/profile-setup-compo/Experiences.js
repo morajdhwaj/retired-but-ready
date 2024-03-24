@@ -87,7 +87,6 @@ const Experiences = ({
 
   const handleAddExperience = () => {
     const newExperience = {
-      company_id: "657d55d2033cb72b10c630e5",
       company_name: companyName,
       title: title,
       start_date: companyStart,
@@ -97,6 +96,8 @@ const Experiences = ({
     setExperiences([...experiences, newExperience]);
     setCompanyName("");
     setTitle("");
+    setCompanyStart("");
+    setCompanyEnd("");
   };
 
   const handleRemoveExperience = (index) => {
@@ -110,7 +111,7 @@ const Experiences = ({
     "lang"
   );
 
-  console.log(experiences, "companyStart");
+  console.log(companyStart, "companyStart");
 
   return (
     <div className="h-full mx-20  ">
@@ -186,11 +187,15 @@ const Experiences = ({
             <div className="mt-5 flex gap-20">
               <div>
                 <h2 className="text-[#808184] font-medium">Start date</h2>
-                <h2 className=" font-medium">{experience?.start_date}</h2>
+                <h2 className=" font-medium">
+                  {experience?.start_date.split("-").reverse().join("-")}
+                </h2>
               </div>
               <div>
                 <h2 className="text-[#808184] font-medium">End date</h2>
-                <h2 className=" font-medium">{experience?.end_date}</h2>
+                <h2 className=" font-medium">
+                  {experience?.end_date.split("-").reverse().join("-")}
+                </h2>
               </div>
             </div>
           </div>
@@ -254,7 +259,7 @@ const Experiences = ({
             onClick={handleStepUp}
             className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
           >
-            Next
+            Submit & Next
           </button>
         </div>
       </div>

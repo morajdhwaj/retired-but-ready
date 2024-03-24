@@ -1,18 +1,22 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
-
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
-import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion";
+import Network from "@/app/components/jaishreeConnectionComponent/Network";
+
+import ContactPage from "@/app/components/contact-component/ContactPage";
+import FollowingPage from "@/app/components/contact-component/FollowingPage";
+import FollowersPage from "@/app/components/contact-component/FollowersPage";
 
 const page = () => {
   const [userData, setUserData] = useState([]);
   const [userId, setUserId] = useState("");
+  const [toggle, setToggle] = useState(1);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -41,13 +45,13 @@ const page = () => {
   console.log(userData, "userId");
 
   return (
-    <div className="bg-[#EDEBF2]  px-10 ">
+    <div className="h-[100vh]">
       <Navbar />
-      <div className="flex">
-        <div className="hidden lg:flex">
+      <div className="bg-[#B0B0B1] p-10 ">
+        <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24  ">
+        <div className="  lg:ml-52  bg-[#F2F2F2] rounded  mt-20 p-10">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%]   pt-24 ">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -57,20 +61,6 @@ const page = () => {
                     <h2>{userData.user_display_name}</h2>
                     <p className="text-gray-500">{userData.last_designation}</p>
                   </div>
-                </div>
-                <div className="flex gap-5">
-                  <Link
-                    href="/contacts-page"
-                    className="flex items-center  px-4 py-2 bg-white rounded-lg "
-                  >
-                    <p>Contacts</p>
-                  </Link>
-                  <Link
-                    href="/followers-page"
-                    className="flex items-center  px-4 py-2 bg-white rounded-lg "
-                  >
-                    <p>Followers</p>
-                  </Link>
                 </div>
               </div>
             </div>
@@ -84,15 +74,47 @@ const page = () => {
                 borderRadius: 10,
               }}
               className="text-white p-5 flex  justify-between"
-            >
-              <span className="text-sm font-normal">
-                profile
-                <br /> Overview
-              </span>
-            </div>
+            ></div>
           </div>
-          <div className="  mt-44 sm:mt-32 md:mt-20 mx-5 ">
-            {<Suggestion />}
+
+          <div className=" mt-36 sm:mt-32 md:mt-36 lg:36  ">
+            <div className="flex  text-black border-b-2 w-[40%] relative">
+              <div
+                onClick={() => setToggle(1)}
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[10%] ${
+                  toggle === 1
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-[#D1C9C9]"
+                } `}
+              >
+                Contact
+              </div>
+              <div
+                onClick={() => setToggle(2)}
+                className={`border-b-2 text-md font-medium absolute bottom-[-2px] left-[90%] ${
+                  toggle === 2
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200"
+                } `}
+              >
+                Following
+              </div>
+              <div
+                onClick={() => setToggle(3)}
+                className={`border-b-2  text-md font-medium absolute bottom-[-2px] left-[50%]  ${
+                  toggle === 3
+                    ? "border-[#A8359C] text-[#A8359C]"
+                    : "border-gray-200"
+                } `}
+              >
+                Followers
+              </div>
+            </div>
+            <div className=" p-5">
+              {toggle === 1 && <ContactPage />}
+              {toggle === 2 && <FollowingPage />}
+              {toggle === 3 && <FollowersPage />}
+            </div>
           </div>
         </div>
       </div>

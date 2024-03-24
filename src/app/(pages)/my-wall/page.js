@@ -8,8 +8,7 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { AiFillTool } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaBox } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
+import { FaBox, FaUserCircle } from "react-icons/fa";
 import { PiFilesFill } from "react-icons/pi";
 import axios from "axios";
 import PostInput from "@/app/components/post-components/PostInput";
@@ -17,7 +16,7 @@ import toast from "react-hot-toast";
 import Loader from "@/app/components/Loader";
 
 const page = () => {
-  const [feeds, setFeeds] = useState([]);
+  const [myFeeds, setMyFeeds] = useState([]);
   const [tab, setTab] = useState(1);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
@@ -26,7 +25,7 @@ const page = () => {
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
     getUserData();
-    getFeeds();
+    getMyFeeds();
   }, [userId]);
 
   const getUserData = () => {
@@ -48,21 +47,20 @@ const page = () => {
       });
   };
 
-  const getFeeds = () => {
+  const getMyFeeds = () => {
     const options = {
       method: "GET",
-      url: `https://retpro.catax.me/my-feed/${userId}`,
+      url: `https://retpro.catax.me/post/user/${userId}`,
     };
 
     axios
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        setFeeds(response?.data);
+        setMyFeeds(response.data);
       })
       .catch(function (error) {
         console.error(error);
-        // toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -78,11 +76,10 @@ const page = () => {
     );
   }
 
-  console.log(userData, "this is for search user id");
   console.log(userData, "userData");
 
   return (
-    <div className="bg-[#A6A7A6]  px-10 ">
+    <div className="bg-[#EDEBF2]  px-10 ">
       <Navbar />
       <div className="flex">
         <div className="hidden lg:flex">
@@ -136,61 +133,26 @@ const page = () => {
           {addPost && (
             <div className="mt-44 sm:mt-32 md:mt-20">
               <PostInput
-                feeds={feeds}
+                feeds={myFeeds}
                 userData={userData}
-                setFeeds={setFeeds}
-                getFeeds={getFeeds}
+                setFeeds={setMyFeeds}
+                getFeeds={getMyFeeds}
                 userId={userId}
               />
             </div>
           )}
 
-          <div className={`${!addPost && "mt-44 sm:mt-32 md:mt-20"} mx-5 `}>
-            <div className="flex justify-between w-full text-gray-500">
-              <button
-                onClick={() => setTab(1)}
-                className={`border-b-4 w-1/2 text-sm md:text-xl font-medium p-2  ${
-                  tab === 1
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "border-gray-200"
-                } `}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setTab(2)}
-                className={`border-b-4  text-sm md:text-xl font-medium w-1/2 p-2 ${
-                  tab === 2
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "border-gray-200"
-                } `}
-              >
-                <span className="text-red-500">Trending</span> News
-              </button>
-              {/* <button
-                onClick={() => setTab(3)}
-                className={`border-b-4  text-sm md:text-xl font-medium w-1/3 p-2 ${
-                  tab === 3
-                    ? "border-[#773fc6] text-[#773fc6]"
-                    : "border-gray-200"
-                } `}
-              >
-                Surprise Me!
-              </button> */}
-            </div>
-
-            {tab === 1 && (
-              <div>
-                <All
-                  feeds={feeds}
-                  setFeeds={setFeeds}
-                  getFeeds={getFeeds}
-                  userId={userId}
-                />
-              </div>
-            )}
-            {tab === 2 && <Trending />}
-            {/* {tab === 3 && <div>Tab3</div>} */}
+          <div
+            className={`${
+              !addPost && "mt-44 sm:mt-32 md:mt-20"
+            } mx-5 h-[100vh] `}
+          >
+            <All
+              feeds={myFeeds}
+              setFeeds={setMyFeeds}
+              getFeeds={getMyFeeds}
+              userId={userId}
+            />
           </div>
         </div>
       </div>

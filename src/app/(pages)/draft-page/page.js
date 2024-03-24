@@ -25,6 +25,8 @@ const page = () => {
   const [editDescription, setEditDescription] = useState("");
   const [showEdit, setShowEdit] = useState(false);
   const router = useRouter();
+  const [postId, setPostId] = useState("");
+  const [showDropDown, setShowDropDown] = useState(false);
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -49,6 +51,13 @@ const page = () => {
       .catch(function (error) {
         console.error(error);
       });
+  };
+
+  const handleDropdown = (post_id) => {
+    if (!postId) {
+      setShowDropDown(!showDropDown);
+      setPostId(post_id);
+    } else setPostId("");
   };
 
   const getAllDraft = () => {
@@ -123,6 +132,7 @@ const page = () => {
   }
 
   const getPost = (id) => {
+    setPostId("");
     if (!selectId) {
       setSelectId(id);
     } else setSelectId("");
@@ -215,59 +225,80 @@ const page = () => {
               {draftData.map((post) => {
                 return (
                   <div key={post?._key} className="border p-2 rounded-xl">
-                    {selectId === post?._id ? (
-                      <div className="flex items-center gap-2">
-                        <h2>Description -</h2>{" "}
-                        <textarea
-                          className="p-2 w-80"
-                          value={editDescription}
-                          onChange={(e) => setEditDescription(e.target.value)}
-                        />
-                        <button
-                          onClick={() => handleUpdate(post?._id)}
-                          className="text-[#773f6c] font-semibold"
-                        >
-                          Save
-                        </button>
-                      </div>
-                    ) : (
-                      <h2>Description - {post.post_description}</h2>
-                    )}
-                    <h2>Type -{post.post_type}</h2>
-                    <div>
-                      {post?.post_media?.map((image) => {
-                        return (
-                          <div key={image?.url}>
-                            <Image
-                              src={image?.url}
-                              alt=""
-                              height={100}
-                              width={100}
+                    <div className="flex justify-between">
+                      <div className="flex">
+                        <h2 className="p-2 w-32">Description -</h2>{" "}
+                        {selectId === post?._id ? (
+                          <div className="flex items-center gap-2">
+                            <textarea
+                              className="p-2 w-[70vh]"
+                              value={editDescription}
+                              onChange={(e) =>
+                                setEditDescription(e.target.value)
+                              }
                             />
                           </div>
-                        );
-                      })}
+                        ) : (
+                          <h2 className="w-[70vh] p-2 ">
+                            {post.post_description}
+                          </h2>
+                        )}
+                      </div>
+                      <button onClick={() => handleDropdown(post?._id)}>
+                        <BsThreeDotsVertical size={25} color="gray" />
+                      </button>
+                      {postId == post?._id && (
+                        <div className="absolute border bg-white border-gray-300 shadow-md rounded-md flex flex-col right-48 px-2 ">
+                          <div className="flex flex-col p-2 items-center justify-center">
+                            <button
+                              onClick={() => getPost(post?._id)}
+                              className="hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => handleDelete(post?._id)}
+                              className=" hover:bg-[#773fc6] w-20 rounded-md hover:text-white text-black p-2"
+                            >
+                              delete
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleDelete(post?._id)}
-                        className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
-                      >
-                        Remove
-                      </button>
 
-                      <button
-                        onClick={() => getPost(post?._id)}
-                        className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
-                      >
-                        Update
-                      </button>
-                      <button
-                        onClick={() => publishPost(post?._id)}
-                        className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
-                      >
-                        Publish
-                      </button>
+                    <div className=" flex justify-between items-end p-2">
+                      <div className="ml-[115px] mt-10">
+                        {post?.post_media?.map((image) => {
+                          return (
+                            <div key={image?.url}>
+                              <Image
+                                src={image?.url}
+                                alt=""
+                                height={150}
+                                width={150}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="">
+                        {selectId === post?._id ? (
+                          <button
+                            onClick={() => handleUpdate(post?._id)}
+                            className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
+                          >
+                            Update
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => publishPost(post?._id)}
+                            className="bg-[#773f6c] text-white px-4 py-2 rounded-lg mt-5"
+                          >
+                            Publish
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );

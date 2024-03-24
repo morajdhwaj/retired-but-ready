@@ -59,9 +59,13 @@ const page = () => {
       .then(function (response) {
         console.log(response.data);
         localStorage.setItem("userId", response?.data?.user_id);
+        if (response.data.redirect === "verification") {
+          router.push("verification-code");
+        } else {
+          router.push("walls-page");
+        }
         getUserData(response?.data?.user_id);
         toast.success(response?.data?.message);
-        handleModal();
       })
       .catch(function (error) {
         console.error(error);
@@ -72,13 +76,13 @@ const page = () => {
   console.log(userData);
 
   return (
-    <div className="  bg-gray-200  ">
+    <div className="  bg-gray-200 h-[100vh]  ">
       <Navbar />
       {/* Image */}
 
-      <div className="  md:flex lg:flex  sm:pt-10 lg:pt-20   ">
-        <div className=" flex flex-col gap-3 mx-3  lg:w-1/2 ">
-          <div className=" h-auto mt-5 rounded-md lg:p-5 border-transparent flex justify-center border-2  hover:w-auto hover:border-2 hover:border-blue-600  ">
+      <div className="  lg:flex pt-20 ">
+        <div className="  lg:flex flex-col gap-3 mx-3 lg:w-1/2 ">
+          <div className=" h-auto mt-5 rounded-md lg:p-5 border-transparent flex justify-center border-2  hover:w-auto hover:border-2   ">
             <Image
               src="/assets/Group-626217.png"
               alt="login"
@@ -88,15 +92,15 @@ const page = () => {
           </div>
 
           {/* Logo Image */}
-          <div className="  h-auto mt-5 rounded-md p-5 border-transparent flex flex-col justify-center gap-5 border-2 hover:w-auto hover:border-2 hover:border-blue-600 mb-2 sm:mb-3 md:mb-0 lg:mb-36">
+          <div className="  h-auto sm:mt-5 rounded-md p-5 border-transparent flex flex-col justify-center gap-5 border-2 hover:w-auto hover:border-2  mb-2 sm:mb-3 md:mb-0 lg:mb-36">
             <div className="flex items-center justify-center gap-2">
-              <div className="w-[100px] h-[1px] bg-gray-500" />
+              <div className=" w-[70px] sm:w-[100px] h-[1px] bg-gray-500" />
 
               <h1 className="font-normal"> or login through</h1>
-              <div className="w-[100px] h-[1px] bg-gray-500" />
+              <div className=" w-[70px] sm:w-[100px] h-[1px] bg-gray-500" />
             </div>
             <div className="flex  gap-3 items-center justify-center ">
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
+              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
                 <button>
                   <Image
                     src="/assets/GOOGLE.png"
@@ -106,9 +110,9 @@ const page = () => {
                     className=" bg-gray-200"
                   />
                 </button>
-                <h3 className="font-bold text-xl">Google</h3>
+                <h3 className="font-bold text-sm sm:text-xl">Google</h3>
               </div>
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
+              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
                 <button className="">
                   <Image
                     src="/assets/facebook.png"
@@ -118,11 +122,11 @@ const page = () => {
                     className=" bg-gray-200"
                   />
                 </button>
-                <h3 className="font-bold text-xl">Facebook</h3>
+                <h3 className="font-bold text-sm sm:text-xl">Facebook</h3>
               </div>
             </div>
             <div className="flex  justify-center gap-3 ">
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] ">
+              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] ">
                 <button className="">
                   <Image
                     src="/assets/mobile-phone-svgrepo-com-1.png"
@@ -132,9 +136,9 @@ const page = () => {
                     className="w-[30px] "
                   />
                 </button>
-                <h3 className="font-bold text-xl">Mobile</h3>
+                <h3 className="font-bold text-sm sm:text-xl">Mobile</h3>
               </div>
-              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg w-[170px] py-1">
+              <div className="flex items-center border-2 border-[#773FC6] p-2 gap-3 rounded-lg  w-[120px] sm:w-[170px] py-1">
                 <button>
                   <Image
                     src="/assets/EMAIL.png"
@@ -143,43 +147,43 @@ const page = () => {
                     height={30}
                   />
                 </button>
-                <h3 className="font-bold text-xl">Email</h3>
+                <h3 className="font-bold text-sm sm:text-xl">Email</h3>
               </div>
             </div>
           </div>
         </div>
         {/* Login form */}
 
-        <div className="lg:w-1/2 text-center flex flex-col  items-center">
-          <h1 className=" text-3xl font-bold text-center mt-24">Login</h1>
+        <div className=" w-full lg:w-1/2 text-center flex flex-col  items-center  ">
+          <h1 className=" text-3xl font-bold text-center  lg:mt-24">Login</h1>
 
-          <div className="    rounded-md  p-5  border-2 border-gray-300 flex flex-col  mt-10 gap-5 w-[80%] hover:border-2 hover:border-blue-600">
+          <div className="    rounded-md  p-5  border-2 border-gray-300 flex flex-col mt-5 sm:mt-10 gap-5  hover:border-2 ">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               autoComplete="email"
-              className="mt-5   w-auto border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2 hover:border-blue-600 hover:border-b-2"
+              className="mt-5  w-60 sm:w-80  border-2 rounded-md bg-gray-200 border-gray-300 p-1 flex items-center hover:border-2  hover:border-b-2"
             />
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className=" w-auto border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2 hover:border-blue-600 hover:border-b-2 "
+              className="w-60 sm:w-80  border-2  bg-gray-200 border-gray-300 p-1 flex items-center rounded-md hover:border-2  hover:border-b-2 "
             />
             <div className="text-start">
               <Link
                 href="/forgot-password"
-                className="mb-0 hover:border-b-2  hover:border-blue-600 hover:w-40"
+                className="mb-0 hover:border-b-2   hover:w-40"
               >
                 Forget password ?
               </Link>
             </div>
             <button
               onClick={handleLogin}
-              className="border-2 bg-[#773FC6] rounded-lg p-2  w-auto text-xl text-center  text-white flex justify-center items-center"
+              className="border-2 bg-[#773FC6] rounded-lg p-2 w-60 sm:w-80  text-xl text-center  text-white flex justify-center items-center"
             >
               Login
             </button>
@@ -191,14 +195,14 @@ const page = () => {
             </Link>
           </div>
         </div>
-        {showModal && (
+        {/* {showModal && (
           <PopUp
             onClick={handleModal}
             title="Logged in , lets build your profile now"
             action="Enter Profile details"
             message=" To allow JunPros to find you and to connect with fellow RetPros, a profile that display your information is important"
           />
-        )}
+        )} */}
       </div>
     </div>
   );

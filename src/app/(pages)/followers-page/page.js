@@ -16,7 +16,7 @@ const page = () => {
   const [userId, setUserId] = useState("");
   const [followers, setFollower] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [from_user, setUser] = useState("");
+  const [formUserId, setFromUserId] = useState("");
 
   useEffect(() => {
     setUserId(localStorage.getItem("userId"));
@@ -65,17 +65,18 @@ const page = () => {
 
   const handleDeleteModal = (from_user_id) => {
     setShowDeleteModal(!showDeleteModal);
-    setUser(from_user_id);
+    if (from_user_id) {
+      deleteFollowers(from_user_id);
+    }
   };
 
   // remove followers
-  const deleteFollowers = () => {
-
-    console.log(from_user, "from user");
+  const deleteFollowers = (from_user_id) => {
+    console.log(userId, "userid");
 
     const options = {
       method: "DELETE",
-      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user}`,
+      url: `https://retpro.catax.me/remove-follower/${userId}/${from_user_id}`,
     };
 
     axios
@@ -85,6 +86,7 @@ const page = () => {
         toast.success(response?.data?.message);
         getFollowers();
         console.log("DELETE");
+        setFromUserId("");
         setShowDeleteModal(false);
       })
       .catch(function (error) {
@@ -184,15 +186,13 @@ const page = () => {
                       <div className="flex gap-2">
                         <button
                           className="border-2 border-black h-10 p-1 rounded-full "
-                          // onClick={() => deleteFollowers(curelem.from_user_id)}
-                          // onClick={handleDeleteModal}
                           onClick={() =>
                             handleDeleteModal(curelem.from_user_id)
                           }
                         >
                           Remove
                         </button>
-                        {console.log(curelem.from_user_id, "removeid")}
+
                         <IoIosSend className="mt-3 font-[20px]" />
                       </div>
                     </div>
@@ -204,7 +204,7 @@ const page = () => {
                 <PopUp
                   close={handleDeleteModal}
                   onClick={deleteFollowers}
-                  title="Are you want Delete this follower"
+                  title="Are you want Remove this follower"
                   action="Delete"
                   message=""
                   error="error"
