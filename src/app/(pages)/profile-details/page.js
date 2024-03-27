@@ -106,7 +106,7 @@ const Page = () => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
+        <div className="w-full bg-[#f2f1f3]  sm:p-5 lg:ml-52 pt-24">
           <div className="relative flex  justify-center ">
             <div className="absolute w-[96%] pt-24 mx-5">
               <div className="w-full bg-gradient-to-b from-[#f1cbf1] to-white flex flex-col gap-5 md:flex-row py-5 justify-between rounded-xl px-5 ">
@@ -180,15 +180,15 @@ const Page = () => {
               </p>
             </div>
           </div>
-          <div className="mt-48 sm:mt-32 md:mt-20 mx-5">
+          <div className="mt-48 sm:mt-32 md:mt-20 mx-5 ">
             <p className="text-gray-500 text-lg text-center leading-8">
               {userData?.profile_summary}
             </p>
           </div>
-          <div className="m-10 flex flex-col gap-3">
+          <div className="m-10  flex flex-col gap-3">
             <div
               onClick={() => handleToggle(1)}
-              className={`font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer  flex items-center justify-between ${
+              className={`font-semibold text-2xl px-5 py-3 rounded-lg cursor-pointer   flex items-center justify-between ${
                 activeIndex === 1
                   ? "bg-[#773fc6] text-white "
                   : "bg-gray-200  text-gray-500"
@@ -263,7 +263,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <div className="flex bg-[#f2f1f3] ml-36  items-center justify-center gap-10 py-10">
+      <div className="flex bg-[#f2f1f3] sm:ml-36  items-center justify-center gap-10 py-10">
         <Link
           href="/login"
           className="bg-[#773fc6] text-center  p-2 text-white font-medium rounded w-40 "

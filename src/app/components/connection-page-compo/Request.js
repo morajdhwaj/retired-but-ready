@@ -118,13 +118,13 @@ const Request = () => {
                 </div>
                 <div className="flex gap-2 items-center mx-2">
                   <button
-                    className="px-4 py-1 rounded-md border border-gray-300 text-sm hover:shadow-lg"
+                    className="px-4 py-2 rounded-md border border-gray-300 text-sm hover:shadow-lg"
                     onClick={() => handleIgnore(curEle.network_request_id)}
                   >
                     Ignore
                   </button>
                   <button
-                    className=" px-4 py-1 rounded-md border-[#D096CA] border text-sm hover:shadow-lg "
+                    className=" px-4 py-2 rounded-md bg-[#773fc6] border text-white text-sm hover:shadow-lg "
                     onClick={() => handleAccept(curEle.network_request_id)}
                   >
                     Accept
