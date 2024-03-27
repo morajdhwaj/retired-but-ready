@@ -98,7 +98,7 @@ const PhoneVerificationOpt = ({
         </div>
 
         <button className="" onClick={resendOtp}>
-          resend otp
+          Resend OTP
         </button>
 
         <button
