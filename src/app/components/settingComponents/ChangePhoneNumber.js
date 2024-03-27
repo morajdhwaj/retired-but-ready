@@ -36,13 +36,28 @@ const ChangePhoneNumber = ({
           </div>
           <div className="mt-10">
             <input
+              type="text"
+              pattern="[0-9]"
+              value={newMobileNumber}
+              onChange={(e) => {
+                const onlyNum = e.target.value.replace(/[^0-9]/g, "");
+                setNewMobileNumber(onlyNum);
+              }}
+              maxLength={10}
+              // className=" bg-gray-200 text-md rounded-lg block w-full pl-5    focus:outline-none"
+              className={`rounded-lg w-64 p-2 border-2 ${
+                showOption == "addPhone" ? "block" : "hidden"
+              } `}
+              // Added focus:outline-none to remove the focus border
+            />
+            {/* <input
               type="number"
               value={newMobileNumber}
               onChange={(e) => setNewMobileNumber(e.target.value)}
               className={`rounded-lg w-64 p-2 border-2 ${
                 showOption == "addPhone" ? "block" : "hidden"
               } `}
-            />
+            /> */}
             <button
               className={`border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-1 px-5 mt-3 ${
                 showOption == "addPhone" ? "block" : "hidden"
