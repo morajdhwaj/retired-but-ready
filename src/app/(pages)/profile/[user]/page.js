@@ -247,6 +247,8 @@ const page = ({ params }) => {
     );
   }
 
+  console.log(userData);
+
   return (
     <>
       <div className="bg-[#EDEBF2]  px-10 h-full min-h-[100vh] ">
@@ -374,12 +376,12 @@ const page = ({ params }) => {
                       {userData.user_city},{userData.user_state},
                       {userData.country_name}
                     </h2>
-                    <Link
+                    <div
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
                       <span className="">{connections.length} </span>Connection
-                    </Link>
+                    </div>
                   </div>
                   <div className="flex gap-2 items-center ">
                     <div className="border p-1 rounded-sm border-black">
@@ -402,9 +404,9 @@ const page = ({ params }) => {
                   <div className=" px-3">
                     <div className="">
                       <h2 className="text-lg font-semibold">Activity</h2>
-                      <Link href="#" className="text-[#773fc6]">
+                      {/* <Link href="#" className="text-[#773fc6]">
                         1000 Follower
-                      </Link>
+                      </Link> */}
                     </div>
 
                     <div className="">
