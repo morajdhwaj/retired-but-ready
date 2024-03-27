@@ -70,7 +70,7 @@ const page = () => {
         console.log(response.data, "this is response form change email");
         toast.success("OTP sent successfully");
         setShowSettingOption("emailOtp");
-        setNewEmail("");
+        // setNewEmail("");
       } catch (error) {
         console.log(error, "this is error form change email");
         toast.error(error.response.data.detail);
