@@ -4,9 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
-import { FaBox, FaUserCircle } from "react-icons/fa";
-import { PiFilesFill } from "react-icons/pi";
-import { AiFillTool } from "react-icons/ai";
+import { FaEdit, FaUserCircle } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import ProfileDetails from "@/app/components/profile-details-compo/ProfileDetails";
 import WhyRBR from "@/app/components/profile-details-compo/WhyRBR";
@@ -25,6 +23,9 @@ const Page = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [userId, setUserId] = useState("");
   const [userData, setUserData] = useState([]);
+  const [edit, setEdit] = useState(false);
+  const [summary, setSummary] = useState("");
+
   // const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
@@ -43,6 +44,7 @@ const Page = () => {
       .then(function (response) {
         console.log(response?.data, "hello im sachin");
         setUserData(response?.data);
+        setSummary(response?.data?.profile_summary);
       })
       .catch(function (error) {
         console.error(error);
@@ -97,6 +99,31 @@ const Page = () => {
     );
   }
 
+  const updateUser = () => {
+    const options = {
+      method: "PUT",
+      url: "https://retpro.catax.me/user/update-profile",
+      params: { user_id: userId },
+      headers: { "Content-Type": "application/json" },
+      data: {
+        profile_summary: summary,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success(response?.data?.message);
+        setEdit(!edit);
+        getUserData();
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error(error?.response?.data?.detail);
+      });
+  };
+
   console.log(userData, "userData");
 
   return (
@@ -136,7 +163,7 @@ const Page = () => {
                           className="hidden"
                           onChange={handleImageChange}
                         />
-                        <MdEdit size={20} />
+                        <FaEdit size={20} />
                       </label>
                     </button>
                   </div>
@@ -181,9 +208,28 @@ const Page = () => {
             </div>
           </div>
           <div className="mt-48 sm:mt-32 md:mt-20 mx-5 ">
-            <p className="text-gray-500 text-lg text-center leading-8">
-              {userData?.profile_summary}
-            </p>
+            <div className="flex  gap-5 justify-end mr-5 ">
+              <button onClick={() => setEdit(!edit)}>
+                <FaEdit size={30} />
+              </button>
+              {edit && (
+                <button onClick={updateUser}>
+                  <h2 className="font-semibold text-[#773fc6]">Save changes</h2>
+                </button>
+              )}
+            </div>
+
+            {edit ? (
+              <textarea
+                value={summary}
+                onChange={(e) => setSummary(e.target.value)}
+                className="bg-[#f2f1f3] border border-gray-300 px-2 rounded mx-8  w-10/12 h-20 p-2 "
+              />
+            ) : (
+              <p className="text-gray-500 text-lg  ml-7 leading-8">
+                {userData?.profile_summary}
+              </p>
+            )}
           </div>
           <div className="m-10  flex flex-col gap-3">
             <div

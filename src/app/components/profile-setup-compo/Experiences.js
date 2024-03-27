@@ -8,7 +8,6 @@ import Select from "react-select";
 import { companyTitle } from "../array-data/CompanyTitle";
 
 const languagesOption = [
-  { value: "en", label: "English" },
   { value: "es", label: "Español" },
   { value: "fr", label: "Français" },
   { value: "de", label: "Deutsch" },
@@ -89,7 +88,7 @@ const Experiences = ({
 
   const handleAddExperience = () => {
     if (!companyName || !title || !companyStart || !companyEnd) {
-      toast.error("Please fill the input fields");
+      toast.error("Please fill the required input fields");
       return;
     }
 
@@ -118,14 +117,14 @@ const Experiences = ({
     "lang"
   );
 
-  console.log(companyStart, "companyStart");
+  console.log(companyTitle, "title");
 
   return (
     <div className="h-full mx-20  ">
       <div>
         <h1 className="text-2xl font-semibold">English Proficiency</h1>
         <h4 className="text-gray-400 font-normal text-sm">
-          Retired but ready is an ideal plateform for Intermediate/Native
+          Retired but ready is an ideal plate form for Intermediate/Native
           English speakers.
           <br />
           Please indicate your english language proficiency with honesty.
@@ -277,14 +276,16 @@ const Experiences = ({
           </div>
         </div>
 
-        <div className="flex justify-center items-center">
-          <button
-            onClick={handleAddExperience}
-            className="text-xl text-[#773fc6]  border p-2 rounded-lg border-[#773fc6] font-medium mt-10"
-          >
-            Add position
-          </button>
-        </div>
+        {/* <div className="flex justify-center items-center">
+          {experiences.length !== 0 && (
+            <button
+              onClick={handleAddExperience}
+              className="text-xl text-[#773fc6]  border p-2 rounded-lg border-[#773fc6] font-medium mt-10"
+            >
+              Add position
+            </button>
+          )}
+        </div> */}
 
         <div className="mt-10 gap-10 flex w-full">
           <button
@@ -293,12 +294,24 @@ const Experiences = ({
           >
             Go back
           </button>
-          <button
-            onClick={handleStepUp}
-            className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
-          >
-            Submit & Next
-          </button>
+          {experiences.length == 0 ||
+          companyName ||
+          companyStart ||
+          companyEnd ? (
+            <button
+              onClick={handleAddExperience}
+              className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
+            >
+              Add position
+            </button>
+          ) : (
+            <button
+              onClick={handleStepUp}
+              className="bg-[#773fc6] p-2 text-white font-medium rounded w-1/2 "
+            >
+              Submit & Next
+            </button>
+          )}
         </div>
       </div>
     </div>
