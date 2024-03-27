@@ -43,7 +43,7 @@ const ChangeEmail = ({
         <div className="pl-8 mt-5">
           <div className="">
             <h1 className="text-lg font-semibold">Email Address</h1>
-            <p className="text-md text-gray-400">Email you have added</p>
+            {/* <p className="text-md text-gray-400">Email you have added</p> */}
           </div>
           <div className="mt-3">
             <p className="text-md text-gray-400">Primary Email</p>

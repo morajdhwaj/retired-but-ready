@@ -92,14 +92,14 @@ const EmailVerificationOtp = ({
             />
           ))}
         </div>
-        <button className="" onClick={resendOtp}>
-          resend otp
+        <button className="text-blue-800 mt-1" onClick={resendOtp}>
+          Resend OTP
         </button>
         <button
           className="  border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-2 px-20 mt-5 font-semibold"
           onClick={() => verifyOtp()}
         >
-          verify
+          Verify
         </button>
       </div>
     </div>
