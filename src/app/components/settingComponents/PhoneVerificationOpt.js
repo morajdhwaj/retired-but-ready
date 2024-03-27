@@ -89,14 +89,14 @@ const PhoneVerificationOpt = ({
             />
           ))}
         </div>
-        <button className="" onClick={reSendOtp}>
-          resend otp
+        <button className="mt-1 text-blue-800" onClick={reSendOtp}>
+          Resend OTP
         </button>
         <button
           className="  border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-2 px-20 mt-5 font-semibold"
           onClick={() => verifyOtp()}
         >
-          verify
+          Verify
         </button>
       </div>
     </div>
