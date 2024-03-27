@@ -132,7 +132,7 @@ const page = () => {
               }}
               className="text-white p-5 flex  justify-between"
             >
-              <h2 className="font-semibold text-2xl">My Walls</h2>
+              <h2 className="font-semibold text-2xl">My Wall</h2>
             </div>
           </div>
           {addPost && (

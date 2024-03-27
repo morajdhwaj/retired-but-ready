@@ -211,7 +211,7 @@ const page = () => {
                   <h1 className="text-2xl font-semibold text-[#773FC6] mb-5">
                     Privacy Details
                   </h1>
-                  <p className="text-sm font-normal">
+                  <p className="text-sm font-medium">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatem tempora dolorum repellendus eveniet provident
                     natus excepturi rem, reiciendis et atque ex expedita
