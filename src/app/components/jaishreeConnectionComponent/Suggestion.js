@@ -262,7 +262,7 @@ const Suggestion = () => {
       <div className=" flex flex-wrap gap-10 w-full  justify-center">
         {(showAll ? suggestionData : suggestionData.slice(0, 15)).map(
           (cardElem) => (
-            <div className="border w-60 xl:w-2/12 border-gray-300 shadow-lg  self-start rounded-lg mt-5 ">
+            <div className="border h-72 w-60 xl:w-2/12 border-gray-300 shadow-lg  self-start rounded-lg mt-5 ">
               <div className="  bg-[#B3CEE2] h-20 ">
                 <div className="flex p-2 justify-end ">
                   <button onClick={() => RemoveSuggestion(cardElem._id)}>
@@ -303,7 +303,7 @@ const Suggestion = () => {
                 {cardElem?.last_designation}
               </p>
 
-              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-6 mb-4">
+              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-8 mb-4">
                 {request.some((item) => item.to_user === cardElem._id) ? (
                   <button
                     className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
