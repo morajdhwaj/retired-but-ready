@@ -163,12 +163,17 @@ const page = () => {
                   <h1 className="text-2xl font-semibold text-[#773FC6] mb-2">
                     Profile Information
                   </h1>
-                  <div className="flex justify-between">
-                    <p className="w-[90%]">{userAllData?.profile_summary}</p>
-                    <Link href={`/profile/${userIdFromContext}`}>
+                  <Link href={`/profile/${userIdFromContext}`}>
+                    <div className="flex justify-between">
+                      {/* <p className="w-[90%]">{userAllData?.profile_summary}</p> */}
+
+                      <p className="w-[90%] text-sm ">
+                        Name, Location ,and Description.
+                      </p>
+
                       <FaArrowRight size={20} />
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
               )}
               {showSettingOption == "security" && (

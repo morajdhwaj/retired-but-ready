@@ -22,7 +22,7 @@ const ChangePhoneNumber = ({
         <div className="pl-8 mt-5">
           <div className="">
             <h1 className="text-lg font-semibold">Phone Number</h1>
-            <p className="text-md">Number you have added</p>
+            {/* <p className="text-md">Number you have added</p> */}
           </div>
           <div className="mt-3">
             <p className="text-md">Primary Number</p>
