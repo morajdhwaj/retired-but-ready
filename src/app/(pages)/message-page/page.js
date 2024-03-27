@@ -441,7 +441,7 @@ const Page = () => {
                 </div>
                 {/* Message Input */}
                 <div
-                  className={`p-4 relative items-center ${
+                  className={`p-4  items-center gap-2 ${
                     chatIdFromContext ? "flex" : "hidden"
                   } `}
                 >
@@ -475,7 +475,7 @@ const Page = () => {
                     </div>
                   ) : ( */}
                   <button
-                    className="absolute right-3  p-2 mr-2  text-xl text-white rounded-xl bg-[#773FC6] h-[36px w-[36px "
+                    className="   p-2 mr-2  text-xl text-white rounded-xl bg-[#773FC6] h-[36px w-[36px "
                     onClick={() => sendMessage()}
                     disabled={message.length === 0}
                   >
