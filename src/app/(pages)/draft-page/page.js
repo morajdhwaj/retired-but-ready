@@ -225,7 +225,7 @@ const page = () => {
             </div>
           </div>
           {draftData.length !== 0 ? (
-            <div className=" mt-20 sm:mt-24 flex flex-col gap-5">
+            <div className=" mt-28 sm:mt-32 flex flex-col gap-5">
               {draftData.map((post) => {
                 return (
                   <div
