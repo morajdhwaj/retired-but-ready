@@ -16,8 +16,8 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
   return (
     <div>
       <div className="mx-10 border rounded-xl p-5 bg-white">
-        <div className="flex gap-5">
-          <div>
+        <div className="flex flex-col md:flex-row  gap-5">
+          <div className="flex items-center justify-center">
             {userData?.user_image ? (
               <Image
                 alt="rtr-pic"
@@ -37,10 +37,12 @@ const PostInput = ({ userId, feeds, setFeeds, userData, getFeeds }) => {
             }}
             className=" w-full border border-gray-300 rounded-full flex items-center px-5"
           >
-            <h2 className="font-semibold text-gray-500">Start a post</h2>
+            <h2 className="font-semibold text-gray-500 py-2 text-center md:text-start w-full">
+              Start a post
+            </h2>
           </button>
         </div>
-        <div className="mx-20 mt-5 flex  items-center justify-around">
+        <div className="md:mx-20 mt-5 sm:flex  items-center justify-around">
           <button
             onClick={() => {
               setAnyTypePost(true);

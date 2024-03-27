@@ -156,7 +156,7 @@ const PostAsMultiMedia = ({
           <div className="flex items-center justify-center mt-10 ">
             <label htmlFor="fileInput">
               <button
-                className="border-2 py-4 px-8 w-60  text-sm rounded-full font-semibold  border-[#773fc6] "
+                className="border-2 py-4 px-8 sm:w-60  text-sm rounded-full font-semibold  border-[#773fc6] "
                 onClick={openFileInput}
               >
                 Upload
