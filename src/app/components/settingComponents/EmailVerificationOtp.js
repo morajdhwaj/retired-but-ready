@@ -34,11 +34,11 @@ const EmailVerificationOtp = ({
     }
   };
 
-  const resendOtp = async () => {
-    // setTimeout(() => {
-    changeUserEmail();
-    // }, 60000);
-  };
+  // const resendOtp = async () => {
+  //   // setTimeout(() => {
+  //   changeUserEmail();
+  //   // }, 60000);
+  // };
   // -----------------------------------------------------------------------
 
   const handleInputChange = (index, value) => {
@@ -92,14 +92,16 @@ const EmailVerificationOtp = ({
             />
           ))}
         </div>
-        <button className="" onClick={resendOtp}>
+
+        {/* <button className="" onClick={resendOtp}>
           resend otp
-        </button>
+        </button> */}
+
         <button
           className="  border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-2 px-20 mt-5 font-semibold"
           onClick={() => verifyOtp()}
         >
-          verify
+          Verify
         </button>
       </div>
     </div>

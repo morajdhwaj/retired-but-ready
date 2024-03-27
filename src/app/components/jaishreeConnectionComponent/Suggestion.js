@@ -141,10 +141,13 @@ const Suggestion = () => {
     audio.play();
   };
 
+  const RemoveSuggestion = (id) => {
+    setSuggestionData(suggestionData.filter((user) => user._id !== id));
+  };
+
+  console.log(suggestionData, "suggestion");
   return (
     <div className="">
-      <Request />
-
       {/* <div className="bg-yellow-300 mt-5 gap-5 sm:mt-5 md:mt-5 lg:mt-8 flex justify-center items-center sm:justify-center sm:items-center md:flex-nowrap md:flex md:justify-between bg-scroll">
         <div
           className="hover:border-gray-400 hover:border-b-2"
@@ -256,13 +259,15 @@ const Suggestion = () => {
         <div className=" border border-[#D9D9D9] w-[10%] h-0.3" />
       </div>
 
-      <div className="grid place-items-center sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 gap-8 md:gap-10 lg:gap-9 xl:gap-16">
-        {(showAll ? suggestionData : suggestionData.slice(0, 12)).map(
+      <div className=" flex flex-wrap gap-10 w-full  justify-center">
+        {(showAll ? suggestionData : suggestionData.slice(0, 15)).map(
           (cardElem) => (
-            <div className="border w-52 border-gray-300 shadow-lg  rounded-lg">
+            <div className="border w-60 xl:w-2/12 border-gray-300 shadow-lg  self-start rounded-lg mt-5 ">
               <div className="  bg-[#B3CEE2] h-20 ">
                 <div className="flex p-2 justify-end ">
-                  <IoMdCloseCircle className="size-6 " />
+                  <button onClick={() => RemoveSuggestion(cardElem._id)}>
+                    <IoMdCloseCircle className="size-6 " />
+                  </button>
                 </div>
 
                 <div className="flex items-center justify-center pt-0">
@@ -285,7 +290,7 @@ const Suggestion = () => {
                 </div>
               </div>
               <Link href={`/profile/${cardElem?._id}`}>
-                <h1 className="mt-14 flex items-center justify-center  text-lg">
+                <h1 className="mt-14 flex items-center justify-center  text-lg font-bold px-2">
                   {cardElem.user_display_name
                     .toLowerCase()
                     .split(" ")
@@ -293,8 +298,12 @@ const Suggestion = () => {
                     .join(" ")}
                 </h1>
               </Link>
+              <p className="text-center p-2 text-xs">
+                {" "}
+                {cardElem?.last_designation}
+              </p>
 
-              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-8 mb-4">
+              <div className="flex flex-wrap justify-center gap-0 sm:gap-2 md:gap-2 lg:gap-2 items-center mt-6 mb-4">
                 {request.some((item) => item.to_user === cardElem._id) ? (
                   <button
                     className={`p-2 flex px-2 md:px-6 gap-2 border-2 rounded-md border-[#773fc6] bg-gray-200`}
@@ -316,12 +325,12 @@ const Suggestion = () => {
           )
         )}
       </div>
-      <div className="mt-2 ">
+      <div className="mt-10 ">
         <h1
-          className="flex justify-center items-center text-[#773fc6] font-medium cursor-pointer"
+          className="flex justify-center items-center hover:text-[#773fc6] font-medium cursor-pointer "
           onClick={() => setShowAll(!showAll)}
         >
-          see {showAll ? "less" : "all"}
+          See {showAll ? "less" : "all"}
         </h1>
       </div>
 

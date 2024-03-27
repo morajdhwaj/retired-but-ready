@@ -208,7 +208,7 @@ const page = ({ params }) => {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="w-full bg-[#f2f1f3]    lg:mx-60 pt-20 mt-20">
+        <div className="w-full bg-[#f2f1f3]    lg:mx-60 pt-20 ">
           <div className="w-full bg-[#f2f1f3]border-2 rounded-lg mb-10 p-4">
             <div key={feed?._id}>
               <div className="flex justify-between bg-white p-2 border-b-2 border-gray-300 ">

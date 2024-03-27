@@ -55,11 +55,11 @@ const PhoneVerificationOpt = ({
     }
   };
 
-  const reSendOtp = () => {
-    setTimeout(() => {
-      changeUserPhoneNumber();
-    }, 60000);
-  };
+  // const reSendOtp = () => {
+  //   setTimeout(() => {
+  //     changeUserPhoneNumber();
+  //   }, 60000);
+  // };
 
   return (
     <div className="shadow-xl p-4 pb-10 min-h-[30vh] bg-white rounded-lg">
@@ -89,14 +89,16 @@ const PhoneVerificationOpt = ({
             />
           ))}
         </div>
-        <button className="" onClick={reSendOtp}>
+
+        {/* <button className="" onClick={reSendOtp}>
           resend otp
-        </button>
+        </button> */}
+
         <button
           className="  border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-2 px-20 mt-5 font-semibold"
           onClick={() => verifyOtp()}
         >
-          verify
+          Verify
         </button>
       </div>
     </div>

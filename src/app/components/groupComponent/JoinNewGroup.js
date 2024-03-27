@@ -56,7 +56,7 @@ const JoinNewGroup = () => {
   };
 
   return (
-    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[76vh] hidden md:block ">
+    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[100vh] hidden md:block ">
       <div className="lg:px-10 sm:px-5 h-full   lg:w-[28vw ">
         <div className="rounded-lg h-full flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center  py-5 gap-2  border bg-white">
           <div className="text-center text-lg font-medium">

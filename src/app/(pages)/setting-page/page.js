@@ -163,12 +163,17 @@ const page = () => {
                   <h1 className="text-2xl font-semibold text-[#773FC6] mb-2">
                     Profile Information
                   </h1>
-                  <div className="flex justify-between">
-                    <p className="w-[90%]">{userAllData?.profile_summary}</p>
-                    <Link href={`/profile/${userIdFromContext}`}>
+                  <Link href={`/profile/${userIdFromContext}`}>
+                    <div className="flex justify-between">
+                      {/* <p className="w-[90%]">{userAllData?.profile_summary}</p> */}
+
+                      <p className="w-[90%] text-sm font-medium ">
+                        Name, Location, and Description.
+                      </p>
+
                       <FaArrowRight size={20} />
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </div>
               )}
               {showSettingOption == "security" && (
@@ -203,10 +208,10 @@ const page = () => {
               )}
               {showSettingOption == "dataPrivacy" && (
                 <div className="shadow-xl p-4 min-h-[30vh] bg-white rounded-lg pb-10 ">
-                  <h1 className="text-2xl font-semibold  mb-5">
+                  <h1 className="text-2xl font-semibold text-[#773FC6] mb-5">
                     Privacy Details
                   </h1>
-                  <p className="">
+                  <p className="text-sm font-normal">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatem tempora dolorum repellendus eveniet provident
                     natus excepturi rem, reiciendis et atque ex expedita
@@ -215,7 +220,7 @@ const page = () => {
                     laborum consequatur non voluptatibus voluptatum, laboriosam
                     fugit. Facilis ducimus praesentium voluptas aspernatur?
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-3 text-sm font-medium">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatem tempora dolorum repellendus eveniet provident
                     natus excepturi rem, reiciendis et atque ex expedita
@@ -224,7 +229,7 @@ const page = () => {
                     laborum consequatur non voluptatibus voluptatum, laboriosam
                     fugit. Facilis ducimus praesentium voluptas aspernatur?
                   </p>
-                  <p className="mt-3">
+                  <p className="mt-3 text-sm font-medium">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatem tempora dolorum repellendus eveniet provident
                     natus excepturi rem, reiciendis et atque ex expedita

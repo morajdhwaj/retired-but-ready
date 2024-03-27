@@ -247,6 +247,8 @@ const page = ({ params }) => {
     );
   }
 
+  console.log(userData);
+
   return (
     <>
       <div className="bg-[#EDEBF2]  px-10 h-full min-h-[100vh] ">
@@ -284,7 +286,7 @@ const page = ({ params }) => {
                     {profileId === userId ? (
                       <Link
                         href="/profile-details"
-                        className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                        className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                       >
                         <span>Edit</span>
                       </Link>
@@ -295,7 +297,7 @@ const page = ({ params }) => {
                             {myConnections.map((data) => (
                               <button
                                 key={data?._id}
-                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                                 onClick={() => removeRequest(data?._id)}
                               >
                                 <span>Connected</span>
@@ -310,7 +312,7 @@ const page = ({ params }) => {
                                 {isRequested.map((data) => (
                                   <button
                                     key={data.network_request_id}
-                                    className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                    className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                                     onClick={() =>
                                       removeRequest(data.network_request_id)
                                     }
@@ -321,7 +323,7 @@ const page = ({ params }) => {
                               </>
                             ) : (
                               <button
-                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                                className="flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                                 onClick={connectionRequest}
                               >
                                 <IoMdPersonAdd />
@@ -336,14 +338,14 @@ const page = ({ params }) => {
                           (item) => item.from_user_id === userId
                         ) ? (
                           <button
-                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                             onClick={UnFollowRequestSend}
                           >
                             Following
                           </button>
                         ) : (
                           <button
-                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#a8349d] h-10 w-32 justify-center"
+                            className=" flex gap-2 items-center px-3 py-1 border-2 rounded-lg border-[#773fc6] h-10 w-32 justify-center"
                             onClick={followRequestSend}
                           >
                             Follow
@@ -374,12 +376,12 @@ const page = ({ params }) => {
                       {userData.user_city},{userData.user_state},
                       {userData.country_name}
                     </h2>
-                    <Link
+                    <div
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
                       <span className="">{connections.length} </span>Connection
-                    </Link>
+                    </div>
                   </div>
                   <div className="flex gap-2 items-center ">
                     <div className="border p-1 rounded-sm border-black">
@@ -402,28 +404,28 @@ const page = ({ params }) => {
                   <div className=" px-3">
                     <div className="">
                       <h2 className="text-lg font-semibold">Activity</h2>
-                      <Link href="#" className="text-[#a8349d]">
+                      {/* <Link href="#" className="text-[#773fc6]">
                         1000 Follower
-                      </Link>
+                      </Link> */}
                     </div>
 
                     <div className="">
                       <div className="flex gap-3 my-4">
                         <Link
                           href={`/feed/${profileId}`}
-                          className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
+                          className="border-2 border-[#773fc6] rounded-lg py-1 px-5 "
                         >
                           Post
                         </Link>
                         {/* <Link
                           href={`/feed/${profileId}`}
-                          className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
+                          className="border-2 border-[#773fc6] rounded-lg py-1 px-5 "
                         >
                           Comment
                         </Link>{" "}
                         <Link
                           href={`/feed/${profileId}`}
-                          className="border-2 border-[#a8349d] rounded-lg py-1 px-5 "
+                          className="border-2 border-[#773fc6] rounded-lg py-1 px-5 "
                         >
                           Image
                         </Link> */}
