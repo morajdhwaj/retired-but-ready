@@ -13,6 +13,7 @@ import Suggestion from "@/app/components/jaishreeConnectionComponent/Suggestion"
 import Link from "next/link";
 import { UserIdContext } from "@/context/UserIdContext";
 import Loader from "@/app/components/Loader";
+import Request from "@/app/components/connection-page-compo/Request";
 
 const page = () => {
   const { userIdFromContext } = useContext(UserIdContext);
@@ -120,7 +121,12 @@ const page = () => {
           </div>
           <div className="flex items-center justify-center">
             <div className=" bg-[#FFFFFF] mt-40 sm:mt-32 md:mt-20 w-[96%]  p-10  rounded-md">
-              {<Suggestion />}
+              {
+                <div>
+                  <Request />
+                  <Suggestion />
+                </div>
+              }
             </div>
           </div>
         </div>
