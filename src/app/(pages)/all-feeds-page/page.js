@@ -198,6 +198,8 @@ const page = () => {
                   setFeeds={setFeeds}
                   getFeeds={getFeeds}
                   userId={userId}
+                  setAddPost={setAddPost}
+                  addPost={addPost}
                 />
               </div>
             )}
