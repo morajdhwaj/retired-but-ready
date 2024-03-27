@@ -37,6 +37,7 @@ const ChangePhoneNumber = ({
           <div className="mt-10">
             <input
               type="number"
+              
               value={newMobileNumber}
               onChange={(e) => setNewMobileNumber(e.target.value)}
               className={`rounded-lg w-64 p-2 border-2 ${
