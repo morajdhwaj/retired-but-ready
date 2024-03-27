@@ -60,37 +60,6 @@ const Page = () => {
     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
   }, [chats]);
 
-  // useEffect(() => {
-
-  // console.log(
-  //   chats,
-  //   "this is chat for checking CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"
-  // );
-  // }, [chats]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      getChats();
-    }, 6000);
-
-    const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
-    }, 600);
-
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
-  }, []);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      getChats();
-    }, 5000);
-
-    return clearInterval(intervalId);
-  }, [chats]);
-
   useEffect(() => {
     filterChats();
   }, [allChats, searchQuery]);
@@ -99,6 +68,18 @@ const Page = () => {
     const { value } = event.target;
     setSearchQuery(value);
   };
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (chatIdFromContext) {
+        console.log("first AAAAAASDFGHJKLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+        getChats();
+      }
+    }, 5000); // 5000 milliseconds = 5 seconds
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [chatIdFromContext]);
 
   const filterChats = () => {
     const filtered = allChats.filter(
@@ -110,10 +91,6 @@ const Page = () => {
   };
 
   const userData = async () => {
-    // console.log(
-    //   userIdFromContext,
-    //   "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
-    // );
     try {
       const response = await axios.get(
         `https://retpro.catax.me/user/profile/${chatIdFromContext}`
@@ -126,11 +103,6 @@ const Page = () => {
 
   const getChats = async () => {
     try {
-      // console.log(
-      //   userIdFromContext,
-      //   chatIdFromContext,
-      //   "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-      // );
       const response = await axios.get(
         `https://retpro.catax.me/view-chat-messages?user_id_1=${userIdFromContext}&user_id_2=${chatIdFromContext}&viewer=${userIdFromContext}`
       );
@@ -158,16 +130,16 @@ const Page = () => {
     // debouncedSearch(value);
   };
 
-  const deleteMessageApi = async (messageId) => {
-    try {
-      await axios.delete(
-        `https://retpro.catax.me/delete-message?message_id=${messageId}`
-      );
-      getChats();
-    } catch (error) {
-      console.log("Error deleting message:", error);
-    }
-  };
+  // const deleteMessageApi = async (messageId) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://retpro.catax.me/delete-message?message_id=${messageId}`
+  //     );
+  //     getChats();
+  //   } catch (error) {
+  //     console.log("Error deleting message:", error);
+  //   }
+  // };
 
   const sendMessage = async () => {
     try {
@@ -240,14 +212,6 @@ const Page = () => {
     setChatIdContext(id);
     console.log(id);
   };
-
-  // console.log(
-  //   allChats,
-  //   // userId,
-  //   userIdFromContext,
-  //   chatIdFromContext,
-  //   "this is a group chat all channels   zzzzzzzzzzz"
-  // );
 
   return (
     <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
@@ -376,7 +340,6 @@ const Page = () => {
                   {/* Render chat messages with separation by date */}
                   {Object.entries(groupedChats).map(([date, chatsForDate]) => (
                     <div key={date} className="flex flex-col">
-                      {console.log(date, chatsForDate, "this is aman aman")}
                       <div className="relative flex justify-center my-5">
                         <div className=" w-full border border-[#773FC6] "></div>
                         <span className="absolute top-[-10px]  bg-[#f2f1f3] px-2">
@@ -478,7 +441,7 @@ const Page = () => {
                 </div>
                 {/* Message Input */}
                 <div
-                  className={`p-4 relative items-center ${
+                  className={`p-4  items-center gap-2 ${
                     chatIdFromContext ? "flex" : "hidden"
                   } `}
                 >
@@ -512,7 +475,7 @@ const Page = () => {
                     </div>
                   ) : ( */}
                   <button
-                    className="absolute right-3  p-2 mr-2  text-xl text-white rounded-xl bg-[#773FC6] h-[36px w-[36px "
+                    className="   p-2 mr-2  text-xl text-white rounded-xl bg-[#773FC6] h-[36px w-[36px "
                     onClick={() => sendMessage()}
                     disabled={message.length === 0}
                   >

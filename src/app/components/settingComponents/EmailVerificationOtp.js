@@ -34,12 +34,18 @@ const EmailVerificationOtp = ({
     }
   };
 
-  // const resendOtp = async () => {
-  //   // setTimeout(() => {
-  //   changeUserEmail();
-  //   // }, 60000);
-  // };
-  // -----------------------------------------------------------------------
+  const resendOtp = async () => {
+    try {
+      const res = await axios.get(
+        `https://retpro.catax.me/user/resend-email-otp?user_email=${userData?.user_email}`
+      );
+      console.log(res.data, "this is response from verify-email-otp");
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log(error, "this is error from verify-email-otp");
+      toast.error(error.response.data.detail);
+    }
+  };
 
   const handleInputChange = (index, value) => {
     // Only update the state if the entered value is a number
@@ -93,9 +99,9 @@ const EmailVerificationOtp = ({
           ))}
         </div>
 
-        {/* <button className="" onClick={resendOtp}>
+        <button className="" onClick={resendOtp}>
           resend otp
-        </button> */}
+        </button>
 
         <button
           className="  border-2 hover:border-[#db9cd9] border-[#b54eb1] rounded-lg py-2 px-20 mt-5 font-semibold"
