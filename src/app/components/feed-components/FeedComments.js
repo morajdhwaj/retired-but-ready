@@ -556,7 +556,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                     {showReaction === comment._id && (
                       <div className="mt-2 flex flex-col sm:flex-row gap-5 justify-between absolute bottom-6 ">
                         <div
-                          className="flex items-center gap-2  bg-white min-w-52 py-2 "
+                          className="flex items-center gap-2  bg-[#f9fafb] min-w-52 py-2  "
                           onMouseLeave={() => setShowReaction(false)}
                         >
                           <button

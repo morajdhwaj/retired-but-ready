@@ -488,7 +488,7 @@ const ReplyCommentsComp = ({
                     )}
                   </div>
                   {showReaction && (
-                    <div className=" pb-2 mt-2 bg-[#F3F4F6] py-1  w-[55%] flex flex-col sm:flex-row gap-5 justify-between absolute bottom-5">
+                    <div className=" pb-2 mt-2 bg-[#f9fafb] py-1 pt-3  w-[55%] flex flex-col sm:flex-row gap-5 justify-between absolute bottom-5">
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => {
