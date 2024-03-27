@@ -68,20 +68,20 @@ const Page = () => {
   // );
   // }, [chats]);
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     getChats();
-  //   }, 6000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      getChats();
+    }, 6000);
 
-  //   const timeoutId = setTimeout(() => {
-  //     clearInterval(intervalId);
-  //   }, 600);
+    const timeoutId = setTimeout(() => {
+      clearInterval(intervalId);
+    }, 600);
 
-  //   return () => {
-  //     clearInterval(intervalId);
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, []);
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
