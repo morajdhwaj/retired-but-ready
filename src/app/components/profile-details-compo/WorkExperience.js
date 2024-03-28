@@ -87,11 +87,20 @@ const WorkExperience = ({ userId }) => {
       <div className="w-full">
         <h2 className="font-semibold text-gray-500">Total work experience</h2>
         {edit ? (
-          <input
+          <select
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
-            className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
-          />
+            className="bg-[#f2f1f3] border border-gray-300 h-10 px-2  w-full rounded"
+          >
+            <option value="" disabled>
+              Select Total Work Experience
+            </option>
+            <option>30 to above Years</option>
+            <option>20 to 30 Years </option>
+            <option>10 to 20 Years</option>
+            <option>5 to 10 Years</option>
+            <option>5 and less Years</option>
+          </select>
         ) : (
           <h2 className="font-semibold ">{experience}</h2>
         )}
@@ -139,11 +148,25 @@ const WorkExperience = ({ userId }) => {
           <select
             value={englishProficiency}
             onChange={(e) => setEnglishProficiency(e.target.value)}
-            className=" h-10 bg-[#f2f1f3] border-gray-300  border rounded  px-2 w-full"
+            className=" mt-5 h-10 bg-[#f2f1f3] border-gray-300  border rounded  w-full"
           >
-            <option>Good</option>
-            <option>Not Good</option>
-            <option>Bad</option>
+            <option value="" disabled>
+              Select English Proficiency
+            </option>
+            <option>
+              Basic - Only able to communicate in this language through written
+              communication
+            </option>
+            <option>
+              Conversational - Conversational - Comfortable in verbal discussion
+            </option>
+            <option>
+              Fluent - Complete command of this language with perfect grammar
+            </option>
+            <option>
+              Native - Complete command of this language with no discernible
+              accent
+            </option>
           </select>
         ) : (
           <h2 className="font-semibold ">{englishProficiency}</h2>

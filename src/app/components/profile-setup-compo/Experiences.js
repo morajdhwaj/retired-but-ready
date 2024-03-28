@@ -117,7 +117,7 @@ const Experiences = ({
     "lang"
   );
 
-  console.log(companyTitle, "title");
+  console.log(experiences, "title");
 
   return (
     <div className="h-full mx-20  ">
