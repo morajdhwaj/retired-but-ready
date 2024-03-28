@@ -326,7 +326,7 @@ const page = ({ params }) => {
                     feed?.post_media[0].type
                   ) && (
                     <Image
-                      alt=""
+                      alt="HII"
                       src={feed?.post_media[0]?.url}
                       height={500}
                       width={650}

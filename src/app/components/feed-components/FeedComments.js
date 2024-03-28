@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 
@@ -68,6 +70,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       .then(function (response) {
         console.log(response.data);
         setComments(response?.data?.reverse());
+        setInputComment("");
       })
       .catch(function (error) {
         console.error(error);
@@ -102,7 +105,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       console.log("image not selected");
       toast.success(response?.data?.message);
       getComments();
-      getFeeds();
+      // getFeeds();
       setInputComment("");
     } catch (error) {
       console.error(error);
@@ -222,6 +225,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       .then(function (response) {
         console.log(response.data);
         getComments();
+        setInputComment("");
       })
       .catch(function (error) {
         console.error(error);
@@ -497,6 +501,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             src="/emoji/like2.png"
                             height={25}
                             width={20}
+                            alt="rtr"
                           ></Image>
                           <p className="text-sm w-2">
                             {comment?.reaction_like?.length}
@@ -509,6 +514,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             src="/emoji/love.png"
                             height={25}
                             width={20}
+                            alt="rtr"
                           ></Image>
                           <p className="text-sm w-2">
                             {comment?.reaction_love?.length}
@@ -521,6 +527,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             src="/emoji/thinking.png"
                             height={25}
                             width={20}
+                            alt="rtr"
                           ></Image>
                           <p className="text-sm w-2">
                             {comment?.reaction_thinking?.length}
@@ -533,6 +540,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             src="/emoji/bulb.png"
                             height={25}
                             width={15}
+                            alt="rtr"
                           ></Image>
                           <p className="text-sm w-2">
                             {comment?.reaction_insight?.length}
@@ -545,6 +553,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                             src="/emoji/clap.png"
                             height={25}
                             width={20}
+                            alt="rtr"
                           ></Image>
                           <p className="text-sm w-2">
                             {comment?.reaction_appraise?.length}
@@ -658,6 +667,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/bulb.png"
                               height={25}
                               width={15}
+                              alt="rtr"
                             ></Image>
                           </button>
                           <button
@@ -746,6 +756,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
                               src="/emoji/bulb.png"
                               height={25}
                               width={15}
+                              alt="rtr"
                             ></Image>
                           </p>
                         )}
