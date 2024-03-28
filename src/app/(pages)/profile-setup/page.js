@@ -151,9 +151,9 @@ const page = () => {
     <div className="bg-[#EDEBF2] px-10 ">
       <Navbar />
       <div className="flex">
-        <div className="hidden lg:flex">
+        {/* <div className="hidden lg:flex">
           <Sidebar />s
-        </div>
+        </div> */}
 
         <div className="w-full bg-[#f2f1f3]  p-5 lg:ml-52 pt-24">
           <div className="flex flex-col md:flex-row items-center justify-center gap-5 w-full ">
