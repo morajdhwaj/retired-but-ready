@@ -879,7 +879,7 @@ const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
                     )}
                   </div>
                   <div className="flex  items-center  justify-between gap-2 text-sm ml-3 sm:ml-0  ">
-                    <div className="mt-1">
+                    <div className="mt-1 ">
                       {feed?.post_location?._id ? (
                         <button
                           onClick={() =>
