@@ -92,7 +92,7 @@ const ContactPage = () => {
                 className="w-full p-2 pl-0 sm:flex sm:justify-between sm:items-center  border-b border-[#E3CCE1] mt-5"
                 key={item?._id}
               >
-                <div className="w-full  flex sm:justify-start justify-center  items-center gap-1">
+                <div className="w-full  flex flex-col sm:flex-row gap-2 sm:justify-start justify-center  items-center">
                   <div className=" flex items-center ">
                     <Link href={`/profile/${item.user_id}`}>
                       {item?.user_image ? (
@@ -120,7 +120,7 @@ const ContactPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="w-full justify-center flex  sm:justify-end items-center gap-5 sm:gap-10 mt-2 sm:mt-0 lg:mt-0 " >
+                <div className="w-full justify-center flex  sm:justify-end items-center gap-5 sm:gap-10 mt-2 sm:mt-0 lg:mt-0 ">
                   <button
                     className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm  p-1 sm:p-2"
                     onClick={() => handleDeleteModal(item)}
