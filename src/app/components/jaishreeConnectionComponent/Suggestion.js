@@ -254,7 +254,7 @@ const Suggestion = () => {
       </div> */}
       <div>
         <h1 className="mt-5 text-black font-medium text-sm">
-          {suggestionData.length} Suggestion
+          {suggestionData.length} Suggestions
         </h1>
         <div className=" border border-[#D9D9D9] w-[10%] h-0.3" />
       </div>
@@ -325,15 +325,16 @@ const Suggestion = () => {
           )
         )}
       </div>
-      <div className="mt-10 ">
-        <h1
-          className="flex justify-center items-center hover:text-[#773fc6] font-medium cursor-pointer "
-          onClick={() => setShowAll(!showAll)}
-        >
-          See {showAll ? "less" : "all"}
-        </h1>
-      </div>
-
+      {suggestionData.length > 15 && (
+        <div className="mt-10 ">
+          <h1
+            className="flex justify-center items-center hover:text-[#773fc6] font-medium cursor-pointer "
+            onClick={() => setShowAll(!showAll)}
+          >
+            See {showAll ? "less" : "all"}
+          </h1>
+        </div>
+      )}
       {/* <GpsConnection />
       <ProfileConnection /> */}
     </div>

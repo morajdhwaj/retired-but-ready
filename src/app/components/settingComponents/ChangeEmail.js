@@ -58,6 +58,7 @@ const ChangeEmail = ({
           <div className="mt-10">
             <input
               type="email"
+              placeholder="Enter new email"
               value={getEmail}
               onChange={(e) => setEmail(e.target.value)}
               className={`rounded-lg w-64 p-2 border-2 ${

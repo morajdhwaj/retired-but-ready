@@ -18,7 +18,7 @@ const PopUp = ({
     <div className="fixed inset-0 flex  justify-center z-50">
       <div className="absolute inset-0 bg-black/50 opacity-75"></div>
       <div
-        className={`bg-white rounded-md z-50  h-[50vh] w-full sm:w-4/5 md:w-3/5 xl:w-3/6 mt-20 sm:mr-20 py-5`}
+        className={`bg-white rounded-md z-50 self-start  min-h-[50vh]] w-full sm:w-4/5 md:w-3/5 xl:w-3/6 mt-20 sm:mr-20 py-5`}
       >
         {close && (
           <div className="mt-2 mr-2 flex  justify-end">

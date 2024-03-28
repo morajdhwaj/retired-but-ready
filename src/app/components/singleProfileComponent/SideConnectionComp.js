@@ -39,7 +39,7 @@ const SideConnectionComp = () => {
         `https://retpro.catax.me/network/suggestions?user_id=${userId}`
       );
       setRecommendedConnectionsData(response.data);
-      console.log(response.data, "this is response --------------------");
+      console.log(response.data);
     } catch (error) {
       console.log(error, "this error get from recommended group api aman");
     }
@@ -181,7 +181,7 @@ const SideConnectionComp = () => {
                     <div>
                       <Link
                         href={`/group-page/${data?._id}`}
-                        className=" mx-2 capitalize font-medium "
+                        className=" mx-2 capitalize font-semibold text-lg "
                       >
                         {data.user_display_name}
                       </Link>
@@ -219,7 +219,7 @@ const SideConnectionComp = () => {
             ))}
           </div>
 
-          <div className="flex justify-center items-center mt-2 mb-full">
+          <div className="flex justify-center items-center mt-2 w-full h-full ">
             <button
               className="border-2 border-[#773fc6] w-40 h-10 text-lg font-medium text-center rounded-lg"
               onClick={() => showAllRecommendation()}

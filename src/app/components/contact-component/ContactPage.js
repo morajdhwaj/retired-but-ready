@@ -37,7 +37,7 @@ const ContactPage = () => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data, "this is response from get contac");
+        console.log(response.data, "this is response from get contact");
         setContact(response.data);
       })
       .catch(function (error) {
@@ -89,11 +89,11 @@ const ContactPage = () => {
           {contact.length > 0 &&
             contact.map((item) => (
               <div
-                className="w-full p-2 pl-0 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
+                className="w-full p-2 pl-0 sm:flex sm:justify-between sm:items-center  border-b border-[#E3CCE1] mt-5"
                 key={item?._id}
               >
-                <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-betwee ">
-                  <div className="w-1/2  sm:w-[9%]  flex items-center ">
+                <div className="w-full  flex sm:justify-start justify-center  items-center gap-1">
+                  <div className=" flex items-center ">
                     <Link href={`/profile/${item.user_id}`}>
                       {item?.user_image ? (
                         <Image
@@ -111,7 +111,7 @@ const ContactPage = () => {
                       )}
                     </Link>
                   </div>
-                  <div className="w-1/2 sm:w-[90%] flex items-center ">
+                  <div className=" flex items-center ">
                     <Link href={`/profile/${item?.user_id} `}>
                       <h1 className="text-[#2C2C2C] text-sm text-start font-medium capitalize mt-[-10px]">
                         {item?.user_full_name}
@@ -120,9 +120,9 @@ const ContactPage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="w-full sm:w-[15%] lg:w-[15%] flex  gap-10 items-center mt-2 sm:mt-0 lg:mt-0">
+                <div className="w-full justify-center flex  sm:justify-end items-center gap-5 sm:gap-10 mt-2 sm:mt-0 lg:mt-0 " >
                   <button
-                    className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm p-2"
+                    className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm  p-1 sm:p-2"
                     onClick={() => handleDeleteModal(item)}
                   >
                     Remove

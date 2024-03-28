@@ -94,10 +94,6 @@ const Certification = ({
   };
 
   const handleSubmit = () => {
-    if (acceptableCurrencies?.length === 0) {
-      setShowModal(true);
-      return;
-    }
     const options = {
       method: "PATCH",
       url: "https://retpro.catax.me/registration-step/5",
@@ -112,7 +108,7 @@ const Certification = ({
             certification_date: "2022-11-26T00:00:00.000Z",
           },
         ],
-        is_charged: true,
+        is_charged: isCharged,
         acceptable_currencies: acceptableCurrencies.map((item) => item.label),
         profile_headline: "string",
         profile_summary: aboutYou,
