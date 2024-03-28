@@ -322,7 +322,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
               onInput={autoResize}
             />
             <label className="cursor-pointer">
-              <div className="flex items-center justify-center mt-3">
+              <div className="flex items-center justify-center mt-3 hover:shadow-lg">
                 <GrGallery size={25} color="#773fc6" />
               </div>
               <input
@@ -355,7 +355,7 @@ const FeedComments = ({ postId, userId, getFeeds }) => {
       </div>
       <button
         onClick={postComment}
-        className="border border-[#773fc6] text-[#773fc6] px-4 py-2 rounded m-5"
+        className="border text-white bg-[#773fc6] px-4 py-2 rounded  m-5 hover:shadow-lg"
       >
         Post
       </button>
