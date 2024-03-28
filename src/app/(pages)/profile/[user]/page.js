@@ -549,14 +549,14 @@ const page = ({ params }) => {
                       ))}
                     </div>
                   </div>
-                  <div className="border-t-2 mt-3">
+                  {/* <div className="border-t-2 mt-3">
                     <button className="text-md font-semibold flex justify-center items-center gap-3 py-2 w-full">
                       Show all skills
                       <span className="">
                         <FaArrowRightLong size={20} />
                       </span>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
