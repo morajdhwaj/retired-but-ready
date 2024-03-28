@@ -70,6 +70,7 @@ const page = () => {
         console.log(response.data, "this is response form change email");
         toast.success("OTP sent successfully");
         setShowSettingOption("emailOtp");
+        // setNewEmail("");
       } catch (error) {
         console.log(error, "this is error form change email");
         toast.error(error.response.data.detail);
@@ -88,6 +89,7 @@ const page = () => {
         console.log(res.data, "this is response from change mobile number");
         toast.success("OTP sent successfully");
         setShowSettingOption("phoneOtp");
+        setNewMobileNumber("");
       } catch (error) {
         console.log(error, "this is error from change mobile number");
         toast.error(error.response.data.detail);

@@ -844,8 +844,8 @@ const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
                     {/* // >{likes.length>0?<AiFillLike size={20} /> :<AiOutlineLike size={20} />  } */}
                   </button>
                 </div>
-                <div className="flex justify-between">
-                  <div className="flex gap-3  sm:gap-5 ml-2 sm:ml-5 md:ml-20 mr-5">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-0  justify-between mt-5 sm:mt-0">
+                  <div className="flex gap-3  justify-between sm:gap-5 ml-2 sm:ml-5 md:ml-20 sm:mr-5">
                     <button
                       className="flex items-center justify-center gap-1  sm:gap-2   "
                       onClick={() => handleComments(feed?._id)}
@@ -873,26 +873,32 @@ const All = ({ userId, feeds, setFeeds, getFeeds, addPost, setAddPost }) => {
                       </button>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-sm ">
-                    {feed?.post_comment_id?.length}
-                    <p className="text-sm">Comments</p> |
-                    {feed?.post_location?._id ? (
-                      <button
-                        onClick={() =>
-                          copyUrlToClipboard(feed?.post_location?._id)
-                        }
-                        className=""
-                      >
-                        <BsFillShareFill color="gray" size={20} />
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => copyUrlToClipboard(feed?._id)}
-                        className=""
-                      >
-                        <BsFillShareFill color="gray" size={20} />
-                      </button>
-                    )}
+                  <div className="flex  items-center  justify-between gap-2 text-sm ml-3 sm:ml-0  ">
+                    <div className="flex gap-2">
+                      {feed?.post_comment_id?.length}
+                      <p className="text-sm flex gap-2">
+                        Comments <span className=" hidden sm:flex"> | </span>
+                      </p>
+                    </div>
+                    <div className="mt-1">
+                      {feed?.post_location?._id ? (
+                        <button
+                          onClick={() =>
+                            copyUrlToClipboard(feed?.post_location?._id)
+                          }
+                          className=""
+                        >
+                          <BsFillShareFill color="gray" size={20} />
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => copyUrlToClipboard(feed?._id)}
+                          className=""
+                        >
+                          <BsFillShareFill color="gray" size={20} />
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

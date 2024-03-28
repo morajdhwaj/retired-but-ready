@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 
 import { UserIdContext } from "@/context/UserIdContext";
 import Loader from "@/app/components/Loader";
+import SideConnectionComp from "@/app/components/singleProfileComponent/SideConnectionComp";
 
 const page = ({ params }) => {
   const profileId = params["user"];
@@ -60,7 +61,11 @@ const page = ({ params }) => {
       setUserData(response.data);
       const eeducation = response.data.education || [];
       setEducation(eeducation);
-      const skills = response.data.skills.personal;
+      const skills = response.data.skills;
+      console.log(
+        response.data,
+        "this is for skills testing AAAAAAAAAAAAAAAAAAAAAAA"
+      );
       setSkill(skills);
       const works = response.data.work_history || [];
       setWork(works);
@@ -259,7 +264,7 @@ const page = ({ params }) => {
               <Sidebar />
             </div>
           </div>
-          <div className=" md:flex justify-between md:mx-8 pb-10 mt-20 lg:mt-[82px] mx-5 sm:mx-14 lg:ml-[240px] gap-3  ">
+          <div className=" md:flex justify-between md:mx-8 pb-4 mt-20 lg:mt-[82px] mx-5 sm:mx-14 lg:ml-[240px] gap-3  ">
             <div className="w-[65%] min-h-[80vh] pb-5  bg-white rounded-t-lg">
               <div className="relative flex  justify-center ">
                 <div className="absolute  w-full   pt-24 ">
@@ -376,28 +381,36 @@ const page = ({ params }) => {
                       {userData.user_city},{userData.user_state},
                       {userData.country_name}
                     </h2>
-                    <div
+                    <Link
                       href={`/connections/${profileId}`}
                       className="text-sm text-[#773FC6] font-semibold"
                     >
                       <span className="">{connections.length} </span>Connection
-                    </div>
+                    </Link>
                   </div>
                   <div className="flex gap-2 items-center ">
                     <div className="border p-1 rounded-sm border-black">
                       <HiMiniBuildingOffice2 size={30} />
                     </div>
-                    {work.map((data) => (
-                      <h2 className="" key={data.company_id}>
-                        {data.company_name}
-                      </h2>
-                    ))}
+                    {work.map((data) => {
+                      if (!data?.end_date) {
+                        return (
+                          <h2 className="capitalize" key={data.company_id}>
+                            {data?.company_name}
+                          </h2>
+                        );
+                      } else {
+                        return null; // If end_date is falsy, return null to render nothing
+                      }
+                    })}
                   </div>
                 </div>
                 <div className="border-2 rounded-lg px-5 py-4 mt-4">
                   <div className="">
                     <h2 className="text-lg font-semibold">About</h2>
-                    <p className="text-sm">{userData.profile_summary}</p>
+                    <p className="text-sm capitalize">
+                      {userData.profile_summary}
+                    </p>
                   </div>
                 </div>
                 <div className="border-2 rounded-lg py-2 mt-4">
@@ -454,14 +467,23 @@ const page = ({ params }) => {
                           <HiMiniBuildingOffice2 size={50} />
                         </div>
                         <div className="">
-                          <h2 className="font-semibold">{data.title}</h2>
-                          <h3 className="text-sm font-medium">
+                          <h2 className="font-semibold capitalize">
+                            {data.title}
+                          </h2>
+                          <h3 className="text-sm font-medium capitalize">
                             {data.company_name}
                           </h3>
-                          <p className="text-sm font-medium">
-                            {/* {data.start_date} */}
-                            {dayjs(data.start_date).format("MM/DD/YYYY")}
-                          </p>
+                          <div className="flex items-center">
+                            <p className="text-sm font-medium">
+                              {/* {data.start_date} */}
+                              {dayjs(data?.start_date).format("MM/DD/YYYY")}
+                            </p>
+                            <span className="mx-2 ">-</span>
+                            <p className="text-sm font-medium">
+                              {/* {data.start_date} */}
+                              {dayjs(data?.end_date).format("MM/DD/YYYY")}
+                            </p>
+                          </div>
 
                           {/* <p className="text-sm mt-1">
                           Lorem ipsum dolor sit amet consectetur adipisicing
@@ -473,7 +495,7 @@ const page = ({ params }) => {
                     ))}
                   </div>
                 </div>
-                <div className="border-2 rounded-lg px-3 py-2 mt-4">
+                {/* <div className="border-2 rounded-lg px-3 py-2 mt-4">
                   <h2 className="text-lg font-semibold">Education</h2>
                   <div className="">
                     {education.map((data) => (
@@ -485,10 +507,12 @@ const page = ({ params }) => {
                           <IoSchoolSharp size={50} />
                         </div>
                         <div className="">
-                          <h2 className="font-semibold">
+                          <h2 className="font-semibold capitalize">
                             {data.institution_name}
                           </h2>
-                          <h2 className="font-semibold">{data.degree}</h2>
+                          <h2 className="font-semibold capitalize">
+                            {data.degree}
+                          </h2>
                           <p className="text-sm font-medium">
                             {data.start_year} - {data.end_year}
                           </p>
@@ -496,17 +520,31 @@ const page = ({ params }) => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
                 <div className="border-2 rounded-lg  py-2 mt-4">
                   <div className="px-3">
                     <h2 className="text-lg font-semibold">Skill</h2>
                     <div className=" px-6 pb-5">
-                      {skill.map((data) => (
+                      <h2 className="text-lg font-semibold">Personal</h2>
+                      {skill?.personal.map((data, index) => (
                         <div
                           className="border-b-2 w-full mt-2 pb-1"
-                          key={data.skill_id}
+                          // key={data.skill_id}
+                          key={index}
                         >
-                          <h2 className="">{data.skill_name}</h2>
+                          <h2 className="capitalize">{data}</h2>
+                        </div>
+                      ))}
+                    </div>
+                    <div className=" px-6 pb-5">
+                      <h2 className="text-lg font-semibold">Professional</h2>
+                      {skill?.professional.map((data, index) => (
+                        <div
+                          className="border-b-2 w-full mt-2 pb-1"
+                          // key={data.skill_id}
+                          key={index}
+                        >
+                          <h2 className="capitalize">{data}</h2>
                         </div>
                       ))}
                     </div>
@@ -523,7 +561,7 @@ const page = ({ params }) => {
               </div>
             </div>
             <div className="">
-              <JoinGroupRecommendation />
+              <SideConnectionComp />
             </div>
           </div>
         </div>

@@ -142,7 +142,7 @@ const page = () => {
             </div>
           </div>
           {addPost && (
-            <div className="mt-44 sm:mt-32 md:mt-20 mx-20   ">
+            <div className="mt-44 sm:mt-32 md:mt-20 md:mx-20   ">
               <PostInput
                 feeds={feeds}
                 userData={userData}
@@ -155,8 +155,8 @@ const page = () => {
 
           <div
             className={`${
-              !addPost && "mt-44 sm:mt-32 md:mt-20"
-            } sm:mx-10 md:mx-20 xl:mx-28 `}
+              !addPost && "mt-44 sm:mt-32 md:my-20"
+            } sm:mx-10 md:mx-20 xl:mx-28 mt-5`}
           >
             <div className="flex justify-between w-full text-gray-500">
               <button
@@ -198,6 +198,8 @@ const page = () => {
                   setFeeds={setFeeds}
                   getFeeds={getFeeds}
                   userId={userId}
+                  setAddPost={setAddPost}
+                  addPost={addPost}
                 />
               </div>
             )}
