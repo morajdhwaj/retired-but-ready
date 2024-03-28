@@ -523,40 +523,49 @@ const page = ({ params }) => {
                 </div> */}
                 <div className="border-2 rounded-lg  py-2 mt-4">
                   <div className="px-3">
-                    <h2 className="text-lg font-semibold">Skill</h2>
+                    <h2 className="text-lg font-semibold">Skills</h2>
                     <div className=" px-6 pb-5">
-                      <h2 className="text-lg font-semibold">Personal</h2>
-                      {skill?.personal.map((data, index) => (
-                        <div
-                          className="border-b-2 w-full mt-2 pb-1"
-                          // key={data.skill_id}
-                          key={index}
-                        >
-                          <h2 className="capitalize">{data}</h2>
-                        </div>
-                      ))}
+                      <h2 className="text-lg font-semibold mt-6 mb-2">
+                        Personal-
+                      </h2>
+                      <div className="flex gap-2 flex-wrap">
+                        {skill?.personal.map((data, index) => (
+                          <p
+                            className="border rounded-lg bg-[#ccc4d0] font-medium px-3 py-2 mt-1  capitalize"
+                            // key={data.skill_id}
+                            key={index}
+                          >
+                            {data}
+                            {/* <h2 className=""></h2> */}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                     <div className=" px-6 pb-5">
-                      <h2 className="text-lg font-semibold">Professional</h2>
-                      {skill?.professional.map((data, index) => (
-                        <div
-                          className="border-b-2 w-full mt-2 pb-1"
-                          // key={data.skill_id}
-                          key={index}
-                        >
-                          <h2 className="capitalize">{data}</h2>
-                        </div>
-                      ))}
+                      <h2 className="text-lg font-semibold mt-5 mb-2">
+                        Professional-
+                      </h2>
+                      <div className="flex gap-2 flex-wrap">
+                        {skill?.professional.map((data, index) => (
+                          <p
+                            className="border rounded-lg bg-[#ccc4d0] font-medium px-3 py-2 mt-1  capitalize"
+                            // key={data.skill_id}
+                            key={index}
+                          >
+                            {data}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className="border-t-2 mt-3">
+                  {/* <div className="border-t-2 mt-3">
                     <button className="text-md font-semibold flex justify-center items-center gap-3 py-2 w-full">
                       Show all skills
                       <span className="">
                         <FaArrowRightLong size={20} />
                       </span>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

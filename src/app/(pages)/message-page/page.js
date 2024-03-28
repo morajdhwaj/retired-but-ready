@@ -213,6 +213,15 @@ const Page = () => {
     console.log(id);
   };
 
+  const insertLineBreaks = (text) => {
+    const maxLength = 50; // Maximum characters per line
+    let result = "";
+    for (let i = 0; i < text.length; i += maxLength) {
+      result += text.substring(i, i + maxLength) + "\n";
+    }
+    return result;
+  };
+
   return (
     <div className="bg-[#EDEBF2] min-h-[100vh]  px-10 ">
       <Navbar />
@@ -361,9 +370,10 @@ const Page = () => {
                               chat.sender_id === userIdFromContext
                                 ? "float-right pl-3 pr-12 bg-[#773FC6]"
                                 : "float-left pl-3 pr-12 bg-[#ab7cee]"
-                            } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl  py-1 max-w-[60%] text-wrap relative flex items-center pb-5`}
+                            } bg-[#E4E7EB  text-[#8f4dea text-white rounded-xl  py-1 max-w-[60%] text-wrap relative flex items-center pb-5 `}
+                            style={{ whiteSpace: "pre-wrap" }}
                           >
-                            {chat.message}
+                            {insertLineBreaks(chat.message)}
                             {/* {showOptionButton === chat.message_id &&
                               showThreeDought && (
                                 <button
