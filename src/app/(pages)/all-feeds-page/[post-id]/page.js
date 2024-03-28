@@ -647,7 +647,12 @@ const page = ({ params }) => {
                       >
                         <MdComment color="#c27803" className="mt-1" size={25} />
 
-                        <p className="text-sm">Comment</p>
+                        <p className="text-sm flex gap-1">
+                          {feed?.post_comment_id?.length > 0 && (
+                            <p> {feed?.post_comment_id?.length}</p>
+                          )}
+                          Comment
+                        </p>
                       </button>
 
                       <button
@@ -659,11 +664,6 @@ const page = ({ params }) => {
                       </button>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1">
-                        <p> {feed?.post_comment_id?.length}</p>
-                        <p className="text-sm"> Comments</p>
-                      </div>
-                      |
                       <button onClick={copyUrlToClipboard} className="">
                         <BsFillShareFill color="gray" size={20} />
                       </button>

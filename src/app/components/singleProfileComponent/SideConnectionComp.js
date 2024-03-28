@@ -86,8 +86,7 @@ const SideConnectionComp = () => {
       })
       .catch(function (error) {
         console.error(error);
-        toast.error("this is an error");
-        // toast.error(error?.response?.data?.detail);
+        toast.error(error?.response?.data?.detail);
       });
   };
 
@@ -180,7 +179,7 @@ const SideConnectionComp = () => {
                     </Link>
                     <div>
                       <Link
-                        href={`/group-page/${data?._id}`}
+                        href={`/profile/${data?._id}`}
                         className=" mx-2 capitalize font-semibold text-lg "
                       >
                         {data.user_display_name}

@@ -162,11 +162,18 @@ const ProfileDetails = ({ userId }) => {
           <div className="w-1/2">
             <h2 className="font-semibold text-gray-500">Gender</h2>
             {edit ? (
-              <input
+              <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
-                className="bg-[#f2f1f3] border border-gray-300 h-10  px-2 rounded w-full"
-              />
+                className="bg-[#f2f1f3] border border-gray-300 h-10  w-full px-2 rounded"
+              >
+                <option value="" disabled>
+                  Select gender
+                </option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
             ) : (
               <h2 className="font-semibold ">{userData.user_gender}</h2>
             )}
