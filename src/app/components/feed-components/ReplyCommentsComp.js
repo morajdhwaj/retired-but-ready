@@ -725,7 +725,7 @@ const ReplyCommentsComp = ({
                 onInput={autoResize}
               />{" "}
               <label className="cursor-pointer">
-                <div className="flex items-center justify-center mt-3">
+                <div className="flex items-center justify-center mt-3 hover:shadow-lg">
                   <GrGallery size={25} color="#773fc6" />
                 </div>
                 <input
@@ -758,16 +758,16 @@ const ReplyCommentsComp = ({
         </div>
         <div className="flex gap-2 text-xs">
           <button
-            onClick={postReply}
-            className="border border-[#773fc6] text-[#773fc6] h-10  rounded px-4"
-          >
-            Reply
-          </button>
-          <button
             onClick={() => setReplyCommentId("")}
-            className="border border-[#773fc6] text-[#773fc6] h-10 px-4 rounded"
+            className="border border-[#773fc6] text-[#773fc6] h-10 px-4 rounded hover:shadow-lg"
           >
             Close
+          </button>
+          <button
+            onClick={postReply}
+            className="bg-[#773fc6]  h-10 text-white rounded px-4 hover:shadow-lg"
+          >
+            Reply
           </button>
         </div>
       </div>
