@@ -215,8 +215,8 @@ const Page = () => {
               <textarea
                 name=""
                 id=""
-                className="w-full p-1 border border-gray-200 flex"
-                placeholder="Write description hear"
+                className="w-full p-2 border border-gray-200 flex"
+                placeholder="Write something about group"
                 value={groupDescription}
                 onChange={(e) =>
                   setGroupDescription(
