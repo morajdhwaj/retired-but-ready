@@ -68,15 +68,15 @@ const FollowingPage = () => {
           {following.length > 0 &&
             following.map((item) => (
               <div
-                className="w-full p-2 pl-0 flex flex-col sm:flex-row justify-between lg:flex-row border-b border-[#E3CCE1] mt-5"
+                className="w-full p-2 pl-0 sm:flex sm:justify-between sm:items-center  border-b border-[#E3CCE1] mt-5"
                 key={item?.to_user_id}
               >
-                <div className="w-full sm:w-[80%] lg:w-[80%] flex justify-betwee ">
-                  <div className="w-1/2  sm:w-[9%]  flex items-center ">
-                    <Link href={`/profile/${item.to_user_id}`}>
-                      {item?.to_user_image ? (
+                <div className="w-full  flex sm:justify-start justify-center  items-center gap-1">
+                  <div className=" flex items-center ">
+                  <Link href={`/profile/${item.to_user_id}`}>
+                  {item?.to_user_image ? (
                         <Image
-                          src={item?.to_user_image}
+                        src={item?.to_user_image}
                           width={30}
                           height={30}
                           alt="pic"
@@ -90,17 +90,18 @@ const FollowingPage = () => {
                       )}
                     </Link>
                   </div>
-                  <div className="w-1/2 sm:w-[90%] flex items-center ">
-                    <Link href={`/profile/${item?.to_user_id}`}>
-                      <h1 className="text-[#2C2C2C] text-sm text-start font-medium mt-[-10px] capitalize ">
-                        {item?.to_user_full_name}
+                  <div className=" flex items-center ">
+                  <Link href={`/profile/${item?.to_user_id}`}>
+                      <h1 className="text-[#2C2C2C] text-sm text-start font-medium capitalize mt-[-10px]">
+                      {item?.to_user_full_name}
                       </h1>
+                      <p className="">{}</p>
                     </Link>
                   </div>
                 </div>
-                <div className="w-full sm:w-[15%] lg:w-[15%] flex justify-around items-center mt-2 sm:mt-0 lg:mt-0">
+                <div className="w-full justify-center flex  sm:justify-end items-center gap-5 sm:gap-10 mt-2 sm:mt-0 lg:mt-0 " >
                   <button
-                    className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm p-2"
+                    className="border border-[#773fc6] text-black rounded-md  text-xs sm:text-sm  p-1 sm:p-2"
                     onClick={() => handleUnfollowModal(item)}
                   >
                     Following
@@ -109,7 +110,7 @@ const FollowingPage = () => {
                     className="text-3xl sm:text-4xl text-gray-400 relative"
                     onMouseEnter={() => setShowChat(item?.to_user_id)}
                     onMouseLeave={() => setShowChat("")}
-                    onClick={() => setChatId(item?.to_user_id)}
+                    onClick={() => setChatId(item?.user_id)}
                   >
                     <Image src="/emoji/chat.png" width={30} height={30}></Image>
                     {showChat === item?.to_user_id && (
@@ -123,12 +124,12 @@ const FollowingPage = () => {
             ))}
           {selectedFollowing && (
             <PopUp
-              close={() => setSelectedFollowing(null)}
-              onClick={unfollowFollowing}
-              title="Are you sure you want to Unfollow this Following?"
-              action="Unfollow"
-              message=""
-              error="error"
+            close={() => setSelectedFollowing(null)}
+            onClick={unfollowFollowing}
+            title="Are you sure you want to Unfollow this Following?"
+                        action="Unfollow"
+                       message=""
+                       error="error"
             />
           )}
         </div>
@@ -139,6 +140,7 @@ const FollowingPage = () => {
       )}
     </>
   );
-};
 
+
+      };
 export default FollowingPage;

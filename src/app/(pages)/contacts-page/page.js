@@ -56,7 +56,7 @@ const page = () => {
     <div className="min-h-[100vh]">
       <Navbar />
 
-      <div className="bg-[#e8e9e8] min-h-[100vh] p-10 ">
+      <div className="bg-[#e8e9e8] min-h-[100vh] p-8 sm:p-10 ">
         <div className="hidden lg:flex  ">
           <Sidebar />
         </div>
@@ -105,28 +105,28 @@ const page = () => {
             </div>
           </div>
 
-          <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 ">
-            <div className="flex justify-between  text-black  w-full sm:w-[40%] ">
+          <div className="  w-full ">
+          <div className="  mt-36 sm:mt-32 md:mt-36 lg:mt-40 flex gap-3 sm:gap-10  w-full sm:w-[63%] md:w-[46%] xl:w-[27%] border-b-2 border-gray-200 ">
               <div
                 onClick={() => setToggle(1)}
-                className={`border-b-[3.5px]  text-md  bottom-[-2px] w-[33%] font-semibold text-center pb-1 cursor-pointer ${
-                  toggle === 1 && "border-[#773fc6] text-[#773fc6]"
+                className={`  text-md  bottom-[-2px]  font-semibold text-center pb-1 cursor-pointer ${
+                  toggle === 1 &&  " border-b-[3.5px] border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Contact
               </div>
               <div
                 onClick={() => setToggle(3)}
-                className={`border-b-[3.5px]  text-md  font-semibold  bottom-[-2px] w-[33%] text-center cursor-pointer ${
-                  toggle === 3 && "border-[#773fc6] text-[#773fc6]"
+                className={`  text-md  font-semibold  bottom-[-2px] text-center cursor-pointer ${
+                  toggle === 3 && " border-b-[3.5px] border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Followers
               </div>
               <div
                 onClick={() => setToggle(2)}
-                className={`border-b-[3.5px] text-md font-semibold  bottom-[-2px]  w-[33%] text-center cursor-pointer ${
-                  toggle === 2 && "border-[#773fc6] text-[#773fc6]"
+                className={` text-md font-semibold  bottom-[-2px]   text-center cursor-pointer ${
+                  toggle === 2 && " border-b-[3.5px] border-[#773fc6] text-[#773fc6]"
                 } `}
               >
                 Following
