@@ -56,36 +56,36 @@ const JoinNewGroup = () => {
   };
 
   return (
-    <div className="right-0 sm:right-4 lg:right-6 md:right-12 md:fixed  w-[40vw]  lg:w-[30vw]   h-[100vh] hidden md:block ">
+    <div className="right-0 sm:right-4 lg:right-6 md:right-12   w-[40vw]  lg:w-[30vw]   min-h-[100vh] hidden md:block ">
       <div className="lg:px-10 sm:px-5 h-full   lg:w-[28vw ">
         <div className="rounded-lg h-full flex flex-col sm:flex sm:flex-col md:flex md:flex-col md:items-center  py-5 gap-2  border bg-white">
-          <div className="text-center text-lg font-medium">
+          <div className="text-center text-lg font-semibold p-2">
             <h1 className="text-md">Groups you might be interested in</h1>
           </div>
           <div className="border-2 mt-2 border-gray-200  w-full" />
-          <div className="max-h-[65vh] sm:px-5 ">
+          <div className="max-h-[65vh] sm:px-3 ">
             {mapData.map((data) => (
               <div key={data._id} className="w-full py-1 ">
-                <div className="mt-2 flex justify-between gap-5 p-2  w-full md:flex md:flex-col mx-1">
+                <div className="mt-2 flex justify-between gap-5 w-full md:flex md:flex-col mx-1">
                   <div className="flex">
                     <Link href={`/group-page/${data?._id}`}>
-                      <RiGroup2Fill color="gray" size={50} />
+                      <RiGroup2Fill color="gray" size={60} />
                     </Link>
-                    <div>
+                    <div className="mt-2">
                       <Link
                         href={`/group-page/${data?._id}`}
-                        className=" mx-2 capitalize font-semibold "
+                        className=" mx-2 capitalize font-medium text-lg  "
                       >
                         {data.group_name}
                       </Link>
-                      <p className=" mx-2 capitalize ">
+                      <p className=" mx-2 capitalize text-sm font-normal">
                         {data.group_description.slice(0, 30)}
                         {data?.group_description.length > 30 ? "..." : ""}
                       </p>
                       {/* <p className=" mx-2">{data.}</p> */}
                     </div>
                   </div>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mb-2">
                     {data.join_requests &&
                     data.join_requests.some(
                       (item) => item.requested_user === userId
@@ -108,7 +108,7 @@ const JoinNewGroup = () => {
             ))}
           </div>
 
-          <div className="flex justify-center items-center mt-2 mb-full">
+          <div className="flex justify-center items-center  lg:mt-24 mb-full">
             <button
               className="border-2 border-[#773fc6] w-40 h-10 text-lg font-medium text-center rounded-lg"
               onClick={() => showAllRecommendation()}

@@ -34,10 +34,10 @@ const Join = () => {
           </button>
         </div>
 
-        <div className=" sm:ml-5 lg:ml-0 xl:ml-24 ">
+        <div className="sm:ml-5 md:ml-10 lg:ml-0 xl:ml-24">
           <Link
             href="/create-group"
-            className="border text-sm sm:text-base  bg-[#773fc6] text-white p-2 mb-1 rounded-lg "
+            className="border  text-xs sm:text-base bg-[#773fc6] text-white p-2  mb-1 rounded-lg"
           >
             Create Group
           </Link>
